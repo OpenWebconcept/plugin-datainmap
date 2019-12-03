@@ -21,3 +21,4 @@ include GH_DIM_DIR . '/includes/metaboxes.php';
 include GH_DIM_DIR . '/includes/settings.php';
 include GH_DIM_DIR . '/includes/shortcode.php';
 include GH_DIM_DIR . '/includes/ajax.php';
+include GH_DIM_DIR . '/includes/menus.php';

@@ -3,17 +3,17 @@
 add_action('init', 'gh_dim_register_taxonomy', 10);
 function gh_dim_register_taxonomy() {
     $labels = array(
-        'name' 				=> __( 'Type', 'gh-datainmap' ),
-        'singular_name' 	=> __( 'Type', 'gh-datainmap' ),
-        'search_items' 		=> __( 'Search Types', 'gh-datainmap' ),
-        'all_items' 		=> __( 'All Types', 'gh-datainmap' ),
-        'parent_item' 		=> __( 'Parent Type', 'gh-datainmap' ),
-        'parent_item_colon' => __( 'Parent Type:', 'gh-datainmap' ),
-        'edit_item' 		=> __( 'Edit Type', 'gh-datainmap' ),
-        'update_item' 		=> __( 'Update Type', 'gh-datainmap' ),
-        'add_new_item' 		=> __( 'Add New Type', 'gh-datainmap' ),
-        'new_item_name' 	=> __( 'New Type Name', 'gh-datainmap' ),
-        'menu_name' 		=> __( 'Types', 'gh-datainmap' ),
+        'name' 				=> __( 'Location Types', 'gh-datainmap' ),
+        'singular_name' 	=> __( 'Location Type', 'gh-datainmap' ),
+        'search_items' 		=> __( 'Search Location Types', 'gh-datainmap' ),
+        'all_items' 		=> __( 'All Location Types', 'gh-datainmap' ),
+        'parent_item' 		=> __( 'Parent Location Type', 'gh-datainmap' ),
+        'parent_item_colon' => __( 'Parent Location Type:', 'gh-datainmap' ),
+        'edit_item' 		=> __( 'Edit Location Type', 'gh-datainmap' ),
+        'update_item' 		=> __( 'Update Location Type', 'gh-datainmap' ),
+        'add_new_item' 		=> __( 'Add New Location Type', 'gh-datainmap' ),
+        'new_item_name' 	=> __( 'New Location Type Name', 'gh-datainmap' ),
+        'menu_name' 		=> __( 'Location Types', 'gh-datainmap' ),
     );
 
     register_taxonomy( 'gh-dim-location-types', 'gh-dim-locations', array(
