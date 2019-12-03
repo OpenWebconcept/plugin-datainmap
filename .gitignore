@@ -2,3 +2,4 @@ node_modules
 plugins/*
 plugins/gh-datainmap/dist/*
 !plugins/gh-datainmap/
+package-lock.json
