@@ -24,16 +24,6 @@ function gh_dim_shortcode($atts, $content = null) {
     $settings['center_x'] = $args['center_x'];
     $settings['center_y'] = $args['center_y'];
 
-    $term_taxonomy_ids = [];
-    if(strlen($args['types']) > 0) {
-        $term_taxonomy_ids = explode(',', $args['types']);
-    }
-    $terms = get_terms([
-        'taxonomy' => 'gh-dim-location-types',
-        'term_taxonomy_id' => $term_taxonomy_ids,
-        'hide_empty' => false,
-    ]);
-
     $layers = get_posts([
         'post_type' => 'gh-dim-layers',
         'include' => explode(',', $args['layers']),
@@ -48,6 +38,16 @@ function gh_dim_shortcode($atts, $content = null) {
             'kml_ignore_style' => (bool)get_post_meta($post->ID, 'gh_dim_kml_ignore_style', true),
         ];
     }, $layers);
+
+    $term_taxonomy_ids = $terms = [];
+    if(strlen($args['types']) > 0) {
+        $term_taxonomy_ids = explode(',', $args['types']);
+        $terms = get_terms([
+            'taxonomy' => 'gh-dim-location-types',
+            'term_taxonomy_id' => $term_taxonomy_ids,
+            'hide_empty' => false,
+        ]);
+    }
 
     $location_layers = array_map(function($term) {
         $locations = get_posts([
