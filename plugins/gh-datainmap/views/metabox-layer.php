@@ -18,7 +18,7 @@
             </th>
             <td>
                 <input type="url" name="gh_dim_layer_url" id="gh_dim_layer_url" value="<?php echo esc_attr( $gh_dim_layer_url ) ?>"  class="regular-text" />
-                <p class="description"><?php _e( 'A string of coordinates, comma seperated, at least one coordinate set is required.', 'gh-datainmap' ) ?></p>
+                <p class="description"><?php _e( 'URL to the dataset.', 'gh-datainmap' ) ?></p>
             </td>
         </tr>
         <tr>
