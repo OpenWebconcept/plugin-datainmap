@@ -34,7 +34,6 @@ $(document).ready(function() {
         };
         return () => {
             const fields = visibleFields[type];
-            // console.log(type, fields, layerType.val());
             _showFields(visibleFields[type], () => {
                 return layerType.val() == type;
             });
