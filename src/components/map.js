@@ -4,7 +4,6 @@ import View from 'ol/View';
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import _ from 'lodash';
-import {fromLonLat} from 'ol/proj';
 import { zoomTo, moveToAndZoom, flyTo, moveTo } from '../util/map-animations';
 
 export class MapComponent extends Component {
