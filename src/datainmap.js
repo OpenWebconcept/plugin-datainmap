@@ -106,8 +106,9 @@ GHDataInMap.location_layers.forEach(layer => {
 
 store.dispatch(configureMapView({
     center: [settings.center_x, settings.center_y],
-    maxZoom: settings.maxZoom,
     zoom: settings.zoom,
+    maxZoom: settings.maxZoom,
+    minZoom: settings.minZoom,
     constrainResolution: true,
 }));
 

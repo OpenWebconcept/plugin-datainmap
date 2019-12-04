@@ -72,10 +72,18 @@
             </tr>
             <tr>
                 <th scope="row" valign="top">
+                    <label for="gh-datainmap-settings[minZoom]"><?php _e('Min zoom', 'gh-datainmap') ?></label>
+                </th>
+                <td>
+                    <input type="number" name="gh-datainmap-settings[minZoom]" id="gh-datainmap-settings[minZoom]" value="<?php echo esc_attr( $settings['minZoom'] ) ?>" class="small-text" min="1" />
+                </td>
+            </tr>
+            <tr>
+                <th scope="row" valign="top">
                     <label for="gh-datainmap-settings[maxZoom]"><?php _e('Max zoom', 'gh-datainmap') ?></label>
                 </th>
                 <td>
-                    <input type="number" name="gh-datainmap-settings[maxZoom]" id="gh-datainmap-settings[maxZoom]" value="<?php echo esc_attr( $settings['maxZoom'] ) ?>" class="small-text" />
+                    <input type="number" name="gh-datainmap-settings[maxZoom]" id="gh-datainmap-settings[maxZoom]" value="<?php echo esc_attr( $settings['maxZoom'] ) ?>" class="small-text" min="1" />
                 </td>
             </tr>
         </tbody>

@@ -12,13 +12,15 @@ function gh_dim_shortcode($atts, $content = null) {
     $args = shortcode_atts( [
             'types' => null,
             'zoom' => $settings['zoom'],
+            'min_zoom' => $settings['minZoom'],
             'max_zoom' => $settings['maxZoom'],
             'center_x' => $settings['center_x'],
             'center_y' => $settings['center_y'],
             'layers' => null,
         ], $atts );
-    $settings['zoom'] = $args['zoom'];
-    $settings['maxZoom'] = $args['max_zoom'];
+    $settings['zoom'] = (int)$args['zoom'];
+    $settings['minZoom'] = (int)$args['min_zoom'];
+    $settings['maxZoom'] = (int)$args['max_zoom'];
     $settings['center_x'] = $args['center_x'];
     $settings['center_y'] = $args['center_y'];
 
