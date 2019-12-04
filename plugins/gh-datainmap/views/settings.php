@@ -11,33 +11,6 @@
         <tbody>
             <tr>
                 <th scope="row" valign="top">
-                    <label for="gh-datainmap-settings[layer_url]"><?php _e('Layer: URL', 'gh-datainmap') ?></label>
-                </th>
-                <td>
-                    <input type="url" name="gh-datainmap-settings[layer_url]" id="gh-datainmap-settings[layer_url]" value="<?php echo esc_attr( $settings['layer_url'] ) ?>" class="large-text" />
-                    <p class="description"><?php _e( 'Provide the url to the WMTS map with GetCapabilities.', 'gh-datainmap' ) ?></p>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row" valign="top">
-                    <label for="gh-datainmap-settings[layer_name]"><?php _e('Layer: Name', 'gh-datainmap') ?></label>
-                </th>
-                <td>
-                    <input type="text" name="gh-datainmap-settings[layer_name]" id="gh-datainmap-settings[layer_name]" value="<?php echo esc_attr( $settings['layer_name'] ) ?>" class="regular-text" />
-                    <p class="description"><?php _e( 'The name of the layer to display.', 'gh-datainmap' ) ?></p>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row" valign="top">
-                    <label for="gh-datainmap-settings[layer_maxtrixset]"><?php _e('Layer: Matrixset', 'gh-datainmap') ?></label>
-                </th>
-                <td>
-                    <input type="text" name="gh-datainmap-settings[layer_matrixset]" id="gh-datainmap-settings[layer_matrixset]" value="<?php echo esc_attr( $settings['layer_matrixset'] ) ?>" class="regular-text" />
-                    <p class="description"><?php _e('E.g. EPSG:3857', 'gh-datainmap' ) ?></p>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row" valign="top">
                     <label for="gh-datainmap-settings[style_circle_radius]"><?php _e('Landmark style: radius', 'gh-datainmap') ?></label>
                 </th>
                 <td>

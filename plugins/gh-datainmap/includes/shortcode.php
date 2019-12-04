@@ -15,6 +15,7 @@ function gh_dim_shortcode($atts, $content = null) {
             'max_zoom' => $settings['maxZoom'],
             'center_x' => $settings['center_x'],
             'center_y' => $settings['center_y'],
+            'layers' => null,
         ], $atts );
     $settings['zoom'] = $args['zoom'];
     $settings['maxZoom'] = $args['max_zoom'];
@@ -24,7 +25,6 @@ function gh_dim_shortcode($atts, $content = null) {
     $term_taxonomy_ids = [];
     if(strlen($args['types']) > 0) {
         $term_taxonomy_ids = explode(',', $args['types']);
-
     }
     $terms = get_terms([
         'taxonomy' => 'gh-dim-location-types',
@@ -32,7 +32,22 @@ function gh_dim_shortcode($atts, $content = null) {
         'hide_empty' => false,
     ]);
 
-    $layers = array_map(function($term) {
+    $layers = get_posts([
+        'post_type' => 'gh-dim-layers',
+        'include' => explode(',', $args['layers']),
+    ]);
+    $map_layers = array_map(function($post) {
+        return [
+            'title' => get_the_title( $post->ID ),
+            'type' => get_post_meta($post->ID, 'gh_dim_layer_type', true),
+            'url' => get_post_meta($post->ID, 'gh_dim_layer_url', true),
+            'name' => get_post_meta($post->ID, 'gh_dim_layer_name', true),
+            'matrixset' => get_post_meta($post->ID, 'gh_dim_layer_maxtrixset', true),
+            'kml_ignore_style' => (bool)get_post_meta($post->ID, 'gh_dim_kml_ignore_style', true),
+        ];
+    }, $layers);
+
+    $location_layers = array_map(function($term) {
         $locations = get_posts([
             'post_type' => 'gh-dim-locations',
             'tax_query' => [
@@ -83,7 +98,8 @@ function gh_dim_shortcode($atts, $content = null) {
         'fetchFeatureUrl' => admin_url( 'admin-ajax.php' ) . '?action=gh_dim_get_location_info&security=' . $security . '&location_id=',
         'security' => $security,
         'settings' => $settings,
-        'layers' => $layers,
+        'location_layers' => $location_layers,
+        'map_layers' => $map_layers,
     ] );
     $output = '<div id="'.$el_id.'">'.__('Loading...', 'gh-datainmap').'</div>';
     return $output;

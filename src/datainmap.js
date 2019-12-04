@@ -15,6 +15,7 @@ import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer';
 import {Point} from 'ol/geom';
 import {transform} from 'ol/proj';
 import {Cluster, OSM, Vector as VectorSource } from 'ol/source';
+import KML from 'ol/format/KML';
 import { featureReducer } from './reducers/feature';
 import './style.scss';
 
@@ -95,7 +96,7 @@ let styles = {
 };
 
 // Add layer styles
-GHDataInMap.layers.forEach(layer => {
+GHDataInMap.location_layers.forEach(layer => {
     styles[layer.slug] = new Style({
         image: new Icon({
             src: layer.icon
@@ -110,31 +111,52 @@ store.dispatch(configureMapView({
     constrainResolution: true,
 }));
 
+let zIndex = 1;
+
 // Fall back to OpenStreetMaps if no layer is present
-if(settings.layer_url.length == 0) {
+if(GHDataInMap.map_layers.length == 0) {
     store.dispatch(addMapLayer(
         new TileLayer({
             source: new OSM(),
             opacity: 1,
-            zIndex: 1,
+            zIndex: zIndex,
         })
     ));
 }
 else {
-    store.dispatch(fetchWMTSLayer(
-        settings.layer_url,
-        {
-            layer: settings.layer_name,
-            matrixSet: settings.layer_matrixset
-        },
-        {
-            opacity: 1,
-            zIndex: 1,
+    GHDataInMap.map_layers.forEach( (layer_data) => {
+        console.log(layer_data);
+        switch(layer_data.type) {
+            case 'KML':
+                const layer = new VectorLayer({
+                    zIndex: ++zIndex,
+                    source: new VectorSource({
+                        url: layer_data.url,
+                        format: new KML({
+                            extractStyles: !layer_data.kml_ignore_style
+                        }),
+                    })
+                });
+                store.dispatch(addMapLayer(layer));
+                break;
+            case 'WMTS-auto':
+                store.dispatch(fetchWMTSLayer(
+                    layer_data.url,
+                    {
+                        layer: layer_data.name,
+                        matrixSet: layer_data.matrixset
+                    },
+                    {
+                        opacity: 1,
+                        zIndex: ++zIndex,
+                    }
+                ));
+                break;
         }
-    ));
+    });
 }
 
-GHDataInMap.layers.forEach( layerData => {
+GHDataInMap.location_layers.forEach( layerData => {
     const source = new VectorSource();
     layerData.features.forEach(featureData => {
         const [x, y] = [featureData.x, featureData.y];
@@ -156,14 +178,14 @@ GHDataInMap.layers.forEach( layerData => {
             source: source,
         });
         layer = new VectorLayer({
-            zIndex: 2,
+            zIndex: ++zIndex,
             source: clusterSource,
             style: styles.cluster
         });
     }
     else {
         layer = new VectorLayer({
-            zIndex: 2,
+            zIndex: ++zIndex,
             source: source,
             style: layerStyle
         });
