@@ -52,7 +52,7 @@ export class SearchComponent extends Component {
                 this.props.resetSearchResults(null);
             }
         };
-        this.timeout = setTimeout(cb, 500);
+        this.timeout = setTimeout(cb, 250);
     }
 
     handleSelectedResult(doc) {
