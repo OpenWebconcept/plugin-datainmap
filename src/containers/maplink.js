@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import MapComponent from '../components/map';
-import { selectFeature } from '../actions';
+import { selectFeature, setFeature } from '../actions';
 
 const mapStateToProps  = (state, ownProps) => {
     return {
@@ -14,7 +14,14 @@ const mapStateToProps  = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         onSelectFeature: (feature) => {
-            dispatch(selectFeature(feature.feature_id));
+            // Vraag aanvullende informatie op van feature
+            if(feature.feature_id) {
+                dispatch(selectFeature(feature.feature_id));
+            }
+            // KML feature, fetchen niet nodig
+            else {
+                dispatch(setFeature(feature));
+            }
         }
     }
 };
