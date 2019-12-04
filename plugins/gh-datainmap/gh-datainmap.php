@@ -22,3 +22,10 @@ include GH_DIM_DIR . '/includes/settings.php';
 include GH_DIM_DIR . '/includes/shortcode.php';
 include GH_DIM_DIR . '/includes/ajax.php';
 include GH_DIM_DIR . '/includes/menus.php';
+
+add_filter('upload_mimes', function($mime_types) {
+    if(!isset($mime_types['kml'])) {
+        $mime_types['kml'] = 'text/xml';
+    }
+    return $mime_types;
+}, 1, 1);
