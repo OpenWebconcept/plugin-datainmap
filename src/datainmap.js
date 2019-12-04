@@ -142,7 +142,7 @@ else {
                 break;
             case 'KML':
                 const layerStyle = (feature) => {
-                    return styles[layerData.slug] || styles.default;
+                    return styles.default;
                 };
                 const layer = new VectorLayer({
                     zIndex: ++zIndex,
