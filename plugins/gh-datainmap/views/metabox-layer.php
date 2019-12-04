@@ -47,7 +47,7 @@
                 <input type="hidden" name="gh_dim_kml_ignore_style" value="0" />
                 <input type="checkbox" name="gh_dim_kml_ignore_style" id="gh_dim_kml_ignore_style" value="1" <?php checked(1, $gh_dim_kml_ignore_style, true) ?> />
                 <?php _e('Yes, ignore provided KML styles', 'gh-datainmap') ?>
-                <p class="description"><?php _e( 'The name of the layer to display.', 'gh-datainmap' ) ?></p>
+                <p class="description"><?php _e( 'This disables KML styling.', 'gh-datainmap' ) ?></p>
             </td>
         </tr>
     </tbody>
