@@ -175,7 +175,7 @@ GHDataInMap.location_layers.forEach( layerData => {
         source.addFeature(new Feature({
             ...featureData,
             // Todo: dit moet niet hier gebeuren, maar bij importeren
-            geometry: new Point(transform([x, y], 'EPSG:4326', settings.layer_matrixset))
+            geometry: new Point(transform([x, y], 'EPSG:4326', 'EPSG:3857'))
         }));
     });
     let layer;
