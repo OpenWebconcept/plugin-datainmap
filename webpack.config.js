@@ -30,13 +30,15 @@ module.exports = {
     entry: {
         // app: "./src/app.coffee"
         // map: "./src/map.js",
-        datainmap: "./src/datainmap.js"
+        datainmap: "./src/datainmap.js",
+        'admin-layers': "./src/admin-layers.js"
     },
     output: {
         filename: '[name].js',
         path: path.resolve(__dirname, "./plugins/gh-datainmap/dist")
     },
     externals: {
+        jquery: 'window.jQuery'
     },
     module: {
         rules: [

@@ -29,3 +29,13 @@ add_filter('upload_mimes', function($mime_types) {
     }
     return $mime_types;
 }, 1, 1);
+
+add_action('admin_enqueue_scripts', function($hook) {
+    global $current_screen;
+    if(!in_array($hook, array('post.php', 'post-new.php'))) {
+        return;
+    }
+    if($current_screen->post_type == 'gh-dim-layers') {
+        wp_enqueue_script( 'gh-dim-admin', plugin_dir_url(GH_DIM_FILE) . 'dist/admin-layers.js', array('jquery'), null, true);
+    }
+});
