@@ -9,7 +9,6 @@ function gh_dim_menu() {
         'gh-dim',
         'gh_dim_settings_page',
         'dashicons-location-alt',
-        10
     );
     add_submenu_page(
         'gh-dim',
@@ -18,7 +17,6 @@ function gh_dim_menu() {
         'manage_options',
         'edit-tags.php?taxonomy=gh-dim-location-types&post_type=gh-dim-locations',
         null,
-        5
     );
     add_submenu_page(
         'gh-dim',
@@ -27,9 +25,7 @@ function gh_dim_menu() {
         'manage_options',
         'gh_dim_settings',
         'gh_dim_settings_page',
-        10
     );
-
 }
 
 function gh_dim_set_current_menu($parent_file) {
