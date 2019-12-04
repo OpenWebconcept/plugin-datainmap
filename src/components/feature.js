@@ -84,7 +84,7 @@ export default class FeatureComponent extends Component {
         if(feature.id) {
             content = <DIMFeatureComponent feature={feature} />
         }
-        else if(feature.name && feature.description) {
+        else if(feature.name) {
             content = <KMLFeatureComponent feature={feature} />
         }
         return (
