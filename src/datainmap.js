@@ -112,7 +112,7 @@ store.dispatch(configureMapView({
     constrainResolution: true,
 }));
 
-let zIndex = 1;
+let zIndex = 0;
 
 // Fall back to OpenStreetMaps if no layer is present
 if(GHDataInMap.map_layers.length == 0) {
@@ -120,7 +120,7 @@ if(GHDataInMap.map_layers.length == 0) {
         new TileLayer({
             source: new OSM(),
             opacity: 1,
-            zIndex: zIndex,
+            zIndex: ++zIndex,
         })
     ));
 }
