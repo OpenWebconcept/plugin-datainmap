@@ -6,9 +6,9 @@
             </th>
             <td>
                 <select id="gh_dim_layer_type" name="gh_dim_layer_type">
-                    <option value="WMTS-auto" <?php selected('WMTS-auto', $gh_dim_layer_type) ?>><?php _e( 'WMTS (+GetCapabilities)', 'gh-datainmap' ); ?></option>
                     <option value="KML" <?php selected('KML', $gh_dim_layer_type) ?>><?php _e( 'KML', 'gh-datainmap' ); ?></option>
                     <option value="OSM" <?php selected('OSM', $gh_dim_layer_type) ?>><?php _e( 'OpenStreetMap', 'gh-datainmap' ); ?></option>
+                    <option value="WMTS-auto" <?php selected('WMTS-auto', $gh_dim_layer_type) ?>><?php _e( 'WMTS (+GetCapabilities)', 'gh-datainmap' ); ?></option>
                 </select>
             </td>
         </tr>
