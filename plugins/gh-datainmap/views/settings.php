@@ -27,14 +27,6 @@
             </tr>
             <tr>
                 <th scope="row" valign="top">
-                    <label for="gh-datainmap-settings[style_circle_fill_color_cluster]"><?php _e('Landmark style: fill color cluster', 'gh-datainmap') ?></label>
-                </th>
-                <td>
-                    <input type="text" name="gh-datainmap-settings[style_circle_fill_color_cluster]" id="style_circle_fill_color_cluster" value="<?php echo esc_attr( $settings['style_circle_fill_color_cluster'] ) ?>" class="regular-text" />
-                </td>
-            </tr>
-            <tr>
-                <th scope="row" valign="top">
                     <label for="gh-datainmap-settings[style_circle_fill_color]"><?php _e('Landmark style: fill color', 'gh-datainmap') ?></label>
                 </th>
                 <td>
@@ -43,10 +35,35 @@
             </tr>
             <tr>
                 <th scope="row" valign="top">
-                    <label for="style_text_color"><?php _e('Landmark style: text color', 'gh-datainmap') ?></label>
+                    <label for="gh-datainmap-settings[style_text_color]"><?php _e('Landmark style: text color', 'gh-datainmap') ?></label>
                 </th>
                 <td>
                     <input type="text" name="gh-datainmap-settings[style_text_color]" id="gh-datainmap-settings[style_text_color]" value="<?php echo esc_attr( $settings['style_text_color'] ) ?>" class="regular-text" />
+                </td>
+            </tr>
+            <!-- Cluster -->
+            <tr>
+                <th scope="row" valign="top">
+                    <label for="gh-datainmap-settings[style_circle_stroke_color_cluster]"><?php _e('Cluster landmark style: stroke color', 'gh-datainmap') ?></label>
+                </th>
+                <td>
+                    <input type="text" name="gh-datainmap-settings[style_circle_stroke_color_cluster]" id="gh-datainmap-settings[style_circle_stroke_color_cluster]" value="<?php echo esc_attr( $settings['style_circle_stroke_color_cluster'] ) ?>" class="regular-text" />
+                </td>
+            </tr>
+            <tr>
+                <th scope="row" valign="top">
+                    <label for="gh-datainmap-settings[style_circle_fill_color_cluster]"><?php _e('Cluster landmark style: fill color', 'gh-datainmap') ?></label>
+                </th>
+                <td>
+                    <input type="text" name="gh-datainmap-settings[style_circle_fill_color_cluster]" id="style_circle_fill_color_cluster" value="<?php echo esc_attr( $settings['style_circle_fill_color_cluster'] ) ?>" class="regular-text" />
+                </td>
+            </tr>
+            <tr>
+                <th scope="row" valign="top">
+                    <label for="gh-datainmap-settings[style_text_color_cluster]"><?php _e('Cluster landmark style: text color', 'gh-datainmap') ?></label>
+                </th>
+                <td>
+                    <input type="text" name="gh-datainmap-settings[style_text_color_cluster]" id="gh-datainmap-settings[style_text_color_cluster]" value="<?php echo esc_attr( $settings['style_text_color_cluster'] ) ?>" class="regular-text" />
                 </td>
             </tr>
             <tr>

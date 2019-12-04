@@ -46,26 +46,30 @@ let styles = {
         }
 
         if(!style) {
-            let color = settings.style_circle_fill_color_cluster;
+            let fill_color = settings.style_circle_fill_color_cluster;
+            let stroke_color = settings.style_circle_stroke_color_cluster;
+            let text_color = settings.style_text_color_cluster;
             switch(size) {
                 case 1:
-                    color = settings.style_circle_fill_color;
+                    fill_color = settings.style_circle_fill_color;
+                    stroke_color = settings.style_circle_stroke_color;
+                    text_color = settings.style_text_color;
                     break;
             }
             style = new Style({
                 image: new CircleStyle({
                     radius: 14,
                     stroke: new Stroke({
-                        color: settings.style_circle_stroke_color
+                        color: stroke_color
                     }),
                     fill: new Fill({
-                        color: color
+                        color: fill_color
                     })
                 }),
                 text: new Text({
                     text: size.toString(),
                     fill: new Fill({
-                        color: settings.style_text_color
+                        color: text_color
                     })
                 })
             });
@@ -74,34 +78,33 @@ let styles = {
         return style;
     },
     default: new Style({
-        fill: new Fill({
-            color: 'rgba(20, 100, 240, 0.3)'
-        }),
-        stroke: new Stroke({
-            width: 3,
-            color: 'rgba(0, 100, 240, 0.8)'
-        }),
         image: new Circle({
-            fill: new Fill({
-                color: 'rgba(55, 200, 150, 0.5)'
-            }),
+            radius: 14,
             stroke: new Stroke({
-                width: 10,
-                color: 'rgba(55, 200, 150, 0.8)'
+                color: settings.style_circle_stroke_color
             }),
-            radius: 7
+            fill: new Fill({
+                color: settings.style_circle_fill_color
+            })
         }),
-        text: new Text(),
+        text: new Text({
+            text: 1,
+            fill: new Fill({
+                color: settings.style_text_color
+            })
+        }),
     })
 };
 
 // Add layer styles
 GHDataInMap.location_layers.forEach(layer => {
-    styles[layer.slug] = new Style({
-        image: new Icon({
-            src: layer.icon
-        })
-    })
+    if(layer.icon) {
+        styles[layer.slug] = new Style({
+            image: new Icon({
+                src: layer.icon
+            })
+        });
+    }
 });
 
 store.dispatch(configureMapView({
@@ -125,9 +128,9 @@ if(GHDataInMap.map_layers.length == 0) {
     ));
 }
 else {
-    GHDataInMap.map_layers.forEach( (layer_data) => {
-        console.log(layer_data);
-        switch(layer_data.type) {
+    GHDataInMap.map_layers.forEach( (layerData) => {
+        console.log(layerData);
+        switch(layerData.type) {
             case 'OSM':
                 store.dispatch(addMapLayer(
                     new TileLayer({
@@ -138,12 +141,16 @@ else {
                 ));
                 break;
             case 'KML':
+                const layerStyle = (feature) => {
+                    return styles[layerData.slug] || styles.default;
+                };
                 const layer = new VectorLayer({
                     zIndex: ++zIndex,
+                    style: layerStyle,
                     source: new VectorSource({
-                        url: layer_data.url,
+                        url: layerData.url,
                         format: new KML({
-                            extractStyles: !layer_data.kml_ignore_style
+                            extractStyles: !layerData.kml_ignore_style
                         }),
                     })
                 });
@@ -151,10 +158,10 @@ else {
                 break;
             case 'WMTS-auto':
                 store.dispatch(fetchWMTSLayer(
-                    layer_data.url,
+                    layerData.url,
                     {
-                        layer: layer_data.name,
-                        matrixSet: layer_data.matrixset
+                        layer: layerData.name,
+                        matrixSet: layerData.matrixset
                     },
                     {
                         opacity: 1,
