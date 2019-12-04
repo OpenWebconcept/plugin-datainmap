@@ -1,0 +1,62 @@
+@import './mixins';
+
+.ol-zoom {
+    left:auto;
+    top:auto;
+    right:.5em;
+    bottom:.5em;
+}
+
+.gh-dim-map-container {
+    position: relative;
+    .gh-dim-map {
+        width:100%;
+        height:600px;
+    }
+    .gh-dim-search {
+        position: absolute;
+        top:0;
+        left:0;
+
+        .gh-dim-search-form {
+            background-color:#FFF;
+            @include box-shadow(5px 5px 10px 1px #888888);
+
+            input[type="search"] {
+                width:100%;
+            }
+
+            .gh-dim-search-results {
+                list-style:none;
+                padding:0 14px;
+                li {
+                    display:block;
+                    cursor:pointer;
+                    border-bottom:1px solid #EBEBEB;
+                    line-height:2;
+                }
+            }
+        }
+    }
+}
+
+.gh-dim-feature-modal {
+    position:fixed;
+    z-index:1000;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    overflow:auto;
+    background-color:rgb(0,0,0);
+    background-color:rgba(0,0,0,0.2);
+
+    article {
+        background-color:#FFF;
+        @include box-shadow(5px 5px 10px 1px #888888);
+        padding:20px;
+        border:1px solid #888;
+        width:80%;
+        margin:0 auto;
+    }
+}

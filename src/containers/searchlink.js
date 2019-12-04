@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import SearchComponent from '../components/search';
-import { searchSuggest, fetchLocation } from '../actions';
+import { searchSuggest, fetchLocation, setSearchResults } from '../actions';
 
 const mapStateToProps  = (state, ownProps) => {
     return {
@@ -15,6 +15,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
         doSelectResult: (doc) => {
             dispatch(fetchLocation(doc.id));
+        },
+        resetSearchResults: () => {
+            dispatch(setSearchResults({}));
         }
     }
 }

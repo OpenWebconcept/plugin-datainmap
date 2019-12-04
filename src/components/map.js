@@ -93,11 +93,10 @@ export class MapComponent extends Component {
     }
 
     render() {
-        const styles = { height: '600px', width: '800px' };
         return (
-            <div>
-                <div>{this.props.isFetching}</div>
-                <div ref="map" style={styles}></div>
+            <div className="gh-dim-map-container">
+                <div ref="map" className="gh-dim-map"></div>
+                {this.props.children}
             </div>
         )
     }

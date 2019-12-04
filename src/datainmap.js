@@ -17,7 +17,7 @@ import {transform} from 'ol/proj';
 import {Cluster, OSM, Vector as VectorSource } from 'ol/source';
 import KML from 'ol/format/KML';
 import { featureReducer } from './reducers/feature';
-import './style.scss';
+import './scss/style.scss';
 
 const rootReducer = combineReducers({
     map: mapReducer,
@@ -213,8 +213,9 @@ GHDataInMap.location_layers.forEach( layerData => {
 const App = () => {
     return (
         <Provider store={store}>
-            <SearchComponentLink />
-            <MapComponentLink />
+            <MapComponentLink>
+                <SearchComponentLink />
+            </MapComponentLink>
             <FeatureComponentLink />
         </Provider>
     )
