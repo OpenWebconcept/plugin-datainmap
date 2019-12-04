@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Animated} from 'react-animated-css';
 import _ from 'lodash';
 
 // Basic KML rendering
@@ -30,7 +31,8 @@ class DIMFeatureComponent extends Component {
             featuredImage = <img src={image[0]} width={image[1]} height={image[2]} />
         }
         return (
-            <article>
+            // Voorkom dat een click op het article-element het modal sluit
+            <article onClick={e => e.stopPropagation() }>
                 <header>
                     <h1>{feature.title}</h1>
                     {featuredImage}
@@ -62,24 +64,42 @@ class FeatureComponentPhotos extends Component {
 }
 
 export default class FeatureComponent extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            displayModal: false
+        };
+    }
+
+    closeModal() {
+        this.props.resetFeature();
+    }
+
     render() {
         if(this.props.feature === null) {
             return null;
         }
         const feature = this.props.feature;
+        let content;
         if(feature.id) {
-            return <DIMFeatureComponent feature={feature} />
+            content = <DIMFeatureComponent feature={feature} />
         }
         else if(feature.name && feature.description) {
-            return <KMLFeatureComponent feature={feature} />
+            content = <KMLFeatureComponent feature={feature} />
         }
-        else {
-            return null;
-        }
+        return (
+            <Animated animationInDuration={400}>
+                <div className="gh-dim-feature-modal" onClick={(e) => this.closeModal()}>
+                    {content}
+                    <span className="close" aria-label="Sluiten" onClick={(e) => this.closeModal()}>&times;</span>
+                </div>
+            </Animated>
+        )
     }
 }
 
 FeatureComponent.defaultProps = {
     isFetching: 0,
-    feature: null
+    feature: null,
+    resetFeature: _.noop
 };

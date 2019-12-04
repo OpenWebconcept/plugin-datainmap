@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import FeatureComponent from '../components/feature';
+import { setFeature } from '../actions';
 
 const mapStateToProps  = (state, ownProps) => {
     return {
@@ -9,6 +10,9 @@ const mapStateToProps  = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
+        resetFeature: () => {
+            dispatch(setFeature(null));
+        }
     }
 }
 
