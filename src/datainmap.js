@@ -128,6 +128,15 @@ else {
     GHDataInMap.map_layers.forEach( (layer_data) => {
         console.log(layer_data);
         switch(layer_data.type) {
+            case 'OSM':
+                store.dispatch(addMapLayer(
+                    new TileLayer({
+                        source: new OSM(),
+                        opacity: 1,
+                        zIndex: ++zIndex,
+                    })
+                ));
+                break;
             case 'KML':
                 const layer = new VectorLayer({
                     zIndex: ++zIndex,
