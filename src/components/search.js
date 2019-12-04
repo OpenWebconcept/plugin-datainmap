@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { CSSTransition } from 'react-transition-group'
 import {Animated} from 'react-animated-css';
 import _ from 'lodash';
 
