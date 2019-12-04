@@ -88,7 +88,7 @@ let styles = {
             })
         }),
         text: new Text({
-            text: 1,
+            text: '1',
             fill: new Fill({
                 color: settings.style_text_color
             })
