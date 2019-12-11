@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "css": "npx sass src/scss/style.scss plugins/gh-datainmap/dist/style.css",
+    "css-prod": "npx sass src/scss/style.scss plugins/gh-datainmap/dist/style.css",
+    "css-dev": "npx sass --watch src/scss/style.scss plugins/gh-datainmap/dist/style.css",
     "webpack-prod": "npx webpack --mode=production",
-    "webpack-watch": "npx webpack --mode=development -w"
+    "webpack-dev": "npx webpack --mode=development -w"
   },
   "author": "",
   "license": "ISC",
