@@ -43,3 +43,29 @@
         transition: all 400ms;
     }
 }
+
+// Modal een zoom in effect geven
+.gh-dim-feature-modal.transition {
+    &-enter, &-appear {
+        article {
+            transform: scale(0);
+        }
+    }
+    &-enter-active, &-appear-active {
+        article {
+            transform: scale(1);
+            transition: all 400ms;
+        }
+    }
+    &-exit {
+        article {
+            transform: scale(1);
+        }
+    }
+    &-exit-active {
+        article {
+            transform: scale(0);
+            transition: all 400ms;
+        }
+    }
+}
