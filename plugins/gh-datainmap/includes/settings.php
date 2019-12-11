@@ -16,6 +16,5 @@ function gh_dim_settings_page() {
     if (!current_user_can('manage_options')) {
         wp_die('Unauthorized user.');
     }
-
     include GH_DIM_DIR . '/views/settings.php';
 }
