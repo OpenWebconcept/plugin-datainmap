@@ -6,7 +6,7 @@
             </th>
             <td>
                 <select id="gh_dim_location_type" name="gh_dim_location_type">
-                    <option value="point"><?php _e( 'Point (x,y)', 'gh-datainmap' ); ?></option>
+                    <option value="point" <?php selected('point', $gh_dim_layer_type) ?>><?php _e( 'Point (x,y)', 'gh-datainmap' ); ?></option>
                 </select>
             </td>
         </tr>
