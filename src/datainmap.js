@@ -128,7 +128,7 @@ if(GHDataInMap.map_layers.length == 0) {
 }
 else {
     GHDataInMap.map_layers.forEach( (layerData) => {
-        console.log(layerData);
+        // console.log(layerData);
         switch(layerData.type) {
             case 'OSM':
                 store.dispatch(addMapLayer(

@@ -12,6 +12,7 @@ const initialState = {
 };
 
 export const mapReducer = (state = initialState, action) => {
+    // console.log(action.type, action);
     switch(action.type) {
         case CONFIGURE_MAP_VIEW:
             return { ...state, view: action.settings };

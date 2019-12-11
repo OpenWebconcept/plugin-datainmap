@@ -39,6 +39,7 @@ export class MapComponent extends Component {
             this.olMap.forEachFeatureAtPixel(pixel, (feature) => {
                 features.push(feature);
             });
+            // console.log('features', features);
 
             const isCluster = (feature) => {
                 return feature.get('features') !== undefined;
@@ -56,22 +57,29 @@ export class MapComponent extends Component {
             };
 
             if(features.length > 1) {
+                // console.log('- Meerdere features');
                 zoomTo(olView, getXY(features[0]));
             }
             else if(features.length == 1) {
+                // console.log('- Enkele feature');
                 let feature = null;
                 if(isCluster(features[0])) {
+                    // console.log('-- Is een cluster of onderdeel van');
                     if(isSingleFeature(features[0])) {
+                        // console.log('--- Is een single feature in een cluster')
                         feature = features[0].get('features')[0];
                     }
                     else if(isCluster(features[0])) {
+                        // console.log('--- Is een cluster');
                         zoomTo(olView, getXY(features[0]));
                     }
                 }
                 else {
+                    // console.log('-- Is een single feature');
                     feature = features[0];
                 }
                 if(feature !== null) {
+                    // console.log('- select feature', feature);
                     this.props.onSelectFeature(feature.getProperties());
                 }
             }
