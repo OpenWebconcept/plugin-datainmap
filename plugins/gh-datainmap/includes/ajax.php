@@ -19,30 +19,6 @@ function gh_dim_ajax_get_location_info() {
         $content = $post->post_content;
         $content = apply_filters( 'the_content', $content );
         $content = do_shortcode( $content );
-        $imageIds = explode(',', get_post_meta( $post->ID, 'gh_dim_images', true ));
-        $imageSizes = get_intermediate_image_sizes();
-        $images = [];
-        foreach($imageIds as $imageId) {
-            $imgset = [];
-            foreach($imageSizes as $imageSize) {
-                $image = wp_get_attachment_image_src( $imageId, $imageSize );
-                if($image !== false) {
-                    $imgset[$imageSize] = $image;
-                }
-            }
-            if(count($imgset) > 0) {
-                $images[] = $imgset;
-            }
-        }
-        $featuredImage = null;
-        if(has_post_thumbnail( $post )) {
-            $featuredImageId = get_post_thumbnail_id( $post );
-            $imgset = [];
-            foreach($imageSizes as $imageSize) {
-                $imgset[$imageSize] = wp_get_attachment_image_src( $imageId, $imageSize );
-            }
-            $featuredImage = $imgset;
-        }
         $locationType = [];
         $terms = get_the_terms($post, 'gh-dim-location-types');
         foreach($terms as $term) {
@@ -58,8 +34,6 @@ function gh_dim_ajax_get_location_info() {
             'title'         => get_the_title($post),
             'content'       => $content,
             'location'      => [$x, $y],
-            'images'        => $images,
-            'featuredImage' => $featuredImage,
             'locationType'  => $locationType,
         ];
         wp_send_json_success( $json );

@@ -19,13 +19,5 @@
                 <p class="description"><?php _e( 'A string of coordinates, comma seperated, at least one coordinate set is required.', 'gh-datainmap' ) ?></p>
             </td>
         </tr>
-        <tr>
-            <th scope="row" valign="top">
-            <label for="gh_dim_images"><?php _e('Linked images', 'gh-datainmap') ?></label>
-            </th>
-            <td>
-                <input type="text" name="gh_dim_images" id="gh_dim_images" value="<?php echo esc_attr( $gh_dim_images ) ?>" />
-            </td>
-        </tr>
     </tbody>
 </table>

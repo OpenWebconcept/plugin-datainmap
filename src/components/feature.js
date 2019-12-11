@@ -41,35 +41,8 @@ class DIMFeatureComponent extends Component {
                     <CloseModal onClick={() => this.props.closeModal()} />
                 </header>
                 <section className="gh-dim-feature-content" dangerouslySetInnerHTML={{__html: feature.content}} />
-                <section className="gh-dim-feature-photos">
-                    <FeatureComponentPhotos images={feature.images} />
-                </section>
             </article>
         );
-    }
-}
-
-class FeatureComponentPhotos extends Component {
-    render() {
-        if(this.props.images.length == 0) {
-            return null;
-        }
-        return (
-            <ul>
-                {this.props.images.map( (imageset, i) => {
-                    return (
-                        // <li key={i}><img src={imageset.medium[0]} /></li>
-                        <li key={i}><FeatureComponentPhotosPhoto image={imageset} /></li>
-                    );
-                })}
-            </ul>
-        );
-    }
-}
-
-class FeatureComponentPhotosPhoto extends Component {
-    render() {
-        return <img src={this.props.image.medium[0]} />
     }
 }
 
