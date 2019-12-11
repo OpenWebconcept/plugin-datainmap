@@ -1,2 +1,3 @@
 $ npm install
-$ npx webpack
+$ npm run css
+$ npm run webpack-prod

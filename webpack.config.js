@@ -25,7 +25,7 @@ const babel_presets = [
 
 module.exports = {
     // mode: "none",
-    mode: "development",
+    // mode: "development",
     // mode: "production",
     entry: {
         // app: "./src/app.coffee"
