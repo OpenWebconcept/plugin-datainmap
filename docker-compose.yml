@@ -1,0 +1,29 @@
+version: '3.1'
+services:
+  wordpress:
+    image: wordpress
+    depends_on:
+      - db
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - ./plugins/gh-datainmap/:/var/www/html/wp-content/plugins/gh-datainmap
+      - ./plugins/wordpress-admin-style-master/:/var/www/html/wp-content/plugins/wordpress-admin-style-master
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+      MYSQL_ROOT_PASSWORD: wordpress
+  adminer:
+    image: adminer
+    depends_on:
+      - db
+    ports:
+      - 8081:8080
