@@ -48,7 +48,7 @@
 .gh-dim-feature-modal.transition {
     &-enter, &-appear {
         article {
-            transform: scale(0);
+            transform: scale(0.9);
         }
     }
     &-enter-active, &-appear-active {
@@ -64,7 +64,7 @@
     }
     &-exit-active {
         article {
-            transform: scale(0);
+            transform: scale(0.9);
             transition: all 400ms;
         }
     }
