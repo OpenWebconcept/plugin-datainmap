@@ -2,6 +2,11 @@
 @import './modules/modules';
 @import './transitions';
 
+$bgcolor-button-neutral: #000;
+$bgcolor-button-hover: #DF004F;
+$textcolor-button-neutral: #fff;
+$textcolor-button-hover: $textcolor-button-neutral;
+
 .ol-zoom {
     left:auto;
     top:auto;
@@ -9,11 +14,12 @@
     bottom:.5em;
 }
 .ol-control button {
-    background-color:#000;
-    color:#FFF;
+    background-color:$bgcolor-button-neutral;
+    color:$textcolor-button-neutral;
 
     &:hover {
-        background-color:#DF004F;
+        background-color:$bgcolor-button-hover;
+        color:$textcolor-button-hover;
     }
 }
 
@@ -28,6 +34,15 @@
         min-width:300px;
         top:0;
         left:0;
+
+        .gh-dim-search-toggle {
+            background-color:$bgcolor-button-neutral;
+            color:$textcolor-button-neutral;
+            &:hover {
+                background-color:$bgcolor-button-hover;
+                color:$textcolor-button-hover;
+            }
+        }
 
         .gh-dim-search-form {
             background-color:#FFF;
