@@ -17,7 +17,6 @@ import {transform} from 'ol/proj';
 import {Cluster, OSM, Vector as VectorSource } from 'ol/source';
 import KML from 'ol/format/KML';
 import { featureReducer } from './reducers/feature';
-import 'animate.css';
 
 const rootReducer = combineReducers({
     map: mapReducer,

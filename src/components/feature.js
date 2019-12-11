@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Animated} from 'react-animated-css';
+import {CSSTransition} from 'react-transition-group';
 import _ from 'lodash';
 
 // Basic KML rendering
@@ -66,9 +66,6 @@ class FeatureComponentPhotos extends Component {
 export default class FeatureComponent extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            displayModal: false
-        };
     }
 
     closeModal() {
@@ -76,24 +73,27 @@ export default class FeatureComponent extends Component {
     }
 
     render() {
-        if(this.props.feature === null) {
-            return null;
-        }
-        const feature = this.props.feature;
         let content;
-        if(feature.id) {
-            content = <DIMFeatureComponent feature={feature} />
-        }
-        else if(feature.name) {
-            content = <KMLFeatureComponent feature={feature} />
+        if(this.props.feature !== null) {
+            const feature = this.props.feature;
+            if(feature.id) {
+                content = <DIMFeatureComponent feature={feature} />
+            }
+            else if(feature.name) {
+                content = <KMLFeatureComponent feature={feature} />
+            }
         }
         return (
-            <Animated animationInDuration={400}>
+            <CSSTransition
+                in={this.props.feature !== null}
+                timeout={400}
+                unmountOnExit
+                classNames="transition">
                 <div className="gh-dim-feature-modal" onClick={(e) => this.closeModal()}>
                     {content}
                     <span className="close" aria-label="Sluiten" onClick={(e) => this.closeModal()}>&times;</span>
                 </div>
-            </Animated>
+            </CSSTransition>
         )
     }
 }

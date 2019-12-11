@@ -1,4 +1,5 @@
 @import './mixins';
+@import './transitions';
 
 .ol-zoom {
     left:auto;
@@ -6,6 +7,13 @@
     right:.5em;
     bottom:.5em;
 }
+// .ol-control button {
+//     background-color:pink;
+
+//     &:hover {
+//         background-color:palevioletred;
+//     }
+// }
 
 .gh-dim-map-container {
     position: relative;
@@ -15,11 +23,13 @@
     }
     .gh-dim-search {
         position: absolute;
+        min-width:300px;
         top:0;
         left:0;
 
         .gh-dim-search-form {
             background-color:#FFF;
+            overflow-x:hidden;
             @include box-shadow(5px 5px 10px 1px #888888);
 
             input[type="search"] {
@@ -28,12 +38,12 @@
 
             .gh-dim-search-results {
                 list-style:none;
-                padding:0 14px;
                 li {
                     display:block;
                     cursor:pointer;
                     border-bottom:1px solid #EBEBEB;
                     line-height:2;
+                    min-width:300px;
                 }
             }
         }

@@ -1,0 +1,45 @@
+// Zoekformulier
+.gh-dim-search-form.transition {
+    // Wordt uigevoerd op het moment dat het element in de DOM komt (in=true)
+    &-enter, &-appear {
+        width:0px;
+    }
+    // Dit is de enter/appear-transitie
+    &-enter-active, &-appear-active {
+        width:100%;
+        transition: all 400ms;
+    }
+    // Wordt uitgevoerd zodra in (in=false)
+    &-exit {
+        width:100%;
+    }
+    // Wordt uitgevoerd zodra het element de DOM verlaat
+    &-exit-active {
+        width: 0px;
+        transition: all 400ms;
+    }
+}
+
+// Zoekresultaten
+.gh-dim-search-results.transition,
+// Feature modal
+.gh-dim-feature-modal.transition {
+    // Wordt uigevoerd op het moment dat het element in de DOM komt (in=true)
+    &-enter, &-appear {
+        opacity: 0;
+    }
+    // Dit is de enter/appear-transitie
+    &-enter-active, &-appear-active {
+        opacity: 100%;
+        transition: all 400ms;
+    }
+    // Wordt uitgevoerd zodra in (in=false)
+    &-exit {
+        opacity: 100%;
+    }
+    // Wordt uitgevoerd zodra het element de DOM verlaat
+    &-exit-active {
+        opacity:0;
+        transition: all 400ms;
+    }
+}

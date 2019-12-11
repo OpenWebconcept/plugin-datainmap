@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Animated} from 'react-animated-css';
+import {CSSTransition} from 'react-transition-group';
 import _ from 'lodash';
 
 class SearchResultsComponent extends Component {
@@ -8,21 +8,24 @@ class SearchResultsComponent extends Component {
         super(props);
     }
 
+    hasResults() {
+        return this.props.results.response && this.props.results.response.numFound > 0;
+    }
+
     render() {
-        if( this.props.results.response && this.props.results.response.numFound > 0 ) {
-            return (
-                <Animated
-                    animationInDuration={400}
-                    animationOutDuration={400}>
-                    <ul className="gh-dim-search-results">
-                        {this.props.results.response.docs.map((doc) => {
-                            return <li key={doc.id} onClick={(e) => this.props.handleClick(doc)}>{doc.weergavenaam}</li>
-                        })}
-                    </ul>
-                </Animated>
-            )
-        }
-        return null;
+        return (
+            <CSSTransition
+                in={this.hasResults()}
+                timeout={400}
+                unmountOnExit
+                classNames="transition">
+                <ul className="gh-dim-search-results">
+                    {this.hasResults() && this.props.results.response.docs.map((doc) => {
+                        return <li key={doc.id} onClick={(e) => this.props.handleClick(doc)}>{doc.weergavenaam}</li>
+                    })}
+                </ul>
+            </CSSTransition>
+        )
     }
 }
 
@@ -74,23 +77,20 @@ export class SearchComponent extends Component {
                     {this.state.displaySearch && 'Zoekbalk verbergen'}
                     {!this.state.displaySearch && 'Zoekbalk tonen'}
                 </button>
-                <Animated
-                    animationIn="fadeIn"
-                    animationOut="fadeOut"
-                    isVisible={this.state.displaySearch}
-                    animateOnMount={false}
-                    animationInDuration={400}
-                    animationOutDuration={1}
-                    styles={{display: 'none'}}>
+                <CSSTransition
+                    in={this.state.displaySearch}
+                    timeout={400}
+                    unmountOnExit
+                    classNames="transition"
+                    onEntered={() => this.toggleDisplaySearch}
+                    onExit={() => this.toggleDisplaySearch}>
                     <div className="gh-dim-search-form">
-                        {this.state.displaySearch &&
                         <form role="search" aria-label="" onSubmit={(e) => e.preventDefault() }>
                             <input type="search" placeholder="Zoek op plaats of postcode" aria-label="Zoeken" onChange={(e) => this.handleSearch(e)} />
                             <SearchResultsComponent results={this.props.results} handleClick={(e) => this.handleSelectedResult(e)} />
                         </form>
-                        }
                     </div>
-                </Animated>
+                </CSSTransition>
             </div>
         )
     }
