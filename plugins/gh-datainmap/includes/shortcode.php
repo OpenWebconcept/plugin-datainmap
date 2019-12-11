@@ -2,7 +2,8 @@
 
 add_action('wp_enqueue_scripts', 'gh_dim_register_scripts');
 function gh_dim_register_scripts() {
-    wp_register_script( 'gh-datainmap', plugin_dir_url(GH_DIM_FILE) . 'dist/datainmap.js', array(), date('Ymd'), true );
+    wp_register_script( 'gh-datainmap', plugin_dir_url(GH_DIM_FILE) . 'dist/datainmap.js', array(), null, true );
+    wp_register_style( 'gh-datainmap-style', plugin_dir_url(GH_DIM_FILE) . 'dist/style.css');
 }
 
 add_shortcode( 'datainmap', 'gh_dim_shortcode' );
@@ -92,6 +93,10 @@ function gh_dim_shortcode($atts, $content = null) {
 
     $el_id = uniqid('gh-datainmap-');
     $settings['element'] = $el_id;
+
+    if($settings['include_default_style']) {
+        wp_enqueue_style( 'gh-datainmap-style' );
+    }
 
     wp_enqueue_script( 'gh-datainmap' );
     $security = wp_create_nonce('gh-datainmap');

@@ -6,9 +6,19 @@
         $settings = get_option('gh-datainmap-settings');
     ?>
 
-    <label for=""><?php _e('', 'gh-datainmap'); ?></label>
     <table class="form-table" role="presentation">
         <tbody>
+            <tr>
+                <th scope="row" valign="top">
+                    <label for="gh-datainmap-settings[include_default_style]"><?php _e('Default style', 'gh-datainmap') ?></label>
+                </th>
+                <td>
+                    <input type="hidden" name="gh-datainmap-settings[include_default_style]" value="0" />
+                    <input type="checkbox" name="gh-datainmap-settings[include_default_style]" id="gh-datainmap-settings[include_default_style]" value="1" <?php checked(1, $settings['include_default_style'], true) ?> />
+                    <?php _e('Yes, include default stylesheet', 'gh-datainmap') ?>
+                <p class="description"><?php _e( 'This will include the default styling. Disable to use your own styling.', 'gh-datainmap' ) ?></p>
+                </td>
+            </tr>
             <tr>
                 <th scope="row" valign="top">
                     <label for="gh-datainmap-settings[style_circle_radius]"><?php _e('Landmark style: radius', 'gh-datainmap') ?></label>
