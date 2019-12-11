@@ -2,6 +2,14 @@ import React, {Component} from 'react';
 import {CSSTransition} from 'react-transition-group';
 import _ from 'lodash';
 
+function CloseModal({ onClick }) {
+    return (
+        <div className="gh-dim-modal-close">
+            <span className="gh-dim-modal-close-marker" aria-label="Sluiten" onClick={(e) => onClick()}></span>
+        </div>
+    )
+}
+
 // Basic KML rendering
 class KMLFeatureComponent extends Component {
     render() {
@@ -10,11 +18,12 @@ class KMLFeatureComponent extends Component {
         }
         const feature = this.props.feature;
         return (
-            <article>
+            <article className="gh-dim-feature">
                 <header>
                     <h1>{feature.name}</h1>
+                    <CloseModal onClick={() => this.props.closeModal()} />
                 </header>
-                <section dangerouslySetInnerHTML={{__html: feature.description}} />
+                <section className="gh-dim-feature-content" dangerouslySetInnerHTML={{__html: feature.description}} />
             </article>
         )
     }
@@ -24,21 +33,15 @@ class KMLFeatureComponent extends Component {
 class DIMFeatureComponent extends Component {
     render() {
         const feature = this.props.feature;
-        let featuredImage = null;
-        if(feature.featuredImage) {
-            console.log(feature);
-            const image = feature.featuredImage.thumbnail;
-            featuredImage = <img src={image[0]} width={image[1]} height={image[2]} />
-        }
         return (
             // Voorkom dat een click op het article-element het modal sluit
-            <article onClick={e => e.stopPropagation() }>
+            <article className="gh-dim-feature" onClick={e => e.stopPropagation() }>
                 <header>
-                    <h1>{feature.title}</h1>
-                    {featuredImage}
+                    <h1>Informatie</h1>
+                    <CloseModal onClick={() => this.props.closeModal()} />
                 </header>
-                <section dangerouslySetInnerHTML={{__html: feature.content}} />
-                <section>
+                <section className="gh-dim-feature-content" dangerouslySetInnerHTML={{__html: feature.content}} />
+                <section className="gh-dim-feature-photos">
                     <FeatureComponentPhotos images={feature.images} />
                 </section>
             </article>
@@ -55,7 +58,8 @@ class FeatureComponentPhotos extends Component {
             <ul>
                 {this.props.images.map( (imageset, i) => {
                     return (
-                        <li key={i}><img src={imageset.medium[0]} /></li>
+                        // <li key={i}><img src={imageset.medium[0]} /></li>
+                        <li key={i}><FeatureComponentPhotosPhoto image={imageset} /></li>
                     );
                 })}
             </ul>
@@ -63,9 +67,18 @@ class FeatureComponentPhotos extends Component {
     }
 }
 
+class FeatureComponentPhotosPhoto extends Component {
+    render() {
+        return <img src={this.props.image.medium[0]} />
+    }
+}
+
 export default class FeatureComponent extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            displayModal: true
+        }
     }
 
     closeModal() {
@@ -77,10 +90,10 @@ export default class FeatureComponent extends Component {
         if(this.props.feature !== null) {
             const feature = this.props.feature;
             if(feature.id) {
-                content = <DIMFeatureComponent feature={feature} />
+                content = <DIMFeatureComponent feature={feature} closeModal={() => this.closeModal()} />
             }
             else if(feature.name) {
-                content = <KMLFeatureComponent feature={feature} />
+                content = <KMLFeatureComponent feature={feature} closeModal={() => this.closeModal()} />
             }
         }
         return (
@@ -91,7 +104,6 @@ export default class FeatureComponent extends Component {
                 classNames="transition">
                 <div className="gh-dim-feature-modal" onClick={(e) => this.closeModal()}>
                     {content}
-                    <span className="close" aria-label="Sluiten" onClick={(e) => this.closeModal()}>&times;</span>
                 </div>
             </CSSTransition>
         )

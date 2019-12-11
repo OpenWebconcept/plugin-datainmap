@@ -63,12 +63,53 @@
     background-color:rgb(0,0,0);
     background-color:rgba(0,0,0,0.2);
 
+    header {
+        position: relative;
+        .gh-dim-modal-close {
+            position:absolute;
+            top:0;
+            right:0;
+            .gh-dim-modal-close-marker {
+                display:inline-block;
+                @include border-radius(14px);
+                @include font-size(1.4);
+                font-weight:bold;
+                &::before {
+                    content: '×';
+                    cursor:pointer;
+                }
+            }
+        }
+    }
+
     article {
         background-color:#FFF;
         @include box-shadow(5px 5px 10px 1px #888888);
         padding:20px;
         border:1px solid #888;
         width:80%;
+        height:80%;
+        overflow-y:auto;
         margin:0 auto;
+        margin-top:40px;
+    }
+
+    .gh-dim-feature-content {
+
+    }
+
+    .gh-dim-feature-photos {
+        ul {
+            @extend %list-reset, %flexbox;
+            @include flex-wrap(wrap);
+            @include flex-direction(row);
+
+            li {
+                @include flex(0, 1, 25%);
+                img {
+                    width:auto;
+                }
+            }
+        }
     }
 }
