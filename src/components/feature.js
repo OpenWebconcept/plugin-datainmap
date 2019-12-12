@@ -49,13 +49,19 @@ class DIMFeatureComponent extends Component {
 export default class FeatureComponent extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            displayModal: true
-        }
     }
 
     closeModal() {
         this.props.resetFeature();
+    }
+
+    componentDidUpdate(prevProps) {
+        if(this.props.feature !== null) {
+            document.body.classList.add('gh-dim-modal-open');
+        }
+        else {
+            document.body.classList.remove('gh-dim-modal-open');
+        }
     }
 
     render() {
