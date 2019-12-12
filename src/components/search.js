@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {CSSTransition} from 'react-transition-group';
+import classNames from 'classnames';
 import _ from 'lodash';
 
 class SearchResultsComponent extends Component {
@@ -71,9 +72,14 @@ export class SearchComponent extends Component {
     }
 
     render() {
+        const toggleClassNames = classNames(
+            'gh-dim-search-toggle', {
+                'gh-dim-search-toggle-display': !this.state.displaySearch,
+                'gh-dim-search-toggle-hide': this.state.displaySearch
+        });
         return (
             <div className="gh-dim-search">
-                <button className="gh-dim-search-toggle" type="button" onClick={(e) => this.toggleDisplaySearch(e)}>
+                <button className={toggleClassNames} type="button" onClick={(e) => this.toggleDisplaySearch(e)}>
                     {this.state.displaySearch && 'Zoekbalk verbergen'}
                     {!this.state.displaySearch && 'Zoekbalk tonen'}
                 </button>
