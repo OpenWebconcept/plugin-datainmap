@@ -61,42 +61,24 @@ export class SearchComponent extends Component {
 
     handleSelectedResult(doc) {
         this.props.doSelectResult(doc);
-        this.toggleDisplaySearch();
         this.props.resetSearchResults(null);
     }
 
-    toggleDisplaySearch(e) {
-        this.setState((currentState) => ({
-            displaySearch: !currentState.displaySearch
-        }));
+    escFunction(e) {
+        if(e.keyCode === 27) {
+            this.props.resetSearchResults(null);
+        }
     }
 
     render() {
-        const toggleClassNames = classNames(
-            'gh-dim-search-toggle', {
-                'gh-dim-search-toggle-display': !this.state.displaySearch,
-                'gh-dim-search-toggle-hide': this.state.displaySearch
-        });
         return (
-            <div className="gh-dim-search">
-                <button className={toggleClassNames} type="button" onClick={(e) => this.toggleDisplaySearch(e)}>
-                    {this.state.displaySearch && 'Zoekbalk verbergen'}
-                    {!this.state.displaySearch && 'Zoekbalk tonen'}
-                </button>
-                <CSSTransition
-                    in={this.state.displaySearch}
-                    timeout={400}
-                    unmountOnExit
-                    classNames="transition"
-                    onEntered={() => this.toggleDisplaySearch}
-                    onExit={() => this.toggleDisplaySearch}>
-                    <div className="gh-dim-search-form">
-                        <form role="search" aria-label="" onSubmit={(e) => e.preventDefault() }>
-                            <input type="search" placeholder="Zoek op plaats of postcode" aria-label="Zoeken" onChange={(e) => this.handleSearch(e)} />
-                            <SearchResultsComponent results={this.props.results} handleClick={(e) => this.handleSelectedResult(e)} />
-                        </form>
-                    </div>
-                </CSSTransition>
+            <div className='gh-dim-search'>
+                <div className="gh-dim-search-form">
+                    <form role="search" aria-label="" onSubmit={(e) => e.preventDefault() }>
+                        <input type="search" placeholder="Zoek op plaats of postcode" aria-label="Zoeken" onChange={(e) => this.handleSearch(e)} onKeyDown={(e) => this.escFunction(e)} />
+                        <SearchResultsComponent results={this.props.results} handleClick={(e) => this.handleSelectedResult(e)} />
+                    </form>
+                </div>
             </div>
         )
     }
