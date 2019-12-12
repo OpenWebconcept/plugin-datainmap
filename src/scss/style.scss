@@ -67,6 +67,10 @@ $textcolor-button-hover: $textcolor-button-neutral;
     }
 }
 
+body.gh-dim-modal-open {
+    overflow:hidden;
+}
+
 .gh-dim-feature-modal {
     position:fixed;
     z-index:1000;
