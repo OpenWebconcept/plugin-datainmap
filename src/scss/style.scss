@@ -116,19 +116,4 @@ body.gh-dim-modal-open {
     .gh-dim-feature-content {
 
     }
-
-    .gh-dim-feature-photos {
-        ul {
-            @extend %list-reset, %flexbox;
-            @include flex-wrap(wrap);
-            @include flex-direction(row);
-
-            li {
-                @include flex(0, 1, 25%);
-                img {
-                    width:auto;
-                }
-            }
-        }
-    }
 }
