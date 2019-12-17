@@ -1,5 +1,7 @@
 import _ from 'lodash';
 const defaultDuration = 600;
+const minZoom = 1;
+const maxZoom = 20;
 
 export function flyTo(view, location, onComplete = _.noop) {
     const zoom = view.getZoom();
@@ -13,11 +15,11 @@ export function flyTo(view, location, onComplete = _.noop) {
         animations: [
             {
                 duration: duration / 2,
-                zoom: zoom - 1
+                zoom: Math.min(zoom - 1, minZoom)
             },
             {
                 duration: duration / 2,
-                zoom: zoom + 2
+                zoom: Math.max(zoom + 2, maxZoom)
             }
         ]
     }, onComplete);
@@ -32,7 +34,7 @@ export function zoomTo(view, location, onComplete = _.noop) {
             {
                 center: location,
                 duration: duration,
-                zoom: zoom + 2
+                zoom: Math.max(zoom + 2, maxZoom)
             }
         ]
     }, onComplete);
@@ -64,12 +66,11 @@ export function moveToAndZoom(view, location, onComplete = _.noop) {
             {
                 center: location,
                 duration: duration,
-                zoom: zoom + 2
+                zoom: Math.max(zoom + 2, maxZoom)
             }
         ]
     }, onComplete);
 }
-
 
 function animate(settings, onComplete = _.noop) {
     let parts = settings.animations.length;
