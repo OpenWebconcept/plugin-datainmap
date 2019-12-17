@@ -18,13 +18,13 @@ class KMLFeatureComponent extends Component {
         }
         const feature = this.props.feature;
         return (
-            <article className="gh-dim-feature">
+            <>
                 <header>
                     <h1>{feature.name}</h1>
                     <CloseModal onClick={() => this.props.closeModal()} />
                 </header>
                 <section className="gh-dim-feature-content" dangerouslySetInnerHTML={{__html: feature.description}} />
-            </article>
+            </>
         )
     }
 }
@@ -34,14 +34,13 @@ class DIMFeatureComponent extends Component {
     render() {
         const feature = this.props.feature;
         return (
-            // Voorkom dat een click op het article-element het modal sluit
-            <article className="gh-dim-feature" onClick={e => e.stopPropagation() }>
+            <>
                 <header>
                     <h1>Informatie</h1>
                     <CloseModal onClick={() => this.props.closeModal()} />
                 </header>
                 <section className="gh-dim-feature-content" dangerouslySetInnerHTML={{__html: feature.content}} />
-            </article>
+            </>
         );
     }
 }
@@ -82,7 +81,10 @@ export default class FeatureComponent extends Component {
                 unmountOnExit
                 classNames="transition">
                 <div className="gh-dim-feature-modal" onClick={(e) => this.closeModal()}>
-                    {content}
+                    // Voorkom dat een click op het article-element het modal sluit
+                    <article className="gh-dim-feature" onClick={e => e.stopPropagation() }>
+                        {content}
+                    </article>
                 </div>
             </CSSTransition>
         )
