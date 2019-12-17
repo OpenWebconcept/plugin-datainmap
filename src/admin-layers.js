@@ -6,6 +6,13 @@ $(document).ready(function() {
         return;
     }
 
+    const allFields = [
+        '#gh_dim_layer_url',
+        '#gh_dim_kml_ignore_style',
+        '#gh_dim_layer_name',
+        '#gh_dim_layer_maxtrixset'
+    ];
+
     const visibleFields = {
         'KML': [
             '#gh_dim_layer_url',
@@ -20,9 +27,8 @@ $(document).ready(function() {
         ]
     };
 
-    const createShowFields = (type) => {
-        const _showFields = (selectors, checkFn) => {
-            let result = checkFn();
+    layerType.on('change', function(e) {
+        const _showFields = (selectors, result) => {
             $.each(selectors, (i, selector) => {
                 if(result) {
                     $(selector).closest('tr').show();
@@ -32,18 +38,10 @@ $(document).ready(function() {
                 }
             });
         };
-        return () => {
-            const fields = visibleFields[type];
-            _showFields(visibleFields[type], () => {
-                return layerType.val() == type;
-            });
-        }
-    };
-
-    // Verberg alle velden die niet van toepassing zijn voor een layer type
-    Object.keys(visibleFields).forEach( k => {
-        const f = createShowFields(k);
-        layerType.on('change', f);
-        f();
+        const type = $(this).val();
+        const fields = visibleFields[type];
+        _showFields(allFields, false);
+        _showFields(fields, true);
     });
+    layerType.trigger('change');
 });
