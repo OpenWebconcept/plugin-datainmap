@@ -12,7 +12,7 @@ Text Domain: gh-datainmap
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 if ( ! defined('GH_DIM_FILE')) define('GH_DIM_FILE', __FILE__);
 if ( ! defined('GH_DIM_DIR')) define('GH_DIM_DIR', dirname(__FILE__));
-if ( ! defined('GH_DIM_DEBUG')) define('GH_DIM_DEBUG', true);
+if ( ! defined('GH_DIM_DEBUG')) define('GH_DIM_DEBUG', false);
 
 include GH_DIM_DIR . '/includes/post-type.php';
 include GH_DIM_DIR . '/includes/taxonomy.php';
