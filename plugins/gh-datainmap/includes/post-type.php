@@ -2,15 +2,7 @@
 
 add_action('init', 'gh_dim_register_post_type', 10);
 function gh_dim_register_post_type() {
-    // If debug is true, allow access to the post edit page
-    if( WP_DEBUG === true || GH_DIM_DEBUG === true ) {
-        $capabilities = [];
-    }
-    else {
-        $capabilities = [
-            'create_posts' => 'do_not_allow'
-        ];
-    }
+    $capabilities = [];
     $labels = array(
         'name'                => __( 'Locations', 'gh-datainmap' ),
         'singular_name'       => __( 'Location', 'gh-datainmap' ),
