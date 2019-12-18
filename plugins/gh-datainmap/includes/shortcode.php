@@ -53,6 +53,7 @@ function gh_dim_shortcode($atts, $content = null) {
     $location_layers = array_map(function($term) {
         $locations = get_posts([
             'post_type' => 'gh-dim-locations',
+            'posts_per_page' => -1,
             'tax_query' => [
                 [
                     'taxonomy' => 'gh-dim-location-types',
