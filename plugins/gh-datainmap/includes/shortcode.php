@@ -94,6 +94,17 @@ function gh_dim_shortcode($atts, $content = null) {
         ];
     }, $terms);
 
+    $pro4j = [];
+    if(strlen($settings['projections']) > 0) {
+        $rows = str_getcsv($settings['projections'], "\n");
+        foreach($rows as $row) {
+            $projection = str_getcsv($row, ',');
+            if(count($projection) == 2) {
+                $pro4j[] = $projection;
+            }
+        }
+    }
+
     $el_id = uniqid('gh-datainmap-');
     $settings['element'] = $el_id;
 
@@ -110,6 +121,7 @@ function gh_dim_shortcode($atts, $content = null) {
         'settings' => $settings,
         'location_layers' => $location_layers,
         'map_layers' => $map_layers,
+        'pro4j' => $pro4j,
     ] );
     $output = '<div id="'.$el_id.'">'.__('Loading...', 'gh-datainmap').'</div>';
     return $output;

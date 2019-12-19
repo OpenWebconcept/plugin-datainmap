@@ -17,6 +17,8 @@ import {transform} from 'ol/proj';
 import {Cluster, OSM, Vector as VectorSource } from 'ol/source';
 import KML from 'ol/format/KML';
 import { featureReducer } from './reducers/feature';
+import proj4 from 'proj4';
+import {register} from 'ol/proj/proj4';
 
 const rootReducer = combineReducers({
     map: mapReducer,
@@ -32,6 +34,17 @@ if(GHDataInMap == undefined) {
 }
 
 const settings = GHDataInMap.settings;
+
+// Voeg aanvullende projections toe
+GHDataInMap.pro4j.forEach( (projection) => {
+    try {
+        proj4.defs(projection[0], projection[1]);
+    }
+    catch(ex) {
+        console.log('Failed to define projection', ex);
+    }
+});
+register(proj4);
 
 let clusterStyleCache = {};
 let styles = {
