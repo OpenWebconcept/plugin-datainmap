@@ -186,8 +186,8 @@ GHDataInMap.location_layers.forEach( layerData => {
         delete featureData.y;
         source.addFeature(new Feature({
             ...featureData,
-            // Todo: dit moet niet hier gebeuren, maar bij importeren
-            geometry: new Point(transform([x, y], 'EPSG:4326', 'EPSG:3857'))
+            // Input is WGS84/EPSG:4326
+            geometry: new Point(transform([x,y], 'EPSG:4326', 'EPSG:3857'))
         }));
     });
     let layer;
