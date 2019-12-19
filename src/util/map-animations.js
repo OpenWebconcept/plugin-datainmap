@@ -19,7 +19,7 @@ export function flyTo(view, location, onComplete = _.noop) {
             },
             {
                 duration: duration / 2,
-                zoom: Math.min(zoom + 4, maxZoom)
+                zoom: Math.min(zoom + 3, maxZoom)
             }
         ]
     }, onComplete);
@@ -34,7 +34,7 @@ export function zoomTo(view, location, onComplete = _.noop) {
             {
                 center: location,
                 duration: duration,
-                zoom: Math.min(zoom + 4, maxZoom)
+                zoom: Math.min(zoom + 3, maxZoom)
             }
         ]
     }, onComplete);
@@ -66,7 +66,7 @@ export function moveToAndZoom(view, location, onComplete = _.noop) {
             {
                 center: location,
                 duration: duration,
-                zoom: Math.min(zoom + 4, maxZoom)
+                zoom: Math.min(zoom + 3, maxZoom)
             }
         ]
     }, onComplete);
