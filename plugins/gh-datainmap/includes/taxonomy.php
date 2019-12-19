@@ -17,12 +17,11 @@ function gh_dim_register_taxonomy() {
     );
 
     register_taxonomy( 'gh-dim-location-types', 'gh-dim-locations', array(
-        'hierarchical' 		=> false,
+        'hierarchical' 		=> true,
         'labels' 			=> $labels,
         'show_ui' 			=> true,
         'show_admin_column' => true,
         'public'            => false,
-
     ));
 }
 
