@@ -28,6 +28,7 @@ function gh_dim_shortcode($atts, $content = null) {
     $layers = get_posts([
         'post_type' => 'gh-dim-layers',
         'include' => explode(',', $args['layers']),
+        'orderby' => 'post__in',
     ]);
     $map_layers = array_map(function($post) {
         return [
