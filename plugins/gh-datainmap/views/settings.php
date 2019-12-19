@@ -16,7 +16,7 @@
                     <input type="hidden" name="gh-datainmap-settings[include_default_style]" value="0" />
                     <input type="checkbox" name="gh-datainmap-settings[include_default_style]" id="gh-datainmap-settings[include_default_style]" value="1" <?php checked(1, $settings['include_default_style'], true) ?> />
                     <?php _e('Yes, include default stylesheet', 'gh-datainmap') ?>
-                <p class="description"><?php _e( 'This will include the default styling. Disable to use your own styling.', 'gh-datainmap' ) ?></p>
+                    <p class="description"><?php _e( 'This will include the default styling. Disable to use your own styling.', 'gh-datainmap' ) ?></p>
                 </td>
             </tr>
             <tr>
