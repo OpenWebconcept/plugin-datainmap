@@ -57,7 +57,7 @@ let styles = {
             }
             style = new Style({
                 image: new CircleStyle({
-                    radius: 14,
+                    radius: settings.style_circle_radius,
                     stroke: new Stroke({
                         color: stroke_color
                     }),
