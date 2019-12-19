@@ -51,7 +51,7 @@ export function fetchWMTSLayer(url, WMTSSettings, layerSettings = {}) {
                 const options = optionsFromCapabilities(result, WMTSSettings);
                 const layer = new TileLayer({
                     source: new WMTS(options),
-                    layerSettings
+                    ...layerSettings
                 });
                 dispatch(addMapLayer(layer));
                 // dispatch(mapLayerAdded);
