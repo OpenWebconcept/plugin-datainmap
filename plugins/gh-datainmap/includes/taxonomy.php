@@ -21,6 +21,7 @@ function gh_dim_register_taxonomy() {
         'labels' 			=> $labels,
         'show_ui' 			=> true,
         'show_admin_column' => true,
+        'public'            => false,
     ));
 }
 
