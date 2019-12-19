@@ -67,6 +67,9 @@ let styles = {
                 }),
                 text: new Text({
                     text: size.toString(),
+                    font: settings.style_circle_text_font,
+                    scale: settings.style_circle_text_scale,
+                    textBaseline: settings.style_circle_text_baseline,
                     fill: new Fill({
                         color: text_color
                     })
@@ -88,6 +91,9 @@ let styles = {
         }),
         text: new Text({
             text: '1',
+            font: settings.style_circle_text_font,
+            scale: settings.style_circle_text_scale,
+            textBaseline: settings.style_circle_text_baseline,
             fill: new Fill({
                 color: settings.style_text_color
             })

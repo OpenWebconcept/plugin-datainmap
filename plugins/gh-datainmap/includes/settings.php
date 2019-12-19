@@ -9,6 +9,7 @@ function gh_dim_sanitize_settings($input) {
     foreach($input as $k => $v) {
         $input[$k] = sanitize_text_field( $v );
     }
+    $input['style_circle_text_scale'] = sprintf('%.2f', $input['style_circle_text_scale']);
     return $input;
 }
 

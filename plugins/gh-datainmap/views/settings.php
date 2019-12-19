@@ -29,6 +29,37 @@
             </tr>
             <tr>
                 <th scope="row" valign="top">
+                    <label for="gh-datainmap-settings[style_circle_text_font]"><?php _e('Landmark style: text font', 'gh-datainmap') ?></label>
+                </th>
+                <td>
+                    <input type="text" name="gh-datainmap-settings[style_circle_text_font]" id="gh-datainmap-settings[style_circle_text_font]" value="<?php echo esc_attr( $settings['style_circle_text_font'] ) ?>" class="regular-text" />
+                    <p class="description"><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font" target="_blank"><?php _e( 'CSS Font property', 'gh-datainmap' ) ?></a></p>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row" valign="top">
+                    <label for="gh-datainmap-settings[style_circle_text_scale]"><?php _e('Landmark style: text scale', 'gh-datainmap') ?></label>
+                </th>
+                <td>
+                    <input type="text" name="gh-datainmap-settings[style_circle_text_scale]" id="gh-datainmap-settings[style_circle_text_scale]" value="<?php echo esc_attr( $settings['style_circle_text_scale'] ) ?>" class="small-text" />
+                </td>
+            </tr>
+            <tr>
+                <th scope="row" valign="top">
+                    <label for="gh-datainmap-settings[style_circle_text_baseline]"><?php _e('Landmark style: text baseline', 'gh-datainmap') ?></label>
+                </th>
+                <td>
+                    <select name="gh-datainmap-settings[style_circle_text_baseline]" id="gh-datainmap-settings[style_circle_text_baseline]">
+                        <option <?php selected( $settings['style_circle_text_baseline'], 'middle', true) ?>>middle</option>
+                        <option <?php selected( $settings['style_circle_text_baseline'], 'top', true) ?>>top</option>
+                        <option <?php selected( $settings['style_circle_text_baseline'], 'bottom', true) ?>>bottom</option>
+                        <option <?php selected( $settings['style_circle_text_baseline'], 'alphabetic', true) ?>>alphabetic</option>
+                        <option <?php selected( $settings['style_circle_text_baseline'], 'hanging', true) ?>>hanging</option>
+                        <option <?php selected( $settings['style_circle_text_baseline'], 'ideographic', true) ?>>ideographic</option>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row" valign="top">
                     <label for="gh-datainmap-settings[style_circle_stroke_color]"><?php _e('Landmark style: stroke color', 'gh-datainmap') ?></label>
                 </th>
                 <td>
