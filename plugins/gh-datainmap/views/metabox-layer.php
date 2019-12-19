@@ -32,6 +32,15 @@
         </tr>
         <tr>
             <th scope="row" valign="top">
+                <label for="gh_dim_layer_opacity"><?php _e('Layer opacity', 'gh-datainmap') ?></label>
+            </th>
+            <td>
+                <input type="text" name="gh_dim_layer_opacity" id="gh_dim_layer_opacity" value="<?php echo esc_attr( $gh_dim_layer_opacity ) ?>" />
+                <p class="description"><?php _e( 'Layer opacity, between 0 and 1.', 'gh-datainmap' ) ?></p>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row" valign="top">
                 <label for="gh_dim_layer_maxtrixset"><?php _e('Matrixset', 'gh-datainmap') ?></label>
             </th>
             <td>

@@ -140,7 +140,7 @@ else {
                 store.dispatch(addMapLayer(
                     new TileLayer({
                         source: new OSM(),
-                        opacity: 1,
+                        opacity: layerData.opacity,
                         zIndex: ++zIndex,
                     })
                 ));
@@ -152,6 +152,7 @@ else {
                 const layer = new VectorLayer({
                     zIndex: ++zIndex,
                     style: layerStyle,
+                    opacity: layerData.opacity,
                     source: new VectorSource({
                         url: layerData.url,
                         format: new KML({
@@ -169,7 +170,7 @@ else {
                         matrixSet: layerData.matrixset
                     },
                     {
-                        opacity: 1,
+                        opacity: layerData.opacity,
                         zIndex: ++zIndex,
                     }
                 ));
