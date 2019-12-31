@@ -18,7 +18,6 @@ function gh_dim_ajax_get_location_info() {
         $y = get_post_meta( $post->ID, 'gh_dim_location_y', true );
         $content = $post->post_content;
         $content = apply_filters( 'the_content', $content );
-        $content = do_shortcode( $content );
         $locationType = [];
         $terms = get_the_terms($post, 'gh-dim-location-types');
         foreach($terms as $term) {
