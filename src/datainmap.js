@@ -94,7 +94,7 @@ let styles = {
     },
     default: new Style({
         image: new Circle({
-            radius: 14,
+            radius: settings.style_circle_radius,
             stroke: new Stroke({
                 color: settings.style_circle_stroke_color
             }),
