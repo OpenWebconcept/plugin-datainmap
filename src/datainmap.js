@@ -103,7 +103,7 @@ let styles = {
             })
         }),
         text: new Text({
-            text: '1',
+            text: '📌',
             font: settings.style_circle_text_font,
             scale: settings.style_circle_text_scale,
             textBaseline: settings.style_circle_text_baseline,
