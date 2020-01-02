@@ -35,7 +35,7 @@ if(GHDataInMap == undefined) {
 
 const settings = GHDataInMap.settings;
 
-// Voeg aanvullende projections toe
+// Add extra projections
 GHDataInMap.pro4j.forEach( (projection) => {
     try {
         proj4.defs(projection[0], projection[1]);
