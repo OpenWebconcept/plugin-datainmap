@@ -18,12 +18,16 @@ function gh_dim_shortcode($atts, $content = null) {
             'center_x' => $settings['center_x'],
             'center_y' => $settings['center_y'],
             'layers' => null,
+            'single_cluster' => 1,
+            'single_cluster_distance' => 75,
         ], $atts );
     $settings['zoom'] = (int)$args['zoom'];
     $settings['minZoom'] = (int)$args['min_zoom'];
     $settings['maxZoom'] = (int)$args['max_zoom'];
     $settings['center_x'] = $args['center_x'];
     $settings['center_y'] = $args['center_y'];
+    $settings['single_cluster'] = $args['single_cluster'] == 1 ? true : false;
+    $settings['single_cluster_distance'] = (int)$args['single_cluster_distance'];
 
     $layers = get_posts([
         'post_type' => 'gh-dim-layers',

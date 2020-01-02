@@ -19,6 +19,7 @@ import KML from 'ol/format/KML';
 import { featureReducer } from './reducers/feature';
 import proj4 from 'proj4';
 import {register} from 'ol/proj/proj4';
+import _ from 'lodash';
 
 const rootReducer = combineReducers({
     map: mapReducer,
@@ -195,8 +196,8 @@ else {
     });
 }
 
-GHDataInMap.location_layers.forEach( layerData => {
-    const source = new VectorSource();
+// Function for adding features from a location_layer to a VectorSource
+const addFeatures = (source, layerData) => {
     layerData.features.forEach(featureData => {
         const [x, y] = [featureData.x, featureData.y];
         delete featureData.x;
@@ -207,30 +208,69 @@ GHDataInMap.location_layers.forEach( layerData => {
             geometry: new Point(transform([x,y], 'EPSG:4326', 'EPSG:3857'))
         }));
     });
-    let layer;
-    const layerStyle = (feature) => {
-        return styles[layerData.slug] || styles.default;
+};
+
+// Combine everything in a single cluster
+if(GHDataInMap.settings.single_cluster) {
+    const source = new VectorSource();
+    GHDataInMap.location_layers.forEach( layerData => {
+        addFeatures(source, layerData);
+    });
+    // Determine cluster distance
+    const clusterDistance = () => {
+        if(GHDataInMap.settings.single_cluster_distance !== undefined) {
+            return GHDataInMap.settings.single_cluster_distance;
+        }
+        // Find first cluster layerData to determine cluster distance
+        const clusterLayerData = _.find(GHDataInMap.location_layers, (layerData) => {
+            return parseInt(layerData.cluster, 10) == 1;
+        });
+        if(clusterLayerData !== undefined) {
+            return clusterLayerData.cluster_distance;
+        }
+        return 75;
     };
-    if(parseInt(layerData.cluster, 10) == 1) {
-        const clusterSource = new Cluster({
-            distance: layerData.cluster_distance,
-            source: source,
-        });
-        layer = new VectorLayer({
-            zIndex: ++zIndex,
-            source: clusterSource,
-            style: styles.cluster
-        });
-    }
-    else {
-        layer = new VectorLayer({
-            zIndex: ++zIndex,
-            source: source,
-            style: layerStyle
-        });
-    }
+    const clusterSource = new Cluster({
+        distance: clusterDistance(),
+        source: source,
+    });
+    const layer = new VectorLayer({
+        zIndex: ++zIndex,
+        source: clusterSource,
+        style: styles.cluster
+    });
     store.dispatch( addMapLayer(layer) );
-});
+}
+// Add separate (cluster)layers
+else {
+    GHDataInMap.location_layers.forEach( layerData => {
+        const source = new VectorSource();
+        addFeatures(source, layerData);
+        let layer;
+        if(parseInt(layerData.cluster, 10) == 1) {
+            const clusterSource = new Cluster({
+                distance: layerData.cluster_distance,
+                source: source,
+            });
+            layer = new VectorLayer({
+                zIndex: ++zIndex,
+                source: clusterSource,
+                style: styles.cluster
+            });
+        }
+        else {
+            const layerStyle = (feature) => {
+                return styles[layerData.slug] || styles.default;
+            };
+            layer = new VectorLayer({
+                zIndex: ++zIndex,
+                source: source,
+                style: layerStyle
+            });
+        }
+        store.dispatch( addMapLayer(layer) );
+    });
+}
 
 const App = () => {
     return (
