@@ -46,6 +46,7 @@ GHDataInMap.pro4j.forEach( (projection) => {
 });
 register(proj4);
 
+const styleDefaultText = '📌';
 let clusterStyleCache = {};
 let styles = {
     cluster: (feature) => {
@@ -61,11 +62,13 @@ let styles = {
             let fill_color = settings.style_circle_fill_color_cluster;
             let stroke_color = settings.style_circle_stroke_color_cluster;
             let text_color = settings.style_text_color_cluster;
+            let text = size.toString();
             switch(size) {
                 case 1:
                     fill_color = settings.style_circle_fill_color;
                     stroke_color = settings.style_circle_stroke_color;
                     text_color = settings.style_text_color;
+                    text = styleDefaultText;
                     break;
             }
             style = new Style({
@@ -79,7 +82,7 @@ let styles = {
                     })
                 }),
                 text: new Text({
-                    text: size.toString(),
+                    text: text,
                     font: settings.style_circle_text_font,
                     scale: settings.style_circle_text_scale,
                     textBaseline: settings.style_circle_text_baseline,
@@ -103,7 +106,7 @@ let styles = {
             })
         }),
         text: new Text({
-            text: '📌',
+            text: styleDefaultText,
             font: settings.style_circle_text_font,
             scale: settings.style_circle_text_scale,
             textBaseline: settings.style_circle_text_baseline,
