@@ -2,7 +2,7 @@
 /*
 Plugin Name: Data In Map
 Plugin URI: https://www.heerenveen.nl/
-Description: ...
+Description: Data In Map is een plugin voor het weergeven van kaarten.
 Version: 1.00
 Author: Gemeente Heerenveen
 Author URI: https://www.heerenveen.nl/
