@@ -18,7 +18,7 @@ function gh_dim_shortcode($atts, $content = null) {
             'center_x' => $settings['center_x'],
             'center_y' => $settings['center_y'],
             'layers' => null,
-            'single_cluster' => 1,
+            'single_cluster' => 0,
             'single_cluster_distance' => 75,
         ], $atts );
     $settings['zoom'] = (int)$args['zoom'];
