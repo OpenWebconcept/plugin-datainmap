@@ -54,7 +54,6 @@ export function moveTo(view, location, onComplete = _.noop) {
 }
 
 export function moveToAndZoom(view, location, onComplete = _.noop) {
-    const zoom = view.getZoom();
     const duration = defaultDuration;
     animate({
         view: view,
@@ -66,7 +65,7 @@ export function moveToAndZoom(view, location, onComplete = _.noop) {
             {
                 center: location,
                 duration: duration,
-                zoom: Math.min(zoom + 1, maxZoom)
+                zoom: view.getMaxZoom() - 1
             }
         ]
     }, onComplete);
