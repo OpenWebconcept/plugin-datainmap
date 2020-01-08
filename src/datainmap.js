@@ -6,14 +6,14 @@ import thunk from 'redux-thunk';
 import MapComponentLink from './containers/maplink';
 import SearchComponentLink from './containers/searchlink';
 import FeatureComponentLink from './containers/featurelink';
-import {configureMapView, fetchWMTSLayer, addMapLayer} from './actions';
+import {configureMapView, fetchWMTSLayer, addMapLayer, setSearchProjection} from './actions';
 import {mapReducer} from './reducers/map';
 import {searchReducer} from './reducers/search';
 import Feature from 'ol/Feature';
 import {Circle as CircleStyle, Circle, Fill, Stroke, Style, Text, Icon} from 'ol/style';
 import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer';
 import {Point} from 'ol/geom';
-import {transform} from 'ol/proj';
+import {get as getProjection} from 'ol/proj';
 import {Cluster, OSM, Vector as VectorSource } from 'ol/source';
 import KML from 'ol/format/KML';
 import { featureReducer } from './reducers/feature';
@@ -130,12 +130,15 @@ GHDataInMap.location_layers.forEach(layer => {
 });
 
 store.dispatch(configureMapView({
-    center: [settings.center_x, settings.center_y],
+    center: [settings.center_x, settings.center_y].map(parseFloat),
     zoom: settings.zoom,
     maxZoom: settings.maxZoom,
     minZoom: settings.minZoom,
     constrainResolution: true,
+    projection: getProjection(settings.projection)
 }));
+
+store.dispatch(setSearchProjection(settings.search_coord_system));
 
 let zIndex = 0;
 
@@ -205,7 +208,7 @@ const addFeatures = (source, layerData) => {
         source.addFeature(new Feature({
             ...featureData,
             // Input is WGS84/EPSG:4326
-            geometry: new Point(transform([x,y], 'EPSG:4326', 'EPSG:3857'))
+            geometry: new Point([x,y])
         }));
     });
 };

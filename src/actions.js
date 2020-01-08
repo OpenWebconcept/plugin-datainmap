@@ -65,7 +65,13 @@ export function fetchWMTSLayer(url, WMTSSettings, layerSettings = {}) {
     }
 };
 
-export const ADD_CLUSTER_LAYER = 'ADD_CLUSTER_LAYER';
+export const SET_SEARCH_PROJECTION = 'SET_SEARCH_PROJECTION';
+export function setSearchProjection(projection) {
+    return {
+        type: SET_SEARCH_PROJECTION,
+        projection
+    }
+}
 
 export const SEARCH_SUGGEST = 'SEARCH_SUGGEST';
 export function searchSuggest(q) {
@@ -102,12 +108,22 @@ export function fetchLocation(id) {
             })
             .then( json => {
                 if(json.response.numFound >= 1) {
+                    let projection = getState().search.projection;
                     // Coordinaten staan in een string. Deze omzetten.
                     // "POINT(5.93825642 52.93182382)"
-                    let [long, lat] = json.response.docs[0].centroide_ll.toString().split(' ');
-                    long = parseFloat(long.slice("POINT(".length));
-                    lat = parseFloat(lat.slice(0, -1));
-                    dispatch(centerMapView(fromLonLat([long, lat])));
+                    let [x, y] = json.response.docs[0]['centroide_' + projection].toString().split(' ');
+                    x = x.slice("POINT(".length);
+                    y = y.slice(0, -1);
+                    let coords = [0, 0];
+                    switch(projection) {
+                        case 'll':
+                            coords = fromLonLat([x, y]);
+                            break;
+                        case 'rd':
+                            coords = [x, y];
+                            break;
+                    }
+                    dispatch(centerMapView(coords));
                 }
             })
             .catch(ex => {

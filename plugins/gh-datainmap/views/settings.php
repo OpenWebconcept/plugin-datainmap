@@ -146,6 +146,27 @@
             </tr>
             <tr>
                 <th scope="row" valign="top">
+                    <label for="gh-datainmap-settings[projection]"><?php _e('Map projection', 'gh-datainmap') ?></label>
+                </th>
+                <td>
+                    <input type="text" name="gh-datainmap-settings[projection]" id="gh-datainmap-settings[projection]" value="<?php echo esc_attr( $settings['projection'] ) ?>" class="regular-text" />
+                    <p class="description"><?php _e('The projection to use for the map. Defaults to EPSG:3857.') ?></p>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row" valign="top">
+                    <label for="gh-datainmap-settings[search_coord_system]"><?php _e('Search coordinate system', 'gh-datainmap') ?></label>
+                </th>
+                <td>
+                    <select name="gh-datainmap-settings[search_coord_system]" id="gh-datainmap-settings[search_coord_system]">
+                        <option value="rd" <?php selected( $settings['search_coord_system'], 'rd', true) ?>>RD</option>
+                        <option value="ll" <?php selected( $settings['search_coord_system'], 'll', true) ?>>Lon/Lat</option>
+                    </select>
+                    <p class="description"><?php _e('Decide which coordinates to use from search result.', 'gh-datainmap'); ?></p>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row" valign="top">
                     <label for="gh-datainmap-settings[projections]"><?php _e('Additional projections (pro4j)', 'gh-datainmap') ?></label>
                 </th>
                 <td>

@@ -23,6 +23,8 @@ function gh_dim_sanitize_settings($input) {
         'zoom',
         'minZoom',
         'maxZoom',
+        'projection',
+        'search_coord_system'
     ];
     foreach($text_fields as $k) {
         $input[$k] = sanitize_text_field( $input[$k] );

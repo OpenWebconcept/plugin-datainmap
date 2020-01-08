@@ -17,6 +17,7 @@ function gh_dim_shortcode($atts, $content = null) {
             'max_zoom' => $settings['maxZoom'],
             'center_x' => $settings['center_x'],
             'center_y' => $settings['center_y'],
+            'projection' => $settings['projection'],
             'layers' => null,
             'single_cluster' => 0,
             'single_cluster_distance' => 75,
@@ -26,6 +27,7 @@ function gh_dim_shortcode($atts, $content = null) {
     $settings['maxZoom'] = (int)$args['max_zoom'];
     $settings['center_x'] = $args['center_x'];
     $settings['center_y'] = $args['center_y'];
+    $settings['projection'] = $args['projection'];
     $settings['single_cluster'] = $args['single_cluster'] == 1 ? true : false;
     $settings['single_cluster_distance'] = (int)$args['single_cluster_distance'];
 
