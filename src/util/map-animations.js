@@ -19,7 +19,7 @@ export function flyTo(view, location, onComplete = _.noop) {
             },
             {
                 duration: duration / 2,
-                zoom: Math.min(zoom + 1, maxZoom)
+                zoom: view.getMaxZoom() - 1
             }
         ]
     }, onComplete);
