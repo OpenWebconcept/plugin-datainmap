@@ -17,6 +17,7 @@
             <td>
                 <input type="text" name="gh_dim_location" id="gh_dim_location" value="<?php echo esc_attr( $gh_dim_location ) ?>" />
                 <p class="description"><?php _e( 'A string of coordinates, comma seperated, at least one coordinate set is required.', 'gh-datainmap' ) ?></p>
+                <div id="<?php echo GH_DIM_LOCATIONPICKER_ELEMENT ?>" class="gh-dim-locationpicker"><?php _e('Loading...', 'gh-datainmap') ?></div>
             </td>
         </tr>
     </tbody>

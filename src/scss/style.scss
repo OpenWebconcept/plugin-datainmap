@@ -8,8 +8,8 @@ $textcolor-button-neutral: #fff;
 $textcolor-button-hover: $textcolor-button-neutral;
 
 .ol-zoom {
-    left:auto;
-    top:auto;
+    left:auto!important;
+    top:auto!important;
     right:.5em;
     bottom:.5em;
 }
@@ -28,6 +28,10 @@ $textcolor-button-hover: $textcolor-button-neutral;
     .gh-dim-map {
         width:100%;
         height:600px;
+        .gh-dim-locationpicker & {
+            width:75%;
+            height:450px;
+        }
     }
     .gh-dim-search {
         position: absolute;

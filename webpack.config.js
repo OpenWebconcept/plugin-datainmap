@@ -31,7 +31,8 @@ module.exports = {
         // app: "./src/app.coffee"
         // map: "./src/map.js",
         datainmap: "./src/datainmap.js",
-        'admin-layers': "./src/admin-layers.js"
+        'admin-layers': "./src/admin-layers.js",
+        'admin-locationpicker': "./src/admin-locationpicker.js"
     },
     output: {
         filename: '[name].js',
