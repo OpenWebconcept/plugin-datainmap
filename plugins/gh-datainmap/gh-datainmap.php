@@ -39,3 +39,20 @@ add_action('admin_enqueue_scripts', function($hook) {
         wp_enqueue_script( 'gh-dim-admin', plugin_dir_url(GH_DIM_FILE) . 'dist/admin-layers.js', array('jquery'), null, true);
     }
 });
+/**
+ * Parse CSV met pro4j definities
+ *
+ * @param string $csv
+ * @return array
+ */
+function gh_dim_parse_pro4j($csv) {
+    $pro4j = [];
+    $rows = str_getcsv($csv, "\n");
+    foreach($rows as $row) {
+        $projection = str_getcsv($row, ',');
+        if(count($projection) == 2) {
+            $pro4j[] = $projection;
+        }
+    }
+    return $pro4j;
+}

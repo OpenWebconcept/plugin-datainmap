@@ -100,16 +100,8 @@ function gh_dim_shortcode($atts, $content = null) {
         ];
     }, $terms);
 
-    $pro4j = [];
-    if(strlen($settings['projections']) > 0) {
-        $rows = str_getcsv($settings['projections'], "\n");
-        foreach($rows as $row) {
-            $projection = str_getcsv($row, ',');
-            if(count($projection) == 2) {
-                $pro4j[] = $projection;
-            }
-        }
-    }
+    $pro4j = gh_dim_parse_pro4j($settings['projections']);
+    unset($settings['projections']);
 
     $el_id = uniqid('gh-datainmap-');
     $settings['element'] = $el_id;
