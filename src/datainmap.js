@@ -207,7 +207,6 @@ const addFeatures = (source, layerData) => {
         delete featureData.y;
         source.addFeature(new Feature({
             ...featureData,
-            // Input is WGS84/EPSG:4326
             geometry: new Point([x,y])
         }));
     });
