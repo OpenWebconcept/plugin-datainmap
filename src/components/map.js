@@ -32,6 +32,11 @@ export class MapComponent extends Component {
             }
         });
         this.olMap.on('click', (e) => {
+            const pixel = this.olMap.getEventPixel(e.originalEvent);
+            const coord = this.olMap.getCoordinateFromPixel(pixel);
+            this.props.onPickLocation(coord);
+        });
+        this.olMap.on('click', (e) => {
             // Reset cursor pointer
             document.body.style.cursor = 'default';
             const pixel = this.olMap.getEventPixel(e.originalEvent);
@@ -114,6 +119,7 @@ export class MapComponent extends Component {
 MapComponent.defaultProps = {
     layers: [],
     onSelectFeature: _.noop,
+    onPickLocation: _.noop,
     isFetching: 0,
     centerLocation: null
 };
