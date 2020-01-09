@@ -4,7 +4,7 @@ add_action( 'wp_ajax_gh_dim_get_location_info', 'gh_dim_ajax_get_location_info' 
 add_action( 'wp_ajax_nopriv_gh_dim_get_location_info', 'gh_dim_ajax_get_location_info' );
 
 function gh_dim_ajax_get_location_info() {
-    check_ajax_referer( 'gh-datainmap', 'security' );
+    check_ajax_referer( 'gh-dim-datainmap', 'security' );
     $json = [];
     if(isset($_REQUEST['location_id'])) {
         $post = get_post( $_REQUEST['location_id'] );
