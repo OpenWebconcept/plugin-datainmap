@@ -34,6 +34,15 @@ add_filter('upload_mimes', function($mime_types) {
     return $mime_types;
 }, 1, 1);
 
+add_action('wp_enqueue_scripts', 'gh_dim_register_scripts');
+add_action('admin_enqueue_scripts', 'gh_dim_register_scripts');
+function gh_dim_register_scripts() {
+    wp_register_script( 'gh-dim-vendors', plugin_dir_url(GH_DIM_FILE) . 'dist/vendors.js', array(), false, true );
+    wp_register_script( 'gh-datainmap', plugin_dir_url(GH_DIM_FILE) . 'dist/datainmap.js', array('gh-dim-vendors'), time(), true );
+    wp_register_script( 'gh-dim-locationpicker', plugin_dir_url(GH_DIM_FILE) . 'dist/admin-locationpicker.js' , array('gh-dim-vendors'), null, true );
+    wp_register_style( 'gh-datainmap-style', plugin_dir_url(GH_DIM_FILE) . 'dist/style.css');
+}
+
 add_action('admin_enqueue_scripts', function($hook) {
     global $current_screen;
     if(!in_array($hook, array('post.php', 'post-new.php'))) {
@@ -50,7 +59,6 @@ add_action('admin_enqueue_scripts', function($hook) {
         $pro4j = gh_dim_parse_pro4j($settings['projections']);
         unset($settings['projections']);
         $security = wp_create_nonce('gh-datainmap');
-        wp_register_script( 'gh-dim-locationpicker', plugin_dir_url(GH_DIM_FILE) . 'dist/admin-locationpicker.js' , array('gh-dim-vendors'), null, true );
         wp_enqueue_script( 'gh-dim-locationpicker' );
         wp_localize_script( 'gh-dim-locationpicker', 'GHDataInMap', [
             'ajaxurl' => admin_url( 'admin-ajax.php' ),
@@ -58,7 +66,7 @@ add_action('admin_enqueue_scripts', function($hook) {
             'settings' => $settings,
             'pro4j' => $pro4j,
         ] );
-        wp_enqueue_style( 'gh-datainmap-style', plugin_dir_url(GH_DIM_FILE) . 'dist/style.css');
+        wp_enqueue_style( 'gh-datainmap-style' );
     }
 });
 
