@@ -12,7 +12,7 @@ import {searchReducer} from './reducers/search';
 import Feature from 'ol/Feature';
 import {Circle as CircleStyle, Circle, Fill, Stroke, Style, Text, Icon} from 'ol/style';
 import {Tile as TileLayer, Vector as VectorLayer, VectorImage as VectorImageLayer} from 'ol/layer';
-import {Point} from 'ol/geom';
+import {Point, Polygon, LineString} from 'ol/geom';
 import {get as getProjection} from 'ol/proj';
 import {Cluster, OSM, Vector as VectorSource } from 'ol/source';
 import {KML, GeoJSON} from 'ol/format';
@@ -135,6 +135,8 @@ let styles = {
     })
 };
 
+styles.polygon = styles.geojson;
+
 // Add layer styles
 GHDataInMap.location_layers.forEach(layer => {
     if(layer.icon) {
@@ -236,12 +238,24 @@ else {
 // Function for adding features from a location_layer to a VectorSource
 const addFeatures = (source, layerData) => {
     layerData.features.forEach(featureData => {
-        const [x, y] = [featureData.x, featureData.y];
-        delete featureData.x;
-        delete featureData.y;
+        console.log(featureData);
+        let geometry;
+        switch(featureData.location_type) {
+            case 'point':
+                geometry = new Point(featureData.location);
+                break;
+            case 'linestring':
+                geometry = new LineString(_.chunk(featureData.location, 2));
+                break;
+            case 'polygon':
+                geometry = new Polygon([_.chunk(featureData.location, 2)]);
+                break;
+        }
+        delete featureData.location_type;
+        delete featureData.location;
         source.addFeature(new Feature({
             ...featureData,
-            geometry: new Point([x,y])
+            geometry: geometry
         }));
     });
 };
@@ -296,6 +310,14 @@ else {
         }
         else {
             const layerStyle = (feature) => {
+                console.log(feature.getGeometry(), feature);
+                const geometry = feature.getGeometry();
+                if(geometry instanceof Polygon) {
+                    return styles.polygon;
+                }
+                else if(geometry instanceof LineString) {
+                    return styles.polygon;
+                }
                 return styles[layerData.slug] || styles.default;
             };
             layer = new VectorLayer({
