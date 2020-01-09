@@ -101,12 +101,12 @@ function gh_dim_shortcode($atts, $content = null) {
     $settings['element'] = $el_id;
 
     if($settings['include_default_style']) {
-        wp_enqueue_style( 'gh-datainmap-style' );
+        wp_enqueue_style( 'gh-dim-style' );
     }
 
-    wp_enqueue_script( 'gh-datainmap' );
-    $security = wp_create_nonce('gh-datainmap');
-    wp_localize_script( 'gh-datainmap', 'GHDataInMap', [
+    wp_enqueue_script( 'gh-dim-datainmap' );
+    $security = wp_create_nonce('gh-dim-datainmap');
+    wp_localize_script( 'gh-dim-datainmap', 'GHDataInMap', [
         'ajaxurl' => admin_url( 'admin-ajax.php' ),
         'fetchFeatureUrl' => admin_url( 'admin-ajax.php' ) . '?action=gh_dim_get_location_info&security=' . $security . '&location_id=',
         'security' => $security,
