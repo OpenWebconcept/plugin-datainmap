@@ -14,6 +14,9 @@ $(document).ready(function() {
     ];
 
     const visibleFields = {
+        'GeoJSON': [
+            '#gh_dim_layer_url',
+        ],
         'KML': [
             '#gh_dim_layer_url',
             '#gh_dim_kml_ignore_style'

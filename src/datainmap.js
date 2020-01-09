@@ -6,16 +6,16 @@ import thunk from 'redux-thunk';
 import MapComponentLink from './containers/maplink';
 import SearchComponentLink from './containers/searchlink';
 import FeatureComponentLink from './containers/featurelink';
-import {configureMapView, fetchWMTSLayer, addMapLayer, setSearchProjection} from './actions';
+import {configureMapView, fetchWMTSLayer, addMapLayer, setSearchProjection, centerMapView} from './actions';
 import {mapReducer} from './reducers/map';
 import {searchReducer} from './reducers/search';
 import Feature from 'ol/Feature';
 import {Circle as CircleStyle, Circle, Fill, Stroke, Style, Text, Icon} from 'ol/style';
-import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer';
+import {Tile as TileLayer, Vector as VectorLayer, VectorImage as VectorImageLayer} from 'ol/layer';
 import {Point} from 'ol/geom';
 import {get as getProjection} from 'ol/proj';
 import {Cluster, OSM, Vector as VectorSource } from 'ol/source';
-import KML from 'ol/format/KML';
+import {KML, GeoJSON} from 'ol/format';
 import { featureReducer } from './reducers/feature';
 import proj4 from 'proj4';
 import {register} from 'ol/proj/proj4';
@@ -115,6 +115,23 @@ let styles = {
                 color: settings.style_text_color
             })
         }),
+    }),
+    geojson: new Style({
+        fill: new Fill({
+            color: settings.style_circle_fill_color
+        }),
+        stroke: new Stroke({
+            color: settings.style_circle_stroke_color,
+            width: 2
+        }),
+        text: new Text({
+            font: settings.style_circle_text_font,
+            scale: settings.style_circle_text_scale,
+            textBaseline: settings.style_circle_text_baseline,
+            fill: new Fill({
+                color: settings.style_text_color
+            })
+        }),
     })
 };
 
@@ -165,7 +182,7 @@ else {
                     })
                 ));
                 break;
-            case 'KML':
+            case 'KML': {
                 const layerStyle = (feature) => {
                     return styles.default;
                 };
@@ -182,6 +199,7 @@ else {
                 });
                 store.dispatch(addMapLayer(layer));
                 break;
+            }
             case 'WMTS-auto':
                 store.dispatch(fetchWMTSLayer(
                     layerData.url,
@@ -195,6 +213,22 @@ else {
                     }
                 ));
                 break;
+            case 'GeoJSON': {
+                const style = styles.geojson;
+                const layer = new VectorImageLayer({
+                    opacity: layerData.opacity,
+                    zIndex: ++zIndex,
+                    source: new VectorSource({
+                        url: layerData.url,
+                        format: new GeoJSON(),
+                    }),
+                    style: (feature) => {
+                        return style;
+                    }
+                });
+                store.dispatch(addMapLayer(layer));
+                break;
+            }
         }
     });
 }

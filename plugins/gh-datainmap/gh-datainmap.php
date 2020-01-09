@@ -28,6 +28,9 @@ add_filter('upload_mimes', function($mime_types) {
     if(!isset($mime_types['kml'])) {
         $mime_types['kml'] = 'text/xml';
     }
+    if(!isset($mime_types['geojson'])) {
+        $mime_types['geojson'] = 'text/plain';
+    }
     return $mime_types;
 }, 1, 1);
 
