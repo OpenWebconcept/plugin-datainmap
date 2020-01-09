@@ -14,8 +14,6 @@ function gh_dim_ajax_get_location_info() {
         elseif($post->post_type != 'gh-dim-locations') {
             return wp_send_json_error( $json, 404 );
         }
-        $x = get_post_meta( $post->ID, 'gh_dim_location_x', true );
-        $y = get_post_meta( $post->ID, 'gh_dim_location_y', true );
         $content = $post->post_content;
         $content = apply_filters( 'the_content', $content );
         $locationType = [];
@@ -32,7 +30,6 @@ function gh_dim_ajax_get_location_info() {
             'id'            => $post->ID,
             'title'         => get_the_title($post),
             'content'       => $content,
-            'location'      => [$x, $y],
             'locationType'  => $locationType,
         ];
         wp_send_json_success( $json );
