@@ -73,10 +73,10 @@ function gh_dim_shortcode($atts, $content = null) {
         $features = array_map(function($post) use($term) {
             $location = get_post_meta( $post->ID, 'gh_dim_location', true);
             $location_type = get_post_meta( $post->ID, 'gh_dim_location_type', true);
-            list($x, $y) = explode(',', $location);
+            list($x, $y) = array_map('trim', explode(',', $location));
             return [
-                'x' => $x,
-                'y' => $y,
+                'x' => (float)$x,
+                'y' => (float)$y,
                 'location_type' => $location_type,
                 'feature_id' => $post->ID,
                 'title' => get_the_title( $post ),
