@@ -55,12 +55,11 @@ export function fetchWMTSLayer(url, WMTSSettings, layerSettings = {}) {
                 });
                 dispatch(addMapLayer(layer));
                 // dispatch(mapLayerAdded);
+                dispatch(fetching(0));
             })
             .catch(ex => {
-                console.log('Error fetching WMTS Layer', ex)
-            })
-            .finally( () => {
                 dispatch(fetching(0));
+                console.log('Error fetching WMTS Layer', ex)
             });
     }
 };
