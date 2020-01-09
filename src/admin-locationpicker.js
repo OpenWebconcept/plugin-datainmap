@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import MapComponentLink from './containers/maplink';
 import SearchComponentLink from './containers/searchlink';
-import {configureMapView, fetchWMTSLayer, setSearchProjection} from './actions';
+import {configureMapView, fetchWMTSLayer, setSearchProjection, addMapLayer} from './actions';
 import {mapReducer} from './reducers/map';
 import {searchReducer} from './reducers/search';
 import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer';
@@ -15,6 +15,8 @@ import {get as getProjection} from 'ol/proj';
 import proj4 from 'proj4';
 import {register} from 'ol/proj/proj4';
 import ld from 'lodash';
+import { Feature } from 'ol';
+import { Point } from 'ol/geom';
 const _ = ld.noConflict();
 
 const rootReducer = combineReducers({
@@ -63,20 +65,42 @@ const style = new Style({
     }),
 });
 
+let doDrawFeature = false;
 let zoom = settings.zoom;
 let center = [settings.center_x, settings.center_y].map(parseFloat);
-// Neem huidige positie over indien aanwezig
+// Move and zoom to object location if defined
 const current_location_type = document.getElementById('gh_dim_location_type');
 const current_location = document.getElementById('gh_dim_location');
 if(current_location_type !== null && current_location !== null && current_location_type.value == 'point' && current_location.value.length > 0) {
     center = current_location.value.split(',', 2).map(parseFloat);
     zoom = settings.maxZoom - 1;
+    doDrawFeature = true;
 }
 
-const pickLocation = (coord) => {
+// Source and layer for drawing the Pin on the map to see what's selected
+const source = new VectorSource();
+const layer = new VectorLayer({
+    zIndex: 2,
+    source: source,
+    style: style
+});
+store.dispatch( addMapLayer(layer) );
+
+const drawFeature = (coord) => {
+    source.clear();
+    source.addFeature(new Feature({
+        geometry: new Point(coord)
+    }));
+};
+
+if(doDrawFeature) {
+    drawFeature(center);
+}
+
+const pickLocation = (coord, olMap) => {
     if(current_location !== null) {
         current_location.value = coord.join(',');
-        console.log(coord);
+        drawFeature(coord);
     }
 };
 

@@ -34,7 +34,7 @@ export class MapComponent extends Component {
         this.olMap.on('click', (e) => {
             const pixel = this.olMap.getEventPixel(e.originalEvent);
             const coord = this.olMap.getCoordinateFromPixel(pixel);
-            this.props.onPickLocation(coord);
+            this.props.onPickLocation(coord, this.olMap);
         });
         this.olMap.on('click', (e) => {
             // Reset cursor pointer
