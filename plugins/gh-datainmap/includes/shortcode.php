@@ -2,6 +2,7 @@
 
 add_action('wp_enqueue_scripts', 'gh_dim_register_scripts');
 function gh_dim_register_scripts() {
+    wp_register_script( 'gh-dim-vendors', plugin_dir_url(GH_DIM_FILE) . 'dist/vendors.js', array(), false, true );
     wp_register_script( 'gh-datainmap', plugin_dir_url(GH_DIM_FILE) . 'dist/datainmap.js', array(), null, true );
     wp_register_style( 'gh-datainmap-style', plugin_dir_url(GH_DIM_FILE) . 'dist/style.css');
 }

@@ -38,6 +38,17 @@ module.exports = {
         filename: '[name].js',
         path: path.resolve(__dirname, "./plugins/gh-datainmap/dist")
     },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all'
+                }
+            }
+        }
+    },
     externals: {
         jquery: 'window.jQuery'
     },

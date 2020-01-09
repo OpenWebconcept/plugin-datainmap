@@ -50,7 +50,7 @@ add_action('admin_enqueue_scripts', function($hook) {
         $pro4j = gh_dim_parse_pro4j($settings['projections']);
         unset($settings['projections']);
         $security = wp_create_nonce('gh-datainmap');
-        wp_register_script( 'gh-dim-locationpicker', plugin_dir_url(GH_DIM_FILE) . 'dist/admin-locationpicker.js' , array(), null, true );
+        wp_register_script( 'gh-dim-locationpicker', plugin_dir_url(GH_DIM_FILE) . 'dist/admin-locationpicker.js' , array('gh-dim-vendors'), null, true );
         wp_enqueue_script( 'gh-dim-locationpicker' );
         wp_localize_script( 'gh-dim-locationpicker', 'GHDataInMap', [
             'ajaxurl' => admin_url( 'admin-ajax.php' ),
