@@ -24,12 +24,7 @@ const babel_presets = [
 ];
 
 module.exports = {
-    // mode: "none",
-    // mode: "development",
-    // mode: "production",
     entry: {
-        // app: "./src/app.coffee"
-        // map: "./src/map.js",
         datainmap: "./src/datainmap.js",
         'admin-layers': "./src/admin-layers.js",
         'admin-locationpicker': "./src/admin-locationpicker.js"
