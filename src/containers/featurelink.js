@@ -2,13 +2,13 @@ import { connect } from 'react-redux';
 import FeatureComponent from '../components/feature';
 import { setFeature } from '../actions';
 
-const mapStateToProps  = (state, ownProps) => {
+const mapStateToProps  = (state) => {
     return {
         feature: state.feature.feature
     }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         resetFeature: () => {
             dispatch(setFeature(null));

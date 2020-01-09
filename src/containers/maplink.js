@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import MapComponent from '../components/map';
 import { selectFeature, setFeature } from '../actions';
 
-const mapStateToProps  = (state, ownProps) => {
+const mapStateToProps  = (state) => {
     return {
         viewSettings: state.map.view,
         layers: state.map.layers,
@@ -11,7 +11,7 @@ const mapStateToProps  = (state, ownProps) => {
     }
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         onSelectFeature: (feature) => {
             // Vraag aanvullende informatie op van feature

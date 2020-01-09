@@ -2,13 +2,13 @@ import { connect } from 'react-redux';
 import SearchComponent from '../components/search';
 import { searchSuggest, fetchLocation, setSearchResults } from '../actions';
 
-const mapStateToProps  = (state, ownProps) => {
+const mapStateToProps  = (state) => {
     return {
         results: state.search.results
     }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         doSearch: (q) => {
             dispatch(searchSuggest(q));
