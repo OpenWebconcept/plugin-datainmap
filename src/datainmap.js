@@ -10,9 +10,9 @@ import {configureMapView, fetchWMTSLayer, addMapLayer, setSearchProjection, cent
 import {mapReducer} from './reducers/map';
 import {searchReducer} from './reducers/search';
 import Feature from 'ol/Feature';
-import {Circle as CircleStyle, Circle, Fill, Stroke, Style, Text, Icon} from 'ol/style';
+import {Circle as CircleStyle, Fill, Stroke, Style, Text, Icon} from 'ol/style';
 import {Tile as TileLayer, Vector as VectorLayer, VectorImage as VectorImageLayer} from 'ol/layer';
-import {Point, Polygon, LineString} from 'ol/geom';
+import {Point, Polygon, LineString, Circle} from 'ol/geom';
 import {get as getProjection} from 'ol/proj';
 import {Cluster, OSM, Vector as VectorSource } from 'ol/source';
 import {KML, GeoJSON} from 'ol/format';
@@ -97,7 +97,7 @@ let styles = {
         return style;
     },
     default: new Style({
-        image: new Circle({
+        image: new CircleStyle({
             radius: settings.style_circle_radius,
             stroke: new Stroke({
                 color: settings.style_circle_stroke_color
@@ -137,6 +137,7 @@ let styles = {
 
 styles.polygon = styles.geojson;
 styles.linestring = styles.geojson;
+styles.circle = styles.geojson;
 
 // Add layer styles
 GHDataInMap.location_layers.forEach(layer => {
@@ -251,6 +252,9 @@ const addFeatures = (source, layerData) => {
             case 'polygon':
                 geometry = new Polygon(featureData.location);
                 break;
+            case 'circle':
+                geometry = new Circle(...featureData.location);
+                break;
         }
         delete featureData.location_type;
         delete featureData.location;
@@ -318,6 +322,9 @@ else {
                 }
                 else if(geometry instanceof LineString) {
                     return styles.linestring;
+                }
+                else if(geometry instanceof Circle) {
+                    return styles.circle;
                 }
                 return styles[layerData.slug] || styles.default;
             };
