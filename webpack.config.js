@@ -15,7 +15,7 @@ const babel_presets = [
                 //     "ie >= 11"
                 // ],
             },
-            "corejs": "2.6.10",
+            "corejs": 3,
             "useBuiltIns": "usage"
         },
         "react"
