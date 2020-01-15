@@ -5,6 +5,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import _ from 'lodash';
 import { zoomTo, moveToAndZoom, flyTo, moveTo } from '../util/map-animations';
+import { getUid } from 'ol/util';
 
 export class MapComponent extends Component {
 
@@ -94,9 +95,10 @@ export class MapComponent extends Component {
     componentDidUpdate(prevProps) {
         if(this.props.layers && this.props.layers.length != prevProps.layers.length) {
             const layers = this.olMap.getLayers().getArray();
-            const map_ids = layers.map((l) => {return l.ol_uid});
+            const map_ids = layers.map(getUid);
             this.props.layers.forEach((layer) => {
-                if(map_ids.indexOf(layer.ol_uid) == -1) {
+                const id = getUid(layer);
+                if(map_ids.indexOf(id) == -1) {
                     this.olMap.addLayer(layer);
                 }
             });
