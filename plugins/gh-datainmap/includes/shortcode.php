@@ -15,6 +15,8 @@ function gh_dim_shortcode($atts, $content = null) {
             'layers' => null,
             'single_cluster' => 0,
             'single_cluster_distance' => 75,
+            'enable_search' => 1,
+            'enable_feature_dialog' => 1,
         ], $atts );
     $settings['zoom'] = (int)$args['zoom'];
     $settings['minZoom'] = (int)$args['min_zoom'];
@@ -24,6 +26,8 @@ function gh_dim_shortcode($atts, $content = null) {
     $settings['projection'] = $args['projection'];
     $settings['single_cluster'] = $args['single_cluster'] == 1 ? true : false;
     $settings['single_cluster_distance'] = (int)$args['single_cluster_distance'];
+    $settings['enable_search'] = $args['enable_search'] == 1 ? true : false;
+    $settings['enable_feature_dialog'] = $args['enable_feature_dialog'] == 1 ? true : false;
 
     $layers = get_posts([
         'post_type' => 'gh-dim-layers',

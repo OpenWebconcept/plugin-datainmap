@@ -334,9 +334,9 @@ const App = () => {
     return (
         <Provider store={store}>
             <MapComponentLink>
-                <SearchComponentLink />
+                { settings.enable_search && <SearchComponentLink /> }
             </MapComponentLink>
-            <FeatureComponentLink />
+            { settings.enable_feature_dialog && <FeatureComponentLink /> }
         </Provider>
     )
 };
