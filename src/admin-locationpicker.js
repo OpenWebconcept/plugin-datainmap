@@ -70,7 +70,7 @@ if(current_location_type !== null && current_location !== null && current_locati
         doDrawFeature = true;
     }
     catch(ex) {
-        console.log(e);
+        console.log(ex);
         alert('Unable to parse coordinates');
     }
 }
