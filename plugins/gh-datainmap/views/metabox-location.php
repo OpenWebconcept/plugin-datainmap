@@ -9,6 +9,7 @@
                     <option value="point" <?php echo selected('point', $gh_dim_location_type) ?>><?php _e( 'Point', 'gh-datainmap' ); ?></option>
                     <option value="linestring" <?php echo selected('linestring', $gh_dim_location_type) ?>><?php _e( 'LineString', 'gh-datainmap' ); ?></option>
                     <option value="polygon" <?php echo selected('polygon', $gh_dim_location_type) ?>><?php _e( 'Polygon', 'gh-datainmap' ); ?></option>
+                    <option value="circle" <?php echo selected('circle', $gh_dim_location_type) ?>><?php _e( 'Circle', 'gh-datainmap' ); ?></option>
                 </select>
             </td>
         </tr>

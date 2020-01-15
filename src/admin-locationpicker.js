@@ -14,7 +14,7 @@ import {get as getProjection} from 'ol/proj';
 import proj4 from 'proj4';
 import {register} from 'ol/proj/proj4';
 import { Feature } from 'ol';
-import { Point, LineString, Polygon } from 'ol/geom';
+import { Point, LineString, Polygon, Circle } from 'ol/geom';
 import Draw from 'ol/interaction/Draw';
 import ld from 'lodash';
 const _ = ld.noConflict();
@@ -66,6 +66,9 @@ if(current_location_type !== null && current_location !== null && current_locati
             case 'polygon':
                 geometry = new Polygon(coordinates);
                 break;
+            case 'circle':
+                geometry = new Circle(...coordinates);
+                break;
         }
         doDrawFeature = true;
     }
@@ -93,8 +96,16 @@ if(doDrawFeature) {
 }
 
 // Store new coordinates if drawing has ended
-const drawingComplete = (geometry) => {
-    current_location.value = JSON.stringify(geometry.getCoordinates());
+const drawingComplete = (feature) => {
+    const geometry = feature.getGeometry()
+    let coordinates;
+    if(geometry instanceof Circle) {
+        coordinates = [geometry.flatCoordinates, geometry.getRadius()];
+    }
+    else {
+        coordinates = geometry.getCoordinates();
+    }
+    current_location.value = JSON.stringify(coordinates);
 }
 
 store.dispatch(configureMapView({
@@ -135,6 +146,9 @@ if(current_location_type !== null) {
             case 'polygon':
                 drawType = 'Polygon';
                 break;
+            case 'circle':
+                drawType = 'Circle';
+                break;
         }
         if(drawType == 'None') {
             return;
@@ -148,7 +162,7 @@ if(current_location_type !== null) {
             source.clear();
         });
         drawInteraction.on('drawend', (e) => {
-            drawingComplete(e.feature.getGeometry());
+            drawingComplete(e.feature);
         });
         store.dispatch(addMapInteraction(drawInteraction));
     };
