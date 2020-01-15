@@ -104,6 +104,14 @@ export class MapComponent extends Component {
         if(this.props.centerLocation && this.props.centerLocation != prevProps.centerLocation) {
             moveToAndZoom(this.olMap.getView(), this.props.centerLocation);
         }
+        if(this.props.interactions) {
+            prevProps.interactions.forEach((o) => {
+                this.olMap.removeInteraction(o);
+            });
+            this.props.interactions.forEach((o) => {
+                this.olMap.addInteraction(o);
+            });
+        }
     }
 
     render() {
@@ -118,6 +126,7 @@ export class MapComponent extends Component {
 
 MapComponent.defaultProps = {
     layers: [],
+    interactions: [],
     onSelectFeature: _.noop,
     onPickLocation: _.noop,
     isFetching: 0,

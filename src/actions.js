@@ -164,3 +164,13 @@ export function selectFeature(id) {
             });
     }
 }
+
+export const ADD_MAP_INTERACTION = 'ADD_MAP_INTERACTION';
+export function addMapInteraction(interaction) {
+    return { type: ADD_MAP_INTERACTION, interaction: interaction };
+}
+
+export const REMOVE_MAP_INTERACTION = 'REMOVE_MAP_INTERACTION';
+export function removeMapInteraction(interaction) {
+    return { type: REMOVE_MAP_INTERACTION, interaction: interaction };
+}

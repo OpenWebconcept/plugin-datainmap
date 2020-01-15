@@ -6,6 +6,7 @@ const mapStateToProps  = (state) => {
     return {
         viewSettings: state.map.view,
         layers: state.map.layers,
+        interactions: state.map.interactions,
         isFetching: state.map.isFetching,
         centerLocation: state.map.centerLocation
     }
