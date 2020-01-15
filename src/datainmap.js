@@ -240,14 +240,15 @@ const addFeatures = (source, layerData) => {
     layerData.features.forEach(featureData => {
         let geometry;
         switch(featureData.location_type) {
+            default:
             case 'point':
                 geometry = new Point(featureData.location);
                 break;
             case 'linestring':
-                geometry = new LineString(_.chunk(featureData.location, 2));
+                geometry = new LineString(featureData.location);
                 break;
             case 'polygon':
-                geometry = new Polygon([_.chunk(featureData.location, 2)]);
+                geometry = new Polygon(featureData.location);
                 break;
         }
         delete featureData.location_type;

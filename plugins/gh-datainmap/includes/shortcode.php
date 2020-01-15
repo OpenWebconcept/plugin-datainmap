@@ -69,9 +69,7 @@ function gh_dim_shortcode($atts, $content = null) {
             $location_type = get_post_meta( $post->ID, 'gh_dim_location_type', true);
             return [
                 'location_type' => $location_type,
-                'location' => array_map(function($v) {
-                    return (float)trim($v);
-                }, explode(',', $location)),
+                'location' => json_decode($location),
                 'feature_id' => $post->ID,
                 'title' => get_the_title( $post ),
                 'term' => $term->slug,
