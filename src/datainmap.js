@@ -238,7 +238,6 @@ else {
 // Function for adding features from a location_layer to a VectorSource
 const addFeatures = (source, layerData) => {
     layerData.features.forEach(featureData => {
-        console.log(featureData);
         let geometry;
         switch(featureData.location_type) {
             case 'point':
