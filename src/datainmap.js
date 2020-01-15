@@ -136,6 +136,7 @@ let styles = {
 };
 
 styles.polygon = styles.geojson;
+styles.linestring = styles.geojson;
 
 // Add layer styles
 GHDataInMap.location_layers.forEach(layer => {
@@ -316,7 +317,7 @@ else {
                     return styles.polygon;
                 }
                 else if(geometry instanceof LineString) {
-                    return styles.polygon;
+                    return styles.linestring;
                 }
                 return styles[layerData.slug] || styles.default;
             };
