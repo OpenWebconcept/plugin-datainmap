@@ -63,11 +63,9 @@ if(current_location_type !== null && current_location !== null && current_locati
                 break;
             case 'linestring':
                 geometry = new LineString(coordinates);
-                center = coordinates[0];
                 break;
             case 'polygon':
                 geometry = new Polygon(coordinates);
-                center = coordinates[0];
                 break;
         }
         doDrawFeature = true;
