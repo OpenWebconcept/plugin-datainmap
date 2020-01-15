@@ -15,7 +15,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.7.0",
     "classnames": "^2.2.6",
-    "core-js": "^2.6.10",
+    "core-js": "^3.6.4",
     "lodash": "^4.17.15",
     "ol": "^6.1.1",
     "proj4": "^2.6.0",
