@@ -52,7 +52,6 @@ let center = [settings.center_x, settings.center_y].map(parseFloat);
 const current_location_type = document.getElementById('gh_dim_location_type');
 const current_location = document.getElementById('gh_dim_location');
 if(current_location_type !== null && current_location !== null && current_location.value.length > 0) {
-    console.log('current location', current_location.value);
     try {
         const coordinates = JSON.parse(current_location.value);
         switch(current_location_type.value) {
