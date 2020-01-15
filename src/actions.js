@@ -23,14 +23,6 @@ export function addMapLayer(layer) {
     return { layer, type: ADD_MAP_LAYER };
 };
 
-// DEPRECATED: gewoon zIndex voor layer instellen
-export const ADD_MAP_LAYERS_SUBSEQUENTLY = 'ADD_MAP_LAYERS_SUBSEQUENTLY';
-export function addMapLayersSubsequently(layer1, layer2) {
-    return (dispatch, getState) => {
-        dispatch(layer1).then( () => dispatch(layer2));
-    };
-};
-
 export const FETCHING = 'FETCHING';
 export function fetching(isFetching) {
     return { type: FETCHING, status: isFetching };
