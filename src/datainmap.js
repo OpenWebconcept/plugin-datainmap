@@ -315,7 +315,6 @@ else {
         }
         else {
             const layerStyle = (feature) => {
-                console.log(feature.getGeometry(), feature);
                 const geometry = feature.getGeometry();
                 if(geometry instanceof Polygon) {
                     return styles.polygon;
