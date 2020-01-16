@@ -104,10 +104,10 @@ function gh_dim_shortcode($atts, $content = null) {
 
     // Fetch all used location-properties tags
     $location_property_ids = array_map(function($location_layer) {
-        $location_property_ids = array_map(function($feature) {
+        $ids = array_map(function($feature) {
             return $feature['location_properties'];
         }, $location_layer['features']);
-        return array_merge(...$location_property_ids);
+        return array_merge(...$ids);
     }, $location_layers);
     $location_property_ids = array_unique(array_merge(...$location_property_ids));
     $location_property_terms = get_terms([
