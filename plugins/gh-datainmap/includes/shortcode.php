@@ -74,8 +74,8 @@ function gh_dim_shortcode($atts, $content = null) {
             $location_properties = wp_get_post_terms( $post->ID, 'gh-dim-location-properties', [
                 'fields' => 'ids'
             ] );
-            $location = get_post_meta( $post->ID, 'gh_dim_location', true);
-            $location_type = get_post_meta( $post->ID, 'gh_dim_location_type', true);
+            $location = get_post_meta( $post->ID, '_gh_dim_location', true);
+            $location_type = get_post_meta( $post->ID, '_gh_dim_location_type', true);
             return [
                 'location_type' => $location_type,
                 'location' => json_decode($location),

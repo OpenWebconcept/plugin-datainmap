@@ -14,16 +14,16 @@ function gh_dim_add_metabox_location() {
 }
 
 function gh_dim_metabox_location($post) {
-    $gh_dim_location = get_post_meta( $post->ID, 'gh_dim_location', true );
-    $gh_dim_location_type = get_post_meta( $post->ID, 'gh_dim_location_type', true );
+    $gh_dim_location = get_post_meta( $post->ID, '_gh_dim_location', true );
+    $gh_dim_location_type = get_post_meta( $post->ID, '_gh_dim_location_type', true );
     include GH_DIM_DIR . '/views/metabox-location.php';
 }
 
 add_action( 'save_post', 'gh_dim_metabox_location_save_postdata' );
 function gh_dim_metabox_location_save_postdata($post_id) {
     $keys = array(
-        'gh_dim_location',
-        'gh_dim_location_type',
+        '_gh_dim_location',
+        '_gh_dim_location_type',
     );
     foreach($keys as $key) {
         if(array_key_exists($key, $_POST)) {
