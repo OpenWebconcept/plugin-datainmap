@@ -41,7 +41,7 @@ function gh_dim_set_current_menu($parent_file) {
         // Stel submenu in als actief bij custom post type gh-dim-locations
         if ( $current_screen->post_type == 'gh-dim-locations' ) {
             if ( $pagenow == 'edit-tags.php' ) {
-                $submenu_file = 'edit-tags.php?taxonomy=gh-dim-location-types&post_type=' . $current_screen->post_type;
+                $submenu_file = 'edit-tags.php?taxonomy=' . $current_screen->taxonomy . '&post_type=' . $current_screen->post_type;
             }
             $parent_file = 'gh-dim';
         }
