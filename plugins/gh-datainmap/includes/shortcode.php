@@ -29,6 +29,7 @@ function gh_dim_shortcode($atts, $content = null) {
     $settings['enable_search'] = $args['enable_search'] == 1 ? true : false;
     $settings['enable_feature_dialog'] = $args['enable_feature_dialog'] == 1 ? true : false;
 
+    // Compose map layers
     $layers = get_posts([
         'post_type' => 'gh-dim-layers',
         'include' => explode(',', $args['layers']),
@@ -56,6 +57,7 @@ function gh_dim_shortcode($atts, $content = null) {
         ]);
     }
 
+    // Compose location layers
     $location_layers = array_map(function($term) {
         $locations = get_posts([
             'post_type' => 'gh-dim-locations',
@@ -100,6 +102,7 @@ function gh_dim_shortcode($atts, $content = null) {
         ];
     }, $terms);
 
+    // Fetch all used location-properties tags
     $location_property_ids = array_map(function($location_layer) {
         $location_property_ids = array_map(function($feature) {
             return $feature['location_properties'];
