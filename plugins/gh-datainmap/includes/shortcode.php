@@ -69,11 +69,15 @@ function gh_dim_shortcode($atts, $content = null) {
             ]
         ]);
         $features = array_map(function($post) use($term) {
+            $location_properties = wp_get_post_terms( $post->ID, 'gh-dim-location-properties', [
+                'fields' => 'ids'
+            ] );
             $location = get_post_meta( $post->ID, 'gh_dim_location', true);
             $location_type = get_post_meta( $post->ID, 'gh_dim_location_type', true);
             return [
                 'location_type' => $location_type,
                 'location' => json_decode($location),
+                'location_properties' => $location_properties,
                 'feature_id' => $post->ID,
                 'title' => get_the_title( $post ),
                 'term' => $term->slug,
@@ -96,6 +100,22 @@ function gh_dim_shortcode($atts, $content = null) {
         ];
     }, $terms);
 
+    $location_property_ids = array_map(function($location_layer) {
+        $location_property_ids = array_map(function($feature) {
+            return $feature['location_properties'];
+        }, $location_layer['features']);
+        return array_merge(...$location_property_ids);
+    }, $location_layers);
+    $location_property_ids = array_unique(array_merge(...$location_property_ids));
+    $location_property_terms = get_terms([
+        'taxonomy' => 'gh-dim-location-properties',
+        'term_taxonomy_id' => $location_property_ids,
+        'hide_empty' => true,
+        'fields' => 'all',
+        'orderby' => 'name',
+        'order' => 'ASC',
+    ]);
+
     $pro4j = gh_dim_parse_pro4j($settings['projections']);
     unset($settings['projections']);
 
@@ -115,6 +135,13 @@ function gh_dim_shortcode($atts, $content = null) {
         'settings' => $settings,
         'location_layers' => $location_layers,
         'map_layers' => $map_layers,
+        'location_properties' => array_map(function($term) {
+            return [
+                'term_id' => $term->term_id,
+                'name' => $term->name,
+                'slug' => $term->slug,
+            ];
+        }, $location_property_terms),
         'pro4j' => $pro4j,
     ] );
     $output = '<div id="'.$el_id.'">'.__('Loading...', 'gh-datainmap').'</div>';
