@@ -23,6 +23,28 @@ function gh_dim_register_taxonomy() {
         'show_admin_column' => true,
         'public'            => false,
     ));
+
+    $labels = array(
+        'name' 				=> __( 'Location Properties', 'gh-datainmap' ),
+        'singular_name' 	=> __( 'Location Property', 'gh-datainmap' ),
+        'search_items' 		=> __( 'Search Location Properties', 'gh-datainmap' ),
+        'all_items' 		=> __( 'All Location Properties', 'gh-datainmap' ),
+        'parent_item' 		=> __( 'Parent Location Property', 'gh-datainmap' ),
+        'parent_item_colon' => __( 'Parent Location Property:', 'gh-datainmap' ),
+        'edit_item' 		=> __( 'Edit Location Property', 'gh-datainmap' ),
+        'update_item' 		=> __( 'Update Location Property', 'gh-datainmap' ),
+        'add_new_item' 		=> __( 'Add New Location Property', 'gh-datainmap' ),
+        'new_item_name' 	=> __( 'New Location Property Name', 'gh-datainmap' ),
+        'menu_name' 		=> __( 'Location Property', 'gh-datainmap' ),
+    );
+
+    register_taxonomy( 'gh-dim-location-properties', 'gh-dim-locations', array(
+        'hierarchical' 		=> false,
+        'labels' 			=> $labels,
+        'show_ui' 			=> true,
+        'show_admin_column' => true,
+        'public'            => false,
+    ));
 }
 
 add_action('gh-dim-location-types_edit_form_fields', function($term) {

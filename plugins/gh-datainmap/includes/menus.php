@@ -20,6 +20,14 @@ function gh_dim_menu() {
     );
     add_submenu_page(
         'gh-dim',
+        __('Location Properties', 'gh-datainmap'),
+        __('Location Properties', 'gh-datainmap'),
+        'manage_options',
+        'edit-tags.php?taxonomy=gh-dim-location-properties&post_type=gh-dim-locations',
+        null
+    );
+    add_submenu_page(
+        'gh-dim',
         __('Settings', 'gh-datainmap'),
         __('Settings', 'gh-datainmap'),
         'manage_options',
