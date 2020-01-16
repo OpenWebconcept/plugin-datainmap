@@ -46,7 +46,7 @@ function gh_dim_shortcode($atts, $content = null) {
         ];
     }, $layers);
 
-    $term_taxonomy_ids = $terms = [];
+    $terms = [];
     if(strlen($args['types']) > 0) {
         $term_taxonomy_ids = explode(',', $args['types']);
         $terms = get_terms([
