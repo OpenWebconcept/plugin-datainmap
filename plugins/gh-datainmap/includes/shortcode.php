@@ -109,7 +109,9 @@ function gh_dim_shortcode($atts, $content = null) {
         }, $location_layer['features']);
         return array_merge(...$ids);
     }, $location_layers);
-    $location_property_ids = array_unique(array_merge(...$location_property_ids));
+    if(count($location_property_ids) > 0) {
+        $location_property_ids = array_unique(array_merge(...$location_property_ids));
+    }
     $location_property_terms = get_terms([
         'taxonomy' => 'gh-dim-location-properties',
         'term_taxonomy_id' => $location_property_ids,
