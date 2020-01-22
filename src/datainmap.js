@@ -6,7 +6,7 @@ import thunk from 'redux-thunk';
 import MapComponentLink from './containers/maplink';
 import SearchComponentLink from './containers/searchlink';
 import FeatureComponentLink from './containers/featurelink';
-import {configureMapView, fetchWMTSLayer, addMapLayer, setSearchProjection, centerMapView} from './actions';
+import {configureMapView, fetchWMTSLayer, addMapLayer, setSearchProjection} from './actions';
 import {mapReducer} from './reducers/map';
 import {searchReducer} from './reducers/search';
 import Feature from 'ol/Feature';
@@ -30,7 +30,7 @@ const rootReducer = combineReducers({
 const middleware = applyMiddleware(thunk);
 const store = createStore( rootReducer, middleware);
 
-if(GHDataInMap == undefined) {
+if(typeof GHDataInMap == 'undefined') {
     throw "GHDataInMap object missing";
 }
 
