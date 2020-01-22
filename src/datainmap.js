@@ -30,7 +30,7 @@ const rootReducer = combineReducers({
 const middleware = applyMiddleware(thunk);
 const store = createStore( rootReducer, middleware);
 
-if(typeof GHDataInMap != 'undefined') {
+if(typeof GHDataInMap == 'undefined') {
     throw "GHDataInMap object missing";
 }
 
