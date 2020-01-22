@@ -38,12 +38,12 @@ function gh_dim_shortcode($atts, $content = null) {
     $map_layers = array_map(function($post) {
         return [
             'title' => get_the_title( $post->ID ),
-            'type' => get_post_meta($post->ID, 'gh_dim_layer_type', true),
-            'url' => get_post_meta($post->ID, 'gh_dim_layer_url', true),
-            'name' => get_post_meta($post->ID, 'gh_dim_layer_name', true),
-            'opacity' => (float)get_post_meta($post->ID, 'gh_dim_layer_opacity', true),
-            'matrixset' => get_post_meta($post->ID, 'gh_dim_layer_maxtrixset', true),
-            'kml_ignore_style' => (bool)get_post_meta($post->ID, 'gh_dim_kml_ignore_style', true),
+            'type' => get_post_meta($post->ID, '_gh_dim_layer_type', true),
+            'url' => get_post_meta($post->ID, '_gh_dim_layer_url', true),
+            'name' => get_post_meta($post->ID, '_gh_dim_layer_name', true),
+            'opacity' => (float)get_post_meta($post->ID, '_gh_dim_layer_opacity', true),
+            'matrixset' => get_post_meta($post->ID, '_gh_dim_layer_maxtrixset', true),
+            'kml_ignore_style' => (bool)get_post_meta($post->ID, '_gh_dim_kml_ignore_style', true),
         ];
     }, $layers);
 
