@@ -151,7 +151,7 @@ function gh_dim_shortcode($atts, $content = null) {
     ];
 
     $script_open = '<script type="text/javascript">';
-    $script_contents = 'var GHDataInMap = '.json_encode($GHDataInMap) . ';';
+    $script_contents = 'var GHDataInMap = '.wp_json_encode($GHDataInMap) . ';';
     $script_close = '</script>';
     $script_open = apply_filters( 'datainmap_shortcode_script_open', $script_open );
     $script_contents = apply_filters( 'datainmap_shortcode_script_contents', $script_contents, $GHDataInMap );
