@@ -133,7 +133,7 @@ function gh_dim_shortcode($atts, $content = null) {
 
     wp_enqueue_script( 'gh-dim-datainmap' );
     $security = wp_create_nonce('gh-dim-datainmap');
-    wp_localize_script( 'gh-dim-datainmap', 'GHDataInMap', [
+    $GHDataInMap = [
         'ajaxurl' => admin_url( 'admin-ajax.php' ),
         'fetchFeatureUrl' => admin_url( 'admin-ajax.php' ) . '?action=gh_dim_get_location_info&security=' . $security . '&location_id=',
         'security' => $security,
@@ -148,7 +148,15 @@ function gh_dim_shortcode($atts, $content = null) {
             ];
         }, $location_property_terms),
         'pro4j' => $pro4j,
-    ] );
-    $output = '<div id="'.$el_id.'">'.__('Loading...', 'gh-datainmap').'</div>';
+    ];
+
+    $script_open = '<script type="text/javascript">';
+    $script_contents = 'var GHDataInMap = '.json_encode($GHDataInMap) . ';';
+    $script_close = '</script>';
+    $script_open = apply_filters( 'datainmap_shortcode_script_open', $script_open );
+    $script_contents = apply_filters( 'datainmap_shortcode_script_contents', $script_contents, $GHDataInMap );
+    $script_close = apply_filters( 'datainmap_shortcode_script_close', $script_close );
+    $output = $script_open . $script_contents . $script_close;
+    $output .= '<div id="'.$el_id.'">'.__('Loading...', 'gh-datainmap').'</div>';
     return $output;
 }
