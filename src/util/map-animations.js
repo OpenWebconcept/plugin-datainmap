@@ -34,7 +34,7 @@ export function zoomTo(view, location, onComplete = _.noop) {
             {
                 center: location,
                 duration: duration,
-                zoom: Math.min(zoom + 2, maxZoom)
+                zoom: view.getMaxZoom() - 1
             }
         ]
     }, onComplete);
