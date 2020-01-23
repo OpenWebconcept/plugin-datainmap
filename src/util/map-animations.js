@@ -53,6 +53,7 @@ export function moveTo(view, location, onComplete = _.noop) {
     }, onComplete);
 }
 
+// BUG: Na het inzoomen verdwijnt de kaart zodra je de kaart verplaatst
 export function moveToAndZoom(view, location, onComplete = _.noop) {
     const duration = defaultDuration;
     animate({
