@@ -37,26 +37,19 @@ SearchResultsComponent.defaultProps = {
 export class SearchComponent extends Component {
     constructor(props) {
         super(props);
-        this.timeout = null;
         this.state = {
             displaySearch: false
         };
     }
 
     handleSearch(e) {
-        if( this.timeout ) {
-            clearTimeout(this.timeout);
-        }
         const q = e.target.value;
-        const cb = () => {
-            if(q.length >= 3) {
-                this.props.doSearch(q);
-            }
-            else {
-                this.props.resetSearchResults(null);
-            }
-        };
-        this.timeout = setTimeout(cb, 250);
+        if(q.length >= 3) {
+            this.props.doSearch(q);
+        }
+        else {
+            this.props.resetSearchResults(null);
+        }
     }
 
     handleSelectedResult(doc) {
