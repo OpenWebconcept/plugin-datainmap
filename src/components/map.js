@@ -4,7 +4,7 @@ import View from 'ol/View';
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import _ from 'lodash';
-import { zoomTo, moveToAndZoom, flyTo, moveTo } from '../util/map-animations';
+import { zoomTo } from '../util/map-animations';
 import { getUid } from 'ol/util';
 
 export class MapComponent extends Component {
@@ -106,7 +106,7 @@ export class MapComponent extends Component {
             });
         }
         if(this.props.centerLocation && this.props.centerLocation != prevProps.centerLocation) {
-            moveToAndZoom(this.olMap.getView(), this.props.centerLocation);
+            zoomTo(this.olMap.getView(), this.props.centerLocation);
         }
         if(this.props.interactions) {
             prevProps.interactions.forEach((o) => {

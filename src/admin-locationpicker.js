@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import createDebounce from 'redux-debounced';
 import thunk from 'redux-thunk';
 import MapComponentLink from './containers/maplink';
 import SearchComponentLink from './containers/searchlink';
@@ -24,7 +25,7 @@ const rootReducer = combineReducers({
     search: searchReducer
 });
 
-const middleware = applyMiddleware(thunk);
+const middleware = applyMiddleware(createDebounce(), thunk);
 const store = createStore( rootReducer, middleware);
 
 if(typeof GHDataInMap == 'undefined') {

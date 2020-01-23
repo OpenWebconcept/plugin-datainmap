@@ -66,18 +66,25 @@ export function setSearchProjection(projection) {
 
 export const SEARCH_SUGGEST = 'SEARCH_SUGGEST';
 export function searchSuggest(q) {
-    return (dispatch, getState) => {
+    let thunk = (dispatch, getState) => {
         const state = getState();
         let url = 'https://geodata.nationaalgeoregister.nl/locatieserver/v3/suggest?wt=json';
         url += '&q=' + q + '&fq=type:(gemeente OR woonplaats OR weg or postcode)';
-        return fetch(url)
+        let thunk = fetch(url)
             .then((response) => {
                 return response.json();
             })
             .then((json) => {
                 dispatch(setSearchResults(json));
             });
-    }
+    };
+    thunk.meta = {
+        debounce: {
+            time: 250,
+            key: SEARCH_SUGGEST
+        }
+    };
+    return thunk;
 };
 
 export const SET_SEARCH_RESULTS = 'SET_SEARCH_RESULTS';
