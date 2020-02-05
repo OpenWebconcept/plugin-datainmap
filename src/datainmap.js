@@ -259,7 +259,7 @@ else {
 // Function for adding features from a location_layer to a VectorSource
 const addFeatures = (source, layerData) => {
     layerData.features.forEach(featureData => {
-        let geometry;
+        let geometry, style;
         switch(featureData.location_type) {
             default:
             case 'point':
@@ -275,12 +275,31 @@ const addFeatures = (source, layerData) => {
                 geometry = new Circle(...featureData.location);
                 break;
         }
+
+        if(featureData.style && featureData.location_type != 'point') {
+            style = new Style({
+                fill: new Fill({
+                    color: featureData.style.fill_color
+                }),
+                stroke: new Stroke({
+                    color: featureData.style.line_color,
+                    width: featureData.style.line_width
+                }),
+            });
+        }
+
         delete featureData.location_type;
         delete featureData.location;
-        source.addFeature(new Feature({
+        const feature = new Feature({
             ...featureData,
             geometry: geometry
-        }));
+        });
+
+        if(style !== null) {
+            feature.setStyle(style);
+        }
+
+        source.addFeature(feature);
     });
 };
 

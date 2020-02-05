@@ -78,7 +78,7 @@ function gh_dim_shortcode($atts, $content = null) {
             ] );
             $location = get_post_meta( $post->ID, '_gh_dim_location', true);
             $location_type = get_post_meta( $post->ID, '_gh_dim_location_type', true);
-            return [
+            $feature = [
                 'location_type' => $location_type,
                 'location' => json_decode($location),
                 'location_properties' => $location_properties,
@@ -86,6 +86,17 @@ function gh_dim_shortcode($atts, $content = null) {
                 'title' => get_the_title( $post ),
                 'term' => $term->slug,
             ];
+            $line_color = get_post_meta( $post->ID, '_gh_dim_location_style_line_color', true);
+            $line_width = get_post_meta( $post->ID, '_gh_dim_location_style_line_width', true);
+            $fill_color = get_post_meta( $post->ID, '_gh_dim_location_style_fill_color', true);
+            if($line_color || $line_width || $fill_color) {
+                $feature['style'] = [
+                    'line_color' => $line_color,
+                    'line_width' => $line_width,
+                    'fill_color' => $fill_color,
+                ];
+            }
+            return $feature;
         }, $locations);
         $icon = null;
         $icon_media_id = get_term_meta( $term->term_id, 'category-image-id', true );
