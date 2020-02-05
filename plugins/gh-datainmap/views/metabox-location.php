@@ -28,6 +28,7 @@
             </th>
             <td>
                 <input type="text" name="_gh_dim_location_style_line_color" id="gh_dim_location_style_line_color" value="<?php echo esc_attr( $gh_dim_location_style_line_color ) ?>" />
+                <p class="description"><?php _e('E.g. rgba(0,0,0,1) or rgb(0,0,0)', 'gh-datainmap' ) ?></p>
             </td>
         </tr>
         <tr>
@@ -44,6 +45,7 @@
             </th>
             <td>
                 <input type="text" name="_gh_dim_location_style_fill_color" id="gh_dim_location_style_fill_color" value="<?php echo esc_attr( $gh_dim_location_style_fill_color ) ?>" />
+                <p class="description"><?php _e('E.g. rgba(0,0,0,1) or rgb(0,0,0)', 'gh-datainmap' ) ?></p>
             </td>
         </tr>
     </tbody>
