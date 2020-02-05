@@ -9,7 +9,7 @@
                     <option value="KML" <?php selected('KML', $gh_dim_layer_type) ?>><?php _e( 'KML', 'gh-datainmap' ); ?></option>
                     <option value="GeoJSON" <?php selected('GeoJSON', $gh_dim_layer_type) ?>><?php _e( 'GeoJSON', 'gh-datainmap' ); ?></option>
                     <option value="OSM" <?php selected('OSM', $gh_dim_layer_type) ?>><?php _e( 'OpenStreetMap', 'gh-datainmap' ); ?></option>
-                    <option value="WMS" <?php selected('WMS', $gh_dim_layer_type) ?>><?php _e( 'WMS', 'gh-datainmap' ); ?></option>
+                    <option value="TileWMS" <?php selected('TileWMS', $gh_dim_layer_type) ?>><?php _e( 'TileWMS', 'gh-datainmap' ); ?></option>
                     <option value="WMTS-auto" <?php selected('WMTS-auto', $gh_dim_layer_type) ?>><?php _e( 'WMTS (+GetCapabilities)', 'gh-datainmap' ); ?></option>
                 </select>
             </td>

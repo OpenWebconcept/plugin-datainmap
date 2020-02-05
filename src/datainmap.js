@@ -15,7 +15,7 @@ import {Circle as CircleStyle, Fill, Stroke, Style, Text, Icon} from 'ol/style';
 import {Tile as TileLayer, Vector as VectorLayer, VectorImage as VectorImageLayer} from 'ol/layer';
 import {Point, Polygon, LineString, Circle} from 'ol/geom';
 import {get as getProjection} from 'ol/proj';
-import {Cluster, OSM, Vector as VectorSource } from 'ol/source';
+import {Cluster, OSM, Vector as VectorSource, TileWMS } from 'ol/source';
 import {KML, GeoJSON} from 'ol/format';
 import { featureReducer } from './reducers/feature';
 import proj4 from 'proj4';
@@ -201,6 +201,24 @@ else {
                             extractStyles: !layerData.kml_ignore_style
                         }),
                     })
+                });
+                store.dispatch(addMapLayer(layer));
+                break;
+            }
+            case 'TileWMS': {
+                const source = new TileWMS({
+                    url: layerData.url,
+                    params: {
+                        'LAYERS': layerData.name,
+                        'TILED': true
+                    },
+                    serverType: layerData.server_type,
+                    crossOrigin: layerData.cross_origin
+                });
+                const layer = new TileLayer({
+                    zIndex: ++zIndex,
+                    opacity: layerData.opacity,
+                    source: source
                 });
                 store.dispatch(addMapLayer(layer));
                 break;

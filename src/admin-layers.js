@@ -25,16 +25,16 @@ $(document).ready(function() {
         ],
         'OSM': [
         ],
-        'WMTS-auto': [
-            '#gh_dim_layer_url',
-            '#gh_dim_layer_name',
-            '#gh_dim_layer_maxtrixset'
-        ],
-        'WMS': [
+        'TileWMS': [
             '#gh_dim_layer_url',
             '#gh_dim_layer_name',
             '#gh_dim_layer_server_type',
             '#gh_dim_layer_cross_origin',
+        ],
+        'WMTS-auto': [
+            '#gh_dim_layer_url',
+            '#gh_dim_layer_name',
+            '#gh_dim_layer_maxtrixset'
         ]
     };
 
