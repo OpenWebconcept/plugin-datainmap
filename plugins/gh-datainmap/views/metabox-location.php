@@ -22,5 +22,29 @@
                 <div id="<?php echo GH_DIM_LOCATIONPICKER_ELEMENT ?>" class="gh-dim-locationpicker"><?php _e('Loading...', 'gh-datainmap') ?></div>
             </td>
         </tr>
+        <tr>
+            <th scope="row" valign="top">
+                <label for="gh_dim_location_style_line_color"><?php _e( 'Line color', 'gh-datainmap' ) ?></label>
+            </th>
+            <td>
+                <input type="text" name="_gh_dim_location_style_line_color" id="gh_dim_location_style_line_color" value="<?php echo esc_attr( $gh_dim_location_style_line_color ) ?>" />
+            </td>
+        </tr>
+        <tr>
+            <th scope="row" valign="top">
+                <label for="gh_dim_location_style_line_width"><?php _e( 'Line width', 'gh-datainmap' ) ?></label>
+            </th>
+            <td>
+                <input type="number" name="_gh_dim_location_style_line_width" id="gh_dim_location_style_line_width" value="<?php echo esc_attr( $gh_dim_location_style_line_width ) ?>" />
+            </td>
+        </tr>
+        <tr>
+            <th scope="row" valign="top">
+                <label for="gh_dim_location_style_fill_color"><?php _e( 'Fill color', 'gh-datainmap' ) ?></label>
+            </th>
+            <td>
+                <input type="text" name="_gh_dim_location_style_fill_color" id="gh_dim_location_style_fill_color" value="<?php echo esc_attr( $gh_dim_location_style_fill_color ) ?>" />
+            </td>
+        </tr>
     </tbody>
 </table>

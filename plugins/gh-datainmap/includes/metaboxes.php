@@ -16,6 +16,9 @@ function gh_dim_add_metabox_location() {
 function gh_dim_metabox_location($post) {
     $gh_dim_location = get_post_meta( $post->ID, '_gh_dim_location', true );
     $gh_dim_location_type = get_post_meta( $post->ID, '_gh_dim_location_type', true );
+    $gh_dim_location_style_line_color = get_post_meta( $post->ID, '_gh_dim_location_style_line_color', true );
+    $gh_dim_location_style_line_width = get_post_meta( $post->ID, '_gh_dim_location_style_line_width', true );
+    $gh_dim_location_style_fill_color = get_post_meta( $post->ID, '_gh_dim_location_style_fill_color', true );
     include GH_DIM_DIR . '/views/metabox-location.php';
 }
 
@@ -24,6 +27,9 @@ function gh_dim_metabox_location_save_postdata($post_id) {
     $keys = array(
         '_gh_dim_location',
         '_gh_dim_location_type',
+        '_gh_dim_location_style_line_color',
+        '_gh_dim_location_style_line_width',
+        '_gh_dim_location_style_fill_color',
     );
     foreach($keys as $key) {
         if(array_key_exists($key, $_POST)) {
