@@ -52,6 +52,8 @@ function gh_dim_metabox_layer($post) {
     $gh_dim_layer_opacity = get_post_meta( $post->ID, '_gh_dim_layer_opacity', true );
     $gh_dim_layer_maxtrixset = get_post_meta( $post->ID, '_gh_dim_layer_maxtrixset', true );
     $gh_dim_kml_ignore_style = get_post_meta( $post->ID, '_gh_dim_kml_ignore_style', true );
+    $gh_dim_layer_server_type = get_post_meta( $post->ID, '_gh_dim_layer_server_type', true );
+    $gh_dim_layer_cross_origin = get_post_meta( $post->ID, '_gh_dim_layer_cross_origin', true );
     include GH_DIM_DIR . '/views/metabox-layer.php';
 }
 
@@ -63,6 +65,8 @@ function gh_dim_metabox_layer_save_postdata($post_id) {
         '_gh_dim_layer_name',
         '_gh_dim_layer_maxtrixset',
         '_gh_dim_kml_ignore_style',
+        '_gh_dim_layer_server_type',
+        '_gh_dim_layer_cross_origin',
     );
     foreach($keys as $key) {
         if(array_key_exists($key, $_POST)) {

@@ -44,6 +44,8 @@ function gh_dim_shortcode($atts, $content = null) {
             'opacity' => (float)get_post_meta($post->ID, '_gh_dim_layer_opacity', true),
             'matrixset' => get_post_meta($post->ID, '_gh_dim_layer_maxtrixset', true),
             'kml_ignore_style' => (bool)get_post_meta($post->ID, '_gh_dim_kml_ignore_style', true),
+            'server_type' => get_post_meta($post->ID, '_gh_dim_layer_server_type', true),
+            'cross_origin' => get_post_meta($post->ID, '_gh_dim_layer_cross_origin', true),
         ];
     }, $layers);
 
