@@ -27,7 +27,8 @@ module.exports = {
     entry: {
         datainmap: "./src/datainmap.js",
         'admin-layers': "./src/admin-layers.js",
-        'admin-locationpicker': "./src/admin-locationpicker.js"
+        'admin-locationpicker': "./src/admin-locationpicker.js",
+        'admin-location': "./src/admin-location.js"
     },
     output: {
         filename: '[name].js',

@@ -15,7 +15,7 @@ import {Circle as CircleStyle, Fill, Stroke, Style, Text, Icon} from 'ol/style';
 import {Tile as TileLayer, Vector as VectorLayer, VectorImage as VectorImageLayer} from 'ol/layer';
 import {Point, Polygon, LineString, Circle} from 'ol/geom';
 import {get as getProjection} from 'ol/proj';
-import {Cluster, OSM, Vector as VectorSource } from 'ol/source';
+import {Cluster, OSM, Vector as VectorSource, TileWMS } from 'ol/source';
 import {KML, GeoJSON} from 'ol/format';
 import { featureReducer } from './reducers/feature';
 import proj4 from 'proj4';
@@ -205,6 +205,24 @@ else {
                 store.dispatch(addMapLayer(layer));
                 break;
             }
+            case 'TileWMS': {
+                const source = new TileWMS({
+                    url: layerData.url,
+                    params: {
+                        'LAYERS': layerData.name,
+                        'TILED': true
+                    },
+                    serverType: layerData.server_type,
+                    crossOrigin: layerData.cross_origin
+                });
+                const layer = new TileLayer({
+                    zIndex: ++zIndex,
+                    opacity: layerData.opacity,
+                    source: source
+                });
+                store.dispatch(addMapLayer(layer));
+                break;
+            }
             case 'WMTS-auto':
                 store.dispatch(fetchWMTSLayer(
                     layerData.url,
@@ -241,7 +259,7 @@ else {
 // Function for adding features from a location_layer to a VectorSource
 const addFeatures = (source, layerData) => {
     layerData.features.forEach(featureData => {
-        let geometry;
+        let geometry, style;
         switch(featureData.location_type) {
             default:
             case 'point':
@@ -257,12 +275,31 @@ const addFeatures = (source, layerData) => {
                 geometry = new Circle(...featureData.location);
                 break;
         }
+
+        if(featureData.style && featureData.location_type != 'point') {
+            style = new Style({
+                fill: new Fill({
+                    color: featureData.style.fill_color
+                }),
+                stroke: new Stroke({
+                    color: featureData.style.line_color,
+                    width: featureData.style.line_width
+                }),
+            });
+        }
+
         delete featureData.location_type;
         delete featureData.location;
-        source.addFeature(new Feature({
+        const feature = new Feature({
             ...featureData,
             geometry: geometry
-        }));
+        });
+
+        if(style !== null) {
+            feature.setStyle(style);
+        }
+
+        source.addFeature(feature);
     });
 };
 

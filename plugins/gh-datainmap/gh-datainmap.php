@@ -3,7 +3,7 @@
 Plugin Name: Data In Map
 Plugin URI: https://www.heerenveen.nl/
 Description: Data In Map is een plugin voor het weergeven van kaarten.
-Version: 1.0.5
+Version: 1.1.0
 Requires at least: 5.0
 Requires PHP: 7.2
 Author: Gemeente Heerenveen
@@ -12,7 +12,7 @@ Text Domain: gh-datainmap
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
-if ( ! defined('GH_DIM_VERSION')) define('GH_DIM_VERSION', '1.0.5');
+if ( ! defined('GH_DIM_VERSION')) define('GH_DIM_VERSION', '1.1.0');
 if ( ! defined('GH_DIM_FILE')) define('GH_DIM_FILE', __FILE__);
 if ( ! defined('GH_DIM_DIR')) define('GH_DIM_DIR', dirname(__FILE__));
 if ( ! defined('GH_DIM_DEBUG')) define('GH_DIM_DEBUG', false);
@@ -43,6 +43,7 @@ function gh_dim_register_scripts() {
     wp_register_script( 'gh-dim-vendors', plugin_dir_url(GH_DIM_FILE) . 'dist/vendors.js', array(), GH_DIM_VERSION, true );
     wp_register_script( 'gh-dim-datainmap', plugin_dir_url(GH_DIM_FILE) . 'dist/datainmap.js', array('gh-dim-vendors'), GH_DIM_VERSION, true );
     wp_register_script( 'gh-dim-locationpicker', plugin_dir_url(GH_DIM_FILE) . 'dist/admin-locationpicker.js' , array('gh-dim-vendors'), GH_DIM_VERSION, true );
+    wp_register_script( 'gh-dim-location', plugin_dir_url(GH_DIM_FILE) . 'dist/admin-location.js' , array('gh-dim-vendors'), GH_DIM_VERSION, true );
     wp_register_style( 'gh-dim-style', plugin_dir_url(GH_DIM_FILE) . 'dist/style.css', array(), GH_DIM_VERSION);
 }
 
@@ -55,6 +56,7 @@ add_action('admin_enqueue_scripts', function($hook) {
         wp_enqueue_script( 'gh-dim-admin', plugin_dir_url(GH_DIM_FILE) . 'dist/admin-layers.js', array('jquery'), GH_DIM_VERSION, true);
     }
     if($current_screen->post_type == 'gh-dim-locations') {
+        wp_enqueue_script( 'gh-dim-location' );
         $settings = get_option('gh-datainmap-settings');
         $settings['element'] = GH_DIM_LOCATIONPICKER_ELEMENT;
         $settings['minZoom'] = (int)$settings['minZoom'];
