@@ -34,6 +34,21 @@ export function zoomTo(view, location, onComplete = _.noop) {
             {
                 center: location,
                 duration: duration,
+                zoom: Math.min(zoom + 2, maxZoom)
+            }
+        ]
+    }, onComplete);
+}
+
+export function zoomToMax(view, location, onComplete = _.noop) {
+    const zoom = view.getZoom();
+    const duration = defaultDuration;
+    animate({
+        view: view,
+        animations: [
+            {
+                center: location,
+                duration: duration,
                 zoom: view.getMaxZoom() - 1
             }
         ]
