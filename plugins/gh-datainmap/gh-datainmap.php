@@ -43,8 +43,11 @@ function gh_dim_register_scripts() {
     wp_register_script( 'gh-dim-vendors', plugin_dir_url(GH_DIM_FILE) . 'dist/vendors.js', array(), GH_DIM_VERSION, true );
     wp_register_script( 'gh-dim-datainmap', plugin_dir_url(GH_DIM_FILE) . 'dist/datainmap.js', array('gh-dim-vendors'), GH_DIM_VERSION, true );
     wp_register_script( 'gh-dim-locationpicker', plugin_dir_url(GH_DIM_FILE) . 'dist/admin-locationpicker.js' , array('gh-dim-vendors'), GH_DIM_VERSION, true );
-    wp_register_script( 'gh-dim-location', plugin_dir_url(GH_DIM_FILE) . 'dist/admin-location.js' , array('gh-dim-vendors'), GH_DIM_VERSION, true );
+    wp_register_script( 'gh-dim-location', plugin_dir_url(GH_DIM_FILE) . 'dist/admin-location.js' , array('gh-dim-vendors', 'gh-dim-colorpicker'), GH_DIM_VERSION, true );
     wp_register_style( 'gh-dim-style', plugin_dir_url(GH_DIM_FILE) . 'dist/style.css', array(), GH_DIM_VERSION);
+    // Vendor
+    wp_register_script( 'gh-dim-colorpicker', plugin_dir_url(GH_DIM_FILE) . 'vendor/alpha-color-picker/alpha-color-picker.js' , array('jquery', 'wp-color-picker'), GH_DIM_VERSION, true );
+    wp_register_style( 'gh-dim-colorpicker', plugin_dir_url(GH_DIM_FILE) . 'vendor/alpha-color-picker/alpha-color-picker.css', array('wp-color-picker'), GH_DIM_VERSION);
 }
 
 add_action('admin_enqueue_scripts', function($hook) {
@@ -57,6 +60,7 @@ add_action('admin_enqueue_scripts', function($hook) {
     }
     if($current_screen->post_type == 'gh-dim-locations') {
         wp_enqueue_script( 'gh-dim-location' );
+        wp_enqueue_style( 'gh-dim-colorpicker' );
         $settings = get_option('gh-datainmap-settings');
         $settings['element'] = GH_DIM_LOCATIONPICKER_ELEMENT;
         $settings['minZoom'] = (int)$settings['minZoom'];
