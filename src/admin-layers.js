@@ -10,7 +10,9 @@ $(document).ready(function() {
         '#gh_dim_layer_url',
         '#gh_dim_kml_ignore_style',
         '#gh_dim_layer_name',
-        '#gh_dim_layer_maxtrixset'
+        '#gh_dim_layer_maxtrixset',
+        '#gh_dim_layer_server_type',
+        '#gh_dim_layer_cross_origin'
     ];
 
     const visibleFields = {
@@ -26,7 +28,13 @@ $(document).ready(function() {
         'WMTS-auto': [
             '#gh_dim_layer_url',
             '#gh_dim_layer_name',
-            '#gh_dim_layer_maxtrixset',
+            '#gh_dim_layer_maxtrixset'
+        ],
+        'WMS': [
+            '#gh_dim_layer_url',
+            '#gh_dim_layer_name',
+            '#gh_dim_layer_server_type',
+            '#gh_dim_layer_cross_origin',
         ]
     };
 
