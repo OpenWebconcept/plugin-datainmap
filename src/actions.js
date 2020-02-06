@@ -70,7 +70,7 @@ export function searchSuggest(q) {
         const state = getState();
         let url = 'https://geodata.nationaalgeoregister.nl/locatieserver/v3/suggest?wt=json';
         url += '&q=' + q + '&fq=type:(gemeente OR woonplaats OR weg or postcode)';
-        let thunk = fetch(url)
+        return fetch(url)
             .then((response) => {
                 return response.json();
             })
