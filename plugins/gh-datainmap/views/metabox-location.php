@@ -27,8 +27,7 @@
                 <label for="gh_dim_location_style_line_color"><?php _e( 'Line color', 'gh-datainmap' ) ?></label>
             </th>
             <td>
-                <input type="text" name="_gh_dim_location_style_line_color" id="gh_dim_location_style_line_color" value="<?php echo esc_attr( $gh_dim_location_style_line_color ) ?>" />
-                <p class="description"><?php _e('E.g. rgba(0,0,0,1) or rgb(0,0,0)', 'gh-datainmap' ) ?></p>
+                <input type="text" class="color-picker" data-alpha="true" name="_gh_dim_location_style_line_color" id="gh_dim_location_style_line_color" value="<?php echo esc_attr( $gh_dim_location_style_line_color ) ?>" />
             </td>
         </tr>
         <tr>
@@ -44,8 +43,7 @@
                 <label for="gh_dim_location_style_fill_color"><?php _e( 'Fill color', 'gh-datainmap' ) ?></label>
             </th>
             <td>
-                <input type="text" name="_gh_dim_location_style_fill_color" id="gh_dim_location_style_fill_color" value="<?php echo esc_attr( $gh_dim_location_style_fill_color ) ?>" />
-                <p class="description"><?php _e('E.g. rgba(0,0,0,1) or rgb(0,0,0)', 'gh-datainmap' ) ?></p>
+                <input type="text" class="color-picker" data-alpha="true" name="_gh_dim_location_style_fill_color" id="gh_dim_location_style_fill_color" value="<?php echo esc_attr( $gh_dim_location_style_fill_color ) ?>" />
             </td>
         </tr>
     </tbody>
