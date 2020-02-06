@@ -36,12 +36,12 @@ public function load_media() {
  */
  public function add_category_image ( $taxonomy ) { ?>
    <div class="form-field term-group">
-     <label for="category-image-id"><?php _e('Image', 'hero-theme'); ?></label>
+     <label for="category-image-id"><?php _e('Image', 'gh-datainmap'); ?></label>
      <input type="hidden" id="category-image-id" name="category-image-id" class="custom_media_url" value="">
      <div id="category-image-wrapper"></div>
      <p>
-       <input type="button" class="button button-secondary ct_tax_media_button" id="ct_tax_media_button" name="ct_tax_media_button" value="<?php _e( 'Add Image', 'hero-theme' ); ?>" />
-       <input type="button" class="button button-secondary ct_tax_media_remove" id="ct_tax_media_remove" name="ct_tax_media_remove" value="<?php _e( 'Remove Image', 'hero-theme' ); ?>" />
+       <input type="button" class="button button-secondary ct_tax_media_button" id="ct_tax_media_button" name="ct_tax_media_button" value="<?php _e( 'Add Image', 'gh-datainmap' ); ?>" />
+       <input type="button" class="button button-secondary ct_tax_media_remove" id="ct_tax_media_remove" name="ct_tax_media_remove" value="<?php _e( 'Remove Image', 'gh-datainmap' ); ?>" />
     </p>
    </div>
  <?php
@@ -65,7 +65,7 @@ public function load_media() {
  public function update_category_image ( $term, $taxonomy ) { ?>
    <tr class="form-field term-group-wrap">
      <th scope="row">
-       <label for="category-image-id"><?php _e( 'Image', 'hero-theme' ); ?></label>
+       <label for="category-image-id"><?php _e( 'Image', 'gh-datainmap' ); ?></label>
      </th>
      <td>
        <?php $image_id = get_term_meta ( $term -> term_id, 'category-image-id', true ); ?>
@@ -76,8 +76,8 @@ public function load_media() {
          <?php } ?>
        </div>
        <p>
-         <input type="button" class="button button-secondary ct_tax_media_button" id="ct_tax_media_button" name="ct_tax_media_button" value="<?php _e( 'Add Image', 'hero-theme' ); ?>" />
-         <input type="button" class="button button-secondary ct_tax_media_remove" id="ct_tax_media_remove" name="ct_tax_media_remove" value="<?php _e( 'Remove Image', 'hero-theme' ); ?>" />
+         <input type="button" class="button button-secondary ct_tax_media_button" id="ct_tax_media_button" name="ct_tax_media_button" value="<?php _e( 'Add Image', 'gh-datainmap' ); ?>" />
+         <input type="button" class="button button-secondary ct_tax_media_remove" id="ct_tax_media_remove" name="ct_tax_media_remove" value="<?php _e( 'Remove Image', 'gh-datainmap' ); ?>" />
        </p>
      </td>
    </tr>

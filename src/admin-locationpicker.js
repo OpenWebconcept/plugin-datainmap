@@ -11,6 +11,7 @@ import {mapReducer} from './reducers/map';
 import {searchReducer} from './reducers/search';
 import {Vector as VectorLayer} from 'ol/layer';
 import {Vector as VectorSource } from 'ol/source';
+import {Fill, Stroke, Style} from 'ol/style';
 import {get as getProjection} from 'ol/proj';
 import proj4 from 'proj4';
 import {register} from 'ol/proj/proj4';
@@ -44,6 +45,22 @@ GHDataInMap.pro4j.forEach( (projection) => {
     }
 });
 register(proj4);
+
+const el_fill_color = document.getElementById('gh_dim_location_style_fill_color');
+const el_stroke_width = document.getElementById('gh_dim_location_style_line_width');
+const el_stroke_color = document.getElementById('gh_dim_location_style_line_color');
+const styleFunction = (feature) => {
+    const style = new Style({
+        fill: new Fill({
+            color: el_fill_color.value.length > 0 ? el_fill_color.value : 'rgba(255,255,255,0.7)'
+        }),
+        stroke: new Stroke({
+            color: el_stroke_color.value.length > 0 ? el_stroke_color.value : 'rgba(0,0,255,0.8)',
+            width: parseInt(el_stroke_width.value, 10)
+        })
+    });
+    return style;
+};
 
 let geometry; // The geometry of the current location
 let doDrawFeature = false;
@@ -88,12 +105,28 @@ const layer = new VectorLayer({
 });
 store.dispatch( addMapLayer(layer) );
 
+// Update style of feature after changing colors and line width
+[el_fill_color, el_stroke_color, el_stroke_width].forEach((el) => {
+    el.onchange = (e) => {
+        if(current_location_type.value == 'point') {
+            return;
+        }
+        source.getFeatures().forEach((feature) => {
+            feature.setStyle(styleFunction);
+        });
+    };
+});
+
 // Draw current feature if a shape is available
 if(doDrawFeature) {
     source.clear();
-    source.addFeature(new Feature({
+    const feature = new Feature({
         geometry: geometry
-    }));
+    });
+    if(current_location_type.value != 'point') {
+        feature.setStyle(styleFunction);
+    }
+    source.addFeature(feature);
 }
 
 // Store new coordinates if drawing has ended
@@ -156,13 +189,17 @@ if(current_location_type !== null) {
         }
         drawInteraction = new Draw({
             source: source,
-            type: drawType
+            type: drawType,
+            style: styleFunction
         });
         // Clear current feature(s) when starting to draw
         drawInteraction.on('drawstart', (a,b,c) => {
             source.clear();
         });
         drawInteraction.on('drawend', (e) => {
+            if(current_location_type.value != 'point') {
+                e.feature.setStyle(styleFunction);
+            }
             drawingComplete(e.feature);
         });
         store.dispatch(addMapInteraction(drawInteraction));
