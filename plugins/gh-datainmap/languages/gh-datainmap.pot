@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Data In Map plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Data In Map 1.2.0\n"
+"Project-Id-Version: Data In Map 1.2.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/gh-datainmap\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-02-06T10:54:44+00:00\n"
+"POT-Creation-Date: 2020-02-06T14:57:39+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: gh-datainmap\n"
@@ -466,13 +466,25 @@ msgid "Decide which coordinates to use from search result."
 msgstr ""
 
 #: views/settings.php:170
+msgid "Filter search by township"
+msgstr ""
+
+#: views/settings.php:174
+msgid "Optinally provide a township code to limit search results to your township"
+msgstr ""
+
+#: views/settings.php:174
+msgid "Lookup township codes"
+msgstr ""
+
+#: views/settings.php:179
 msgid "Additional projections (pro4j)"
 msgstr ""
 
-#: views/settings.php:174
+#: views/settings.php:183
 msgid "Add extra projections for pro4j. Format using CSV (column 1 is projection identifier, column 2 is the projection for pro4j)."
 msgstr ""
 
-#: views/settings.php:174
+#: views/settings.php:183
 msgid "Lookup projections (pro4j)"
 msgstr ""
