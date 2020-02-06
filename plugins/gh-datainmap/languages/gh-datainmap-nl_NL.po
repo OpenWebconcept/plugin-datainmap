@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Data In Map 1.2.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/gh-datainmap\n"
-"POT-Creation-Date: 2020-02-06T10:54:44+00:00\n"
-"PO-Revision-Date: 2020-02-06 11:58+0100\n"
+"POT-Creation-Date: 2020-02-06T14:57:39+00:00\n"
+"PO-Revision-Date: 2020-02-06 15:58+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -452,10 +452,25 @@ msgstr ""
 "Deze dient overeen te komen met de Kaart Projectie."
 
 #: views/settings.php:170
+msgid "Filter search by township"
+msgstr "Filter zoekresultaten op gemeente"
+
+#: views/settings.php:174
+msgid ""
+"Optinally provide a township code to limit search results to your township"
+msgstr ""
+"Geef de gemeentecode op om de zoekresultaten te beperken tot enkel "
+"resultaten binnen de gemeente"
+
+#: views/settings.php:174
+msgid "Lookup township codes"
+msgstr "Gemeentecode opvragen"
+
+#: views/settings.php:179
 msgid "Additional projections (pro4j)"
 msgstr "Aanvullende projecties (pro4j)"
 
-#: views/settings.php:174
+#: views/settings.php:183
 msgid ""
 "Add extra projections for pro4j. Format using CSV (column 1 is projection "
 "identifier, column 2 is the projection for pro4j)."
@@ -463,6 +478,6 @@ msgstr ""
 "Voeg extra projecties toe voor pro4j. Verwachte formaat is CSV (kolom 1 is "
 "de projectienaam, kolom 2 is de projectie voor pro4j)."
 
-#: views/settings.php:174
+#: views/settings.php:183
 msgid "Lookup projections (pro4j)"
 msgstr "Projecties opzoeken (pro4j)"
