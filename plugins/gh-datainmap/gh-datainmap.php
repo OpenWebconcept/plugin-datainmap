@@ -57,7 +57,7 @@ add_action('admin_enqueue_scripts', function($hook) {
     if($current_screen->post_type == 'gh-dim-layers') {
         wp_enqueue_script( 'gh-dim-admin', plugin_dir_url(GH_DIM_FILE) . 'dist/admin-layers.js', array('jquery'), GH_DIM_VERSION, true);
     }
-    if($current_screen->post_type == 'gh-dim-locations') {
+    elseif($current_screen->post_type == 'gh-dim-locations') {
         wp_enqueue_script( 'gh-dim-location' );
         $settings = get_option('gh-datainmap-settings');
         $settings['element'] = GH_DIM_LOCATIONPICKER_ELEMENT;
