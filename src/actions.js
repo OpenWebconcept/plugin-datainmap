@@ -64,12 +64,24 @@ export function setSearchProjection(projection) {
     }
 }
 
+export const SET_SEARCH_TOWNSHIP = 'SET_SEARCH_TOWNSHIP';
+export function setSearchTownship(township) {
+    return {
+        type: SET_SEARCH_TOWNSHIP,
+        township
+    }
+}
+
 export const SEARCH_SUGGEST = 'SEARCH_SUGGEST';
 export function searchSuggest(q) {
     let thunk = (dispatch, getState) => {
         const state = getState();
         let url = 'https://geodata.nationaalgeoregister.nl/locatieserver/v3/suggest?wt=json';
-        url += '&q=' + q + '&fq=type:(gemeente OR woonplaats OR weg or postcode)';
+        const township = getState().search.township;
+        if(township.length > 0) {
+            q += ' AND gemeentecode:' + township;
+        }
+        url += '&q=' + q + '&fq=type:(gemeente OR woonplaats OR weg OR postcode OR adres)';
         return fetch(url)
             .then((response) => {
                 return response.json();
