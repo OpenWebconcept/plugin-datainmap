@@ -51,6 +51,10 @@ function gh_dim_register_scripts() {
 
 add_action('admin_enqueue_scripts', function($hook) {
     global $current_screen;
+    if($current_screen->base == 'datainmap_page_gh_dim_settings') {
+        wp_enqueue_script( 'gh-dim-colorpicker-vendor' );
+    }
+
     if(!in_array($hook, array('post.php', 'post-new.php'))) {
         return;
     }
