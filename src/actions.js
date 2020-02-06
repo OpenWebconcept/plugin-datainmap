@@ -97,7 +97,7 @@ export function setSearchResults(results) {
 
 export const FETCH_LOCATION = 'FETCH_LOCATION';
 export function fetchLocation(id) {
-    return (dispatch, getState) => {
+    let thunk = (dispatch, getState) => {
         let url = 'https://geodata.nationaalgeoregister.nl/locatieserver/v3/lookup?wt=json';
         url += '&id=' + id;
         return fetch(url).
@@ -127,7 +127,14 @@ export function fetchLocation(id) {
             .catch(ex => {
                 console.log('Failed to fetch location', ex);
             });
-    }
+    };
+    thunk.meta = {
+        debounce: {
+            time: 150,
+            key: FETCH_LOCATION
+        }
+    };
+    return thunk;
 }
 
 export const SET_FEATURE = 'SET_FEATURE';
