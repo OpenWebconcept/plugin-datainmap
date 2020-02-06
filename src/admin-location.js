@@ -1,5 +1,4 @@
 import jQuery from 'jquery';
-import './scss/admin-location.scss';
 const $ = jQuery;
 $(document).ready(function() {
     const layerType = $('#gh_dim_location_type');
@@ -60,6 +59,4 @@ $(document).ready(function() {
         _showFields(fields, true);
     });
     layerType.trigger('change');
-
-    $('input.alpha-color-picker').alphaColorPicker();
 });
