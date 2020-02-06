@@ -81,7 +81,7 @@ export function searchSuggest(q) {
         if(township.length > 0) {
             q += ' AND gemeentecode:' + township;
         }
-        url += '&q=' + q + '&fq=type:(gemeente OR woonplaats OR weg or postcode)';
+        url += '&q=' + q + '&fq=type:(gemeente OR woonplaats OR weg OR postcode OR adres)';
         return fetch(url)
             .then((response) => {
                 return response.json();
