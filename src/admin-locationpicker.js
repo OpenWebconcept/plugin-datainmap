@@ -6,7 +6,7 @@ import createDebounce from 'redux-debounced';
 import thunk from 'redux-thunk';
 import MapComponentLink from './containers/maplink';
 import SearchComponentLink from './containers/searchlink';
-import {configureMapView, fetchWMTSLayer, setSearchProjection, addMapLayer, addMapInteraction, removeMapInteraction} from './actions';
+import {configureMapView, fetchWMTSLayer, setSearchProjection, setSearchTownship, addMapLayer, addMapInteraction, removeMapInteraction} from './actions';
 import {mapReducer} from './reducers/map';
 import {searchReducer} from './reducers/search';
 import {Vector as VectorLayer} from 'ol/layer';
@@ -152,6 +152,7 @@ store.dispatch(configureMapView({
 }));
 
 store.dispatch(setSearchProjection(settings.search_coord_system));
+store.dispatch(setSearchTownship(settings.search_filter_township));
 
 store.dispatch(fetchWMTSLayer(
     'https://geodata.nationaalgeoregister.nl/tiles/service/wmts?request=GetCapabilities&service=WMTS',

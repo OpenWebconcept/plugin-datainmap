@@ -167,6 +167,15 @@
             </tr>
             <tr>
                 <th scope="row" valign="top">
+                    <label for="gh-datainmap-settings[search_filter_township]"><?php _e('Filter search by township', 'gh-datainmap') ?></label>
+                </th>
+                <td>
+                    <input type="text" name="gh-datainmap-settings[search_filter_township]" id="gh-datainmap-settings[search_filter_township]" value="<?php echo esc_attr( $settings['search_filter_township'] ) ?>" class="regular-text" />
+                    <p class="description"><?php _e('Optinally provide a township code to limit search results to your township', 'gh-datainmap'); ?> <a href="https://www.cbs.nl/nl-nl/onze-diensten/methoden/classificaties/overig/gemeentelijke-indelingen-per-jaar" target="_blank"><?php _e( 'Lookup township codes', 'gh-datainmap' ) ?></a></p>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row" valign="top">
                     <label for="gh-datainmap-settings[projections]"><?php _e('Additional projections (pro4j)', 'gh-datainmap') ?></label>
                 </th>
                 <td>
