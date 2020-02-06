@@ -1,0 +1,478 @@
+# Copyright (C) 2020 Gemeente Heerenveen
+# This file is distributed under the same license as the Data In Map plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Data In Map 1.2.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/gh-datainmap\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-02-06T10:54:44+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.4.0\n"
+"X-Domain: gh-datainmap\n"
+
+#. Plugin Name of the plugin
+msgid "Data In Map"
+msgstr ""
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+msgid "https://www.heerenveen.nl/"
+msgstr ""
+
+#. Description of the plugin
+msgid "Data In Map is a plugin for displaying maps."
+msgstr ""
+
+#. Author of the plugin
+msgid "Gemeente Heerenveen"
+msgstr ""
+
+#: includes/menus.php:6
+#: includes/menus.php:7
+msgid "DataInMap"
+msgstr ""
+
+#: includes/menus.php:15
+#: includes/menus.php:16
+#: includes/taxonomy.php:6
+#: includes/taxonomy.php:16
+msgid "Location Types"
+msgstr ""
+
+#: includes/menus.php:23
+#: includes/menus.php:24
+#: includes/taxonomy.php:28
+msgid "Location Properties"
+msgstr ""
+
+#: includes/menus.php:31
+#: includes/menus.php:32
+#: views/settings.php:2
+msgid "Settings"
+msgstr ""
+
+#: includes/metaboxes.php:8
+msgid "Location info"
+msgstr ""
+
+#: includes/metaboxes.php:46
+msgid "Layer info"
+msgstr ""
+
+#: includes/post-type.php:7
+#: includes/post-type.php:9
+#: includes/post-type.php:22
+msgid "Locations"
+msgstr ""
+
+#: includes/post-type.php:8
+#: includes/post-type.php:23
+msgid "Location"
+msgstr ""
+
+#: includes/post-type.php:10
+msgid "Parent Locations"
+msgstr ""
+
+#: includes/post-type.php:11
+msgid "All Locations"
+msgstr ""
+
+#: includes/post-type.php:12
+msgid "View Location"
+msgstr ""
+
+#: includes/post-type.php:13
+msgid "Add New Location"
+msgstr ""
+
+#: includes/post-type.php:14
+#: includes/post-type.php:46
+msgid "Add New"
+msgstr ""
+
+#: includes/post-type.php:15
+msgid "Edit Location"
+msgstr ""
+
+#: includes/post-type.php:16
+msgid "Update Location"
+msgstr ""
+
+#: includes/post-type.php:17
+msgid "Search Locations"
+msgstr ""
+
+#: includes/post-type.php:18
+#: includes/post-type.php:50
+msgid "Not Found"
+msgstr ""
+
+#: includes/post-type.php:19
+#: includes/post-type.php:51
+msgid "Not found in Trash"
+msgstr ""
+
+#: includes/post-type.php:39
+#: includes/post-type.php:41
+#: includes/post-type.php:54
+msgid "Layers"
+msgstr ""
+
+#: includes/post-type.php:40
+#: includes/post-type.php:55
+msgid "Layer"
+msgstr ""
+
+#: includes/post-type.php:42
+msgid "Parent Layers"
+msgstr ""
+
+#: includes/post-type.php:43
+msgid "All Layers"
+msgstr ""
+
+#: includes/post-type.php:44
+msgid "View Layer"
+msgstr ""
+
+#: includes/post-type.php:45
+msgid "Add New Layer"
+msgstr ""
+
+#: includes/post-type.php:47
+msgid "Edit Layer"
+msgstr ""
+
+#: includes/post-type.php:48
+msgid "Update Layer"
+msgstr ""
+
+#: includes/post-type.php:49
+msgid "Search Layers"
+msgstr ""
+
+#: includes/shortcode.php:173
+#: views/metabox-location.php:22
+msgid "Loading..."
+msgstr ""
+
+#: includes/tax-meta-image.php:39
+#: includes/tax-meta-image.php:68
+msgid "Image"
+msgstr ""
+
+#: includes/tax-meta-image.php:43
+#: includes/tax-meta-image.php:79
+msgid "Add Image"
+msgstr ""
+
+#: includes/tax-meta-image.php:44
+#: includes/tax-meta-image.php:80
+msgid "Remove Image"
+msgstr ""
+
+#: includes/taxonomy.php:7
+msgid "Location Type"
+msgstr ""
+
+#: includes/taxonomy.php:8
+msgid "Search Location Types"
+msgstr ""
+
+#: includes/taxonomy.php:9
+msgid "All Location Types"
+msgstr ""
+
+#: includes/taxonomy.php:10
+msgid "Parent Location Type"
+msgstr ""
+
+#: includes/taxonomy.php:11
+msgid "Parent Location Type:"
+msgstr ""
+
+#: includes/taxonomy.php:12
+msgid "Edit Location Type"
+msgstr ""
+
+#: includes/taxonomy.php:13
+msgid "Update Location Type"
+msgstr ""
+
+#: includes/taxonomy.php:14
+msgid "Add New Location Type"
+msgstr ""
+
+#: includes/taxonomy.php:15
+msgid "New Location Type Name"
+msgstr ""
+
+#: includes/taxonomy.php:29
+#: includes/taxonomy.php:38
+msgid "Location Property"
+msgstr ""
+
+#: includes/taxonomy.php:30
+msgid "Search Location Properties"
+msgstr ""
+
+#: includes/taxonomy.php:31
+msgid "All Location Properties"
+msgstr ""
+
+#: includes/taxonomy.php:32
+msgid "Parent Location Property"
+msgstr ""
+
+#: includes/taxonomy.php:33
+msgid "Parent Location Property:"
+msgstr ""
+
+#: includes/taxonomy.php:34
+msgid "Edit Location Property"
+msgstr ""
+
+#: includes/taxonomy.php:35
+msgid "Update Location Property"
+msgstr ""
+
+#: includes/taxonomy.php:36
+msgid "Add New Location Property"
+msgstr ""
+
+#: includes/taxonomy.php:37
+msgid "New Location Property Name"
+msgstr ""
+
+#: includes/taxonomy.php:56
+msgid "Cluster"
+msgstr ""
+
+#: includes/taxonomy.php:61
+msgid "Display locations as a cluster"
+msgstr ""
+
+#: includes/taxonomy.php:66
+msgid "Cluster distance"
+msgstr ""
+
+#: includes/taxonomy.php:70
+msgid "Minimum distance in pixels between clusters."
+msgstr ""
+
+#: views/metabox-layer.php:9
+msgid "KML"
+msgstr ""
+
+#: views/metabox-layer.php:10
+msgid "GeoJSON"
+msgstr ""
+
+#: views/metabox-layer.php:11
+msgid "OpenStreetMap"
+msgstr ""
+
+#: views/metabox-layer.php:12
+msgid "TileWMS"
+msgstr ""
+
+#: views/metabox-layer.php:13
+msgid "WMTS (+GetCapabilities)"
+msgstr ""
+
+#: views/metabox-layer.php:19
+msgid "URL"
+msgstr ""
+
+#: views/metabox-layer.php:23
+msgid "URL to the dataset."
+msgstr ""
+
+#: views/metabox-layer.php:28
+msgid "Layer name"
+msgstr ""
+
+#: views/metabox-layer.php:32
+msgid "The name of the layer to display."
+msgstr ""
+
+#: views/metabox-layer.php:37
+msgid "Layer opacity"
+msgstr ""
+
+#: views/metabox-layer.php:41
+msgid "Layer opacity, between 0 and 1."
+msgstr ""
+
+#: views/metabox-layer.php:46
+msgid "Matrixset"
+msgstr ""
+
+#: views/metabox-layer.php:50
+msgid "E.g. EPSG:3857"
+msgstr ""
+
+#: views/metabox-layer.php:55
+msgid "Server type"
+msgstr ""
+
+#: views/metabox-layer.php:59
+msgid "E.g. geoserver"
+msgstr ""
+
+#: views/metabox-layer.php:64
+msgid "Cross Origin"
+msgstr ""
+
+#: views/metabox-layer.php:68
+msgid "E.g. anonymous"
+msgstr ""
+
+#: views/metabox-layer.php:73
+msgid "KML Style"
+msgstr ""
+
+#: views/metabox-layer.php:78
+msgid "Yes, ignore provided KML styles"
+msgstr ""
+
+#: views/metabox-layer.php:79
+msgid "This disables KML styling."
+msgstr ""
+
+#: views/metabox-location.php:9
+msgid "Point"
+msgstr ""
+
+#: views/metabox-location.php:10
+msgid "LineString"
+msgstr ""
+
+#: views/metabox-location.php:11
+msgid "Polygon"
+msgstr ""
+
+#: views/metabox-location.php:12
+msgid "Circle"
+msgstr ""
+
+#: views/metabox-location.php:18
+msgid "Coordinate"
+msgstr ""
+
+#: views/metabox-location.php:27
+msgid "Line color"
+msgstr ""
+
+#: views/metabox-location.php:35
+msgid "Line width"
+msgstr ""
+
+#: views/metabox-location.php:43
+msgid "Fill color"
+msgstr ""
+
+#: views/settings.php:13
+msgid "Default style"
+msgstr ""
+
+#: views/settings.php:18
+msgid "Yes, include default stylesheet"
+msgstr ""
+
+#: views/settings.php:19
+msgid "This will include the default styling. Disable to use your own styling."
+msgstr ""
+
+#: views/settings.php:24
+msgid "Landmark style: radius"
+msgstr ""
+
+#: views/settings.php:32
+msgid "Landmark style: text font"
+msgstr ""
+
+#: views/settings.php:36
+msgid "CSS Font property"
+msgstr ""
+
+#: views/settings.php:41
+msgid "Landmark style: text scale"
+msgstr ""
+
+#: views/settings.php:49
+msgid "Landmark style: text baseline"
+msgstr ""
+
+#: views/settings.php:63
+msgid "Landmark style: stroke color"
+msgstr ""
+
+#: views/settings.php:71
+msgid "Landmark style: fill color"
+msgstr ""
+
+#: views/settings.php:79
+msgid "Landmark style: text color"
+msgstr ""
+
+#: views/settings.php:88
+msgid "Cluster landmark style: stroke color"
+msgstr ""
+
+#: views/settings.php:96
+msgid "Cluster landmark style: fill color"
+msgstr ""
+
+#: views/settings.php:104
+msgid "Cluster landmark style: text color"
+msgstr ""
+
+#: views/settings.php:112
+msgid "Map center to"
+msgstr ""
+
+#: views/settings.php:125
+msgid "Initial zoom"
+msgstr ""
+
+#: views/settings.php:133
+msgid "Min zoom"
+msgstr ""
+
+#: views/settings.php:141
+msgid "Max zoom"
+msgstr ""
+
+#: views/settings.php:149
+msgid "Map projection"
+msgstr ""
+
+#: views/settings.php:153
+msgid "The projection to use for the map. Defaults to EPSG:3857."
+msgstr ""
+
+#: views/settings.php:158
+msgid "Search coordinate system"
+msgstr ""
+
+#: views/settings.php:165
+msgid "Decide which coordinates to use from search result."
+msgstr ""
+
+#: views/settings.php:170
+msgid "Additional projections (pro4j)"
+msgstr ""
+
+#: views/settings.php:174
+msgid "Add extra projections for pro4j. Format using CSV (column 1 is projection identifier, column 2 is the projection for pro4j)."
+msgstr ""
+
+#: views/settings.php:174
+msgid "Lookup projections (pro4j)"
+msgstr ""

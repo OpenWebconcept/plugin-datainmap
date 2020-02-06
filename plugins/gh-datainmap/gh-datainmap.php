@@ -2,7 +2,7 @@
 /*
 Plugin Name: Data In Map
 Plugin URI: https://www.heerenveen.nl/
-Description: Data In Map is een plugin voor het weergeven van kaarten.
+Description: Data In Map is a plugin for displaying maps.
 Version: 1.2.0
 Requires at least: 5.0
 Requires PHP: 7.2
@@ -99,3 +99,7 @@ function gh_dim_parse_pro4j($csv) {
     }
     return $pro4j;
 }
+
+add_action('plugins_loaded', function() {
+    load_plugin_textdomain( 'gh-datainmap', false, basename( dirname( __FILE__ ) ) . '/languages/' );
+} );

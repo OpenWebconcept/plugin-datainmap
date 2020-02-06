@@ -150,7 +150,7 @@
                 </th>
                 <td>
                     <input type="text" name="gh-datainmap-settings[projection]" id="gh-datainmap-settings[projection]" value="<?php echo esc_attr( $settings['projection'] ) ?>" class="regular-text" />
-                    <p class="description"><?php _e('The projection to use for the map. Defaults to EPSG:3857.') ?></p>
+                    <p class="description"><?php _e('The projection to use for the map. Defaults to EPSG:3857.', 'gh-datainmap') ?></p>
                 </td>
             </tr>
             <tr>
