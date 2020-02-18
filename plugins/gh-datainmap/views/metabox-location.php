@@ -2,7 +2,24 @@
     <tbody>
         <tr>
             <th scope="row" valign="top">
-                <label for="gh_dim_location_type">Type</label>
+                <label for="gh_dim_location_style_line_color"><?php _e( 'Alternative title', 'gh-datainmap' ) ?></label>
+            </th>
+            <td>
+                <input type="hidden" name="_gh_dim_location_alternative_title" value="0" />
+                <input type="checkbox" name="_gh_dim_location_alternative_title" id="_gh_dim_location_alternative_title" value="1" <?php checked(1, $gh_dim_location_alternative_title, true) ?> />
+                <?php _e('Yes, use title from post', 'gh-datainmap') ?>
+            </td>
+        </tr>
+        <tr>
+            <th></th>
+            <td>
+                <input type="text" name="_gh_dim_location_alternative_title_text" id="_gh_dim_location_alternative_title_text" value="<?php echo esc_attr( $gh_dim_location_alternative_title_text ) ?>" />
+                <p class="description"><?php _e( 'If the alternative title is enabled the modal title will default to the post title. If you want to change it you can override it here.', 'gh-datainmap' ) ?></p>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row" valign="top">
+                <label for="gh_dim_location"><?php _e( 'Type', 'gh-datainmap' ) ?></label>
             </th>
             <td>
                 <select id="gh_dim_location_type" name="_gh_dim_location_type">

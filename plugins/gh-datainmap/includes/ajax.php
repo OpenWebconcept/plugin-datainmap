@@ -31,6 +31,8 @@ function gh_dim_ajax_get_location_info() {
             'title'         => get_the_title($post),
             'content'       => $content,
             'locationType'  => $locationType,
+            'useAlternativeTitle' => get_post_meta( $post->ID, '_gh_dim_location_alternative_title', true ) == 1,
+            'alternativeTitle' => get_post_meta( $post->ID, '_gh_dim_location_alternative_title_text', true),
         ];
         wp_send_json_success( $json );
     }
