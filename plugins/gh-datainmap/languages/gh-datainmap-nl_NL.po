@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Data In Map 1.2.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/gh-datainmap\n"
-"POT-Creation-Date: 2020-02-06T14:57:39+00:00\n"
-"PO-Revision-Date: 2020-02-06 15:58+0100\n"
+"POT-Creation-Date: 2020-02-19T08:21:33+00:00\n"
+"PO-Revision-Date: 2020-02-19 09:23+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -54,7 +54,7 @@ msgstr "Instellingen"
 msgid "Location info"
 msgstr "Locatie info"
 
-#: includes/metaboxes.php:46
+#: includes/metaboxes.php:50
 msgid "Layer info"
 msgstr "Laag info"
 
@@ -143,7 +143,7 @@ msgstr "Update Laag"
 msgid "Search Layers"
 msgstr "Zoek Lagen"
 
-#: includes/shortcode.php:173 views/metabox-location.php:22
+#: includes/shortcode.php:173 views/metabox-location.php:39
 msgid "Loading..."
 msgstr "Laden..."
 
@@ -327,35 +327,56 @@ msgstr "Ja, negeer de meegeleverde KML stijlen"
 msgid "This disables KML styling."
 msgstr "Dit schakelt KML stijlen uit."
 
-#: views/metabox-location.php:9
+#: views/metabox-location.php:5
+msgid "Alternative title"
+msgstr "Alternatieve titel"
+
+#: views/metabox-location.php:10
+msgid "Yes, use title from post"
+msgstr "Ja, gebruik titel van bericht"
+
+#: views/metabox-location.php:17
+msgid ""
+"If the alternative title is enabled the modal title will default to the post "
+"title. If you want to change it you can override it here."
+msgstr ""
+"Als alternatieve titel is ingeschakeld dan wordt de titel van het bericht "
+"gebruikt in de pop-up. Wil je deze aanpassen zonder de berichttitel te "
+"wijzigen, dan kan dat hier."
+
+#: views/metabox-location.php:22
+msgid "Type"
+msgstr "Type"
+
+#: views/metabox-location.php:26
 msgid "Point"
 msgstr "Punt"
 
-#: views/metabox-location.php:10
+#: views/metabox-location.php:27
 msgid "LineString"
 msgstr "Lijn"
 
-#: views/metabox-location.php:11
+#: views/metabox-location.php:28
 msgid "Polygon"
 msgstr "Polygoon"
 
-#: views/metabox-location.php:12
+#: views/metabox-location.php:29
 msgid "Circle"
 msgstr "Cirkel"
 
-#: views/metabox-location.php:18
+#: views/metabox-location.php:35
 msgid "Coordinate"
 msgstr "Coordinaat"
 
-#: views/metabox-location.php:27
+#: views/metabox-location.php:44
 msgid "Line color"
 msgstr "Lijnkleur"
 
-#: views/metabox-location.php:35
+#: views/metabox-location.php:52
 msgid "Line width"
 msgstr "Lijndikte"
 
-#: views/metabox-location.php:43
+#: views/metabox-location.php:60
 msgid "Fill color"
 msgstr "Vulkleur"
 
