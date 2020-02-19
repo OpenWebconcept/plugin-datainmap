@@ -61,7 +61,7 @@ export class MapComponent extends Component {
                     insertFirst: false,
                     autoPan: true,
                     autoPanAnimation: {
-                    duration: 250
+                        duration: 250
                     }
                 });
                 // Allow clicking on the tooltip to select the feature
