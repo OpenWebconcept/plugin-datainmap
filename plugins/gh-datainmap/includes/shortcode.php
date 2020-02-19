@@ -17,6 +17,7 @@ function gh_dim_shortcode($atts, $content = null) {
             'single_cluster_distance' => 75,
             'enable_search' => 1,
             'enable_feature_dialog' => 1,
+            'enable_tooltip' => 0,
         ], $atts );
     $settings['zoom'] = (int)$args['zoom'];
     $settings['minZoom'] = (int)$args['min_zoom'];
@@ -28,6 +29,7 @@ function gh_dim_shortcode($atts, $content = null) {
     $settings['single_cluster_distance'] = (int)$args['single_cluster_distance'];
     $settings['enable_search'] = $args['enable_search'] == 1 ? true : false;
     $settings['enable_feature_dialog'] = $args['enable_feature_dialog'] == 1 ? true : false;
+    $settings['enable_tooltip'] = $args['enable_tooltip'] == 1 ? true : false;
 
     // Compose map layers
     $layers = get_posts([
@@ -78,12 +80,18 @@ function gh_dim_shortcode($atts, $content = null) {
             ] );
             $location = get_post_meta( $post->ID, '_gh_dim_location', true);
             $location_type = get_post_meta( $post->ID, '_gh_dim_location_type', true);
+            $title = get_the_title( $post );
+            $useAlternativeTitle = get_post_meta( $post->ID, '_gh_dim_location_alternative_title', true ) == 1;
+            $alternativeTitle = get_post_meta( $post->ID, '_gh_dim_location_alternative_title_text', true);
+            if($useAlternativeTitle && strlen($alternativeTitle) > 0) {
+                $title = $alternativeTitle;
+            }
             $feature = [
                 'location_type' => $location_type,
                 'location' => json_decode($location),
                 'location_properties' => $location_properties,
                 'feature_id' => $post->ID,
-                'title' => get_the_title( $post ),
+                'title' => $title,
                 'term' => $term->slug,
             ];
             $line_color = get_post_meta( $post->ID, '_gh_dim_location_style_line_color', true);

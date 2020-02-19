@@ -379,7 +379,7 @@ else {
 const App = () => {
     return (
         <Provider store={store}>
-            <MapComponentLink>
+            <MapComponentLink enableTooltip={settings.enable_tooltip}>
                 { settings.enable_search && <SearchComponentLink /> }
             </MapComponentLink>
             { settings.enable_feature_dialog && <FeatureComponentLink /> }

@@ -5,6 +5,7 @@ const _ = ld.noConflict();
 const initialState = {
     isFetching: false,
     centerLocation: null,
+    enableTooltip: false,
     view: {
         zoom: 10,
         constrainResolution: true,
