@@ -83,7 +83,13 @@ export class MapComponent extends Component {
                     }
                     if(isSingleFeature(features[0])) {
                         tooltip.setVisible(true);
-                        const feature = features[0].get('features')[0];
+                        let feature;
+                        if(isCluster(features[0])) {
+                            feature = features[0].get('features')[0];
+                        }
+                        else {
+                            feature = features[0];
+                        }
                         if(feature != this.tooltipFeature) {
                             const coord = this.olMap.getCoordinateFromPixel(pixel);
                             tooltipElement.innerHTML = '<span>' + feature.get('title') + '</span>';
