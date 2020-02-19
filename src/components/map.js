@@ -68,7 +68,7 @@ export class MapComponent extends Component {
                 tooltipElement.addEventListener('click', (e) => {
                     if(this.tooltipFeature !== null) {
                         this.props.onSelectFeature(this.tooltipFeature.getProperties());
-                        tooltip.setVisible(false);
+                        tooltip.setPosition(undefined);
                     }
                 })
                 this.olMap.addOverlay(tooltip);
@@ -76,13 +76,12 @@ export class MapComponent extends Component {
                     const pixel = this.olMap.getEventPixel(e.originalEvent);
                     const features = this.olMap.getFeaturesAtPixel(pixel);
                     if(features.length == 0) {
-                        tooltip.setVisible(false);
                         this.tooltipFeature = null;
                         tooltipElement.innerHTML = '';
+                        tooltip.setPosition(undefined);
                         return;
                     }
                     if(isSingleFeature(features[0])) {
-                        tooltip.setVisible(true);
                         let feature;
                         if(isCluster(features[0])) {
                             feature = features[0].get('features')[0];
