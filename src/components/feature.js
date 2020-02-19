@@ -33,10 +33,19 @@ class KMLFeatureComponent extends Component {
 class DIMFeatureComponent extends Component {
     render() {
         const feature = this.props.feature;
+        let title = 'Informatie';
+        if(feature.useAlternativeTitle) {
+            if(feature.alternativeTitle.length > 0) {
+                title = feature.alternativeTitle;
+            }
+            else {
+                title = feature.title;
+            }
+        }
         return (
             <>
                 <header>
-                    <h1>Informatie</h1>
+                    <h1>{title}</h1>
                     <CloseModal onClick={() => this.props.closeModal()} />
                 </header>
                 <section className="gh-dim-feature-content" dangerouslySetInnerHTML={{__html: feature.content}} />
