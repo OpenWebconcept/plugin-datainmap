@@ -13,7 +13,6 @@
 */
 import React, {Component} from 'react';
 import {CSSTransition} from 'react-transition-group';
-import classNames from 'classnames';
 import _ from 'lodash';
 
 class SearchResultsComponent extends Component {
