@@ -12,7 +12,7 @@
     "create-release-archive": "npm run css-prod && npm run webpack-prod && node create_archive.js"
   },
   "author": "",
-  "license": "ISC",
+  "license": "EUPL v1.2",
   "dependencies": {
     "@babel/polyfill": "^7.7.0",
     "classnames": "^2.2.6",
