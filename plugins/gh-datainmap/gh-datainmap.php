@@ -9,6 +9,7 @@ Requires PHP: 7.2
 Author: Gemeente Heerenveen
 Author URI: https://www.heerenveen.nl/
 Text Domain: gh-datainmap
+License URI: https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
 License: EUPL-1.2
 
 Copyright 2020 Gemeente Heerenveen
