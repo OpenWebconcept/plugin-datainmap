@@ -1,0 +1,14 @@
+image: node:11.15
+
+pipelines:
+    branches:
+        master:
+            - step:
+                name: Build and release
+                script:
+                    - npm install
+                    - npm run create-release-archive
+            - step:
+                name: Upload
+                script:
+                    - curl -X POST --user "${BB_AUTH_STRING}" "https://api.bitbucket.org/2.0/repositories/${BITBUCKET_REPO_OWNER}/${BITBUCKET_REPO_SLUG}/downloads" --form files=@"gh-datainmap.zip"
