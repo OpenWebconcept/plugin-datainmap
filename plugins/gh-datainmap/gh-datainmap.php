@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Data In Map
-Plugin URI: https://www.heerenveen.nl/
+Plugin URI: https://bitbucket.org/gemeenteheerenveen/datainmap-plugin/src/master/
 Description: Data In Map is a plugin for displaying maps.
 Version: 1.3.1
 Requires at least: 5.0
