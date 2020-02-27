@@ -57,7 +57,10 @@ archive.pipe(output);
 archive.finalize().then(function() {
     fs.copyFileSync(__dirname + '/dist/gh-datainmap-latest.zip', __dirname + '/dist/gh-datainmap-'+version+'.zip');
     const md = new MarkdownIt();
+    const description = md.render( fs.readFileSync(__dirname + '/DESCRIPTION.md', 'utf8') );
     const changelog = md.render( fs.readFileSync(__dirname + '/CHANGELOG.md', 'utf8') );
+    const configuration = md.render( fs.readFileSync(__dirname + '/CONFIGURATION.md', 'utf8') );
+    const shortcode = md.render( fs.readFileSync(__dirname + '/SHORTCODE.md', 'utf8') );
     const pluginInfo = {
         "name" : "Data In Map",
         "version" : version,
@@ -68,8 +71,10 @@ archive.finalize().then(function() {
         "author_homepage": "https://www.heerenveen.nl",
         "author": "Gemeente Heerenveen",
         "sections" : {
-            "description" : "Data In Map is een plugin voor het ontsluiten van informatie door middel van geografische kaarten.",
-            "changelog": changelog
+            "description" : description,
+            "changelog": changelog,
+            "configuratie": configuration,
+            "shortcode": shortcode
         }
     };
     fs.writeFileSync(__dirname + '/dist/update.json', JSON.stringify(pluginInfo, null, 2)); 
