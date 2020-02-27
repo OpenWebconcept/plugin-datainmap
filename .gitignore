@@ -3,4 +3,4 @@ plugins/*
 plugins/gh-datainmap/dist/*
 !plugins/gh-datainmap/
 package-lock.json
-gh-datainmap.zip
+dist/*

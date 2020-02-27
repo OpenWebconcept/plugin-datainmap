@@ -8,4 +8,4 @@ $ docker-compose run --user 33 -e HOME=/tmp --rm wpcli i18n make-pot ./wp-conten
 
 Nieuwe plugin ZIP maken (enkel vanuit master)
 
-$ npm run create-release-archive
+$ npm run create-release
