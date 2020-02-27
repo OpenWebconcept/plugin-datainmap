@@ -1,6 +1,7 @@
-var fs = require('fs');
-var archiver = require('archiver');
-var version = require('./package.json').version;
+const fs = require('fs');
+const archiver = require('archiver');
+const MarkdownIt = require('markdown-it');
+const version = require('./package.json').version;
 const distDir = __dirname + '/dist';
 
 const removeDir = function (path) {
@@ -55,12 +56,15 @@ archive.file(__dirname + '/LICENSE.txt', { name: 'gh-datainmap/LICENSE.txt' });
 archive.pipe(output);
 archive.finalize().then(function() {
     fs.copyFileSync(__dirname + '/dist/gh-datainmap-latest.zip', __dirname + '/dist/gh-datainmap-'+version+'.zip');
+    const md = new MarkdownIt();
+    const changelog = md.render( fs.readFileSync(__dirname + '/CHANGELOG.md', 'utf8') );
     const pluginInfo = {
         "name" : "Data In Map",
         "version" : version,
         "download_url" : "https://bitbucket.org/gemeenteheerenveen/datainmap-plugin/downloads/gh-datainmap-latest.zip",
         "sections" : {
-            "description" : "Data In Map is a plugin for displaying maps"
+            "description" : "Data In Map is een plugin voor het ontsluiten van informatie door middel van geografische kaarten.",
+            "changelog": changelog
         }
     };
     fs.writeFileSync(__dirname + '/dist/update.json', JSON.stringify(pluginInfo, null, 2)); 
