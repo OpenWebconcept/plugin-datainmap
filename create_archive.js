@@ -52,7 +52,9 @@ archive.on('error', function(err) {
 });
 
 archive.directory(__dirname + '/plugins/gh-datainmap/', 'gh-datainmap');
-archive.file(__dirname + '/LICENSE.txt', { name: 'gh-datainmap/LICENSE.txt' });
+['/LICENSE.txt', '/DESCRIPTION.md', '/CHANGELOG.md', '/CONFIGURATION.md', '/SHORTCODE.md'].forEach((filename) => {
+    archive.file(__dirname + filename, { name: 'gh-datainmap/' + filename });
+});
 archive.pipe(output);
 archive.finalize().then(function() {
     fs.copyFileSync(__dirname + '/dist/gh-datainmap-latest.zip', __dirname + '/dist/gh-datainmap-'+version+'.zip');
