@@ -58,7 +58,7 @@ class DIMFeatureComponent extends Component {
         return (
             <>
                 <header>
-                    <h1>{title}</h1>
+                    <h1 dangerouslySetInnerHTML={{__html: title}}></h1>
                     <CloseModal onClick={() => this.props.closeModal()} />
                 </header>
                 <section className="gh-dim-feature-content" dangerouslySetInnerHTML={{__html: feature.content}} />
