@@ -8,4 +8,7 @@ $ docker-compose run --user 33 -e HOME=/tmp --rm wpcli i18n make-pot ./wp-conten
 
 Nieuwe plugin ZIP maken (enkel vanuit master)
 
+Versienummer bijwerken in package.json en gh-datainmap.php, CHANGELOG.md updaten, vervolgens:
+
 $ npm run create-release
+
