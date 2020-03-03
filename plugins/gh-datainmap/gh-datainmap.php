@@ -81,7 +81,7 @@ add_action('admin_enqueue_scripts', function($hook) {
         $settings['element'] = GH_DIM_LOCATIONPICKER_ELEMENT;
         $settings['minZoom'] = (int)$settings['minZoom'];
         $settings['maxZoom'] = (int)$settings['maxZoom'];
-        $pro4j = gh_dim_parse_pro4j($settings['projections']);
+        $proj4 = gh_dim_parse_proj4($settings['projections']);
         unset($settings['projections']);
         $security = wp_create_nonce('gh-dim-datainmap');
         wp_enqueue_script( 'gh-dim-locationpicker' );
@@ -89,7 +89,7 @@ add_action('admin_enqueue_scripts', function($hook) {
             'ajaxurl' => admin_url( 'admin-ajax.php' ),
             'security' => $security,
             'settings' => $settings,
-            'pro4j' => $pro4j,
+            'proj4' => $proj4,
         ] );
         wp_enqueue_style( 'gh-dim-style' );
     }
@@ -97,23 +97,33 @@ add_action('admin_enqueue_scripts', function($hook) {
 
 
 /**
- * Parse CSV met pro4j definities
+ * Parse CSV met proj4 definities
  *
  * @param string $csv
  * @return array
  */
-function gh_dim_parse_pro4j($csv) {
-    $pro4j = [];
+function gh_dim_parse_proj4($csv) {
+    $proj4 = [];
     $rows = str_getcsv($csv, "\n");
     foreach($rows as $row) {
         $projection = str_getcsv($row, ',');
         if(count($projection) == 2) {
-            $pro4j[] = $projection;
+            $proj4[] = $projection;
         }
     }
-    return $pro4j;
+    return $proj4;
 }
 
 add_action('plugins_loaded', function() {
     load_plugin_textdomain( 'gh-datainmap', false, basename( dirname( __FILE__ ) ) . '/languages/' );
 } );
+
+require GH_DIM_DIR . '/vendor/plugin-update-checker/plugin-update-checker.php';
+$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+    'http://172.30.48.1:2015/update.json',
+    // 'https://bitbucket.org/gemeenteheerenveen/datainmap-plugin/downloads/update.json',
+	__FILE__, //Full path to the main plugin file or functions.php.
+	'gh-datainmap'
+);
+
+// "download_url": "https://bitbucket.org/gemeenteheerenveen/datainmap-plugin/downloads/gh-datainmap-latest.zip",

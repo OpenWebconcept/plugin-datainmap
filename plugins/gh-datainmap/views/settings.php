@@ -176,11 +176,11 @@
             </tr>
             <tr>
                 <th scope="row" valign="top">
-                    <label for="gh-datainmap-settings[projections]"><?php _e('Additional projections (pro4j)', 'gh-datainmap') ?></label>
+                    <label for="gh-datainmap-settings[projections]"><?php _e('Additional projections (proj4)', 'gh-datainmap') ?></label>
                 </th>
                 <td>
                     <textarea class="large-text" cols="80" rows="10" id="gh-datainmap-settings[projections]" name="gh-datainmap-settings[projections]"><?php echo esc_textarea( $settings['projections'] ) ?></textarea>
-                    <p class="description"><?php _e('Add extra projections for pro4j. Format using CSV (column 1 is projection identifier, column 2 is the projection for pro4j).', 'gh-datainmap'); ?> <a href="https://epsg.io/" target="_blank"><?php _e( 'Lookup projections (pro4j)', 'gh-datainmap' ) ?></a></p>
+                    <p class="description"><?php _e('Add extra projections for proj4. Format using CSV (column 1 is projection identifier, column 2 is the projection for proj4).', 'gh-datainmap'); ?> <a href="https://epsg.io/" target="_blank"><?php _e( 'Lookup projections (proj4)', 'gh-datainmap' ) ?></a></p>
                 </td>
             </tr>
         </tbody>

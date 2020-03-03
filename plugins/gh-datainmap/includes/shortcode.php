@@ -155,7 +155,7 @@ function gh_dim_shortcode($atts, $content = null) {
         'order' => 'ASC',
     ]);
 
-    $pro4j = gh_dim_parse_pro4j($settings['projections']);
+    $proj4 = gh_dim_parse_proj4($settings['projections']);
     unset($settings['projections']);
 
     $el_id = uniqid('gh-datainmap-');
@@ -181,7 +181,7 @@ function gh_dim_shortcode($atts, $content = null) {
                 'slug' => $term->slug,
             ];
         }, $location_property_terms),
-        'pro4j' => $pro4j,
+        'proj4' => $proj4,
     ];
 
     $script_open = '<script type="text/javascript">';

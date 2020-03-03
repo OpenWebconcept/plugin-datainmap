@@ -51,7 +51,7 @@ if(typeof GHDataInMap == 'undefined') {
 const settings = GHDataInMap.settings;
 
 // Add extra projections
-GHDataInMap.pro4j.forEach( (projection) => {
+GHDataInMap.proj4.forEach( (projection) => {
     try {
         proj4.defs(projection[0], projection[1]);
     }
