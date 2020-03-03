@@ -1,18 +1,32 @@
 <?php
 /*
 Plugin Name: Data In Map
-Plugin URI: https://www.heerenveen.nl/
+Plugin URI: https://bitbucket.org/gemeenteheerenveen/datainmap-plugin/src/master/
 Description: Data In Map is a plugin for displaying maps.
-Version: 1.3.1
+Version: 1.3.2
 Requires at least: 5.0
 Requires PHP: 7.2
 Author: Gemeente Heerenveen
 Author URI: https://www.heerenveen.nl/
 Text Domain: gh-datainmap
+License URI: https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
+License: EUPL v1.2
+
+Copyright 2020 Gemeente Heerenveen
+
+Licensed under the EUPL, Version 1.2 or – as soon they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence");
+You may not use this work except in compliance with the Licence.
+You may obtain a copy of the Licence at:
+
+https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
+
+Unless required by applicable law or agreed to in writing, software distributed under the Licence is distributed on an "AS IS" basis,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the Licence for the specific language governing permissions and limitations under the Licence.
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
-if ( ! defined('GH_DIM_VERSION')) define('GH_DIM_VERSION', '1.3.1');
+if ( ! defined('GH_DIM_VERSION')) define('GH_DIM_VERSION', '1.3.2');
 if ( ! defined('GH_DIM_FILE')) define('GH_DIM_FILE', __FILE__);
 if ( ! defined('GH_DIM_DIR')) define('GH_DIM_DIR', dirname(__FILE__));
 if ( ! defined('GH_DIM_DEBUG')) define('GH_DIM_DEBUG', false);
@@ -67,7 +81,7 @@ add_action('admin_enqueue_scripts', function($hook) {
         $settings['element'] = GH_DIM_LOCATIONPICKER_ELEMENT;
         $settings['minZoom'] = (int)$settings['minZoom'];
         $settings['maxZoom'] = (int)$settings['maxZoom'];
-        $pro4j = gh_dim_parse_pro4j($settings['projections']);
+        $proj4 = gh_dim_parse_proj4($settings['projections']);
         unset($settings['projections']);
         $security = wp_create_nonce('gh-dim-datainmap');
         wp_enqueue_script( 'gh-dim-locationpicker' );
@@ -75,7 +89,7 @@ add_action('admin_enqueue_scripts', function($hook) {
             'ajaxurl' => admin_url( 'admin-ajax.php' ),
             'security' => $security,
             'settings' => $settings,
-            'pro4j' => $pro4j,
+            'proj4' => $proj4,
         ] );
         wp_enqueue_style( 'gh-dim-style' );
     }
@@ -83,23 +97,19 @@ add_action('admin_enqueue_scripts', function($hook) {
 
 
 /**
- * Parse CSV met pro4j definities
+ * Parse CSV met proj4 definities
  *
  * @param string $csv
  * @return array
  */
-function gh_dim_parse_pro4j($csv) {
-    $pro4j = [];
+function gh_dim_parse_proj4($csv) {
+    $proj4 = [];
     $rows = str_getcsv($csv, "\n");
     foreach($rows as $row) {
         $projection = str_getcsv($row, ',');
         if(count($projection) == 2) {
-            $pro4j[] = $projection;
+            $proj4[] = $projection;
         }
     }
-    return $pro4j;
+    return $proj4;
 }
-
-add_action('plugins_loaded', function() {
-    load_plugin_textdomain( 'gh-datainmap', false, basename( dirname( __FILE__ ) ) . '/languages/' );
-} );

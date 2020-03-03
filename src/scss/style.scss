@@ -60,6 +60,17 @@ $textcolor-button-hover: $textcolor-button-neutral;
             }
         }
     }
+    .gh-dim-tooltip {
+        background-color:rgba(255,255,255,0.9);
+        border:1px solid #EBEBEB;
+        border-radius:3px;
+        padding:8px;
+        max-width:320px;
+        span {
+            font-weight: bold;
+            font-size:12px;
+        }
+    }
 }
 
 body.gh-dim-modal-open {
