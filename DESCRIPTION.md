@@ -1,6 +1,6 @@
 Data In Map is een plugin voor het ontsluiten van informatie door middel van geografische kaarten.
 
-Met de Data In Map plugin is het mogelijk om binnen WordPress locaties te beheren. Een externe tool is niet noodzakelijk. Doordat de plugin algemeen in opzet is er veel vrijheid in hoe data wordt weergegeven. Locatie informatie kan in WordPress staan, maar ook externe datasets doormiddel van diverse services zoals WMTS, (Tile)WMS en GeoJSON kunnen gebruikt worden. Er is ook ondersteuning voor de weergave van KML. Data In Map laat je ook vrij in de te gebruiken kaartprojecties (bijvoorbeeld EPSG:3857, of RD, ook bekend als EPSG:28992).
+Met de Data In Map plugin is het mogelijk om binnen WordPress locaties te beheren. Een externe tool is niet noodzakelijk. Doordat de plugin algemeen in opzet is er veel vrijheid in hoe data wordt weergegeven. Locatie informatie kan in WordPress staan, maar ook externe datasets doormiddel van diverse services zoals WMTS, (Tile)WMS en GeoJSON kunnen gebruikt worden. Er is ook ondersteuning voor de weergave van KML. Data In Map laat je ook vrij in de te gebruiken kaartprojecties (bijvoorbeeld *EPSG:3857*, of RD, ook bekend als *EPSG:28992*).
 
 Met een shortcode is het eenvoudig om een kaart op een pagina te plaatsen. Via deze shortcode kan het gedrag van de kaart worden bepaald. Zo kan er voor gekozen worden om geen zoekfunctie te gebruiken, een tooltip in te schakelen en de startlocatie en/of zoomniveau te bepalen.
 
