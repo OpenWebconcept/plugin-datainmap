@@ -113,17 +113,3 @@ function gh_dim_parse_proj4($csv) {
     }
     return $proj4;
 }
-
-add_action('plugins_loaded', function() {
-    load_plugin_textdomain( 'gh-datainmap', false, basename( dirname( __FILE__ ) ) . '/languages/' );
-} );
-
-require GH_DIM_DIR . '/vendor/plugin-update-checker/plugin-update-checker.php';
-$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
-    'http://172.30.48.1:2015/update.json',
-    // 'https://bitbucket.org/gemeenteheerenveen/datainmap-plugin/downloads/update.json',
-	__FILE__, //Full path to the main plugin file or functions.php.
-	'gh-datainmap'
-);
-
-// "download_url": "https://bitbucket.org/gemeenteheerenveen/datainmap-plugin/downloads/gh-datainmap-latest.zip",
