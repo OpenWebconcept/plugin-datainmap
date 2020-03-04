@@ -113,3 +113,7 @@ function gh_dim_parse_proj4($csv) {
     }
     return $proj4;
 }
+
+add_action('plugins_loaded', function() {
+    load_plugin_textdomain( 'gh-datainmap', false, basename( dirname( __FILE__ ) ) . '/languages/' );
+} );
