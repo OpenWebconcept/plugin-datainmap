@@ -1,4 +1,4 @@
-**1.x.x (2020-xx-xx)**
+**1.3.3 (2020-03-04)**
 
 - Taalbestanden werden niet ingeladen.
 - Code toegevoegd voor controleren op plugin updates.
