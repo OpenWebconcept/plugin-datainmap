@@ -47,6 +47,14 @@ function gh_dim_menu() {
         'gh_dim_settings',
         'gh_dim_settings_page'
     );
+    add_submenu_page(
+        'gh-dim',
+        __('Manual', 'gh-datainmap'),
+        __('Manual', 'gh-datainmap'),
+        'manage_options',
+        'gh_dim_manual',
+        'gh_dim_manual_page'
+    );
 }
 
 function gh_dim_set_current_menu($parent_file) {
@@ -61,3 +69,21 @@ function gh_dim_set_current_menu($parent_file) {
         return $parent_file;
 }
 add_filter( 'parent_file', 'gh_dim_set_current_menu' );
+
+
+function gh_dim_manual_page() {
+    if (!current_user_can('manage_options')) {
+        wp_die('Unauthorized user.');
+    }
+    $parsedown = new Parsedown();
+    $markdownFromFile = function($file) use($parsedown) {
+        return $parsedown->text( file_get_contents($file) );
+    };
+    $selected_tab = function($a, $b) {
+        if($a === $b) {
+            return 'nav-tab-active';
+        }
+        return null;
+    };
+    include GH_DIM_DIR . '/views/manual.php';
+}
