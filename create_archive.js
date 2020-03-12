@@ -35,6 +35,7 @@ var archive = archiver('zip', {
 output.on('close', function() {
     console.log(archive.pointer() + ' total bytes');
     console.log('archiver has been finalized and the output file descriptor has closed.');
+    fs.copyFileSync(__dirname + '/dist/gh-datainmap-latest.zip', __dirname + '/dist/gh-datainmap-'+version+'.zip');
 });
 output.on('end', function() {
     console.log('Data has been drained');
@@ -56,28 +57,27 @@ archive.directory(__dirname + '/plugins/gh-datainmap/', 'gh-datainmap');
     archive.file(__dirname + filename, { name: 'gh-datainmap/' + filename });
 });
 archive.pipe(output);
-archive.finalize().then(function() {
-    fs.copyFileSync(__dirname + '/dist/gh-datainmap-latest.zip', __dirname + '/dist/gh-datainmap-'+version+'.zip');
-    const md = new MarkdownIt();
-    const description = md.render( fs.readFileSync(__dirname + '/plugins/gh-datainmap/DESCRIPTION.md', 'utf8') );
-    const changelog = md.render( fs.readFileSync(__dirname + '/plugins/gh-datainmap/CHANGELOG.md', 'utf8') );
-    const configuration = md.render( fs.readFileSync(__dirname + '/plugins/gh-datainmap/CONFIGURATION.md', 'utf8') );
-    const shortcode = md.render( fs.readFileSync(__dirname + '/plugins/gh-datainmap/SHORTCODE.md', 'utf8') );
-    const pluginInfo = {
-        "name" : "Data In Map",
-        "version" : version,
-        "download_url" : "https://bitbucket.org/gemeenteheerenveen/datainmap-plugin/downloads/gh-datainmap-latest.zip",
-        "slug": "gh-datainmap",
-        "requires": "5.0",
-        "tested": "5.3",
-        "author_homepage": "https://www.heerenveen.nl",
-        "author": "Gemeente Heerenveen",
-        "sections" : {
-            "description" : description,
-            "changelog": changelog,
-            "configuratie": configuration,
-            "shortcode": shortcode
-        }
-    };
-    fs.writeFileSync(__dirname + '/dist/update.json', JSON.stringify(pluginInfo, null, 2)); 
-});
+archive.finalize();
+
+const md = new MarkdownIt();
+const description = md.render( fs.readFileSync(__dirname + '/plugins/gh-datainmap/DESCRIPTION.md', 'utf8') );
+const changelog = md.render( fs.readFileSync(__dirname + '/plugins/gh-datainmap/CHANGELOG.md', 'utf8') );
+const configuration = md.render( fs.readFileSync(__dirname + '/plugins/gh-datainmap/CONFIGURATION.md', 'utf8') );
+const shortcode = md.render( fs.readFileSync(__dirname + '/plugins/gh-datainmap/SHORTCODE.md', 'utf8') );
+const pluginInfo = {
+    "name" : "Data In Map",
+    "version" : version,
+    "download_url" : "https://bitbucket.org/gemeenteheerenveen/datainmap-plugin/downloads/gh-datainmap-latest.zip",
+    "slug": "gh-datainmap",
+    "requires": "5.0",
+    "tested": "5.3",
+    "author_homepage": "https://www.heerenveen.nl",
+    "author": "Gemeente Heerenveen",
+    "sections" : {
+        "description" : description,
+        "changelog": changelog,
+        "configuratie": configuration,
+        "shortcode": shortcode
+    }
+};
+fs.writeFileSync(__dirname + '/dist/update.json', JSON.stringify(pluginInfo, null, 2)); 
