@@ -32,6 +32,7 @@ if ( ! defined('GH_DIM_DIR')) define('GH_DIM_DIR', dirname(__FILE__));
 if ( ! defined('GH_DIM_DEBUG')) define('GH_DIM_DEBUG', false);
 if ( ! defined('GH_DIM_LOCATIONPICKER_ELEMENT')) define('GH_DIM_LOCATIONPICKER_ELEMENT', 'gh-datainmap-locationpicker');
 
+include GH_DIM_DIR . '/vendor/autoload.php';
 include GH_DIM_DIR . '/includes/post-type.php';
 include GH_DIM_DIR . '/includes/taxonomy.php';
 include GH_DIM_DIR . '/includes/tax-meta-image.php';
@@ -118,7 +119,6 @@ add_action('plugins_loaded', function() {
     load_plugin_textdomain( 'gh-datainmap', false, basename( dirname( __FILE__ ) ) . '/languages/' );
 } );
 
-require GH_DIM_DIR . '/vendor/plugin-update-checker/plugin-update-checker.php';
 $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
     'https://bitbucket.org/gemeenteheerenveen/datainmap-plugin/downloads/update.json',
 	__FILE__,
