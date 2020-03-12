@@ -1,6 +1,6 @@
 {
   "name": "gh-datainmap",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,8 @@
     "webpack-prod": "npx webpack --mode=production",
     "webpack-dev": "npx webpack --mode=development -w",
     "create-archive": "node create_archive.js",
-    "create-release": "npm run css-prod && npm run webpack-prod && npm run create-archive"
+    "composer": "cd plugins/gh-datainmap/ && composer install",
+    "create-release": "npm run css-prod && npm run webpack-prod && npm run composer && npm run create-archive"
   },
   "author": "Gemeente Heerenveen",
   "license": "EUPL v1.2",

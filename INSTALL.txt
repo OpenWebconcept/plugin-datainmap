@@ -1,6 +1,8 @@
 $ npm install
 $ npm run css-prod
 $ npm run webpack-prod
+$ cd plugins\gh-datainmap-importer
+$ composer install
 
 POT bijwerken
 

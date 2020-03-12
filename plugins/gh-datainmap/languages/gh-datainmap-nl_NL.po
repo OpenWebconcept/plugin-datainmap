@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Data In Map 1.2.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/gh-datainmap\n"
-"POT-Creation-Date: 2020-03-03T13:29:59+00:00\n"
-"PO-Revision-Date: 2020-03-03 15:15+0100\n"
+"POT-Creation-Date: 2020-03-12T11:31:04+00:00\n"
+"PO-Revision-Date: 2020-03-12 12:33+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -52,6 +52,10 @@ msgstr "Locatie Eigenschappen"
 #: includes/menus.php:44 includes/menus.php:45 views/settings.php:2
 msgid "Settings"
 msgstr "Instellingen"
+
+#: includes/menus.php:52 includes/menus.php:53 views/manual.php:2
+msgid "Manual"
+msgstr "Uitleg"
 
 #: includes/metaboxes.php:21
 msgid "Location info"
@@ -250,6 +254,22 @@ msgstr "Cluster afstand"
 #: includes/taxonomy.php:83
 msgid "Minimum distance in pixels between clusters."
 msgstr "Minimale afstand in pixels tussen clusters."
+
+#: views/manual.php:5
+msgid "Description"
+msgstr "Omschrijving"
+
+#: views/manual.php:6
+msgid "Configuration"
+msgstr "Configuratie"
+
+#: views/manual.php:7
+msgid "Shortcode"
+msgstr "Shortcode"
+
+#: views/manual.php:8
+msgid "Changelog"
+msgstr "Updates"
 
 #: views/metabox-layer.php:9
 msgid "KML"
