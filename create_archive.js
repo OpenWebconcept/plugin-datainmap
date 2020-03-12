@@ -52,17 +52,17 @@ archive.on('error', function(err) {
 });
 
 archive.directory(__dirname + '/plugins/gh-datainmap/', 'gh-datainmap');
-['/LICENSE.txt', '/DESCRIPTION.md', '/CHANGELOG.md', '/CONFIGURATION.md', '/SHORTCODE.md'].forEach((filename) => {
+['/LICENSE.txt'].forEach((filename) => {
     archive.file(__dirname + filename, { name: 'gh-datainmap/' + filename });
 });
 archive.pipe(output);
 archive.finalize().then(function() {
     fs.copyFileSync(__dirname + '/dist/gh-datainmap-latest.zip', __dirname + '/dist/gh-datainmap-'+version+'.zip');
     const md = new MarkdownIt();
-    const description = md.render( fs.readFileSync(__dirname + '/DESCRIPTION.md', 'utf8') );
-    const changelog = md.render( fs.readFileSync(__dirname + '/CHANGELOG.md', 'utf8') );
-    const configuration = md.render( fs.readFileSync(__dirname + '/CONFIGURATION.md', 'utf8') );
-    const shortcode = md.render( fs.readFileSync(__dirname + '/SHORTCODE.md', 'utf8') );
+    const description = md.render( fs.readFileSync(__dirname + '/plugins/gh-datainmap/DESCRIPTION.md', 'utf8') );
+    const changelog = md.render( fs.readFileSync(__dirname + '/plugins/gh-datainmap/CHANGELOG.md', 'utf8') );
+    const configuration = md.render( fs.readFileSync(__dirname + '/plugins/gh-datainmap/CONFIGURATION.md', 'utf8') );
+    const shortcode = md.render( fs.readFileSync(__dirname + '/plugins/gh-datainmap/SHORTCODE.md', 'utf8') );
     const pluginInfo = {
         "name" : "Data In Map",
         "version" : version,
