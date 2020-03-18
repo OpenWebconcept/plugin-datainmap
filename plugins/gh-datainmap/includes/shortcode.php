@@ -31,6 +31,7 @@ function gh_dim_shortcode($atts, $content = null) {
             'enable_search' => 1,
             'enable_feature_dialog' => 1,
             'enable_tooltip' => 0,
+            'css_class' => null,
         ], $atts );
     $settings['zoom'] = (int)$args['zoom'];
     $settings['minZoom'] = (int)$args['min_zoom'];
@@ -191,6 +192,7 @@ function gh_dim_shortcode($atts, $content = null) {
     $script_contents = apply_filters( 'datainmap_shortcode_script_contents', $script_contents, $GHDataInMap );
     $script_close = apply_filters( 'datainmap_shortcode_script_close', $script_close );
     $output = $script_open . $script_contents . $script_close;
-    $output .= '<div id="'.$el_id.'">'.__('Loading...', 'gh-datainmap').'</div>';
+    $class = !empty($args['css_class']) ? ' class="'.esc_attr($args['css_class']).'"' : null;
+    $output .= '<div id="'.$el_id.'"'.$class.'>'.__('Loading...', 'gh-datainmap').'</div>';
     return $output;
 }
