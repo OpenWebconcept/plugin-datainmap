@@ -1,6 +1,9 @@
+**1.3.5 (2020-03-18)**
+
 - Mogelijkheid om via de shortcode een class attribuut toe te kennen.
 
 **1.3.4 (2020-03-12)**
+
 - Handleiding pagina toegevoegd.
 - Composer in gebruik genomen voor installatie PHP libraries.
 
