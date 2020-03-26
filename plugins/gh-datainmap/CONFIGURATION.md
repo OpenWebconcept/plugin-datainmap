@@ -19,7 +19,7 @@ Data In Map heeft standaard ondersteuning voor *EPSG:3857*. Aanvullende projecti
 Gebruik de volgende regel op bijvoorbeeld *RD* toe te voegen:
 
 ```
-EPSG:28992","+proj=sterea +lat_0=52.15616055555555 +lon_0=5.38763888888889 +k=0.9999079 +x_0=155000 +y_0=463000 +ellps=bessel +towgs84=565.417,50.3319,465.552,-0.398957,0.343988,-1.8774,4.0725 +units=m +no_defs
+EPSG:28992","+proj=sterea +lat_0=52.15616055555555 +lon_0=5.38763888888889 +k=0.9999079 +x_0=155000 +y_0=463000 +ellps=bessel +towgs84=565.417,50.3319,465.552,-0.398957,0.343988,-1.8774,4.0725 +units=m +no_defs"
 ```
 
 Wanneer een projectie is toegevoegd kan deze worden gebruikt als standaard kaartprojectie. Maar de projecties worden ook gebruikt bij lagen, bijvoorbeeld kaarten afkomstig van een GeoServer (WMTS service o.i.d.). Na het toevoegen van bovenstaande projectie is het mogelijk om bij de kaart én lagen om *EPSG:28992* in te vullen.
