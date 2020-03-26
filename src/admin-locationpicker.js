@@ -79,6 +79,11 @@ let geometry; // The geometry of the current location
 let doDrawFeature = false;
 let zoom = settings.zoom;
 let center = [settings.center_x, settings.center_y].map(parseFloat);
+// If no center location has been set, default to one and ignore zoom
+if(isNaN(center[0]) || isNaN(center[1]) || (center[0] == 0 && center[1] == 0)) {
+    center = [151437.3200827152, 509530.13429433457];
+    zoom = 8;
+}
 // Move and zoom to object location if defined
 const current_location_type = document.getElementById('gh_dim_location_type');
 const current_location = document.getElementById('gh_dim_location');
