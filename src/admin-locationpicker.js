@@ -65,11 +65,11 @@ const el_stroke_color = document.getElementById('gh_dim_location_style_line_colo
 const styleFunction = (feature) => {
     const style = new Style({
         fill: new Fill({
-            color: el_fill_color.value.length > 0 ? el_fill_color.value : 'rgba(255,255,255,0.7)'
+            color: el_fill_color && el_fill_color.value.length > 0 ? el_fill_color.value : 'rgba(255,255,255,0.7)'
         }),
         stroke: new Stroke({
-            color: el_stroke_color.value.length > 0 ? el_stroke_color.value : 'rgba(0,0,255,0.8)',
-            width: parseInt(el_stroke_width.value, 10)
+            color: el_stroke_color && el_stroke_color.value.length > 0 ? el_stroke_color.value : 'rgba(0,0,255,0.8)',
+            width: parseInt(el_stroke_width ? el_stroke_width.value : 1, 10)
         })
     });
     return style;
@@ -120,6 +120,9 @@ store.dispatch( addMapLayer(layer) );
 
 // Update style of feature after changing colors and line width
 [el_fill_color, el_stroke_color, el_stroke_width].forEach((el) => {
+    if(!el) {
+        return;
+    }
     el.onchange = (e) => {
         if(current_location_type.value == 'point') {
             return;
