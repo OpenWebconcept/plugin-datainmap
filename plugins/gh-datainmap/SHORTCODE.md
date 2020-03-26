@@ -22,4 +22,4 @@ De functionaliteiten van de kaart kunnen ook met de shortcode in- of uitgeschake
 
 `[datainmap layers=1 types=1 enable_search=0 enable_feature_dialog=0 enable_tooltip=1]`
 
-Om de container waar DataInMap wordt geplaatst te voorzien van een of meerdere CSS classes kan gebruik gemaakt worden van `css_class`, bijv. `[datainmap css_class="kaart-groot"]`. Deze CSS classes dienen in je de stylesheet van het gebruikte thema te staan.
+Om de container waar DataInMap wordt geplaatst te voorzien van een of meerdere CSS classes kan gebruik gemaakt worden van `css_class`, bijv. `[datainmap css_class="kaart-groot"]`. Deze CSS classes dienen in de stylesheet van het gebruikte thema te staan.
