@@ -156,6 +156,9 @@ const drawingComplete = (feature) => {
         coordinates = geometry.getCoordinates();
     }
     current_location.value = JSON.stringify(coordinates);
+    let evt = document.createEvent("HTMLEvents");
+    evt.initEvent("change", false, true);
+    current_location.dispatchEvent(evt);
 }
 
 store.dispatch(configureMapView({
