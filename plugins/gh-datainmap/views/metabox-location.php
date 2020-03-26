@@ -2,7 +2,7 @@
     <tbody>
         <tr>
             <th scope="row" valign="top">
-                <label for="gh_dim_location_style_line_color"><?php _e( 'Alternative title', 'gh-datainmap' ) ?></label>
+                <label for="_gh_dim_location_alternative_title"><?php _e( 'Alternative title', 'gh-datainmap' ) ?></label>
             </th>
             <td>
                 <input type="hidden" name="_gh_dim_location_alternative_title" value="0" />
