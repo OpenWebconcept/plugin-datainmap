@@ -65,11 +65,11 @@ const el_stroke_color = document.getElementById('gh_dim_location_style_line_colo
 const styleFunction = (feature) => {
     const style = new Style({
         fill: new Fill({
-            color: el_fill_color.value.length > 0 ? el_fill_color.value : 'rgba(255,255,255,0.7)'
+            color: el_fill_color && el_fill_color.value.length > 0 ? el_fill_color.value : 'rgba(255,255,255,0.7)'
         }),
         stroke: new Stroke({
-            color: el_stroke_color.value.length > 0 ? el_stroke_color.value : 'rgba(0,0,255,0.8)',
-            width: parseInt(el_stroke_width.value, 10)
+            color: el_stroke_color && el_stroke_color.value.length > 0 ? el_stroke_color.value : 'rgba(0,0,255,0.8)',
+            width: parseInt(el_stroke_width ? el_stroke_width.value : 1, 10)
         })
     });
     return style;
@@ -79,6 +79,11 @@ let geometry; // The geometry of the current location
 let doDrawFeature = false;
 let zoom = settings.zoom;
 let center = [settings.center_x, settings.center_y].map(parseFloat);
+// If no center location has been set, default to one and ignore zoom
+if(isNaN(center[0]) || isNaN(center[1]) || (center[0] == 0 && center[1] == 0)) {
+    center = [151437.3200827152, 509530.13429433457];
+    zoom = 8;
+}
 // Move and zoom to object location if defined
 const current_location_type = document.getElementById('gh_dim_location_type');
 const current_location = document.getElementById('gh_dim_location');
@@ -120,6 +125,9 @@ store.dispatch( addMapLayer(layer) );
 
 // Update style of feature after changing colors and line width
 [el_fill_color, el_stroke_color, el_stroke_width].forEach((el) => {
+    if(!el) {
+        return;
+    }
     el.onchange = (e) => {
         if(current_location_type.value == 'point') {
             return;
@@ -153,6 +161,9 @@ const drawingComplete = (feature) => {
         coordinates = geometry.getCoordinates();
     }
     current_location.value = JSON.stringify(coordinates);
+    let evt = document.createEvent("HTMLEvents");
+    evt.initEvent("change", false, true);
+    current_location.dispatchEvent(evt);
 }
 
 store.dispatch(configureMapView({

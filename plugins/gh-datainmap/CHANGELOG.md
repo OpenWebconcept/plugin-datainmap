@@ -1,3 +1,6 @@
+**1.4.0 (2020-03-26)**
+- Mogelijkheid om bij instellingen de startlocatie te selecteren via een kaart.
+
 **1.3.5 (2020-03-18)**
 
 - Mogelijkheid om via de shortcode een class attribuut toe te kennen.

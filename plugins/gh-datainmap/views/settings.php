@@ -118,6 +118,21 @@
                         <label for="gh-datainmap-settings[center_y]">Y</label>
                         <input type="text" name="gh-datainmap-settings[center_y]" id="gh-datainmap-settings[center_y]" value="<?php echo esc_attr( $settings['center_y'] ) ?>" class="regular-text" />
                     </fieldset>
+                    <!-- Location picker fields -->
+                    <?php if(!empty($settings['projection'])): ?>
+                        <?php
+                        $current_location = '';
+                        if(!empty($settings['center_x']) && !empty($settings['center_y'])) {
+                            $current_location = json_encode([(float)$settings['center_x'], (float)$settings['center_y']]);
+                        }
+                        ?>
+                        <input type="hidden" id="gh_dim_location" value="<?php echo esc_attr( $current_location ) ?>" />
+                        <input type="hidden" id="gh_dim_location_type" value="point" />
+                        <div id="<?php echo GH_DIM_LOCATIONPICKER_ELEMENT ?>" class="gh-dim-locationpicker" style="margin-top:10px;"><?php _e('Loading...', 'gh-datainmap') ?></div>
+                    <?php else: ?>
+                        <p class="description"><?php _e('Please specify a default map projection to make use of the location picker', 'gh-datainmap') ?></p>
+                        <div id="<?php echo GH_DIM_LOCATIONPICKER_ELEMENT ?>" style="display:none"></div>
+                    <?php endif; ?>
                 </td>
             </tr>
             <tr>
@@ -188,3 +203,21 @@
     <?php submit_button(); ?>
 </form>
 </div>
+
+<script>
+var center_x = document.getElementById('gh-datainmap-settings[center_x]');
+var center_y = document.getElementById('gh-datainmap-settings[center_y]');
+var current_location = document.getElementById('gh_dim_location');
+if(current_location) {
+    current_location.addEventListener('change', function(e) {
+        try {
+            var coord = JSON.parse(e.target.value);
+            center_x.value = coord[0];
+            center_y.value = coord[1];
+        }
+        catch(err) {
+            alert(err);
+        }
+    });
+}
+</script>

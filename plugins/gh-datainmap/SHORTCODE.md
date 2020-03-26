@@ -21,3 +21,5 @@ Ook is het mogelijk om de standaard instellingen te wijzigen, zoals `zoom`, `min
 De functionaliteiten van de kaart kunnen ook met de shortcode in- of uitgeschakeld worden. Standaard staan de zoekfunctie en de locatie content pop-up ingeschakeld. De tooltip staat standaard uit.
 
 `[datainmap layers=1 types=1 enable_search=0 enable_feature_dialog=0 enable_tooltip=1]`
+
+Om de container waar DataInMap wordt geplaatst te voorzien van een of meerdere CSS classes kan gebruik gemaakt worden van `css_class`, bijv. `[datainmap css_class="kaart-groot"]`. Deze CSS classes dienen in de stylesheet van het gebruikte thema te staan.

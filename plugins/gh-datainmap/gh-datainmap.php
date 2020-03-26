@@ -3,7 +3,7 @@
 Plugin Name: Data In Map
 Plugin URI: https://bitbucket.org/gemeenteheerenveen/datainmap-plugin/src/master/
 Description: Data In Map is a plugin for displaying maps.
-Version: 1.3.5
+Version: 1.4.0
 Requires at least: 5.0
 Requires PHP: 7.2
 Author: Gemeente Heerenveen
@@ -26,7 +26,7 @@ See the Licence for the specific language governing permissions and limitations 
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
-if ( ! defined('GH_DIM_VERSION')) define('GH_DIM_VERSION', '1.3.5');
+if ( ! defined('GH_DIM_VERSION')) define('GH_DIM_VERSION', '1.4.0');
 if ( ! defined('GH_DIM_FILE')) define('GH_DIM_FILE', __FILE__);
 if ( ! defined('GH_DIM_DIR')) define('GH_DIM_DIR', dirname(__FILE__));
 if ( ! defined('GH_DIM_DEBUG')) define('GH_DIM_DEBUG', false);
@@ -66,17 +66,14 @@ function gh_dim_register_scripts() {
 
 add_action('admin_enqueue_scripts', function($hook) {
     global $current_screen;
-    if($current_screen->base == 'datainmap_page_gh_dim_settings') {
-        wp_enqueue_script( 'gh-dim-colorpicker-vendor' );
-    }
 
-    if(!in_array($hook, array('post.php', 'post-new.php'))) {
+    if(!in_array($hook, array('post.php', 'post-new.php', 'datainmap_page_gh_dim_settings'))) {
         return;
     }
     if($current_screen->post_type == 'gh-dim-layers') {
         wp_enqueue_script( 'gh-dim-admin', plugin_dir_url(GH_DIM_FILE) . 'dist/admin-layers.js', array('jquery'), GH_DIM_VERSION, true);
     }
-    elseif($current_screen->post_type == 'gh-dim-locations') {
+    elseif($current_screen->post_type == 'gh-dim-locations' || $current_screen->base == 'datainmap_page_gh_dim_settings') {
         wp_enqueue_script( 'gh-dim-location' );
         $settings = get_option('gh-datainmap-settings');
         $settings['element'] = GH_DIM_LOCATIONPICKER_ELEMENT;
