@@ -128,7 +128,7 @@
                         ?>
                         <input type="hidden" id="gh_dim_location" value="<?php echo esc_attr( $current_location ) ?>" />
                         <input type="hidden" id="gh_dim_location_type" value="point" />
-                        <div id="<?php echo GH_DIM_LOCATIONPICKER_ELEMENT ?>" class="gh-dim-locationpicker"><?php _e('Loading...', 'gh-datainmap') ?></div>
+                        <div id="<?php echo GH_DIM_LOCATIONPICKER_ELEMENT ?>" class="gh-dim-locationpicker" style="margin-top:10px;"><?php _e('Loading...', 'gh-datainmap') ?></div>
                     <?php else: ?>
                         <p class="description"><?php _e('Please specify a default map projection to make use of the location picker', 'gh-datainmap') ?></p>
                         <div id="<?php echo GH_DIM_LOCATIONPICKER_ELEMENT ?>" style="display:none"></div>
