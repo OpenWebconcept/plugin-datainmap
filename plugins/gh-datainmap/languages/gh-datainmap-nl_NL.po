@@ -4,15 +4,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Data In Map 1.2.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/gh-datainmap\n"
-"POT-Creation-Date: 2020-03-12T11:31:04+00:00\n"
-"PO-Revision-Date: 2020-03-12 12:33+0100\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2020-03-26T12:56:46+00:00\n"
+"PO-Revision-Date: 2020-03-26 13:59+0100\n"
+"Last-Translator: Christiaan Kras <christiaan@kras-it.nl>\n"
 "Language-Team: \n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.2.4\n"
 "X-Domain: gh-datainmap\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
@@ -151,7 +151,8 @@ msgstr "Update Laag"
 msgid "Search Layers"
 msgstr "Zoek Lagen"
 
-#: includes/shortcode.php:194 views/metabox-location.php:39
+#: includes/shortcode.php:196 views/metabox-location.php:39
+#: views/settings.php:131
 msgid "Loading..."
 msgstr "Laden..."
 
@@ -466,56 +467,63 @@ msgstr "Cluster landmark stijl: tekstkleur"
 msgid "Map center to"
 msgstr "Centreer kaart op"
 
-#: views/settings.php:125
+#: views/settings.php:133
+msgid ""
+"Please specify a default map projection to make use of the location picker"
+msgstr ""
+"Stel eerst een standaard kaart projectie in om gebruik te kunnen maken van "
+"een kaart om een locatie te selecteren"
+
+#: views/settings.php:140
 msgid "Initial zoom"
 msgstr "Standaard zoomniveau"
 
-#: views/settings.php:133
+#: views/settings.php:148
 msgid "Min zoom"
 msgstr "Minimum zoomniveau"
 
-#: views/settings.php:141
+#: views/settings.php:156
 msgid "Max zoom"
 msgstr "Maximum zoomniveau"
 
-#: views/settings.php:149
+#: views/settings.php:164
 msgid "Map projection"
 msgstr "Kaart projectie"
 
-#: views/settings.php:153
+#: views/settings.php:168
 msgid "The projection to use for the map. Defaults to EPSG:3857."
 msgstr "De te gebruiken projectie voor de kaart. Standaard EPSG:3857."
 
-#: views/settings.php:158
+#: views/settings.php:173
 msgid "Search coordinate system"
 msgstr "Coördinaten systeem zoekfunctie"
 
-#: views/settings.php:165
+#: views/settings.php:180
 msgid "Decide which coordinates to use from search result."
 msgstr ""
 "Bepaal welk coördinatensysteem gebruikt moet worden voor de zoekresultaten. "
 "Deze dient overeen te komen met de Kaart Projectie."
 
-#: views/settings.php:170
+#: views/settings.php:185
 msgid "Filter search by township"
 msgstr "Filter zoekresultaten op gemeente"
 
-#: views/settings.php:174
+#: views/settings.php:189
 msgid ""
 "Optinally provide a township code to limit search results to your township"
 msgstr ""
 "Geef de gemeentecode op om de zoekresultaten te beperken tot enkel "
 "resultaten binnen de gemeente"
 
-#: views/settings.php:174
+#: views/settings.php:189
 msgid "Lookup township codes"
 msgstr "Gemeentecode opvragen"
 
-#: views/settings.php:179
+#: views/settings.php:194
 msgid "Additional projections (proj4)"
 msgstr "Aanvullende projecties (proj4)"
 
-#: views/settings.php:183
+#: views/settings.php:198
 msgid ""
 "Add extra projections for proj4. Format using CSV (column 1 is projection "
 "identifier, column 2 is the projection for proj4)."
@@ -523,6 +531,6 @@ msgstr ""
 "Voeg extra projecties toe voor proj4. Verwachte formaat is CSV (kolom 1 is "
 "de projectienaam, kolom 2 is de projectie voor proj4)."
 
-#: views/settings.php:183
+#: views/settings.php:198
 msgid "Lookup projections (proj4)"
 msgstr "Projecties opzoeken (proj4)"
