@@ -66,17 +66,14 @@ function gh_dim_register_scripts() {
 
 add_action('admin_enqueue_scripts', function($hook) {
     global $current_screen;
-    if($current_screen->base == 'datainmap_page_gh_dim_settings') {
-        wp_enqueue_script( 'gh-dim-colorpicker-vendor' );
-    }
 
-    if(!in_array($hook, array('post.php', 'post-new.php'))) {
+    if(!in_array($hook, array('post.php', 'post-new.php', 'datainmap_page_gh_dim_settings'))) {
         return;
     }
     if($current_screen->post_type == 'gh-dim-layers') {
         wp_enqueue_script( 'gh-dim-admin', plugin_dir_url(GH_DIM_FILE) . 'dist/admin-layers.js', array('jquery'), GH_DIM_VERSION, true);
     }
-    elseif($current_screen->post_type == 'gh-dim-locations') {
+    elseif($current_screen->post_type == 'gh-dim-locations' || $current_screen->base == 'datainmap_page_gh_dim_settings') {
         wp_enqueue_script( 'gh-dim-location' );
         $settings = get_option('gh-datainmap-settings');
         $settings['element'] = GH_DIM_LOCATIONPICKER_ELEMENT;
