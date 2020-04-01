@@ -50,13 +50,12 @@ export class MapComponent extends Component {
         });
         // Display pointer when over a feature
         this.olMap.on('pointermove', (e) => {
+            if(e.dragging) {
+                return;
+            }
             const pixel = this.olMap.getEventPixel(e.originalEvent);
-            if(this.olMap.hasFeatureAtPixel(pixel)) {
-                document.body.style.cursor = 'pointer';
-            }
-            else {
-                document.body.style.cursor = 'default';
-            }
+            const hit = this.olMap.hasFeatureAtPixel(pixel);
+            this.olMap.getTargetElement().style.cursor = hit ? 'pointer' : '';
         });
         // PickLocation
         this.olMap.on('click', (e) => {
