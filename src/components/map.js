@@ -114,8 +114,6 @@ export class MapComponent extends Component {
                 }));
             }
             this.olMap.on('click', (e) => {
-                // Reset cursor pointer
-                document.body.style.cursor = 'default';
                 const pixel = this.olMap.getEventPixel(e.originalEvent);
                 let features = [];
                 this.olMap.forEachFeatureAtPixel(pixel, (feature) => {
