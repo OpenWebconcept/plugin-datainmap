@@ -94,12 +94,14 @@ function gh_dim_shortcode($atts, $content = null) {
             ] );
             $location = get_post_meta( $post->ID, '_gh_dim_location', true);
             $location_type = get_post_meta( $post->ID, '_gh_dim_location_type', true);
+            $content_type = get_post_meta( $post->ID, '_gh_dim_location_content_type', true);
             $title = get_the_title( $post );
             $useAlternativeTitle = get_post_meta( $post->ID, '_gh_dim_location_alternative_title', true ) == 1;
             $alternativeTitle = get_post_meta( $post->ID, '_gh_dim_location_alternative_title_text', true);
             if($useAlternativeTitle && strlen($alternativeTitle) > 0) {
                 $title = $alternativeTitle;
             }
+            $content_type_enum = gh_dim_content_type_enum( $content_type );
             $feature = [
                 'location_type' => $location_type,
                 'location' => json_decode($location),
@@ -107,7 +109,12 @@ function gh_dim_shortcode($atts, $content = null) {
                 'feature_id' => $post->ID,
                 'title' => $title,
                 'term' => $term->slug,
+                'content_type' => $content_type_enum,
             ];
+            if($content_type_enum == GH_DIM_CONTENT_TYPE_REDIRECT) {
+                $redirect_url = get_post_meta( $post->ID, '_gh_dim_location_redirect_url', true);
+                $feature['redirect'] = $redirect_url;
+            }
             $line_color = get_post_meta( $post->ID, '_gh_dim_location_style_line_color', true);
             $line_width = get_post_meta( $post->ID, '_gh_dim_location_style_line_width', true);
             $fill_color = get_post_meta( $post->ID, '_gh_dim_location_style_fill_color', true);

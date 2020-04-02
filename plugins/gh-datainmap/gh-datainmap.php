@@ -32,6 +32,9 @@ if ( ! defined('GH_DIM_DIR')) define('GH_DIM_DIR', dirname(__FILE__));
 if ( ! defined('GH_DIM_DEBUG')) define('GH_DIM_DEBUG', false);
 if ( ! defined('GH_DIM_LOCATIONPICKER_ELEMENT')) define('GH_DIM_LOCATIONPICKER_ELEMENT', 'gh-datainmap-locationpicker');
 
+if ( ! defined('GH_DIM_CONTENT_TYPE_POST')) define('GH_DIM_CONTENT_TYPE_POST', 0);
+if ( ! defined('GH_DIM_CONTENT_TYPE_REDIRECT')) define('GH_DIM_CONTENT_TYPE_REDIRECT', 1);
+
 include GH_DIM_DIR . '/vendor/autoload.php';
 include GH_DIM_DIR . '/includes/post-type.php';
 include GH_DIM_DIR . '/includes/taxonomy.php';
@@ -110,6 +113,22 @@ function gh_dim_parse_proj4($csv) {
         }
     }
     return $proj4;
+}
+
+/**
+ * Convert location content type to a number
+ * 
+ * @param string $content_type
+ * @return int
+ */
+function gh_dim_content_type_enum($content_type) {
+    switch($content_type) {
+        default:
+        case 'post':
+            return GH_DIM_CONTENT_TYPE_POST;
+        case 'redirect':
+            return GH_DIM_CONTENT_TYPE_REDIRECT;
+    }
 }
 
 add_action('plugins_loaded', function() {
