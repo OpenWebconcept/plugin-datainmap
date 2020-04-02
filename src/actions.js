@@ -196,6 +196,24 @@ export function selectFeature(id) {
     }
 }
 
+export const SELECT_FEATURE_GEOSERVER = 'SELECT_FEATURE_GEOSERVER';
+export function selectFeatureGeoserver(url) {
+    return (dispatch) => {
+        dispatch(fetchingFeature(true));
+        return fetch(url).
+            then( response => {
+                dispatch(fetchingFeature(false));
+                return response.text();
+            })
+            .then( html => {
+                return dispatch(setFeature(html.trim()));
+            })
+            .catch( ex => {
+                console.log('Failed to fetch location', ex);
+            });
+    }
+}
+
 export const ADD_MAP_INTERACTION = 'ADD_MAP_INTERACTION';
 export function addMapInteraction(interaction) {
     return { type: ADD_MAP_INTERACTION, interaction: interaction };

@@ -42,6 +42,25 @@ class KMLFeatureComponent extends Component {
     }
 }
 
+// Basis WMS Feature rendering
+class WMSFeatureComponent extends Component {
+    render() {
+        if(this.props.feature === null) {
+            return null;
+        }
+        const feature = this.props.feature;
+        return (
+            <>
+                <header>
+                    <h1>Informatie</h1>
+                    <CloseModal onClick={() => this.props.closeModal()} />
+                </header>
+                <section className="gh-dim-feature-content" dangerouslySetInnerHTML={{__html: feature}} />
+            </>
+        )
+    }
+}
+
 // 
 class DIMFeatureComponent extends Component {
     render() {
@@ -94,6 +113,9 @@ export default class FeatureComponent extends Component {
             }
             else if(feature.name) {
                 content = <KMLFeatureComponent feature={feature} closeModal={() => this.closeModal()} />
+            }
+            else if(typeof('feature') === 'string') {
+                content = <WMSFeatureComponent feature={feature} closeModal={() => this.closeModal()} />
             }
         }
         return (

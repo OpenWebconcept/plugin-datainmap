@@ -121,6 +121,16 @@ export class MapComponent extends Component {
                 });
                 // console.log('features', features);
 
+                // Check for selected features in one of our layers (such as WMS)
+                const viewResolution = olView.getResolution();
+                this.olMap.getLayers().forEach((layer) => {
+                    const source = layer.getSource();
+                    if(source.getFeatureInfoUrl) {
+                        const url = source.getFeatureInfoUrl(e.coordinate, viewResolution, olView.getProjection(), {'INFO_FORMAT': 'text/html'});
+                        this.props.onSelectFeature(url);
+                    }
+                });
+
                 const getXY = (feature) => {
                     const x = feature.get('geometry').flatCoordinates[0];
                     const y = feature.get('geometry').flatCoordinates[1];

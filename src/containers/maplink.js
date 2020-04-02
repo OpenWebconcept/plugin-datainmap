@@ -13,7 +13,7 @@
 */
 import { connect } from 'react-redux';
 import MapComponent from '../components/map';
-import { selectFeature, setFeature } from '../actions';
+import { selectFeature, setFeature, selectFeatureGeoserver } from '../actions';
 
 const mapStateToProps  = (state) => {
     return {
@@ -28,8 +28,12 @@ const mapStateToProps  = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onSelectFeature: (feature) => {
+            // Feature is a feature URL from a Geoserver
+            if(typeof(feature) === 'string') {
+                dispatch(selectFeatureGeoserver(feature));
+            }
             // Request additional info from the selected feature (WordPress location)
-            if(feature.feature_id) {
+            else if(feature.feature_id) {
                 dispatch(selectFeature(feature.feature_id));
             }
             // Not a WordPress location feature, no need to fetch. Probably a KML feature
