@@ -1,5 +1,6 @@
 
 - Check voor weergave pointer cursor aangepast.
+- User Interface tweaks (backend).
 
 **1.4.0 (2020-03-26)**
 
