@@ -16,7 +16,7 @@
                 <label for="_gh_dim_location_redirect_url"><?php _e( 'Redirect URL', 'gh-datainmap' ) ?></label>
             </th>
             <td>
-                <input type="url" name="_gh_dim_location_redirect_url" id="gh_dim_location_redirect_url" value="<?php echo esc_attr( $gh_dim_location_redirect_url ) ?>" />
+                <input type="url" class="regular-text" name="_gh_dim_location_redirect_url" id="gh_dim_location_redirect_url" value="<?php echo esc_attr( $gh_dim_location_redirect_url ) ?>" />
                 <p class="description"><?php _e( 'The URL to redirect the user to after clicking on this location.', 'gh-datainmap' ) ?></p>
             </td>
         </tr>
