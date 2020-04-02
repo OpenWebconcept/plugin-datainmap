@@ -178,28 +178,26 @@ store.dispatch(setSearchTownship(settings.search_filter_township));
 
 let zIndex = 0;
 
-// Fall back to OpenStreetMaps if no layer is present
-if(GHDataInMap.map_layers.length == 0) {
+const addOpenStreetMapsLayer = (opacity = 1) => {
     store.dispatch(addMapLayer(
         new TileLayer({
             source: new OSM(),
-            opacity: 1,
+            opacity: opacity,
             zIndex: ++zIndex,
         })
     ));
+};
+
+// Fall back to OpenStreetMaps if no layer is present
+if(GHDataInMap.map_layers.length == 0) {
+    addOpenStreetMapsLayer();
 }
 else {
     GHDataInMap.map_layers.forEach( (layerData) => {
         // console.log(layerData);
         switch(layerData.type) {
             case 'OSM':
-                store.dispatch(addMapLayer(
-                    new TileLayer({
-                        source: new OSM(),
-                        opacity: layerData.opacity,
-                        zIndex: ++zIndex,
-                    })
-                ));
+                addOpenStreetMapsLayer(layerData.opacity);
                 break;
             case 'KML': {
                 const layerStyle = (feature) => {
