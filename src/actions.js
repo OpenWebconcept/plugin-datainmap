@@ -132,7 +132,7 @@ export function fetchLocation(id) {
             .then( json => {
                 if(json.response.numFound >= 1) {
                     let projection = getState().search.projection;
-                    // Coordinaten staan in een string. Deze omzetten.
+                    // Coordinates are returned as a string so we need to convert them.
                     // "POINT(5.93825642 52.93182382)"
                     let [x, y] = json.response.docs[0]['centroide_' + projection].toString().split(' ');
                     x = x.slice("POINT(".length);
