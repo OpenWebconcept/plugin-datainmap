@@ -98,7 +98,7 @@ add_action('admin_enqueue_scripts', function($hook) {
 
 
 /**
- * Parse CSV met proj4 definities
+ * Parse CSV with proj4 definitions
  *
  * @param string $csv
  * @return array

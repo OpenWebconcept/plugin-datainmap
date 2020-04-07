@@ -29,7 +29,7 @@ const mapStateToProps  = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onSelectFeature: (feature) => {
-            // Vraag aanvullende informatie op van feature
+            // Request additional info from the selected feature (WordPress location)
             if(feature.feature_id) {
                 switch(feature.content_type) {
                     default:
@@ -41,7 +41,7 @@ const mapDispatchToProps = (dispatch) => {
                         break;
                 }
             }
-            // KML feature, fetchen niet nodig
+            // Not a WordPress location feature, no need to fetch. Probably a KML feature
             else {
                 dispatch(setFeature(feature));
             }

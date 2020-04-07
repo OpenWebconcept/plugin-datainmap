@@ -103,7 +103,7 @@ export default class FeatureComponent extends Component {
                 unmountOnExit
                 classNames="transition">
                 <div className="gh-dim-feature-modal" onClick={(e) => this.closeModal()}>
-                    { /* Voorkom dat een click op het article-element het modal sluit */ }
+                    { /* Prevent a click event on the article element to close the modal */ }
                     <article className="gh-dim-feature" onClick={e => e.stopPropagation() }>
                         {content}
                     </article>
