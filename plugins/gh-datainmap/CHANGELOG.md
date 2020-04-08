@@ -1,4 +1,6 @@
 
+**1.5.0 (2020-04-08)**
+
 - Check voor weergave pointer cursor aangepast.
 - User Interface tweaks (backend).
 - Features van een TileWMS layer zijn nu ook aanklikbaar. De HTML afkomstig van de Geoserver wordt in de pop-up weergegeven.
