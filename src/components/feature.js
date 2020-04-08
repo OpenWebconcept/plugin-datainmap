@@ -14,6 +14,7 @@
 import React, {Component} from 'react';
 import {CSSTransition} from 'react-transition-group';
 import _ from 'lodash';
+import { FEATURE_TYPE_WMSFEATURE, FEATURE_TYPE_KMLFEATURE, FEATURE_TYPE_DIMFEATURE, FEATURE_TYPE_UNKNOWN } from '../constants';
 
 function CloseModal({ onClick }) {
     return (
@@ -107,15 +108,21 @@ export default class FeatureComponent extends Component {
     render() {
         let content;
         if(this.props.feature !== null) {
-            const feature = this.props.feature;
-            if(feature.id) {
-                content = <DIMFeatureComponent feature={feature} closeModal={() => this.closeModal()} />
-            }
-            else if(feature.name) {
-                content = <KMLFeatureComponent feature={feature} closeModal={() => this.closeModal()} />
-            }
-            else if(typeof('feature') === 'string') {
-                content = <WMSFeatureComponent feature={feature} closeModal={() => this.closeModal()} />
+            const feature = this.props.feature.data;
+            switch(this.props.feature.type) {
+                case FEATURE_TYPE_DIMFEATURE:
+                    content = <DIMFeatureComponent feature={feature} closeModal={() => this.closeModal()} />
+                    break;
+                case FEATURE_TYPE_WMSFEATURE:
+                    content = <WMSFeatureComponent feature={feature} closeModal={() => this.closeModal()} />
+                    break;
+                case FEATURE_TYPE_KMLFEATURE:
+                    content = <KMLFeatureComponent feature={feature} closeModal={() => this.closeModal()} />
+                    break;
+                case FEATURE_TYPE_UNKNOWN:
+                default:
+                    console.error('Unknown feature type', this.props.feature.type, feature);
+                    return null;
             }
         }
         return (

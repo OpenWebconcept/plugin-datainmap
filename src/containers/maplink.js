@@ -14,7 +14,7 @@
 import { connect } from 'react-redux';
 import MapComponent from '../components/map';
 import { selectFeature, setFeature, selectFeatureGeoserver } from '../actions';
-import { CONTENT_TYPE_REDIRECT, CONTENT_TYPE_POST, FEATURE_TYPE_BUILTIN, FEATURE_TYPE_FEATUREINFOURL } from '../constants';
+import { CONTENT_TYPE_REDIRECT, CONTENT_TYPE_POST, FEATURE_TYPE_BUILTIN, FEATURE_TYPE_FEATUREINFOURL, FEATURE_TYPE_KMLFEATURE, FEATURE_TYPE_UNKNOWN } from '../constants';
 
 const mapStateToProps  = (state) => {
     return {
@@ -45,7 +45,10 @@ const mapDispatchToProps = (dispatch) => {
                     }
                     // Not a WordPress location feature, no need to fetch. Probably a KML feature
                     else {
-                        dispatch(setFeature(obj.feature));
+                        dispatch(setFeature({
+                            type: obj.feature.name ? FEATURE_TYPE_KMLFEATURE : FEATURE_TYPE_UNKNOWN,
+                            data: obj.feature
+                        }));
                     }
                     break;
                 case FEATURE_TYPE_FEATUREINFOURL:
