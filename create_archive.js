@@ -67,7 +67,7 @@ const shortcode = md.render( fs.readFileSync(__dirname + '/plugins/gh-datainmap/
 const pluginInfo = {
     "name" : "Data In Map",
     "version" : version,
-    "download_url" : "https://bitbucket.org/gemeenteheerenveen/datainmap-plugin/downloads/gh-datainmap-latest.zip",
+    "download_url" : "https://bitbucket.org/gemeenteheerenveen/datainmap-plugin/downloads/gh-datainmap-" + version + ".zip",
     "slug": "gh-datainmap",
     "requires": "5.0",
     "tested": "5.3",

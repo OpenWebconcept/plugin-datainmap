@@ -20,6 +20,7 @@ import _ from 'lodash';
 import { zoomTo, zoomToMax } from '../util/map-animations';
 import { getUid } from 'ol/util';
 import Overlay from 'ol/Overlay';
+import { FEATURE_TYPE_BUILTIN, FEATURE_TYPE_FEATUREINFOURL } from '../constants';
 
 const isCluster = (feature) => {
     return feature.get('features') !== undefined;
@@ -50,13 +51,12 @@ export class MapComponent extends Component {
         });
         // Display pointer when over a feature
         this.olMap.on('pointermove', (e) => {
+            if(e.dragging) {
+                return;
+            }
             const pixel = this.olMap.getEventPixel(e.originalEvent);
-            if(this.olMap.hasFeatureAtPixel(pixel)) {
-                document.body.style.cursor = 'pointer';
-            }
-            else {
-                document.body.style.cursor = 'default';
-            }
+            const hit = this.olMap.hasFeatureAtPixel(pixel);
+            this.olMap.getTargetElement().style.cursor = hit ? 'pointer' : '';
         });
         // PickLocation
         this.olMap.on('click', (e) => {
@@ -80,7 +80,10 @@ export class MapComponent extends Component {
                 // Allow clicking on the tooltip to select the feature
                 tooltipElement.addEventListener('click', (e) => {
                     if(this.tooltipFeature !== null) {
-                        this.props.onSelectFeature(this.tooltipFeature.getProperties());
+                        this.props.onSelectFeature({
+                            feature: this.tooltipFeature.getProperties(),
+                            type: FEATURE_TYPE_BUILTIN
+                        });
                         tooltip.setPosition(undefined);
                     }
                 })
@@ -104,9 +107,12 @@ export class MapComponent extends Component {
                         }
                         if(feature != this.tooltipFeature) {
                             const coord = this.olMap.getCoordinateFromPixel(pixel);
-                            tooltipElement.innerHTML = '<span>' + feature.get('title') + '</span>';
-                            tooltip.setPosition(coord);
-                            this.tooltipFeature = feature;
+                            const title = feature.get('title');
+                            if(title) {
+                                tooltipElement.innerHTML = '<span>' + feature.get('title') + '</span>';
+                                tooltip.setPosition(coord);
+                                this.tooltipFeature = feature;
+                            }
                         }
                     }
                 }, 35, {
@@ -115,14 +121,24 @@ export class MapComponent extends Component {
                 }));
             }
             this.olMap.on('click', (e) => {
-                // Reset cursor pointer
-                document.body.style.cursor = 'default';
                 const pixel = this.olMap.getEventPixel(e.originalEvent);
                 let features = [];
                 this.olMap.forEachFeatureAtPixel(pixel, (feature) => {
                     features.push(feature);
                 });
                 // console.log('features', features);
+
+                // Check for selected features in one of our layers (such as WMS)
+                const viewResolution = olView.getResolution();
+                this.olMap.getLayers().forEach((layer) => {
+                    const source = layer.getSource();
+                    if(source.getFeatureInfoUrl) {
+                        this.props.onSelectFeature({
+                            cb: (params) => source.getFeatureInfoUrl(e.coordinate, viewResolution, olView.getProjection(), params),
+                            type: FEATURE_TYPE_FEATUREINFOURL
+                        });
+                    }
+                });
 
                 const getXY = (feature) => {
                     const x = feature.get('geometry').flatCoordinates[0];
@@ -154,7 +170,10 @@ export class MapComponent extends Component {
                     }
                     if(feature !== null) {
                         // console.log('- select feature', feature);
-                        this.props.onSelectFeature(feature.getProperties());
+                        this.props.onSelectFeature({
+                            feature: feature.getProperties(),
+                            type: FEATURE_TYPE_BUILTIN
+                        });
                     }
                 }
             });

@@ -4,15 +4,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Data In Map 1.2.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/gh-datainmap\n"
-"POT-Creation-Date: 2020-03-26T12:56:46+00:00\n"
-"PO-Revision-Date: 2020-03-26 13:59+0100\n"
+"POT-Creation-Date: 2020-04-02T11:38:11+00:00\n"
+"PO-Revision-Date: 2020-04-02 13:40+0200\n"
 "Last-Translator: Christiaan Kras <christiaan@kras-it.nl>\n"
 "Language-Team: \n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.3\n"
 "X-Domain: gh-datainmap\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
@@ -61,7 +61,7 @@ msgstr "Uitleg"
 msgid "Location info"
 msgstr "Locatie info"
 
-#: includes/metaboxes.php:63
+#: includes/metaboxes.php:67
 msgid "Layer info"
 msgstr "Laag info"
 
@@ -151,7 +151,7 @@ msgstr "Update Laag"
 msgid "Search Layers"
 msgstr "Zoek Lagen"
 
-#: includes/shortcode.php:196 views/metabox-location.php:39
+#: includes/shortcode.php:203 views/metabox-location.php:59
 #: views/settings.php:131
 msgid "Loading..."
 msgstr "Laden..."
@@ -353,14 +353,36 @@ msgid "This disables KML styling."
 msgstr "Dit schakelt KML stijlen uit."
 
 #: views/metabox-location.php:5
+msgid "Content Type"
+msgstr "Content Type"
+
+#: views/metabox-location.php:9
+msgid "Post"
+msgstr "Post"
+
+#: views/metabox-location.php:10
+msgid "Redirect"
+msgstr "Doorverwijzing"
+
+#: views/metabox-location.php:16
+msgid "Redirect URL"
+msgstr "Doorverwijs URL"
+
+#: views/metabox-location.php:20
+msgid "The URL to redirect the user to after clicking on this location."
+msgstr ""
+"De URL waar de gebruiker naar toe moet worden doorverwezen bij het "
+"aanklikken van deze locatie."
+
+#: views/metabox-location.php:25
 msgid "Alternative title"
 msgstr "Alternatieve titel"
 
-#: views/metabox-location.php:10
+#: views/metabox-location.php:30
 msgid "Yes, use title from post"
 msgstr "Ja, gebruik titel van bericht"
 
-#: views/metabox-location.php:17
+#: views/metabox-location.php:37
 msgid ""
 "If the alternative title is enabled the modal title will default to the post "
 "title. If you want to change it you can override it here."
@@ -369,39 +391,39 @@ msgstr ""
 "gebruikt in de pop-up. Wil je deze aanpassen zonder de berichttitel te "
 "wijzigen, dan kan dat hier."
 
-#: views/metabox-location.php:22
+#: views/metabox-location.php:42
 msgid "Type"
 msgstr "Type"
 
-#: views/metabox-location.php:26
+#: views/metabox-location.php:46
 msgid "Point"
 msgstr "Punt"
 
-#: views/metabox-location.php:27
+#: views/metabox-location.php:47
 msgid "LineString"
 msgstr "Lijn"
 
-#: views/metabox-location.php:28
+#: views/metabox-location.php:48
 msgid "Polygon"
 msgstr "Polygoon"
 
-#: views/metabox-location.php:29
+#: views/metabox-location.php:49
 msgid "Circle"
 msgstr "Cirkel"
 
-#: views/metabox-location.php:35
+#: views/metabox-location.php:55
 msgid "Coordinate"
 msgstr "Coordinaat"
 
-#: views/metabox-location.php:44
+#: views/metabox-location.php:64
 msgid "Line color"
 msgstr "Lijnkleur"
 
-#: views/metabox-location.php:52
+#: views/metabox-location.php:72
 msgid "Line width"
 msgstr "Lijndikte"
 
-#: views/metabox-location.php:60
+#: views/metabox-location.php:80
 msgid "Fill color"
 msgstr "Vulkleur"
 

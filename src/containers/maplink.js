@@ -13,7 +13,8 @@
 */
 import { connect } from 'react-redux';
 import MapComponent from '../components/map';
-import { selectFeature, setFeature } from '../actions';
+import { selectFeature, setFeature, selectFeatureGeoserver } from '../actions';
+import { CONTENT_TYPE_REDIRECT, CONTENT_TYPE_POST, FEATURE_TYPE_BUILTIN, FEATURE_TYPE_FEATUREINFOURL, FEATURE_TYPE_KMLFEATURE, FEATURE_TYPE_UNKNOWN } from '../constants';
 
 const mapStateToProps  = (state) => {
     return {
@@ -27,14 +28,32 @@ const mapStateToProps  = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onSelectFeature: (feature) => {
-            // Vraag aanvullende informatie op van feature
-            if(feature.feature_id) {
-                dispatch(selectFeature(feature.feature_id));
-            }
-            // KML feature, fetchen niet nodig
-            else {
-                dispatch(setFeature(feature));
+        onSelectFeature: (obj) => {
+            switch(obj.type) {
+                case FEATURE_TYPE_BUILTIN:
+                    // Request additional info from the selected feature (WordPress location)
+                    if(obj.feature.feature_id) {
+                        switch(obj.feature.content_type) {
+                            default:
+                            case CONTENT_TYPE_POST:
+                                dispatch(selectFeature(obj.feature.feature_id));
+                                break;
+                            case CONTENT_TYPE_REDIRECT:
+                                location.assign(obj.feature.redirect);
+                                break;
+                        }
+                    }
+                    // Not a WordPress location feature, no need to fetch. Probably a KML feature
+                    else {
+                        dispatch(setFeature({
+                            type: obj.feature.name ? FEATURE_TYPE_KMLFEATURE : FEATURE_TYPE_UNKNOWN,
+                            data: obj.feature
+                        }));
+                    }
+                    break;
+                case FEATURE_TYPE_FEATUREINFOURL:
+                    dispatch(selectFeatureGeoserver(obj.cb));
+                    break;
             }
         }
     }

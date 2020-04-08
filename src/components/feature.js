@@ -14,6 +14,7 @@
 import React, {Component} from 'react';
 import {CSSTransition} from 'react-transition-group';
 import _ from 'lodash';
+import { FEATURE_TYPE_WMSFEATURE, FEATURE_TYPE_KMLFEATURE, FEATURE_TYPE_DIMFEATURE, FEATURE_TYPE_UNKNOWN } from '../constants';
 
 function CloseModal({ onClick }) {
     return (
@@ -37,6 +38,25 @@ class KMLFeatureComponent extends Component {
                     <CloseModal onClick={() => this.props.closeModal()} />
                 </header>
                 <section className="gh-dim-feature-content" dangerouslySetInnerHTML={{__html: feature.description}} />
+            </>
+        )
+    }
+}
+
+// Basis WMS Feature rendering
+class WMSFeatureComponent extends Component {
+    render() {
+        if(this.props.feature === null) {
+            return null;
+        }
+        const feature = this.props.feature;
+        return (
+            <>
+                <header>
+                    <h1>Informatie</h1>
+                    <CloseModal onClick={() => this.props.closeModal()} />
+                </header>
+                <section className="gh-dim-feature-content" dangerouslySetInnerHTML={{__html: feature}} />
             </>
         )
     }
@@ -88,12 +108,21 @@ export default class FeatureComponent extends Component {
     render() {
         let content;
         if(this.props.feature !== null) {
-            const feature = this.props.feature;
-            if(feature.id) {
-                content = <DIMFeatureComponent feature={feature} closeModal={() => this.closeModal()} />
-            }
-            else if(feature.name) {
-                content = <KMLFeatureComponent feature={feature} closeModal={() => this.closeModal()} />
+            const feature = this.props.feature.data;
+            switch(this.props.feature.type) {
+                case FEATURE_TYPE_DIMFEATURE:
+                    content = <DIMFeatureComponent feature={feature} closeModal={() => this.closeModal()} />
+                    break;
+                case FEATURE_TYPE_WMSFEATURE:
+                    content = <WMSFeatureComponent feature={feature} closeModal={() => this.closeModal()} />
+                    break;
+                case FEATURE_TYPE_KMLFEATURE:
+                    content = <KMLFeatureComponent feature={feature} closeModal={() => this.closeModal()} />
+                    break;
+                case FEATURE_TYPE_UNKNOWN:
+                default:
+                    console.error('Unknown feature type', this.props.feature.type, feature);
+                    return null;
             }
         }
         return (
@@ -103,7 +132,7 @@ export default class FeatureComponent extends Component {
                 unmountOnExit
                 classNames="transition">
                 <div className="gh-dim-feature-modal" onClick={(e) => this.closeModal()}>
-                    { /* Voorkom dat een click op het article-element het modal sluit */ }
+                    { /* Prevent a click event on the article element to close the modal */ }
                     <article className="gh-dim-feature" onClick={e => e.stopPropagation() }>
                         {content}
                     </article>
