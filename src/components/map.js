@@ -107,9 +107,12 @@ export class MapComponent extends Component {
                         }
                         if(feature != this.tooltipFeature) {
                             const coord = this.olMap.getCoordinateFromPixel(pixel);
-                            tooltipElement.innerHTML = '<span>' + feature.get('title') + '</span>';
-                            tooltip.setPosition(coord);
-                            this.tooltipFeature = feature;
+                            const title = feature.get('title');
+                            if(title) {
+                                tooltipElement.innerHTML = '<span>' + feature.get('title') + '</span>';
+                                tooltip.setPosition(coord);
+                                this.tooltipFeature = feature;
+                            }
                         }
                     }
                 }, 35, {
