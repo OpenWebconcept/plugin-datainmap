@@ -33,7 +33,7 @@
         <tr>
             <th></th>
             <td>
-                <input type="text" name="_gh_dim_location_alternative_title_text" id="_gh_dim_location_alternative_title_text" value="<?php echo esc_attr( $gh_dim_location_alternative_title_text ) ?>" />
+                <input type="text" class="regular-text" name="_gh_dim_location_alternative_title_text" id="_gh_dim_location_alternative_title_text" value="<?php echo esc_attr( $gh_dim_location_alternative_title_text ) ?>" />
                 <p class="description"><?php _e( 'If the alternative title is enabled the modal title will default to the post title. If you want to change it you can override it here.', 'gh-datainmap' ) ?></p>
             </td>
         </tr>

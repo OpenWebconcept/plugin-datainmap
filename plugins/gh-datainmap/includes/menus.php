@@ -59,7 +59,7 @@ function gh_dim_menu() {
 
 function gh_dim_set_current_menu($parent_file) {
     global $submenu_file, $current_screen, $pagenow;
-        // Stel submenu in als actief bij custom post type gh-dim-locations
+        // Set submenu active when custom post type is gh-dim-locations
         if ( $current_screen->post_type == 'gh-dim-locations' ) {
             if ( $pagenow == 'edit-tags.php' ) {
                 $submenu_file = 'edit-tags.php?taxonomy=' . $current_screen->taxonomy . '&post_type=' . $current_screen->post_type;

@@ -14,7 +14,7 @@
 */
 
 // Source: https://pluginrepublic.com/adding-an-image-upload-field-to-categories/
-// Aangepast voor gh-dim-location-types
+// Modified for gh-dim-location-types
 // https://github.com/WordPress/WordPress/blob/master/wp-includes/js/media-editor.js
 /**
  * Plugin class

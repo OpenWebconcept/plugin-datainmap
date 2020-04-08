@@ -1,5 +1,6 @@
 
 - Check voor weergave pointer cursor aangepast.
+- User Interface tweaks (backend).
 - Een locatie heeft nu een content type: post of redirect.
 - Redirect content type toegevoegd om bij het klikken op een locatie door te sturen naar een andere URL.
 
