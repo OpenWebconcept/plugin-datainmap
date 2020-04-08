@@ -197,9 +197,10 @@ export function selectFeature(id) {
 }
 
 export const SELECT_FEATURE_GEOSERVER = 'SELECT_FEATURE_GEOSERVER';
-export function selectFeatureGeoserver(url) {
+export function selectFeatureGeoserver(cb) {
     return (dispatch) => {
         dispatch(fetchingFeature(true));
+        const url = cb({INFO_FORMAT: 'text/html'});
         return fetch(url).
             then( response => {
                 dispatch(fetchingFeature(false));
