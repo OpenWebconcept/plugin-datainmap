@@ -13,12 +13,33 @@
 */
 import jQuery from 'jquery';
 const $ = jQuery;
-$(document).ready(function() {
-    const layerType = $('#gh_dim_location_type');
-    if(!layerType) {
+
+const fieldsToggler = (selectFieldId, allFields = [], visibleFields = []) => {
+    const selectField = $(selectFieldId);
+    if(!selectField) {
         return;
     }
+    selectField.on('change', function(e) {
+        const _showFields = (selectors, result) => {
+            $.each(selectors, (i, selector) => {
+                if(result) {
+                    $(selector).closest('tr').show();
+                }
+                else {
+                    $(selector).closest('tr').hide();
+                }
+            });
+        };
+        const type = $(this).val();
+        const fields = visibleFields[type];
+        _showFields(allFields, false);
+        _showFields(fields, true);
+    });
+    selectField.trigger('change');
+};
 
+// Location type (point, polygon etc.)
+$(document).ready(function() {
     const allFields = [
         '#gh_dim_location_type',
         '#gh_dim_location',
@@ -54,22 +75,19 @@ $(document).ready(function() {
             '#gh_dim_location_style_fill_color'
         ]
     };
+    fieldsToggler('#gh_dim_location_type', allFields, visibleFields);
+});
 
-    layerType.on('change', function(e) {
-        const _showFields = (selectors, result) => {
-            $.each(selectors, (i, selector) => {
-                if(result) {
-                    $(selector).closest('tr').show();
-                }
-                else {
-                    $(selector).closest('tr').hide();
-                }
-            });
-        };
-        const type = $(this).val();
-        const fields = visibleFields[type];
-        _showFields(allFields, false);
-        _showFields(fields, true);
-    });
-    layerType.trigger('change');
+// Location Content Type (Post, Redirect etc.)
+$(document).ready(function() {
+    const allFields = [
+        '#gh_dim_location_redirect_url'
+    ];
+    const visibleFields = {
+        'post': [],
+        'redirect': [
+            '#gh_dim_location_redirect_url',
+        ]
+    };
+    fieldsToggler('#gh_dim_location_content_type', allFields, visibleFields);
 });

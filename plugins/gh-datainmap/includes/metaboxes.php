@@ -29,6 +29,8 @@ function gh_dim_add_metabox_location() {
 function gh_dim_metabox_location($post) {
     $gh_dim_location = get_post_meta( $post->ID, '_gh_dim_location', true );
     $gh_dim_location_type = get_post_meta( $post->ID, '_gh_dim_location_type', true );
+    $gh_dim_location_content_type = get_post_meta( $post->ID, '_gh_dim_location_content_type', true );
+    $gh_dim_location_redirect_url = get_post_meta( $post->ID, '_gh_dim_location_redirect_url', true );
     $gh_dim_location_style_line_color = get_post_meta( $post->ID, '_gh_dim_location_style_line_color', true );
     $gh_dim_location_style_line_width = get_post_meta( $post->ID, '_gh_dim_location_style_line_width', true );
     $gh_dim_location_style_fill_color = get_post_meta( $post->ID, '_gh_dim_location_style_fill_color', true );
@@ -42,6 +44,8 @@ function gh_dim_metabox_location_save_postdata($post_id) {
     $keys = array(
         '_gh_dim_location',
         '_gh_dim_location_type',
+        '_gh_dim_location_content_type',
+        '_gh_dim_location_redirect_url',
         '_gh_dim_location_style_line_color',
         '_gh_dim_location_style_line_width',
         '_gh_dim_location_style_fill_color',
