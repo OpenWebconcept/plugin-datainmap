@@ -1,7 +1,7 @@
 
 - Check voor weergave pointer cursor aangepast.
 - User Interface tweaks (backend).
-- Features van een TileWMS layer zijn nu ook aanklikbaar en de html afkomstig van de Geoserver wordt in de pop-up weergegeven.
+- Features van een TileWMS layer zijn nu ook aanklikbaar. De HTML afkomstig van de Geoserver wordt in de pop-up weergegeven.
 - Een locatie heeft nu een content type: post of redirect.
 - Redirect content type toegevoegd om bij het klikken op een locatie door te sturen naar een andere URL.
 - Check toegevoegd die voorkomt dat een 'undefined' tooltip wordt getoond.
