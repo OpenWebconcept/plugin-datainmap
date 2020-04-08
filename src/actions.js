@@ -17,6 +17,7 @@ import WMTSCapabilities from 'ol/format/WMTSCapabilities';
 import WMTS, {optionsFromCapabilities} from 'ol/source/WMTS';
 import {Tile as TileLayer} from 'ol/layer';
 import {fromLonLat} from 'ol/proj';
+import { FEATURE_TYPE_WMSFEATURE, FEATURE_TYPE_DIMFEATURE } from './constants';
 
 export const CONFIGURE_MAP_VIEW = 'CONFIGURE_MAP_VIEW';
 export function configureMapView(settings) {
@@ -187,8 +188,33 @@ export function selectFeature(id) {
             })
             .then( json => {
                 if(json.success) {
-                    return dispatch(setFeature(json.data));
+                    return dispatch(setFeature({
+                        type: FEATURE_TYPE_DIMFEATURE,
+                        data: json.data
+                    }));
                 }
+            })
+            .catch( ex => {
+                console.log('Failed to fetch location', ex);
+            });
+    }
+}
+
+export const SELECT_FEATURE_GEOSERVER = 'SELECT_FEATURE_GEOSERVER';
+export function selectFeatureGeoserver(cb) {
+    return (dispatch) => {
+        dispatch(fetchingFeature(true));
+        const url = cb({INFO_FORMAT: 'text/html'});
+        return fetch(url).
+            then( response => {
+                dispatch(fetchingFeature(false));
+                return response.text();
+            })
+            .then( html => {
+                return dispatch(setFeature({
+                    type: FEATURE_TYPE_WMSFEATURE,
+                    data: html.trim()
+                }));
             })
             .catch( ex => {
                 console.log('Failed to fetch location', ex);
