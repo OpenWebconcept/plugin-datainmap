@@ -14,6 +14,7 @@
 import { connect } from 'react-redux';
 import MapComponent from '../components/map';
 import { selectFeature, setFeature } from '../actions';
+import { CONTENT_TYPE_REDIRECT, CONTENT_TYPE_POST } from '../constants';
 
 const mapStateToProps  = (state) => {
     return {
@@ -30,7 +31,15 @@ const mapDispatchToProps = (dispatch) => {
         onSelectFeature: (feature) => {
             // Request additional info from the selected feature (WordPress location)
             if(feature.feature_id) {
-                dispatch(selectFeature(feature.feature_id));
+                switch(feature.content_type) {
+                    default:
+                    case CONTENT_TYPE_POST:
+                        dispatch(selectFeature(feature.feature_id));
+                        break;
+                    case CONTENT_TYPE_REDIRECT:
+                        location.assign(feature.redirect);
+                        break;
+                }
             }
             // Not a WordPress location feature, no need to fetch. Probably a KML feature
             else {

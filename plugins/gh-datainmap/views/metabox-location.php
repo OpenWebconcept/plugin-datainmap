@@ -2,6 +2,26 @@
     <tbody>
         <tr>
             <th scope="row" valign="top">
+                <label for="_gh_dim_location_content_type"><?php _e( 'Content Type', 'gh-datainmap' ) ?></label>
+            </th>
+            <td>
+                <select id="gh_dim_location_content_type" name="_gh_dim_location_content_type">
+                    <option value="post" <?php echo selected('post', $gh_dim_location_content_type) ?>><?php _e( 'Post', 'gh-datainmap' ); ?></option>
+                    <option value="redirect" <?php echo selected('redirect', $gh_dim_location_content_type) ?>><?php _e( 'Redirect', 'gh-datainmap' ); ?></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row" valign="top">
+                <label for="_gh_dim_location_redirect_url"><?php _e( 'Redirect URL', 'gh-datainmap' ) ?></label>
+            </th>
+            <td>
+                <input type="url" class="regular-text" name="_gh_dim_location_redirect_url" id="gh_dim_location_redirect_url" value="<?php echo esc_attr( $gh_dim_location_redirect_url ) ?>" />
+                <p class="description"><?php _e( 'The URL to redirect the user to after clicking on this location.', 'gh-datainmap' ) ?></p>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row" valign="top">
                 <label for="_gh_dim_location_alternative_title"><?php _e( 'Alternative title', 'gh-datainmap' ) ?></label>
             </th>
             <td>
