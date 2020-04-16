@@ -274,16 +274,14 @@ const addFeatures = async (source, layerData) => {
     // If features are dynamically loaded then layerData.features will be empty
     // and we need to fetch them first before continuing
     if(settings.dynamic_loading) {
-        await fetch(GHDataInMap.fetchLayerFeaturesUrl + layerData.term_id)
-            .then(response => {
-                return response.json();
-            })
-            .then(json => {
-                layerData.features = json.data;
-            })
-            .catch(ex => {
-                console.log('Error fetching features', ex)
-            });
+        try {
+            let response = await fetch(GHDataInMap.fetchLayerFeaturesUrl + layerData.term_id);
+            let features = await response.json();
+            layerData.features = features.data;
+        }
+        catch(ex) {
+            console.warn('Failed to fetch features for %s (%d): %s', layerData.name, layerData.term_id, ex);
+        }
     }
     layerData.features.forEach(featureData => {
         let geometry, style;
