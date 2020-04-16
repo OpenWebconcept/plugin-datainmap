@@ -14,6 +14,10 @@ De instellingen `single_cluster` en `single_cluster_distance` bepalen dan hoe de
 
 `[datainmap layers=1 types=1,2 single_cluster=1 single_cluster_distance=60]`
 
+Standaard worden de locaties die met `types` aangegeven zijn direct ingeladen in de pagina (op de content van de locatie na). Bij veel locaties of coördinaten (bijvoorbeeld polygonen) kan dit er voor zorgen dat de pagina erg groot wordt wat een negatief effect heeft op het laden van de pagina. Om dit te voorkomen is het mogelijk om locaties dynamisch te laden met `dynamic_loading=1`. Dit maakt de initiële page load sneller doordat niet alle coördinaten en styling in de HTML worden meegestuurd, maar via een AJAX verzoek worden opgevraagd.
+
+`[datainmap layers=1 types=1,2 dynamic_loading=1]`
+
 Ook is het mogelijk om de standaard instellingen te wijzigen, zoals `zoom`, `min_zoom`, `max_zoom`, `center_x`, `center_y` en `projection`.
 
 `[datainmap layers=1 types=1 zoom=12 min_zoom=8 max_zoom=14]`
