@@ -31,6 +31,7 @@ function gh_dim_shortcode($atts, $content = null) {
             'enable_search' => 1,
             'enable_feature_dialog' => 1,
             'enable_tooltip' => 0,
+            'dynamic_loading' => 0,
             'css_class' => null,
         ], $atts );
     $settings['zoom'] = (int)$args['zoom'];
@@ -44,6 +45,7 @@ function gh_dim_shortcode($atts, $content = null) {
     $settings['enable_search'] = $args['enable_search'] == 1 ? true : false;
     $settings['enable_feature_dialog'] = $args['enable_feature_dialog'] == 1 ? true : false;
     $settings['enable_tooltip'] = $args['enable_tooltip'] == 1 ? true : false;
+    $settings['dynamic_loading'] = $args['dynamic_loading'] == 1 ? true : false;
 
     // Compose map layers
     $layers = get_posts([
@@ -76,73 +78,7 @@ function gh_dim_shortcode($atts, $content = null) {
     }
 
     // Compose location layers
-    $location_layers = array_map(function($term) {
-        $locations = get_posts([
-            'post_type' => 'gh-dim-locations',
-            'posts_per_page' => -1,
-            'tax_query' => [
-                [
-                    'taxonomy' => 'gh-dim-location-types',
-                    'field' => 'term_id',
-                    'terms' => $term->term_id,
-                ]
-            ]
-        ]);
-        $features = array_map(function($post) use($term) {
-            $location_properties = wp_get_post_terms( $post->ID, 'gh-dim-location-properties', [
-                'fields' => 'ids'
-            ] );
-            $location = get_post_meta( $post->ID, '_gh_dim_location', true);
-            $location_type = get_post_meta( $post->ID, '_gh_dim_location_type', true);
-            $content_type = get_post_meta( $post->ID, '_gh_dim_location_content_type', true);
-            $title = get_the_title( $post );
-            $useAlternativeTitle = get_post_meta( $post->ID, '_gh_dim_location_alternative_title', true ) == 1;
-            $alternativeTitle = get_post_meta( $post->ID, '_gh_dim_location_alternative_title_text', true);
-            if($useAlternativeTitle && strlen($alternativeTitle) > 0) {
-                $title = $alternativeTitle;
-            }
-            $content_type_enum = gh_dim_content_type_enum( $content_type );
-            $feature = [
-                'location_type' => $location_type,
-                'location' => json_decode($location),
-                'location_properties' => $location_properties,
-                'feature_id' => $post->ID,
-                'title' => $title,
-                'term' => $term->slug,
-                'content_type' => $content_type_enum,
-            ];
-            if($content_type_enum == GH_DIM_CONTENT_TYPE_REDIRECT) {
-                $redirect_url = get_post_meta( $post->ID, '_gh_dim_location_redirect_url', true);
-                $feature['redirect'] = $redirect_url;
-            }
-            $line_color = get_post_meta( $post->ID, '_gh_dim_location_style_line_color', true);
-            $line_width = get_post_meta( $post->ID, '_gh_dim_location_style_line_width', true);
-            $fill_color = get_post_meta( $post->ID, '_gh_dim_location_style_fill_color', true);
-            if($line_color || $line_width || $fill_color) {
-                $feature['style'] = [
-                    'line_color' => $line_color,
-                    'line_width' => $line_width,
-                    'fill_color' => $fill_color,
-                ];
-            }
-            return $feature;
-        }, $locations);
-        $icon = null;
-        $icon_media_id = get_term_meta( $term->term_id, 'category-image-id', true );
-        if($icon_media_id) {
-            $icon = wp_get_attachment_image_src($icon_media_id, 'full')[0];
-        }
-        return [
-            'name' => $term->name,
-            'term_id' => $term->term_id,
-            'slug' => $term->slug,
-            'description' => $term->description,
-            'icon' => $icon,
-            'features' => $features,
-            'cluster' => get_term_meta( $term->term_id, 'cluster', true ),
-            'cluster_distance' => get_term_meta( $term->term_id, 'cluster_distance', true ),
-        ];
-    }, $terms);
+    $location_layers = array_map('gh_dim_get_location_layer', $terms);
 
     // Fetch all used location-properties tags
     $location_property_ids = array_map(function($location_layer) {
@@ -163,6 +99,14 @@ function gh_dim_shortcode($atts, $content = null) {
         'order' => 'ASC',
     ]);
 
+    // Delete features from shortcode output if location layers are being dynamically loaded
+    if($settings['dynamic_loading']) {
+        $location_layers = array_map(function($layer) {
+            $layer['features'] = [];
+            return $layer;
+        }, $location_layers);
+    }
+
     $proj4 = gh_dim_parse_proj4($settings['projections']);
     unset($settings['projections']);
 
@@ -178,6 +122,7 @@ function gh_dim_shortcode($atts, $content = null) {
     $GHDataInMap = [
         'ajaxurl' => admin_url( 'admin-ajax.php' ),
         'fetchFeatureUrl' => admin_url( 'admin-ajax.php' ) . '?action=gh_dim_get_location_info&security=' . $security . '&location_id=',
+        'fetchLayerFeaturesUrl' => admin_url( 'admin-ajax.php' ) . '?action=gh_dim_get_location_layer_features&security=' . $security . '&term_id=',
         'security' => $security,
         'settings' => $settings,
         'location_layers' => $location_layers,

@@ -1,4 +1,6 @@
 
+- Locaties kunnen nu dynamisch worden ingeladen door `dynamic_loading=1` aan de shortcode toe te voegen. Dit maakt de initiële page load sneller doordat niet alle coördinaten en styling in de HTML worden meegestuurd, maar via een AJAX verzoek worden opgevraagd.
+
 **1.5.0 (2020-04-08)**
 
 - Check voor weergave pointer cursor aangepast.
