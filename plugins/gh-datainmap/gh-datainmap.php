@@ -36,6 +36,7 @@ if ( ! defined('GH_DIM_CONTENT_TYPE_POST')) define('GH_DIM_CONTENT_TYPE_POST', 0
 if ( ! defined('GH_DIM_CONTENT_TYPE_REDIRECT')) define('GH_DIM_CONTENT_TYPE_REDIRECT', 1);
 
 include GH_DIM_DIR . '/vendor/autoload.php';
+include GH_DIM_DIR . '/includes/utils.php';
 include GH_DIM_DIR . '/includes/post-type.php';
 include GH_DIM_DIR . '/includes/taxonomy.php';
 include GH_DIM_DIR . '/includes/tax-meta-image.php';
@@ -95,41 +96,6 @@ add_action('admin_enqueue_scripts', function($hook) {
         wp_enqueue_style( 'gh-dim-style' );
     }
 });
-
-
-/**
- * Parse CSV with proj4 definitions
- *
- * @param string $csv
- * @return array
- */
-function gh_dim_parse_proj4($csv) {
-    $proj4 = [];
-    $rows = str_getcsv($csv, "\n");
-    foreach($rows as $row) {
-        $projection = str_getcsv($row, ',');
-        if(count($projection) == 2) {
-            $proj4[] = $projection;
-        }
-    }
-    return $proj4;
-}
-
-/**
- * Convert location content type to a number
- * 
- * @param string $content_type
- * @return int
- */
-function gh_dim_content_type_enum($content_type) {
-    switch($content_type) {
-        default:
-        case 'post':
-            return GH_DIM_CONTENT_TYPE_POST;
-        case 'redirect':
-            return GH_DIM_CONTENT_TYPE_REDIRECT;
-    }
-}
 
 add_action('plugins_loaded', function() {
     load_plugin_textdomain( 'gh-datainmap', false, basename( dirname( __FILE__ ) ) . '/languages/' );
