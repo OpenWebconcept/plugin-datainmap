@@ -31,6 +31,7 @@ function gh_dim_shortcode($atts, $content = null) {
             'enable_search' => 1,
             'enable_feature_dialog' => 1,
             'enable_tooltip' => 0,
+            'dynamic_loading' => 0,
             'css_class' => null,
         ], $atts );
     $settings['zoom'] = (int)$args['zoom'];
@@ -44,6 +45,7 @@ function gh_dim_shortcode($atts, $content = null) {
     $settings['enable_search'] = $args['enable_search'] == 1 ? true : false;
     $settings['enable_feature_dialog'] = $args['enable_feature_dialog'] == 1 ? true : false;
     $settings['enable_tooltip'] = $args['enable_tooltip'] == 1 ? true : false;
+    $settings['dynamic_loading'] = $args['dynamic_loading'] == 1 ? true : false;
 
     // Compose map layers
     $layers = get_posts([
@@ -97,6 +99,14 @@ function gh_dim_shortcode($atts, $content = null) {
         'order' => 'ASC',
     ]);
 
+    // Delete features from shortcode output if location layers are being dynamically loaded
+    if($settings['dynamic_loading']) {
+        $location_layers = array_map(function($layer) {
+            $layer['features'] = [];
+            return $layer;
+        }, $location_layers);
+    }
+
     $proj4 = gh_dim_parse_proj4($settings['projections']);
     unset($settings['projections']);
 
@@ -112,6 +122,7 @@ function gh_dim_shortcode($atts, $content = null) {
     $GHDataInMap = [
         'ajaxurl' => admin_url( 'admin-ajax.php' ),
         'fetchFeatureUrl' => admin_url( 'admin-ajax.php' ) . '?action=gh_dim_get_location_info&security=' . $security . '&location_id=',
+        'fetchLayerFeaturesUrl' => admin_url( 'admin-ajax.php' ) . '?action=gh_dim_get_location_layer_features&security=' . $security . '&term_id=',
         'security' => $security,
         'settings' => $settings,
         'location_layers' => $location_layers,

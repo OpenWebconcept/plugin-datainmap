@@ -33,6 +33,7 @@ import {KML, GeoJSON} from 'ol/format';
 import { featureReducer } from './reducers/feature';
 import proj4 from 'proj4';
 import {register} from 'ol/proj/proj4';
+import 'whatwg-fetch';
 import _ from 'lodash';
 
 const rootReducer = combineReducers({
@@ -269,7 +270,21 @@ else {
 }
 
 // Function for adding features from a location_layer to a VectorSource
-const addFeatures = (source, layerData) => {
+const addFeatures = async (source, layerData) => {
+    // If features are dynamically loaded then layerData.features will be empty
+    // and we need to fetch them first before continuing
+    if(settings.dynamic_loading) {
+        await fetch(GHDataInMap.fetchLayerFeaturesUrl + layerData.term_id)
+            .then(response => {
+                return response.json();
+            })
+            .then(json => {
+                layerData.features = json.data;
+            })
+            .catch(ex => {
+                console.log('Error fetching features', ex)
+            });
+    }
     layerData.features.forEach(featureData => {
         let geometry, style;
         switch(featureData.location_type) {
