@@ -16,9 +16,10 @@ import _ from 'lodash';
 
 class FilterItemComponent extends Component {
     render() {
+        const id = _.uniqueId('filter-');
         return (
             <>
-            <input type="checkbox" onChange={(e) => this.props.handleChange(this.props.term, e.currentTarget.checked)} /> {this.props.term.name}<br/>
+            <input id={id} type="checkbox" onChange={(e) => this.props.handleChange(this.props.term, e.currentTarget.checked)} /> <label htmlFor={id}>{this.props.term.name}</label><br/>
             </>
         )
     }
