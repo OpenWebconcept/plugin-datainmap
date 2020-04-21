@@ -421,9 +421,9 @@ const App = () => {
         <Provider store={store}>
             <MapComponentLink enableTooltip={settings.enable_tooltip}>
                 { settings.enable_search && <SearchComponentLink /> }
+                { settings.enable_filter && <FilterComponentLink /> }
             </MapComponentLink>
             { settings.enable_feature_dialog && <FeatureComponentLink /> }
-            <FilterComponentLink />
         </Provider>
     )
 };
