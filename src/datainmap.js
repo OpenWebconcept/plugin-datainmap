@@ -20,9 +20,11 @@ import thunk from 'redux-thunk';
 import MapComponentLink from './containers/maplink';
 import SearchComponentLink from './containers/searchlink';
 import FeatureComponentLink from './containers/featurelink';
-import {configureMapView, fetchWMTSLayer, addMapLayer, setSearchProjection, setSearchTownship} from './actions';
+import FilterComponentLink from './containers/filterlink';
+import {configureMapView, fetchWMTSLayer, addMapLayer, setSearchProjection, setSearchTownship, setAvailableFilters} from './actions';
 import {mapReducer} from './reducers/map';
 import {searchReducer} from './reducers/search';
+import {filterReducer} from './reducers/filter';
 import Feature from 'ol/Feature';
 import {Circle as CircleStyle, Fill, Stroke, Style, Text, Icon} from 'ol/style';
 import {Tile as TileLayer, Vector as VectorLayer, VectorImage as VectorImageLayer} from 'ol/layer';
@@ -39,7 +41,8 @@ import _ from 'lodash';
 const rootReducer = combineReducers({
     map: mapReducer,
     search: searchReducer,
-    feature: featureReducer
+    feature: featureReducer,
+    filter: filterReducer
 });
 
 const middleware = applyMiddleware(createDebounce(), thunk);
@@ -176,6 +179,8 @@ store.dispatch(configureMapView({
 
 store.dispatch(setSearchProjection(settings.search_coord_system));
 store.dispatch(setSearchTownship(settings.search_filter_township));
+
+store.dispatch(setAvailableFilters(GHDataInMap.location_properties));
 
 let zIndex = 0;
 
@@ -321,7 +326,18 @@ const addFeatures = async (source, layerData) => {
         });
 
         if(style !== null) {
-            feature.setStyle(style);
+            feature.setStyle( (feature) => {
+                const selectedFilters = store.getState().filter.selected;
+                if(selectedFilters.length == 0) {
+                    return style;
+                }
+                const location_properties = feature.get('location_properties');
+                // Show feature if ANY selected filter matches
+                if(_.intersection(location_properties, selectedFilters).length > 0) {
+                    return style;
+                }
+                return null;
+            });
         }
 
         source.addFeature(feature);
@@ -407,6 +423,7 @@ const App = () => {
                 { settings.enable_search && <SearchComponentLink /> }
             </MapComponentLink>
             { settings.enable_feature_dialog && <FeatureComponentLink /> }
+            <FilterComponentLink />
         </Provider>
     )
 };

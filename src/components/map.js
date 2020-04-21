@@ -202,6 +202,10 @@ export class MapComponent extends Component {
                 this.olMap.addInteraction(o);
             });
         }
+
+        if(this.props.rerenderLayers) {
+            this.olMap.getLayers().getArray().forEach((l) => l.changed());
+        }
     }
 
     render() {
@@ -225,7 +229,8 @@ MapComponent.defaultProps = {
     isFetching: 0,
     centerLocation: null,
     enableDrawing: false,
-    enableTooltip: false
+    enableTooltip: false,
+    rerenderLayers: 0
 };
 
 export default MapComponent;

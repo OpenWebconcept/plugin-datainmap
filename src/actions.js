@@ -231,3 +231,13 @@ export const REMOVE_MAP_INTERACTION = 'REMOVE_MAP_INTERACTION';
 export function removeMapInteraction(interaction) {
     return { type: REMOVE_MAP_INTERACTION, interaction: interaction };
 }
+
+export const SET_AVAILABLE_FILTERS = 'SET_AVAILABLE_FILTERS';
+export function setAvailableFilters(location_properties) {
+    return { type: SET_AVAILABLE_FILTERS, filters: location_properties};
+}
+
+export const TOGGLE_FILTER = 'TOGGLE_FILTER';
+export function toggleFilter(id, checked) {
+    return { type: TOGGLE_FILTER, filter: id, checked: checked };
+}
