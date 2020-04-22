@@ -65,6 +65,27 @@ GHDataInMap.proj4.forEach( (projection) => {
 });
 register(proj4);
 
+const featureContainsAnySelectedProperties = (feature) => {
+    const selectedFilters = store.getState().filter.selected;
+    if(selectedFilters.length == 0) {
+        return true;
+    }
+    const location_properties = feature.get('location_properties');
+    // Show feature if ANY selected filter matches
+    return _.intersection(location_properties, selectedFilters).length > 0;
+};
+
+const filteredStyle = (style, feature) => {
+    const selectedFilters = store.getState().filter.selected;
+    if(selectedFilters.length == 0) {
+        return style;
+    }
+    if(featureContainsAnySelectedProperties(feature)) {
+        return style;
+    }
+    return null;
+};
+
 const styleDefaultText = '📌';
 let clusterStyleCache = {};
 let styles = {
@@ -289,7 +310,7 @@ const addFeatures = async (source, layerData) => {
         }
     }
     layerData.features.forEach(featureData => {
-        let geometry, style;
+        let geometry;
         switch(featureData.location_type) {
             default:
             case 'point':
@@ -306,8 +327,9 @@ const addFeatures = async (source, layerData) => {
                 break;
         }
 
+        // Apply per-feature styling for locations other than point
         if(featureData.style && featureData.location_type != 'point') {
-            style = new Style({
+            const style = new Style({
                 fill: new Fill({
                     color: featureData.style.fill_color
                 }),
@@ -316,6 +338,7 @@ const addFeatures = async (source, layerData) => {
                     width: featureData.style.line_width
                 }),
             });
+            feature.setStyle( (feature) => filteredStyle(style, feature) );
         }
 
         delete featureData.location_type;
@@ -324,21 +347,6 @@ const addFeatures = async (source, layerData) => {
             ...featureData,
             geometry: geometry
         });
-
-        if(style !== null) {
-            feature.setStyle( (feature) => {
-                const selectedFilters = store.getState().filter.selected;
-                if(selectedFilters.length == 0) {
-                    return style;
-                }
-                const location_properties = feature.get('location_properties');
-                // Show feature if ANY selected filter matches
-                if(_.intersection(location_properties, selectedFilters).length > 0) {
-                    return style;
-                }
-                return null;
-            });
-        }
 
         source.addFeature(feature);
     });
