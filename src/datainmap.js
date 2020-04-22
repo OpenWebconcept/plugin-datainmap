@@ -412,7 +412,7 @@ else {
                 else if(geometry instanceof Circle) {
                     return styles.circle;
                 }
-                return styles[layerData.slug] || styles.default;
+                return filteredStyle(styles[layerData.slug] || styles.default, feature);
             };
             layer = new VectorLayer({
                 zIndex: ++zIndex,
