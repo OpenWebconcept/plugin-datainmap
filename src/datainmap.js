@@ -320,7 +320,7 @@ const addFeatures = async (source, layerData) => {
         }
     }
     layerData.features.forEach(featureData => {
-        let geometry;
+        let geometry, style;
         switch(featureData.location_type) {
             default:
             case 'point':
@@ -339,7 +339,7 @@ const addFeatures = async (source, layerData) => {
 
         // Apply per-feature styling for locations other than point
         if(featureData.style && featureData.location_type != 'point') {
-            const style = new Style({
+            style = new Style({
                 fill: new Fill({
                     color: featureData.style.fill_color
                 }),
@@ -348,7 +348,6 @@ const addFeatures = async (source, layerData) => {
                     width: featureData.style.line_width
                 }),
             });
-            feature.setStyle( (feature) => filteredStyle(style, feature) );
         }
 
         delete featureData.location_type;
@@ -357,6 +356,10 @@ const addFeatures = async (source, layerData) => {
             ...featureData,
             geometry: geometry
         });
+
+        if(style !== undefined) {
+            feature.setStyle( (feature) => filteredStyle(style, feature) );
+        }
 
         source.addFeature(feature);
     });
