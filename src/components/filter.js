@@ -38,9 +38,14 @@ export class FilterComponent extends Component {
     render() {
         return (
             <div className="gh-dim-filter">
-                {this.props.filters.map((term) => {
-                    return <FilterItemComponent key={term.term_id} term={term} handleChange={(term, checked) => this.handleFilterChange(term, checked)} />
-                })}
+                <aside>
+                    <header>
+                        <h1>Filters</h1>
+                    </header>
+                    {this.props.filters.map((term) => {
+                        return <FilterItemComponent key={term.term_id} term={term} handleChange={(term, checked) => this.handleFilterChange(term, checked)} />
+                    })}
+                </aside>
             </div>
         )
     }
