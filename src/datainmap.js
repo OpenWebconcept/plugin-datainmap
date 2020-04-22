@@ -90,26 +90,36 @@ const styleDefaultText = '📌';
 let clusterStyleCache = {};
 let styles = {
     cluster: (feature) => {
-        const size = feature.get('features').length;
-        let style = clusterStyleCache[size];
-        
+        const features = feature.get('features');
+        const featuresFiltered = features.filter(featureContainsAnySelectedProperties);
+        const size = features.length;
+        const sizeFiltered = featuresFiltered.length;
+        if(sizeFiltered == 0) {
+            return null;
+        }
+
         const term = feature.get('features')[0].get('term');
         if(size == 1 && term && styles[term]) {
             return styles[term];
         }
 
+        let style = clusterStyleCache[sizeFiltered];
         if(!style) {
             let fill_color = settings.style_circle_fill_color_cluster;
             let stroke_color = settings.style_circle_stroke_color_cluster;
             let text_color = settings.style_text_color_cluster;
-            let text = size.toString();
-            switch(size) {
-                case 1:
-                    fill_color = settings.style_circle_fill_color;
-                    stroke_color = settings.style_circle_stroke_color;
-                    text_color = settings.style_text_color;
-                    text = styleDefaultText;
-                    break;
+            let text = sizeFiltered.toString();
+            // Show a count of 1 if the filtered cluster isn't zoomed in enough
+            // or the default text and styling if it is
+            if(size == sizeFiltered) {
+                switch(size) {
+                    case 1:
+                        fill_color = settings.style_circle_fill_color;
+                        stroke_color = settings.style_circle_stroke_color;
+                        text_color = settings.style_text_color;
+                        text = styleDefaultText;
+                        break;
+                }
             }
             style = new Style({
                 image: new CircleStyle({
@@ -131,7 +141,7 @@ let styles = {
                     })
                 })
             });
-            clusterStyleCache[size] = style;
+            clusterStyleCache[sizeFiltered] = style;
         }
         return style;
     },
