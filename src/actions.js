@@ -241,3 +241,8 @@ export const TOGGLE_FILTER = 'TOGGLE_FILTER';
 export function toggleFilter(id, checked) {
     return { type: TOGGLE_FILTER, filter: id, checked: checked };
 }
+
+export const STORE_FEATURES = 'STORE_FEATURES';
+export function storeFeatures(features, sourceId) {
+    return { type: STORE_FEATURES, features: features, sourceId: sourceId};
+}

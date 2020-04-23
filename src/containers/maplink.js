@@ -23,7 +23,9 @@ const mapStateToProps  = (state) => {
         interactions: state.map.interactions,
         isFetching: state.map.isFetching,
         centerLocation: state.map.centerLocation,
-        rerenderLayers: state.map.rerenderLayers
+        rerenderLayers: state.map.rerenderLayers,
+        storedFeatures: state.map.storedFeatures,
+        selectedFilters: state.filter.selected
     }
 };
 

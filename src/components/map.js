@@ -31,6 +31,18 @@ const isSingleFeature = (feature) => {
     }
     return feature.get('features').length == 1;
 };
+const featureContainsSelectedProperties = (feature, selectedFilters = [], strategy = 'ANY') => {
+    if(selectedFilters.length == 0) {
+        return true;
+    }
+    const location_properties = feature.get('location_properties');
+    switch(strategy) {
+        default:
+        // Show feature if ANY selected filter matches
+        case 'ANY':
+            return _.intersection(location_properties, selectedFilters).length > 0;
+    }
+};
 
 export class MapComponent extends Component {
 
@@ -204,7 +216,24 @@ export class MapComponent extends Component {
         }
 
         if(this.props.rerenderLayers) {
-            this.olMap.getLayers().getArray().forEach((l) => l.changed());
+            // If a request to rerender the layers has been done (usually because of a change in filters)
+            // go through all layers and refill their sources
+            this.olMap.getLayers().getArray().forEach((l) => {
+                let source = l.getSource();
+                // ClusterSource?
+                if(source.getSource) {
+                    source = source.getSource();
+                }
+                const sourceId = getUid(source);
+                if(this.props.storedFeatures[sourceId]) {
+                    source.clear();
+                    source.addFeatures(
+                        this.props.storedFeatures[sourceId].filter(
+                            (feature) => featureContainsSelectedProperties(feature, this.props.selectedFilters, 'ANY')
+                        )
+                    );
+                }
+            });
         }
     }
 
@@ -230,7 +259,9 @@ MapComponent.defaultProps = {
     centerLocation: null,
     enableDrawing: false,
     enableTooltip: false,
-    rerenderLayers: 0
+    rerenderLayers: 0,
+    storedFeatures: [],
+    selectedFilters: []
 };
 
 export default MapComponent;

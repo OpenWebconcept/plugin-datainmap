@@ -21,7 +21,7 @@ import MapComponentLink from './containers/maplink';
 import SearchComponentLink from './containers/searchlink';
 import FeatureComponentLink from './containers/featurelink';
 import FilterComponentLink from './containers/filterlink';
-import {configureMapView, fetchWMTSLayer, addMapLayer, setSearchProjection, setSearchTownship, setAvailableFilters} from './actions';
+import {configureMapView, fetchWMTSLayer, addMapLayer, setSearchProjection, setSearchTownship, setAvailableFilters, storeFeatures} from './actions';
 import {mapReducer} from './reducers/map';
 import {searchReducer} from './reducers/search';
 import {filterReducer} from './reducers/filter';
@@ -35,6 +35,7 @@ import {KML, GeoJSON} from 'ol/format';
 import { featureReducer } from './reducers/feature';
 import proj4 from 'proj4';
 import {register} from 'ol/proj/proj4';
+import { getUid } from 'ol/util';
 import 'whatwg-fetch';
 import _ from 'lodash';
 
@@ -65,36 +66,13 @@ GHDataInMap.proj4.forEach( (projection) => {
 });
 register(proj4);
 
-const featureContainsAnySelectedProperties = (feature) => {
-    const selectedFilters = store.getState().filter.selected;
-    if(selectedFilters.length == 0) {
-        return true;
-    }
-    const location_properties = feature.get('location_properties');
-    // Show feature if ANY selected filter matches
-    return _.intersection(location_properties, selectedFilters).length > 0;
-};
-
-const filteredStyle = (style, feature) => {
-    const selectedFilters = store.getState().filter.selected;
-    if(selectedFilters.length == 0) {
-        return style;
-    }
-    if(featureContainsAnySelectedProperties(feature)) {
-        return style;
-    }
-    return null;
-};
-
 const styleDefaultText = '📌';
 let clusterStyleCache = {};
 let styles = {
     cluster: (feature) => {
         const features = feature.get('features');
-        const featuresFiltered = features.filter(featureContainsAnySelectedProperties);
         const size = features.length;
-        const sizeFiltered = featuresFiltered.length;
-        if(sizeFiltered == 0) {
+        if(size == 0) {
             return null;
         }
 
@@ -103,23 +81,19 @@ let styles = {
             return styles[term];
         }
 
-        let style = clusterStyleCache[sizeFiltered];
+        let style = clusterStyleCache[size];
         if(!style) {
             let fill_color = settings.style_circle_fill_color_cluster;
             let stroke_color = settings.style_circle_stroke_color_cluster;
             let text_color = settings.style_text_color_cluster;
-            let text = sizeFiltered.toString();
-            // Show a count of 1 if the filtered cluster isn't zoomed in enough
-            // or the default text and styling if it is
-            if(size == sizeFiltered) {
-                switch(size) {
-                    case 1:
-                        fill_color = settings.style_circle_fill_color;
-                        stroke_color = settings.style_circle_stroke_color;
-                        text_color = settings.style_text_color;
-                        text = styleDefaultText;
-                        break;
-                }
+            let text = size.toString();
+            switch(size) {
+                case 1:
+                    fill_color = settings.style_circle_fill_color;
+                    stroke_color = settings.style_circle_stroke_color;
+                    text_color = settings.style_text_color;
+                    text = styleDefaultText;
+                    break;
             }
             style = new Style({
                 image: new CircleStyle({
@@ -141,7 +115,7 @@ let styles = {
                     })
                 })
             });
-            clusterStyleCache[sizeFiltered] = style;
+            clusterStyleCache[size] = style;
         }
         return style;
     },
@@ -307,6 +281,7 @@ else {
 
 // Function for adding features from a location_layer to a VectorSource
 const addFeatures = async (source, layerData) => {
+    let features = [];
     // If features are dynamically loaded then layerData.features will be empty
     // and we need to fetch them first before continuing
     if(settings.dynamic_loading) {
@@ -358,11 +333,13 @@ const addFeatures = async (source, layerData) => {
         });
 
         if(style !== undefined) {
-            feature.setStyle( (feature) => filteredStyle(style, feature) );
+            feature.setStyle(style);
         }
 
-        source.addFeature(feature);
+        features.push(feature);
     });
+    source.addFeatures( features );
+    store.dispatch( storeFeatures(source.getFeatures(), getUid(source)) );
 };
 
 // Combine everything in a single cluster
@@ -425,7 +402,7 @@ else {
                 else if(geometry instanceof Circle) {
                     return styles.circle;
                 }
-                return filteredStyle(styles[layerData.slug] || styles.default, feature);
+                return styles[layerData.slug] || styles.default;
             };
             layer = new VectorLayer({
                 zIndex: ++zIndex,
