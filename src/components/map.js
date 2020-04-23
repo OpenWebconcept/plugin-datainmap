@@ -44,6 +44,9 @@ const featureContainsSelectedProperties = (feature, selectedFilters = [], strate
         // Show feature if ALL selected filters match
         case 'ALL':
             return _.intersection(location_properties, selectedFilters).length == selectedFilters.length;
+        // Hide feature if ANY selected filter matches
+        case 'NONE':
+            return !_.intersection(location_properties, selectedFilters).length > 0;
     }
 };
 
