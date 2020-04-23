@@ -339,7 +339,10 @@ const addFeatures = async (source, layerData) => {
         features.push(feature);
     });
     source.addFeatures( features );
-    store.dispatch( storeFeatures(source.getFeatures(), getUid(source)) );
+
+    if(settings.enable_filter) {
+        store.dispatch( storeFeatures(source.getFeatures(), getUid(source)) );
+    }
 };
 
 // Combine everything in a single cluster
