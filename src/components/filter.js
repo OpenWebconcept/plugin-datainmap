@@ -18,9 +18,9 @@ class FilterItemComponent extends Component {
     render() {
         const id = _.uniqueId('filter-');
         return (
-            <>
-            <input id={id} type="checkbox" onChange={(e) => this.props.handleChange(this.props.term, e.currentTarget.checked)} /> <label htmlFor={id}>{this.props.term.name}</label><br/>
-            </>
+            <div className="gh-dim-filters-filter">
+                <input id={id} type="checkbox" onChange={(e) => this.props.handleChange(this.props.term, e.currentTarget.checked)} /> <label htmlFor={id}>{this.props.term.name}</label>
+            </div>
         )
     }
 }
@@ -42,9 +42,13 @@ export class FilterComponent extends Component {
                     <header>
                         <h1>Filters</h1>
                     </header>
-                    {this.props.filters.map((term) => {
-                        return <FilterItemComponent key={term.term_id} term={term} handleChange={(term, checked) => this.handleFilterChange(term, checked)} />
-                    })}
+                    <section className="gh-dim-filters">
+                        <form>
+                            {this.props.filters.map((term) => {
+                                return <FilterItemComponent key={term.term_id} term={term} handleChange={(term, checked) => this.handleFilterChange(term, checked)} />
+                            })}
+                        </form>
+                    </section>
                 </aside>
             </div>
         )
