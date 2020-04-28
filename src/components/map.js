@@ -40,7 +40,13 @@ const featureContainsSelectedProperties = (feature, selectedFilters = [], strate
         default:
         // Show feature if ANY selected filter matches
         case 'ANY':
-            return _.intersection(location_properties, selectedFilters).length > 0;
+            for (let index = 0; index < selectedFilters.length; index++) {
+                const selectedFilter = selectedFilters[index];
+                if(_.indexOf(location_properties, selectedFilter) !== -1) {
+                    return true;
+                }
+            }
+            return false;
         // Show feature if ALL selected filters match
         case 'ALL':
             return _.intersection(location_properties, selectedFilters).length == selectedFilters.length;
