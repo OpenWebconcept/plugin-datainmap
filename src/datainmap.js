@@ -20,9 +20,11 @@ import thunk from 'redux-thunk';
 import MapComponentLink from './containers/maplink';
 import SearchComponentLink from './containers/searchlink';
 import FeatureComponentLink from './containers/featurelink';
-import {configureMapView, fetchWMTSLayer, addMapLayer, setSearchProjection, setSearchTownship} from './actions';
+import FilterComponentLink from './containers/filterlink';
+import {configureMapView, fetchWMTSLayer, addMapLayer, setSearchProjection, setSearchTownship, setAvailableFilters, storeFeatures, setFilterDescription} from './actions';
 import {mapReducer} from './reducers/map';
 import {searchReducer} from './reducers/search';
+import {filterReducer} from './reducers/filter';
 import Feature from 'ol/Feature';
 import {Circle as CircleStyle, Fill, Stroke, Style, Text, Icon} from 'ol/style';
 import {Tile as TileLayer, Vector as VectorLayer, VectorImage as VectorImageLayer} from 'ol/layer';
@@ -33,12 +35,15 @@ import {KML, GeoJSON} from 'ol/format';
 import { featureReducer } from './reducers/feature';
 import proj4 from 'proj4';
 import {register} from 'ol/proj/proj4';
+import { getUid } from 'ol/util';
+import 'whatwg-fetch';
 import _ from 'lodash';
 
 const rootReducer = combineReducers({
     map: mapReducer,
     search: searchReducer,
-    feature: featureReducer
+    feature: featureReducer,
+    filter: filterReducer
 });
 
 const middleware = applyMiddleware(createDebounce(), thunk);
@@ -65,14 +70,18 @@ const styleDefaultText = '📌';
 let clusterStyleCache = {};
 let styles = {
     cluster: (feature) => {
-        const size = feature.get('features').length;
-        let style = clusterStyleCache[size];
-        
+        const features = feature.get('features');
+        const size = features.length;
+        if(size == 0) {
+            return null;
+        }
+
         const term = feature.get('features')[0].get('term');
         if(size == 1 && term && styles[term]) {
             return styles[term];
         }
 
+        let style = clusterStyleCache[size];
         if(!style) {
             let fill_color = settings.style_circle_fill_color_cluster;
             let stroke_color = settings.style_circle_stroke_color_cluster;
@@ -176,6 +185,9 @@ store.dispatch(configureMapView({
 store.dispatch(setSearchProjection(settings.search_coord_system));
 store.dispatch(setSearchTownship(settings.search_filter_township));
 
+store.dispatch(setFilterDescription(settings.filter_description));
+store.dispatch(setAvailableFilters(GHDataInMap.location_properties));
+
 let zIndex = 0;
 
 const addOpenStreetMapsLayer = (opacity = 1) => {
@@ -269,7 +281,20 @@ else {
 }
 
 // Function for adding features from a location_layer to a VectorSource
-const addFeatures = (source, layerData) => {
+const addFeatures = async (source, layerData) => {
+    let features = [];
+    // If features are dynamically loaded then layerData.features will be empty
+    // and we need to fetch them first before continuing
+    if(settings.dynamic_loading) {
+        try {
+            let response = await fetch(GHDataInMap.fetchLayerFeaturesUrl + layerData.term_id);
+            let features = await response.json();
+            layerData.features = features.data;
+        }
+        catch(ex) {
+            console.warn('Failed to fetch features for %s (%d): %s', layerData.name, layerData.term_id, ex);
+        }
+    }
     layerData.features.forEach(featureData => {
         let geometry, style;
         switch(featureData.location_type) {
@@ -288,6 +313,7 @@ const addFeatures = (source, layerData) => {
                 break;
         }
 
+        // Apply per-feature styling for locations other than point
         if(featureData.style && featureData.location_type != 'point') {
             style = new Style({
                 fill: new Fill({
@@ -307,12 +333,17 @@ const addFeatures = (source, layerData) => {
             geometry: geometry
         });
 
-        if(style !== null) {
+        if(style !== undefined) {
             feature.setStyle(style);
         }
 
-        source.addFeature(feature);
+        features.push(feature);
     });
+    source.addFeatures( features );
+
+    if(settings.enable_filter) {
+        store.dispatch( storeFeatures(source.getFeatures(), getUid(source)) );
+    }
 };
 
 // Combine everything in a single cluster
@@ -392,6 +423,7 @@ const App = () => {
         <Provider store={store}>
             <MapComponentLink enableTooltip={settings.enable_tooltip}>
                 { settings.enable_search && <SearchComponentLink /> }
+                { settings.enable_filter && <FilterComponentLink /> }
             </MapComponentLink>
             { settings.enable_feature_dialog && <FeatureComponentLink /> }
         </Provider>

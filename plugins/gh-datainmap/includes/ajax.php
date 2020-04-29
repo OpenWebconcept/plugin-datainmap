@@ -53,3 +53,20 @@ function gh_dim_ajax_get_location_info() {
         wp_send_json_error( $json, 400);
     }
 }
+
+add_action( 'wp_ajax_gh_dim_get_location_layer_features', 'gh_dim_get_location_layer_features' );
+add_action( 'wp_ajax_nopriv_gh_dim_get_location_layer_features', 'gh_dim_get_location_layer_features' );
+
+function gh_dim_get_location_layer_features() {
+    check_ajax_referer( 'gh-dim-datainmap', 'security' );
+    $json = [];
+    if(isset($_REQUEST['term_id'])) {
+        $term = get_term( $_REQUEST['term_id'], 'gh-dim-location-types' );
+        if(is_wp_error($term) || $term === null) {
+            return wp_send_json_error( $json, 404 );
+        }
+        $json = gh_dim_get_location_layer( $term )['features'];
+        wp_send_json_success( $json );
+    }
+    wp_send_json_error( $json, 400);
+}

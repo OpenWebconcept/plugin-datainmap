@@ -2,16 +2,16 @@
 # This file is distributed under the same license as the Data In Map plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Data In Map 1.4.0\n"
+"Project-Id-Version: Data In Map 1.5.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/gh-datainmap\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-04-02T11:38:11+00:00\n"
+"POT-Creation-Date: 2020-04-29T08:19:03+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.4.0\n"
+"X-Generator: WP-CLI 2.3.0\n"
 "X-Domain: gh-datainmap\n"
 
 #. Plugin Name of the plugin
@@ -165,7 +165,7 @@ msgstr ""
 msgid "Search Layers"
 msgstr ""
 
-#: includes/shortcode.php:203
+#: includes/shortcode.php:166
 #: views/metabox-location.php:59
 #: views/settings.php:131
 msgid "Loading..."
@@ -544,13 +544,21 @@ msgid "Lookup township codes"
 msgstr ""
 
 #: views/settings.php:194
+msgid "Filter description"
+msgstr ""
+
+#: views/settings.php:198
+msgid "Optinally provide a default description to be shown when a user opens the filter menu."
+msgstr ""
+
+#: views/settings.php:203
 msgid "Additional projections (proj4)"
 msgstr ""
 
-#: views/settings.php:198
+#: views/settings.php:207
 msgid "Add extra projections for proj4. Format using CSV (column 1 is projection identifier, column 2 is the projection for proj4)."
 msgstr ""
 
-#: views/settings.php:198
+#: views/settings.php:207
 msgid "Lookup projections (proj4)"
 msgstr ""

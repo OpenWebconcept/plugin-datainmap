@@ -60,6 +60,35 @@ $textcolor-button-hover: $textcolor-button-neutral;
             }
         }
     }
+    .gh-dim-filter {
+        position: absolute;
+        min-width:300px;
+        top:0;
+        right:0;
+        background-color:#FFF;
+        padding:0 20px;
+        @include box-shadow(5px 5px 10px 1px #888888);
+        opacity:0.4;
+
+        &:hover {
+            opacity: 1;
+            .gh-dim-filters {
+                max-height:240px;
+                transition: max-height 0.25s ease-in;
+            }
+        }
+
+        .gh-dim-filters {
+            overflow-x:hidden;
+            overflow-y:auto;
+            transition: max-height 0.15s ease-out;
+            max-height:0;
+            margin-right:-20px;
+            .gh-dim-filters-filter {
+                clear:both;
+            }
+        }
+    }
     .gh-dim-tooltip {
         background-color:rgba(255,255,255,0.9);
         border:1px solid #EBEBEB;

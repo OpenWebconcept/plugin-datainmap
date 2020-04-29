@@ -31,6 +31,30 @@ const isSingleFeature = (feature) => {
     }
     return feature.get('features').length == 1;
 };
+const featureContainsSelectedProperties = (feature, selectedFilters = [], strategy = 'ANY') => {
+    if(selectedFilters.length == 0) {
+        return true;
+    }
+    const location_properties = feature.get('location_properties');
+    switch(strategy) {
+        default:
+        // Show feature if ANY selected filter matches
+        case 'ANY':
+            for (let index = 0; index < selectedFilters.length; index++) {
+                const selectedFilter = selectedFilters[index];
+                if(_.indexOf(location_properties, selectedFilter) !== -1) {
+                    return true;
+                }
+            }
+            return false;
+        // Show feature if ALL selected filters match
+        case 'ALL':
+            return _.intersection(location_properties, selectedFilters).length == selectedFilters.length;
+        // Hide feature if ANY selected filter matches
+        case 'NONE':
+            return !_.intersection(location_properties, selectedFilters).length > 0;
+    }
+};
 
 export class MapComponent extends Component {
 
@@ -202,6 +226,27 @@ export class MapComponent extends Component {
                 this.olMap.addInteraction(o);
             });
         }
+
+        if(this.props.rerenderLayers) {
+            // If a request to rerender the layers has been done (usually because of a change in filters)
+            // go through all layers and refill their sources
+            this.olMap.getLayers().getArray().forEach((l) => {
+                let source = l.getSource();
+                // ClusterSource?
+                if(source.getSource) {
+                    source = source.getSource();
+                }
+                const sourceId = getUid(source);
+                if(this.props.storedFeatures[sourceId]) {
+                    source.clear();
+                    source.addFeatures(
+                        this.props.storedFeatures[sourceId].filter(
+                            (feature) => featureContainsSelectedProperties(feature, this.props.selectedFilters, 'ANY')
+                        )
+                    );
+                }
+            });
+        }
     }
 
     render() {
@@ -225,7 +270,10 @@ MapComponent.defaultProps = {
     isFetching: 0,
     centerLocation: null,
     enableDrawing: false,
-    enableTooltip: false
+    enableTooltip: false,
+    rerenderLayers: 0,
+    storedFeatures: [],
+    selectedFilters: []
 };
 
 export default MapComponent;
