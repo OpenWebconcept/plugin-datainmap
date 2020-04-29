@@ -11,7 +11,7 @@
 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 * See the Licence for the specific language governing permissions and limitations under the Licence.
 */
-import { SET_AVAILABLE_FILTERS, TOGGLE_FILTER } from "../actions";
+import { SET_AVAILABLE_FILTERS, TOGGLE_FILTER, SET_FILTER_DESCRIPTION } from "../actions";
 import _ from 'lodash';
 
 const initialState = {
@@ -34,6 +34,8 @@ export function filterReducer(state = initialState, action) {
             }
             // console.log('active filters', selected);
             return { ...state, selected: selected };
+        case SET_FILTER_DESCRIPTION:
+            return { ...state, description: action.description };
     }
     return state;
 };

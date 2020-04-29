@@ -21,7 +21,7 @@ import MapComponentLink from './containers/maplink';
 import SearchComponentLink from './containers/searchlink';
 import FeatureComponentLink from './containers/featurelink';
 import FilterComponentLink from './containers/filterlink';
-import {configureMapView, fetchWMTSLayer, addMapLayer, setSearchProjection, setSearchTownship, setAvailableFilters, storeFeatures} from './actions';
+import {configureMapView, fetchWMTSLayer, addMapLayer, setSearchProjection, setSearchTownship, setAvailableFilters, storeFeatures, setFilterDescription} from './actions';
 import {mapReducer} from './reducers/map';
 import {searchReducer} from './reducers/search';
 import {filterReducer} from './reducers/filter';
@@ -185,6 +185,7 @@ store.dispatch(configureMapView({
 store.dispatch(setSearchProjection(settings.search_coord_system));
 store.dispatch(setSearchTownship(settings.search_filter_township));
 
+store.dispatch(setFilterDescription(settings.filter_description));
 store.dispatch(setAvailableFilters(GHDataInMap.location_properties));
 
 let zIndex = 0;

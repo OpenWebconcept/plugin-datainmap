@@ -35,6 +35,7 @@ function gh_dim_shortcode($atts, $content = null) {
             'dynamic_loading' => 0,
             'css_class' => null,
             'filter_properties' => null,
+            'filter_description' => $settings['filter_description'],
         ], $atts );
     $settings['zoom'] = (int)$args['zoom'];
     $settings['minZoom'] = (int)$args['min_zoom'];
@@ -49,6 +50,7 @@ function gh_dim_shortcode($atts, $content = null) {
     $settings['enable_tooltip'] = $args['enable_tooltip'] == 1 ? true : false;
     $settings['enable_filter'] = $args['enable_filter'] == 1 ? true : false;
     $settings['dynamic_loading'] = $args['dynamic_loading'] == 1 ? true : false;
+    $settings['filter_description'] = $args['filter_description'];
 
     // Compose map layers
     $layers = get_posts([

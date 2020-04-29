@@ -43,6 +43,9 @@ export class FilterComponent extends Component {
                         <h1>Filters</h1>
                     </header>
                     <section className="gh-dim-filters">
+                        {this.props.description &&
+                            <p className="gh-dim-filters-description">{this.props.description}</p>
+                        }
                         <form>
                             {this.props.filters.map((term) => {
                                 return <FilterItemComponent key={term.term_id} term={term} handleChange={(term, checked) => this.handleFilterChange(term, checked)} />
@@ -57,6 +60,7 @@ export class FilterComponent extends Component {
 
 FilterComponent.defaultProps = {
     doSetFilter: _.noop,
+    description: null,
     filters: [],
     selected: []
 };

@@ -18,7 +18,8 @@ import { toggleFilter } from '../actions';
 const mapStateToProps = (state) => {
     return {
         selected: state.filter.selected,
-        filters: state.filter.filters
+        filters: state.filter.filters,
+        description: state.filter.description
     }
 };
 
