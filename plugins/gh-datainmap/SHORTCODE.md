@@ -18,6 +18,12 @@ Standaard worden de locaties die met `types` aangegeven zijn direct ingeladen in
 
 `[datainmap layers=1 types=1,2 dynamic_loading=1]`
 
+Locaties filteren is mogelijk door eigenschappen (tags) toe te kennen aan een locatie. Om filteren in te schakelen kan `enable_filter=1` toegevoegd worden aan de shortcode. Alle eigenschappen van de locaties worden standaard toegevoegd aan het filter. Hierdoor zullen er ook geen locatie eigenschappen in de lijst staan die niet voorkomen. Om de lijst met filters in te perken kan gebruik gemaakt worden van `filter_properties="<Naam>, <ID>, <slug>"` waarbij per locatie eigenschap de naam, het ID of de slug gebruikt kan worden. Dit werkt ook met `dynamic_loading` ingeschakeld. Met `filter_description` is het mogelijk om een specifieke omschrijving te tonen in het filterscherm. Deze waarde overschrijft de algemene instellingen. Met `filter_description=""` is het mogelijk om de omschrijving weg te laten.
+
+`[datainmap layers=1 types=1,2 enable_filter=1 filter_description="Verfijn de resultaten door één of meerdere filters te kiezen."]`
+
+`[datainmap layers=1 types=1,2 enable_filter=1 filter_properties="Woonservicezone 1, woonservicezone-2, 134"]`
+
 Ook is het mogelijk om de standaard instellingen te wijzigen, zoals `zoom`, `min_zoom`, `max_zoom`, `center_x`, `center_y` en `projection`.
 
 `[datainmap layers=1 types=1 zoom=12 min_zoom=8 max_zoom=14]`

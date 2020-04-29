@@ -11,7 +11,7 @@
 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 * See the Licence for the specific language governing permissions and limitations under the Licence.
 */
-import { CONFIGURE_MAP_VIEW, ADD_MAP_LAYER, FETCHING, CENTER_MAP_VIEW, ADD_MAP_INTERACTION, REMOVE_MAP_INTERACTION } from '../actions';
+import { CONFIGURE_MAP_VIEW, ADD_MAP_LAYER, FETCHING, CENTER_MAP_VIEW, ADD_MAP_INTERACTION, REMOVE_MAP_INTERACTION, TOGGLE_FILTER, STORE_FEATURES } from '../actions';
 import ld from 'lodash';
 const _ = ld.noConflict();
 
@@ -26,6 +26,8 @@ const initialState = {
     },
     layers: [],
     interactions: [],
+    rerenderLayers: 0,
+    storedFeatures: {}
 };
 
 export const mapReducer = (state = initialState, action) => {
@@ -47,6 +49,13 @@ export const mapReducer = (state = initialState, action) => {
         case REMOVE_MAP_INTERACTION:
             interactions = _.without(state.interactions, action.interaction);
             return { ...state, interactions: interactions};
+        case TOGGLE_FILTER:
+            return { ...state, rerenderLayers: state.rerenderLayers + 1 };
+        case STORE_FEATURES: {
+            let newStoredFeatures = { ...state.storedFeatures };
+            newStoredFeatures[action.sourceId] = action.features;
+            return { ...state, storedFeatures: newStoredFeatures};
+        }
     }
     return state;
 };

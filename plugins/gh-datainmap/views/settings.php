@@ -191,6 +191,15 @@
             </tr>
             <tr>
                 <th scope="row" valign="top">
+                    <label for="gh-datainmap-settings[filter_description]"><?php _e('Filter description', 'gh-datainmap') ?></label>
+                </th>
+                <td>
+                    <input type="text" name="gh-datainmap-settings[filter_description]" id="gh-datainmap-settings[filter_description]" value="<?php echo esc_attr( $settings['filter_description'] ) ?>" class="regular-text" />
+                    <p class="description"><?php _e('Optinally provide a default description to be shown when a user opens the filter menu.', 'gh-datainmap'); ?></p>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row" valign="top">
                     <label for="gh-datainmap-settings[projections]"><?php _e('Additional projections (proj4)', 'gh-datainmap') ?></label>
                 </th>
                 <td>

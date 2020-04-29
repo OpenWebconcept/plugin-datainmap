@@ -1,5 +1,6 @@
 
 - Locaties kunnen nu dynamisch worden ingeladen door `dynamic_loading=1` aan de shortcode toe te voegen. Dit maakt de initiële page load sneller doordat niet alle coördinaten en styling in de HTML worden meegestuurd, maar via een AJAX verzoek worden opgevraagd.
+- Locaties kunnen nu op hun eigenschappen gefilterd worden. Filteren kan worden ingeschakeld met `enable_filter=1` en met `filter_properties="Naam, ID, slug"` is het mogelijk om het aantal filters te beperken. Met `filter_description="Uw eigen tekst"` is het mogelijk om per kaart de begeleidende tekst te wijzigen of onderdrukken.
 
 **1.5.0 (2020-04-08)**
 

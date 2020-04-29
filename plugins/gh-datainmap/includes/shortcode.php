@@ -31,8 +31,11 @@ function gh_dim_shortcode($atts, $content = null) {
             'enable_search' => 1,
             'enable_feature_dialog' => 1,
             'enable_tooltip' => 0,
+            'enable_filter' => 0,
             'dynamic_loading' => 0,
             'css_class' => null,
+            'filter_properties' => null,
+            'filter_description' => $settings['filter_description'],
         ], $atts );
     $settings['zoom'] = (int)$args['zoom'];
     $settings['minZoom'] = (int)$args['min_zoom'];
@@ -45,7 +48,9 @@ function gh_dim_shortcode($atts, $content = null) {
     $settings['enable_search'] = $args['enable_search'] == 1 ? true : false;
     $settings['enable_feature_dialog'] = $args['enable_feature_dialog'] == 1 ? true : false;
     $settings['enable_tooltip'] = $args['enable_tooltip'] == 1 ? true : false;
+    $settings['enable_filter'] = $args['enable_filter'] == 1 ? true : false;
     $settings['dynamic_loading'] = $args['dynamic_loading'] == 1 ? true : false;
+    $settings['filter_description'] = $args['filter_description'];
 
     // Compose map layers
     $layers = get_posts([
@@ -90,7 +95,7 @@ function gh_dim_shortcode($atts, $content = null) {
     if(count($location_property_ids) > 0) {
         $location_property_ids = array_unique(array_merge(...$location_property_ids));
     }
-    $location_property_terms = get_terms([
+    $location_property_terms_unfiltered = get_terms([
         'taxonomy' => 'gh-dim-location-properties',
         'term_taxonomy_id' => $location_property_ids,
         'hide_empty' => true,
@@ -98,6 +103,19 @@ function gh_dim_shortcode($atts, $content = null) {
         'orderby' => 'name',
         'order' => 'ASC',
     ]);
+
+    if(!empty($args['filter_properties'])) {
+        $include_filters = array_map('trim', explode(',', $args['filter_properties']));
+        $location_property_terms_filtered = array_values(array_filter($location_property_terms_unfiltered, function($term) use($include_filters) {
+            return
+                in_array($term->term_id, $include_filters)
+                || in_array($term->name, $include_filters)
+                || in_array($term->slug, $include_filters);
+        }));
+    }
+    else {
+        $location_property_terms_filtered = $location_property_terms_unfiltered;
+    }
 
     // Delete features from shortcode output if location layers are being dynamically loaded
     if($settings['dynamic_loading']) {
@@ -133,7 +151,7 @@ function gh_dim_shortcode($atts, $content = null) {
                 'name' => $term->name,
                 'slug' => $term->slug,
             ];
-        }, $location_property_terms),
+        }, $location_property_terms_filtered),
         'proj4' => $proj4,
     ];
 

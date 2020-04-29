@@ -231,3 +231,23 @@ export const REMOVE_MAP_INTERACTION = 'REMOVE_MAP_INTERACTION';
 export function removeMapInteraction(interaction) {
     return { type: REMOVE_MAP_INTERACTION, interaction: interaction };
 }
+
+export const SET_AVAILABLE_FILTERS = 'SET_AVAILABLE_FILTERS';
+export function setAvailableFilters(location_properties) {
+    return { type: SET_AVAILABLE_FILTERS, filters: location_properties};
+}
+
+export const SET_FILTER_DESCRIPTION = 'SET_FILTER_DESCRIPTION';
+export function setFilterDescription(description) {
+    return { type: SET_FILTER_DESCRIPTION, description: description };
+}
+
+export const TOGGLE_FILTER = 'TOGGLE_FILTER';
+export function toggleFilter(id, checked) {
+    return { type: TOGGLE_FILTER, filter: id, checked: checked };
+}
+
+export const STORE_FEATURES = 'STORE_FEATURES';
+export function storeFeatures(features, sourceId) {
+    return { type: STORE_FEATURES, features: features, sourceId: sourceId};
+}

@@ -37,7 +37,8 @@ function gh_dim_sanitize_settings($input) {
         'minZoom',
         'maxZoom',
         'projection',
-        'search_coord_system'
+        'search_coord_system',
+        'filter_description'
     ];
     foreach($text_fields as $k) {
         $input[$k] = sanitize_text_field( $input[$k] );
