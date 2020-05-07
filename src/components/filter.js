@@ -36,6 +36,9 @@ export class FilterComponent extends Component {
     }
 
     render() {
+        if(this.props.filters.length == 0) {
+            return null;
+        }
         return (
             <div className="gh-dim-filter">
                 <aside>

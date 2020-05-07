@@ -1,4 +1,6 @@
 
+- Het filtermenu wordt nu verborgen als deze is ingeschakeld maar er geen filters zijn om uit te kiezen.
+
 **1.6.0 (2020-04-29)**
 
 - Locaties kunnen nu dynamisch worden ingeladen door `dynamic_loading=1` aan de shortcode toe te voegen. Dit maakt de initiële page load sneller doordat niet alle coördinaten en styling in de HTML worden meegestuurd, maar via een AJAX verzoek worden opgevraagd.
