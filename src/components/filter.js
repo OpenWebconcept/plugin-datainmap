@@ -35,6 +35,10 @@ export class FilterComponent extends Component {
         this.props.doSetFilter(term.term_id, checked);
     }
 
+    handleFilterReset(e) {
+        this.props.doResetFilter();
+    }
+
     render() {
         if(this.props.filters.length == 0) {
             return null;
@@ -50,6 +54,9 @@ export class FilterComponent extends Component {
                             <p className="gh-dim-filters-description">{this.props.description}</p>
                         }
                         <form>
+                            <div className="gh-dim-filters-controls">
+                                <button onClick={(e) => this.handleFilterReset(e)} type="reset">Reset</button>
+                            </div>
                             {this.props.filters.map((term) => {
                                 return <FilterItemComponent key={term.term_id} term={term} handleChange={(term, checked) => this.handleFilterChange(term, checked)} />
                             })}
@@ -63,6 +70,7 @@ export class FilterComponent extends Component {
 
 FilterComponent.defaultProps = {
     doSetFilter: _.noop,
+    doResetFilter: _.noop,
     description: null,
     filters: [],
     selected: []
