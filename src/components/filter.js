@@ -19,7 +19,7 @@ class FilterItemComponent extends Component {
         const id = _.uniqueId('filter-');
         return (
             <div className="gh-dim-filters-filter">
-                <input id={id} type="checkbox" onChange={(e) => this.props.handleChange(this.props.term, e.currentTarget.checked)} /> <label htmlFor={id}>{this.props.term.name}</label>
+                <input id={id} type="checkbox" onClick={(e) => this.props.handleChange(this.props.term, e.currentTarget.checked)} /> <label htmlFor={id}>{this.props.term.name}</label>
             </div>
         )
     }
