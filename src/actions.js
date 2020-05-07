@@ -247,6 +247,11 @@ export function toggleFilter(id, checked) {
     return { type: TOGGLE_FILTER, filter: id, checked: checked };
 }
 
+export const RESET_SELECTED_FILTERS = 'RESET_SELECTED_FILTERS';
+export function resetSelectedFilters() {
+    return { type: RESET_SELECTED_FILTERS };
+}
+
 export const STORE_FEATURES = 'STORE_FEATURES';
 export function storeFeatures(features, sourceId) {
     return { type: STORE_FEATURES, features: features, sourceId: sourceId};

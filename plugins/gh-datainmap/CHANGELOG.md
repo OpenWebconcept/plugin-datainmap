@@ -1,3 +1,7 @@
+**1.6.1 (2020-05-07)**
+
+- Filter reset knop toegevoegd.
+- Het filtermenu wordt nu verborgen als deze is ingeschakeld maar er geen filters zijn om uit te kiezen.
 
 **1.6.0 (2020-04-29)**
 

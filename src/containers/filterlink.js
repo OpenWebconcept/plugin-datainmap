@@ -13,7 +13,7 @@
 */
 import { connect } from 'react-redux';
 import FilterComponent from '../components/filter';
-import { toggleFilter } from '../actions';
+import { toggleFilter, resetSelectedFilters } from '../actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -27,6 +27,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         doSetFilter: (term_id, checked) => {
             dispatch(toggleFilter(term_id, checked));
+        },
+        doResetFilter: () => {
+            dispatch(resetSelectedFilters());
         }
     }
 };

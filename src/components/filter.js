@@ -19,7 +19,7 @@ class FilterItemComponent extends Component {
         const id = _.uniqueId('filter-');
         return (
             <div className="gh-dim-filters-filter">
-                <input id={id} type="checkbox" onChange={(e) => this.props.handleChange(this.props.term, e.currentTarget.checked)} /> <label htmlFor={id}>{this.props.term.name}</label>
+                <input id={id} type="checkbox" onClick={(e) => this.props.handleChange(this.props.term, e.currentTarget.checked)} /> <label htmlFor={id}>{this.props.term.name}</label>
             </div>
         )
     }
@@ -35,7 +35,14 @@ export class FilterComponent extends Component {
         this.props.doSetFilter(term.term_id, checked);
     }
 
+    handleFilterReset(e) {
+        this.props.doResetFilter();
+    }
+
     render() {
+        if(this.props.filters.length == 0) {
+            return null;
+        }
         return (
             <div className="gh-dim-filter">
                 <aside>
@@ -47,6 +54,9 @@ export class FilterComponent extends Component {
                             <p className="gh-dim-filters-description">{this.props.description}</p>
                         }
                         <form>
+                            <div className="gh-dim-filters-controls">
+                                <button onClick={(e) => this.handleFilterReset(e)} type="reset">Reset filters</button>
+                            </div>
                             {this.props.filters.map((term) => {
                                 return <FilterItemComponent key={term.term_id} term={term} handleChange={(term, checked) => this.handleFilterChange(term, checked)} />
                             })}
@@ -60,6 +70,7 @@ export class FilterComponent extends Component {
 
 FilterComponent.defaultProps = {
     doSetFilter: _.noop,
+    doResetFilter: _.noop,
     description: null,
     filters: [],
     selected: []
