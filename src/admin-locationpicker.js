@@ -22,6 +22,7 @@ import SearchComponentLink from './containers/searchlink';
 import {configureMapView, fetchWMTSLayer, setSearchProjection, setSearchTownship, addMapLayer, addMapInteraction, removeMapInteraction} from './actions';
 import {mapReducer} from './reducers/map';
 import {searchReducer} from './reducers/search';
+import { filterReducer } from './reducers/filter';
 import {Vector as VectorLayer} from 'ol/layer';
 import {Vector as VectorSource } from 'ol/source';
 import {Fill, Stroke, Style} from 'ol/style';
@@ -36,7 +37,8 @@ const _ = ld.noConflict();
 
 const rootReducer = combineReducers({
     map: mapReducer,
-    search: searchReducer
+    search: searchReducer,
+    filter: filterReducer
 });
 
 const middleware = applyMiddleware(createDebounce(), thunk);
