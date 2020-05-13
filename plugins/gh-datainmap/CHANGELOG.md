@@ -1,3 +1,6 @@
+
+- Bugfix: location picker in backend niet zichtbaar door ontbreken component.
+
 **1.6.1 (2020-05-07)**
 
 - Filter reset knop toegevoegd.
