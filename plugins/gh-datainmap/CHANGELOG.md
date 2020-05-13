@@ -1,3 +1,4 @@
+**1.6.2 (2020-05-13)**
 
 - Bugfix: location picker in backend niet zichtbaar door ontbreken component.
 
