@@ -425,7 +425,7 @@ const App = () => {
                 { settings.enable_search && <SearchComponentLink /> }
                 { settings.enable_filter && <FilterComponentLink /> }
             </MapComponentLink>
-            { settings.enable_feature_dialog && <FeatureComponentLink /> }
+            { settings.enable_feature_dialog && <FeatureComponentLink cb={GHDataInMap.featureCallback} /> }
         </Provider>
     )
 };

@@ -1,3 +1,7 @@
+**1.6.3 (2020-06-03)**
+
+- Er kan nu een callback worden uitgevoerd bij het openen van een feature pop-up, bijvoorbeeld om het aantal views van een feature te tracken. Met het filter `datainmap_shortcode_script_contents` kan het Javascript object `GHDataInMap` ondervangen worden en uitgebreid worden met een `featureCallback`. Bij het aanroepen wordt de feature meegegeven.
+
 **1.6.2 (2020-05-13)**
 
 - Bugfix: location picker in backend niet zichtbaar door ontbreken component.

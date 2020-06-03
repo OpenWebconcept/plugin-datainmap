@@ -99,6 +99,9 @@ export default class FeatureComponent extends Component {
     componentDidUpdate(prevProps) {
         if(this.props.feature !== null) {
             document.body.classList.add('gh-dim-modal-open');
+            if(typeof this.props.cb === 'function') {
+                this.props.cb(this.props.feature);
+            }
         }
         else {
             document.body.classList.remove('gh-dim-modal-open');
@@ -145,5 +148,6 @@ export default class FeatureComponent extends Component {
 FeatureComponent.defaultProps = {
     isFetching: 0,
     feature: null,
+    cb: _.noop,
     resetFeature: _.noop
 };
