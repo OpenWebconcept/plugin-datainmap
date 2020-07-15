@@ -1,4 +1,4 @@
-
+**1.6.4 (2020-07-15)**
 - Aria labels voor zoekformulier ingevuld.
 
 **1.6.3 (2020-06-03)**
