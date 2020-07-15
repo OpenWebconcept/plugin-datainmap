@@ -32,7 +32,7 @@ class SearchResultsComponent extends Component {
                 timeout={400}
                 unmountOnExit
                 classNames="transition">
-                <ul className="gh-dim-search-results">
+                <ul className="gh-dim-search-results" aria-live="polite">
                     {this.hasResults() && this.props.results.response.docs.map((doc) => {
                         return <li key={doc.id} onClick={(e) => this.props.handleClick(doc)}>{doc.weergavenaam}</li>
                     })}
