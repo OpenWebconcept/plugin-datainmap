@@ -1,3 +1,4 @@
+**1.6.5 (2020-07-21)**
 - Filters gegroepeerd (role=group) voor toegankelijkheid.
 
 **1.6.4 (2020-07-15)**
