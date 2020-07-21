@@ -1,3 +1,5 @@
+- Filters gegroepeerd (role=group) voor toegankelijkheid.
+
 **1.6.4 (2020-07-15)**
 - Aria labels voor zoekformulier ingevuld.
 

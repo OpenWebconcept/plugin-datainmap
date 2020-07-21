@@ -57,9 +57,11 @@ export class FilterComponent extends Component {
                             <div className="gh-dim-filters-controls">
                                 <button onClick={(e) => this.handleFilterReset(e)} type="reset">Reset filters</button>
                             </div>
-                            {this.props.filters.map((term) => {
-                                return <FilterItemComponent key={term.term_id} term={term} handleChange={(term, checked) => this.handleFilterChange(term, checked)} />
-                            })}
+                            <div role="group" aria-label="Filters">
+                                {this.props.filters.map((term) => {
+                                    return <FilterItemComponent key={term.term_id} term={term} handleChange={(term, checked) => this.handleFilterChange(term, checked)} />
+                                })}
+                            </div>
                         </form>
                     </section>
                 </aside>
