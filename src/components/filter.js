@@ -16,7 +16,7 @@ import _ from 'lodash';
 
 class FilterItemComponent extends Component {
     render() {
-        const id = _.uniqueId('filter-');
+        const id = _.uniqueId('gh-dim-filter-');
         return (
             <div className="gh-dim-filters-filter">
                 <input id={id} type="checkbox" onClick={(e) => this.props.handleChange(this.props.term, e.currentTarget.checked)} /> <label htmlFor={id}>{this.props.term.name}</label>
