@@ -45,7 +45,7 @@ export class FilterComponent extends Component {
         }
         const id = _.uniqueId('filter-title-');
         return (
-            <div className="gh-dim-filter" tabindex="0">
+            <div className="gh-dim-filter" tabIndex="0">
                 <aside aria-labelledby={id}>
                     <header>
                         <h1 id={id}>Filters</h1>
