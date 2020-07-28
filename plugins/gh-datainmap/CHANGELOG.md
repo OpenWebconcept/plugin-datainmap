@@ -1,5 +1,6 @@
 - Filters <aside> voorzien van een label.
 - Toetsenbord navigatie voor zoekresultaten en filters.
+- Volgorde van componenten aangepast zodat zoom knoppen gefocussed worden na de filters i.p.v. voor het zoeken.
 
 **1.6.5 (2020-07-21)**
 - Filters gegroepeerd (role=group) voor toegankelijkheid.
