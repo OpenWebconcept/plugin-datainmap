@@ -56,6 +56,9 @@ $textcolor-button-hover: $textcolor-button-neutral;
                     border-bottom:1px solid #EBEBEB;
                     line-height:2;
                     min-width:300px;
+                    &.focused {
+                        outline:2px solid black;
+                    }
                 }
             }
         }

@@ -13,6 +13,7 @@
 */
 import React, {Component} from 'react';
 import {CSSTransition} from 'react-transition-group';
+import classNames from 'classnames';
 import _ from 'lodash';
 
 class SearchResultsComponent extends Component {
@@ -26,16 +27,34 @@ class SearchResultsComponent extends Component {
     }
 
     render() {
+        let results = [];
+        let activeDescendant;
+        if(this.hasResults()) {
+            let i = 0;
+            results = this.props.results.response.docs.map((doc) => {
+                const selected = i++ === this.props.currentResult;
+                const classes = classNames({ focused: selected });
+                const id = _.uniqueId('gh-dim-search-results-item-');
+                if(selected) {
+                    activeDescendant = id;
+                }
+                return <li key={doc.id}
+                    id={id}
+                    aria-selected={selected ? 'true' : 'false'}
+                    onClick={(e) => this.props.handleClick(doc)}
+                    role="option"
+                    className={classes}>{doc.weergavenaam}</li>
+            });
+        }
+        let i = 0;
         return (
             <CSSTransition
                 in={this.hasResults()}
                 timeout={400}
                 unmountOnExit
                 classNames="transition">
-                <ul className="gh-dim-search-results" aria-live="polite">
-                    {this.hasResults() && this.props.results.response.docs.map((doc) => {
-                        return <li key={doc.id} onClick={(e) => this.props.handleClick(doc)}>{doc.weergavenaam}</li>
-                    })}
+                <ul className="gh-dim-search-results" aria-live="polite" role="listbox" aria-label="Zoekresultaten" aria-activedescendant={activeDescendant}>
+                    {results.map((result) => { return result })}
                 </ul>
             </CSSTransition>
         )
@@ -50,7 +69,8 @@ export class SearchComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            displaySearch: false
+            displaySearch: false,
+            currentResult: null
         };
     }
 
@@ -66,13 +86,49 @@ export class SearchComponent extends Component {
 
     handleSelectedResult(doc) {
         this.props.doSelectResult(doc);
-        this.props.resetSearchResults(null);
+        this.resetSearchResults(null);
     }
 
-    escFunction(e) {
-        if(e.keyCode === 27) {
-            this.props.resetSearchResults(null);
+    resetSearchResults(args) {
+        this.props.resetSearchResults(args);
+        this.setState({currentResult: null});
+    }
+
+    keyboardNavigation(e) {
+        if(e.key === 'Escape') {
+            this.resetSearchResults(null);
         }
+        if(e.key == 'ArrowDown') {
+            this.navigateUpDown(true);
+        }
+        if(e.key == 'ArrowUp') {
+            this.navigateUpDown(false);
+        }
+        if(e.key == 'Enter' && this.state.currentResult !== null) {
+            const doc = this.props.results.response.docs[ this.state.currentResult ];
+            this.handleSelectedResult(doc);
+        }
+    }
+
+    navigateUpDown(incr) {
+        if(this.props.results.length == 0) {
+            return;
+        }
+        const totalResults = this.props.results.response.docs.length;
+        let nextResult;
+        // Select first result
+        if((this.state.currentResult === null || this.state.currentResult == totalResults - 1) && incr) {
+            nextResult = 0;
+        }
+        // Select last result
+        else if((this.state.currentResult === null || this.state.currentResult == 0) && !incr) {
+            nextResult = totalResults - 1;
+        }
+        // Select previous/next result
+        else {
+            nextResult = this.state.currentResult + (incr ? 1 : -1);
+        }
+        this.setState({currentResult: nextResult});
     }
 
     render() {
@@ -80,8 +136,8 @@ export class SearchComponent extends Component {
             <div className='gh-dim-search'>
                 <div className="gh-dim-search-form">
                     <form role="search" aria-label="Locatie" onSubmit={(e) => e.preventDefault() }>
-                        <input type="search" placeholder="Zoek op plaats of postcode" aria-label="Zoek op plaats of postcode" onChange={(e) => this.handleSearch(e)} onKeyDown={(e) => this.escFunction(e)} />
-                        <SearchResultsComponent results={this.props.results} handleClick={(e) => this.handleSelectedResult(e)} />
+                        <input type="search" placeholder="Zoek op plaats of postcode" aria-label="Zoek op plaats of postcode" onChange={(e) => this.handleSearch(e)} onKeyDown={(e) => this.keyboardNavigation(e)} />
+                        <SearchResultsComponent results={this.props.results} currentResult={this.state.currentResult} handleClick={(e) => this.handleSelectedResult(e)} />
                     </form>
                 </div>
             </div>
