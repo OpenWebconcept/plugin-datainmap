@@ -43,11 +43,12 @@ export class FilterComponent extends Component {
         if(this.props.filters.length == 0) {
             return null;
         }
+        const id = _.uniqueId('filter-title-');
         return (
             <div className="gh-dim-filter">
-                <aside>
+                <aside aria-labelledby={id}>
                     <header>
-                        <h1>Filters</h1>
+                        <h1 id={id}>Filters</h1>
                     </header>
                     <section className="gh-dim-filters">
                         {this.props.description &&
