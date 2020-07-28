@@ -73,7 +73,7 @@ $textcolor-button-hover: $textcolor-button-neutral;
         @include box-shadow(5px 5px 10px 1px #888888);
         opacity:0.4;
 
-        &:hover {
+        &:hover, &:focus, &:focus-within {
             opacity: 1;
             .gh-dim-filters {
                 max-height:240px;

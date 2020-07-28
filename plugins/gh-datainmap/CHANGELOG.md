@@ -1,5 +1,5 @@
 - Filters <aside> voorzien van een label.
-- Toetsenbord navigatie voor zoekresultaten.
+- Toetsenbord navigatie voor zoekresultaten en filters.
 
 **1.6.5 (2020-07-21)**
 - Filters gegroepeerd (role=group) voor toegankelijkheid.
