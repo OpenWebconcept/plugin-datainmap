@@ -1,5 +1,5 @@
 - Filters <aside> voorzien van een label.
-- Toetsenbord navigatie voor zoekresultaten, filters en kaart.
+- Toetsenbord navigatie voor zoekresultaten, filters, kaart en feature modal.
 - Volgorde van componenten aangepast zodat zoom knoppen gefocussed worden na de filters i.p.v. voor het zoeken.
 - De zichtbare locaties worden nu ook in een lijstweergave getoond.
 
