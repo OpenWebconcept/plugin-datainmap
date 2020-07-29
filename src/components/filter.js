@@ -65,6 +65,7 @@ export class FilterComponent extends Component {
                         <form>
                             <div className="gh-dim-filters-controls">
                                 <button onClick={(e) => this.handleFilterReset(e)} type="reset" onKeyDown={blur}>Reset filters</button>
+                                <button aria-hidden="true" style={{"display": "none"}} type="submit">Toepassen</button>
                             </div>
                             <div role="group" aria-label="Filters">
                                 {this.props.filters.map((term) => {

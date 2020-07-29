@@ -137,6 +137,7 @@ export class SearchComponent extends Component {
                 <div className="gh-dim-search-form">
                     <form role="search" aria-label="Locatie" onSubmit={(e) => e.preventDefault() }>
                         <input type="search" placeholder="Zoek op plaats of postcode" aria-label="Zoek op plaats of postcode" onChange={(e) => this.handleSearch(e)} onKeyDown={(e) => this.keyboardNavigation(e)} />
+                        <button aria-hidden="true" style={{"display": "none"}} type="submit">Zoek</button>
                         <SearchResultsComponent results={this.props.results} currentResult={this.state.currentResult} handleClick={(e) => this.handleSelectedResult(e)} />
                     </form>
                 </div>
