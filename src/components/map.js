@@ -22,7 +22,7 @@ import { getUid } from 'ol/util';
 import Overlay from 'ol/Overlay';
 import FeaturesListboxComponent from './featureslistbox';
 import { FEATURE_TYPE_BUILTIN, FEATURE_TYPE_FEATUREINFOURL } from '../constants';
-import { isCluster, isSingleFeature, featureContainsSelectedProperties } from '../util/feature';
+import { isCluster, isSingleFeature, featureContainsSelectedProperties, flattenFeatures } from '../util/feature';
 
 export class MapComponent extends Component {
 
@@ -238,7 +238,7 @@ export class MapComponent extends Component {
                 <div className="gh-dim-map-container">
                     {this.props.children}
                     <div ref="map" className="gh-dim-map" tabIndex="0"></div>
-                    <FeaturesListboxComponent onSelectFeature={this.props.onSelectFeature} visibleFeatures={this.state.visibleFeatures} />
+                    <FeaturesListboxComponent onSelectFeature={this.props.onSelectFeature} visibleFeatures={flattenFeatures(this.state.visibleFeatures)} />
                 </div>
                 <div ref="tooltip" className="gh-dim-tooltip"></div>
             </>

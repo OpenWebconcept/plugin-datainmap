@@ -19,7 +19,7 @@ import _ from 'lodash';
 class FeaturesListboxComponent extends Component {
 
     render() {
-        const features = flattenFeatures(this.props.visibleFeatures);
+        const features = this.props.visibleFeatures;
         const totalResults = features.length;
         return (
             <div className="gh-dim-features-listbox">
