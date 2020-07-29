@@ -4,9 +4,9 @@ const initialState = {
     projection: 'll',
     township: '',
     results: {
-        highlighting: [],
-        response: [],
-        spellcheck: []
+        highlighting: {},
+        response: {},
+        spellcheck: {}
     }
 };
 
