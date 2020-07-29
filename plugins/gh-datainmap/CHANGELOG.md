@@ -1,6 +1,7 @@
 - Filters <aside> voorzien van een label.
 - Toetsenbord navigatie voor zoekresultaten, filters en kaart.
 - Volgorde van componenten aangepast zodat zoom knoppen gefocussed worden na de filters i.p.v. voor het zoeken.
+- De zichtbare locaties worden nu ook in een lijstweergave getoond.
 
 **1.6.5 (2020-07-21)**
 
