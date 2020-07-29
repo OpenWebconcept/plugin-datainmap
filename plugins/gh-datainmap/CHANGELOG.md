@@ -3,9 +3,11 @@
 - Volgorde van componenten aangepast zodat zoom knoppen gefocussed worden na de filters i.p.v. voor het zoeken.
 
 **1.6.5 (2020-07-21)**
+
 - Filters gegroepeerd (role=group) voor toegankelijkheid.
 
 **1.6.4 (2020-07-15)**
+
 - Aria labels voor zoekformulier ingevuld.
 
 **1.6.3 (2020-06-03)**
