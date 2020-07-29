@@ -48,3 +48,23 @@ export function featureContainsSelectedProperties(feature, selectedFilters = [],
             return !_.intersection(location_properties, selectedFilters).length > 0;
     }
 }
+
+// Given single features or a cluster feature, will flatten them to a single list
+export function flattenFeatures(features) {
+    let singleFeatures = [];
+    features.forEach((feature) => {
+        if(isCluster(feature)) {
+            if(isSingleFeature(feature)) {
+                singleFeatures.push(feature.get('features')[0]);
+            }
+            else {
+                const flattened = flattenFeatures(feature.get('features'));
+                singleFeatures = singleFeatures.concat(flattened);
+            }
+        }
+        else {
+            singleFeatures.push(feature);
+        }
+    });
+    return singleFeatures;
+}
