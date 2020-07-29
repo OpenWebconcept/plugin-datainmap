@@ -253,8 +253,8 @@ export class MapComponent extends Component {
         return (
             <>
                 <div className="gh-dim-map-container">
-                    <div ref="map" className="gh-dim-map"></div>
                     {this.props.children}
+                    <div ref="map" className="gh-dim-map" tabIndex="0"></div>
                 </div>
                 <div ref="tooltip" className="gh-dim-tooltip"></div>
             </>

@@ -14,12 +14,20 @@
 import React, {Component} from 'react';
 import _ from 'lodash';
 
+// Filter view uses :focus and :focus-within CSS states, so we need to blur from
+// every element that could have focus
+function blur(e) {
+    if(e.key == 'Escape') {
+        e.currentTarget.blur()
+    }
+};
+
 class FilterItemComponent extends Component {
     render() {
         const id = _.uniqueId('filter-');
         return (
             <div className="gh-dim-filters-filter">
-                <input id={id} type="checkbox" onClick={(e) => this.props.handleChange(this.props.term, e.currentTarget.checked)} /> <label htmlFor={id}>{this.props.term.name}</label>
+                <input id={id} type="checkbox" onKeyDown={blur} onClick={(e) => this.props.handleChange(this.props.term, e.currentTarget.checked)} /> <label htmlFor={id}>{this.props.term.name}</label>
             </div>
         )
     }
@@ -45,7 +53,7 @@ export class FilterComponent extends Component {
         }
         const id = _.uniqueId('filter-title-');
         return (
-            <div className="gh-dim-filter">
+            <div className="gh-dim-filter" tabIndex="0" onKeyDown={blur}>
                 <aside aria-labelledby={id}>
                     <header>
                         <h1 id={id}>Filters</h1>
@@ -56,7 +64,7 @@ export class FilterComponent extends Component {
                         }
                         <form>
                             <div className="gh-dim-filters-controls">
-                                <button onClick={(e) => this.handleFilterReset(e)} type="reset">Reset filters</button>
+                                <button onClick={(e) => this.handleFilterReset(e)} type="reset" onKeyDown={blur}>Reset filters</button>
                             </div>
                             <div role="group" aria-label="Filters">
                                 {this.props.filters.map((term) => {
