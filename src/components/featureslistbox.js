@@ -12,16 +12,23 @@
 * See the Licence for the specific language governing permissions and limitations under the Licence.
 */
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
+import { flattenFeatures } from '../util/feature';
+import { FEATURE_TYPE_BUILTIN } from '../constants';
+import _ from 'lodash';
 
 class FeaturesListboxComponent extends Component {
 
     render() {
+        const features = flattenFeatures(this.props.visibleFeatures);
+        const totalResults = features.length;
         return (
             <div className="gh-dim-features-listbox">
                 <ul>
-                    {this.props.visibleFeatures.slice(0, this.props.maxResults).map((feature, i) => {
-                        return <li key={i}>{feature.get('title')}</li>
+                    {features.slice(0, this.props.maxResults).map((feature, key) => {
+                        return <li key={key} onClick={(e) => this.props.onSelectFeature({
+                            feature: feature.getProperties(),
+                            type: FEATURE_TYPE_BUILTIN
+                        })}>{feature.get('title')}</li>
                     })}
                 </ul>
             </div>
@@ -31,6 +38,7 @@ class FeaturesListboxComponent extends Component {
 
 FeaturesListboxComponent.defaultProps = {
     visibleFeatures: [],
+    onSelectFeature: _.noop,
     maxResults: 100
 };
 

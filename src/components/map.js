@@ -238,7 +238,7 @@ export class MapComponent extends Component {
                 <div className="gh-dim-map-container">
                     {this.props.children}
                     <div ref="map" className="gh-dim-map" tabIndex="0"></div>
-                    <FeaturesListboxComponent visibleFeatures={this.state.visibleFeatures} />
+                    <FeaturesListboxComponent onSelectFeature={this.props.onSelectFeature} visibleFeatures={this.state.visibleFeatures} />
                 </div>
                 <div ref="tooltip" className="gh-dim-tooltip"></div>
             </>
