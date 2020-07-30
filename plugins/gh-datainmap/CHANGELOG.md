@@ -1,7 +1,7 @@
 - Filters <aside> voorzien van een label.
 - Toetsenbord navigatie voor zoekresultaten, filters, kaart en feature modal.
 - Volgorde van componenten aangepast zodat zoom knoppen gefocussed worden na de filters i.p.v. voor het zoeken.
-- De zichtbare locaties worden nu ook in een lijstweergave getoond.
+- De zichtbare locaties worden nu ook in een lijstweergave getoond. Dit is een nieuw onderdeel welke apart gestyled dient te worden (voorzien in meegeleverde CSS).
 
 **1.6.5 (2020-07-21)**
 
