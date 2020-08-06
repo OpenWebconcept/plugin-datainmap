@@ -37,6 +37,16 @@ class FeaturesListboxComponent extends Component {
             e.preventDefault();
             this.navigateUpDown(false);
         }
+        if(e.key == 'Home') {
+            e.preventDefault();
+            this.setState({currentResult: 0});
+        }
+        if(e.key == 'End') {
+            e.preventDefault();
+            this.setState((state, props) => {
+                return {currentResult: props.visibleFeatures.slice(0, this.props.maxResults).length - 1};
+            });
+        }
         if(e.key == 'Enter' && this.state.currentResult !== null) {
             e.preventDefault();
             const feature = this.props.visibleFeatures[ this.state.currentResult ];

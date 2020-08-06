@@ -103,6 +103,16 @@ export class SearchComponent extends Component {
         if(e.key == 'ArrowUp') {
             this.navigateUpDown(false);
         }
+        if(e.key == 'Home') {
+            e.preventDefault();
+            this.setState({currentResult: 0});
+        }
+        if(e.key == 'End') {
+            e.preventDefault();
+            this.setState((state, props) => {
+                return {currentResult: props.results.response.docs.length - 1};
+            });
+        }
         if(e.key == 'Enter' && this.state.currentResult !== null) {
             const doc = this.props.results.response.docs[ this.state.currentResult ];
             this.handleSelectedResult(doc);
