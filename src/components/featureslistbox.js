@@ -123,7 +123,7 @@ class FeaturesListboxComponent extends Component {
         const expanded = totalResults > 0 ? true : false;
         
         return (
-            <div className="gh-dim-features-listbox" tabIndex="0" onKeyDown={(e) => this.keyboardNavigation(e)}>
+            <div className="gh-dim-features-listbox" tabIndex="0" onKeyDown={(e) => this.keyboardNavigation(e)} onBlur={(e) => this.setState({currentResult: null})}>
                 <section aria-labelledby={this.headerId}>
                     <header>
                         <h1 id={this.headerId}>Gevonden locaties <span>({totalResults > 100 ? '100+' : totalResults})</span></h1>
