@@ -3,6 +3,7 @@
 - Volgorde van componenten aangepast zodat zoom knoppen gefocussed worden na de filters i.p.v. voor het zoeken.
 - De zichtbare locaties worden nu ook in een lijstweergave getoond. Dit is een nieuw onderdeel welke apart gestyled dient te worden (voorzien in meegeleverde CSS).
 - Zoekfunctie weer zichtbaar in beheeromgeving.
+- De kaart omgezet naar een landmark zodat deze eenvoudiger gevonden kan worden.
 
 **1.6.5 (2020-07-21)**
 
