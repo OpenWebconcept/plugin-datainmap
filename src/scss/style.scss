@@ -38,6 +38,7 @@ $textcolor-button-hover: $textcolor-button-neutral;
         min-width:300px;
         top:0;
         left:0;
+        z-index:1;
 
         .gh-dim-search-form {
             background-color:#FFF;
