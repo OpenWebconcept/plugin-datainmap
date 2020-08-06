@@ -24,6 +24,8 @@ class FeaturesListboxComponent extends Component {
             currentResult: null
         };
         this.headerId = _.uniqueId('gh-dim-features-listbox-title-');
+        this.selectedItem = React.createRef();
+        this.listboxContainer = React.createRef();
     }
 
     keyboardNavigation(e) {
@@ -66,6 +68,28 @@ class FeaturesListboxComponent extends Component {
         this.setState({currentResult: nextResult});
     }
 
+    componentDidUpdate() {
+        // Take care of scrolling the listbox when using keyboard navigation
+        if(this.state.currentResult === null) {
+            return;
+        }
+        const listboxNode = this.listboxContainer.current;
+        const element = this.selectedItem.current;
+        if(element === null) {
+            return;
+        }
+        if(listboxNode.scrollHeight > listboxNode.clientHeight) {
+            const scrollBottom = listboxNode.clientHeight + listboxNode.scrollTop;
+            const elementBottom = element.offsetTop + element.offsetHeight;
+            if (elementBottom > scrollBottom) {
+                listboxNode.scrollTop = elementBottom - listboxNode.clientHeight;
+            }
+            else if (element.offsetTop < listboxNode.scrollTop + element.offsetHeight) {
+                listboxNode.scrollTop = element.offsetTop - element.offsetHeight;
+            }
+        }
+    }
+
     render() {
         const features = this.props.visibleFeatures;
         const totalResults = features.length;
@@ -92,18 +116,19 @@ class FeaturesListboxComponent extends Component {
                     feature: feature.getProperties(),
                     type: FEATURE_TYPE_BUILTIN
                 })}
+                ref={selected ? this.selectedItem : null}
                 role="option"
                 className={classes}>{feature.get('title')}</li>
         });
         const expanded = totalResults > 0 ? true : false;
         
         return (
-            <div className="gh-dim-features-listbox"  tabIndex="0" onKeyDown={(e) => this.keyboardNavigation(e)}>
+            <div className="gh-dim-features-listbox" tabIndex="0" onKeyDown={(e) => this.keyboardNavigation(e)}>
                 <section aria-labelledby={this.headerId}>
                     <header>
                         <h1 id={this.headerId}>Gevonden locaties <span>({totalResults > 100 ? '100+' : totalResults})</span></h1>
                     </header>
-                    <div className="gh-dim-features-listbox-content">
+                    <div className="gh-dim-features-listbox-content" ref={this.listboxContainer}>
                         <ul aria-live="polite" role="listbox" aria-label="Locaties zichtbaar op de kaart" aria-activedescendant={activeDescendant} aria-expanded={expanded}>
                             {results.map((result) => { return result })}
                         </ul>
