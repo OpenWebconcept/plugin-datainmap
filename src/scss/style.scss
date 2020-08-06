@@ -103,6 +103,43 @@ $textcolor-button-hover: $textcolor-button-neutral;
             font-size:12px;
         }
     }
+    .gh-dim-features-listbox {
+        position: absolute;
+        z-index:1;
+        min-width:300px;
+        top:80px;
+        left:0;
+        width:100%;
+        max-width:300px;
+        background-color:#FFF;
+        padding:0 20px;
+        overflow-x:hidden;
+        opacity:0.4;
+        @include box-shadow(5px 5px 10px 1px #888888);
+        &:hover, &:focus, &:focus-within {
+            opacity: 1;
+            ul {
+                max-height:240px;
+                transition: max-height 0.25s ease-in;
+            }
+        }
+        ul {
+            list-style: none;
+            overflow-x:hidden;
+            overflow-y:auto;
+            transition: max-height 0.15s ease-out;
+            max-height:0;
+            li {
+                cursor: pointer;
+                display: block;
+                min-width:300px;
+                line-height: 2;
+                &.focused {
+                    outline:2px solid black;
+                }
+            }
+        }
+    }
 }
 
 body.gh-dim-modal-open {

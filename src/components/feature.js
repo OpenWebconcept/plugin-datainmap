@@ -17,9 +17,14 @@ import _ from 'lodash';
 import { FEATURE_TYPE_WMSFEATURE, FEATURE_TYPE_KMLFEATURE, FEATURE_TYPE_DIMFEATURE, FEATURE_TYPE_UNKNOWN } from '../constants';
 
 function CloseModal({ onClick }) {
+    const onReturn = (e) => {
+        if(e.key == 'Enter') {
+            onClick();
+        }
+    };
     return (
         <div className="gh-dim-modal-close">
-            <span className="gh-dim-modal-close-marker" aria-label="Sluiten" onClick={(e) => onClick()}></span>
+            <span className="gh-dim-modal-close-marker" role="button" tabIndex="0" aria-label="Sluiten" onClick={(e) => onClick()} onKeyDown={onReturn}></span>
         </div>
     )
 }
@@ -90,6 +95,11 @@ class DIMFeatureComponent extends Component {
 export default class FeatureComponent extends Component {
     constructor(props) {
         super(props);
+        this.closeModalWithEscape = (e) => {
+            if(e.key === 'Escape') {
+                this.closeModal();
+            }
+        };
     }
 
     closeModal() {
@@ -105,6 +115,14 @@ export default class FeatureComponent extends Component {
         }
         else {
             document.body.classList.remove('gh-dim-modal-open');
+        }
+
+        // Close modal when Escape is pressed
+        if(this.props.feature !== null) {
+            document.addEventListener('keydown', this.closeModalWithEscape);
+        }
+        else {
+            document.removeEventListener('keydown', this.closeModalWithEscape);
         }
     }
 

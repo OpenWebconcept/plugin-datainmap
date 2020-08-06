@@ -20,41 +20,9 @@ import _ from 'lodash';
 import { zoomTo, zoomToMax } from '../util/map-animations';
 import { getUid } from 'ol/util';
 import Overlay from 'ol/Overlay';
+import FeaturesListboxComponent from './featureslistbox';
 import { FEATURE_TYPE_BUILTIN, FEATURE_TYPE_FEATUREINFOURL } from '../constants';
-
-const isCluster = (feature) => {
-    return feature.get('features') !== undefined;
-};
-const isSingleFeature = (feature) => {
-    if(feature.get('features') === undefined) {
-        return true;
-    }
-    return feature.get('features').length == 1;
-};
-const featureContainsSelectedProperties = (feature, selectedFilters = [], strategy = 'ANY') => {
-    if(selectedFilters.length == 0) {
-        return true;
-    }
-    const location_properties = feature.get('location_properties');
-    switch(strategy) {
-        default:
-        // Show feature if ANY selected filter matches
-        case 'ANY':
-            for (let index = 0; index < selectedFilters.length; index++) {
-                const selectedFilter = selectedFilters[index];
-                if(_.indexOf(location_properties, selectedFilter) !== -1) {
-                    return true;
-                }
-            }
-            return false;
-        // Show feature if ALL selected filters match
-        case 'ALL':
-            return _.intersection(location_properties, selectedFilters).length == selectedFilters.length;
-        // Hide feature if ANY selected filter matches
-        case 'NONE':
-            return !_.intersection(location_properties, selectedFilters).length > 0;
-    }
-};
+import { isCluster, isSingleFeature, featureContainsSelectedProperties, flattenFeatures } from '../util/feature';
 
 export class MapComponent extends Component {
 
@@ -62,6 +30,7 @@ export class MapComponent extends Component {
         super(props);
         this.olMap = null;
         this.tooltipFeature = null;
+        this.state = { visibleFeatures: [] };
     }
 
     componentDidMount() {
@@ -144,6 +113,20 @@ export class MapComponent extends Component {
                     'leading': false
                 }));
             }
+            // Keep track of all visible features
+            this.olMap.on('rendercomplete', (e) => {
+                const extent = this.olMap.getView().calculateExtent(this.olMap.getSize());
+                let features = [];
+                this.olMap.getLayers().forEach((layer) => {
+                    const source = layer.getSource();
+                    if(source.forEachFeatureInExtent) {
+                        source.forEachFeatureInExtent(extent, (feature) => {
+                            features.push(feature);
+                        });
+                    }
+                });
+                this.setState({visibleFeatures: features});
+            });
             this.olMap.on('click', (e) => {
                 const pixel = this.olMap.getEventPixel(e.originalEvent);
                 let features = [];
@@ -255,6 +238,7 @@ export class MapComponent extends Component {
                 <div className="gh-dim-map-container">
                     {this.props.children}
                     <div ref="map" className="gh-dim-map" tabIndex="0"></div>
+                    <FeaturesListboxComponent onSelectFeature={this.props.onSelectFeature} visibleFeatures={flattenFeatures(this.state.visibleFeatures)} />
                 </div>
                 <div ref="tooltip" className="gh-dim-tooltip"></div>
             </>
@@ -271,6 +255,7 @@ MapComponent.defaultProps = {
     centerLocation: null,
     enableDrawing: false,
     enableTooltip: false,
+    enableFeaturesListbox: true,
     rerenderLayers: 0,
     storedFeatures: [],
     selectedFilters: []

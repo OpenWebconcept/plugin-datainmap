@@ -46,7 +46,6 @@ class SearchResultsComponent extends Component {
                     className={classes}>{doc.weergavenaam}</li>
             });
         }
-        let i = 0;
         return (
             <CSSTransition
                 in={this.hasResults()}
