@@ -1,3 +1,4 @@
+- Deze release zet zich in op toegankelijkheid volgens WCAG 2. DataInMap is nu volledig met toetsenbord te bedienen en biedt een alternatief voor de weergave van locaties middels een lijstweergave.
 - Filters <aside> voorzien van een label.
 - Toetsenbord navigatie voor zoekresultaten, filters, kaart en feature modal.
 - Volgorde van componenten aangepast zodat zoom knoppen gefocussed worden na de filters i.p.v. voor het zoeken.
