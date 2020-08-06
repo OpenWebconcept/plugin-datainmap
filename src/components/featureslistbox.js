@@ -49,7 +49,7 @@ class FeaturesListboxComponent extends Component {
         if(!this.props.visibleFeatures) {
             return;
         }
-        const totalResults = this.props.visibleFeatures.length;
+        const totalResults = this.props.visibleFeatures.slice(0, this.props.maxResults).length;
         let nextResult;
         // Select first result
         if((this.state.currentResult === null || this.state.currentResult == totalResults - 1) && incr) {
