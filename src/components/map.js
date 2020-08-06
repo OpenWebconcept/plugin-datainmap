@@ -15,7 +15,6 @@ import 'ol/ol.css';
 import Map from 'ol/Map';
 import View from 'ol/View';
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
 import _ from 'lodash';
 import { zoomTo, zoomToMax } from '../util/map-animations';
 import { getUid } from 'ol/util';
@@ -31,12 +30,14 @@ export class MapComponent extends Component {
         this.olMap = null;
         this.tooltipFeature = null;
         this.state = { visibleFeatures: [] };
+        this.refMap = React.createRef();
+        this.refTooltip = React.createRef();
     }
 
     componentDidMount() {
         const olView = new View(this.props.viewSettings);
-        const mapElement = ReactDOM.findDOMNode(this.refs.map);
-        const tooltipElement = ReactDOM.findDOMNode(this.refs.tooltip);
+        const mapElement = this.refMap.current;
+        const tooltipElement = this.refTooltip.current;
         this.olMap = new Map({
             view: olView,
             target: mapElement,
@@ -238,9 +239,9 @@ export class MapComponent extends Component {
                 <div className="gh-dim-map-container">
                     {this.props.children}
                     <FeaturesListboxComponent onSelectFeature={this.props.onSelectFeature} visibleFeatures={flattenFeatures(this.state.visibleFeatures)} />
-                    <section aria-label="Interactieve kaart" ref="map" className="gh-dim-map" tabIndex="0"></section>
+                    <section aria-label="Interactieve kaart" ref={this.refMap} className="gh-dim-map" tabIndex="0"></section>
                 </div>
-                <div ref="tooltip" className="gh-dim-tooltip"></div>
+                <div ref={this.refTooltip} className="gh-dim-tooltip"></div>
             </>
         )
     }
