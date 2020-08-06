@@ -110,7 +110,7 @@ export class SearchComponent extends Component {
     }
 
     navigateUpDown(incr) {
-        if(!this.props.results.response.docs) {
+        if(Object.keys(this.props.results).indexOf('response') === -1) {
             return;
         }
         const totalResults = this.props.results.response.docs.length;
