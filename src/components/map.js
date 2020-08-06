@@ -238,7 +238,7 @@ export class MapComponent extends Component {
             <>
                 <div className="gh-dim-map-container">
                     {this.props.children}
-                    <FeaturesListboxComponent onSelectFeature={this.props.onSelectFeature} visibleFeatures={flattenFeatures(this.state.visibleFeatures)} />
+                    {this.props.enableFeaturesListbox && <FeaturesListboxComponent onSelectFeature={this.props.onSelectFeature} visibleFeatures={flattenFeatures(this.state.visibleFeatures)} />}
                     <section aria-label="Interactieve kaart" ref={this.refMap} className="gh-dim-map" tabIndex="0"></section>
                 </div>
                 <div ref={this.refTooltip} className="gh-dim-tooltip"></div>
