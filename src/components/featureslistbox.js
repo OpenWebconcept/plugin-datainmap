@@ -65,6 +65,7 @@ class FeaturesListboxComponent extends Component {
         }
         this.setState({currentResult: nextResult});
     }
+
     render() {
         const features = this.props.visibleFeatures;
         const totalResults = features.length;
