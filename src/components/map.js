@@ -255,6 +255,7 @@ MapComponent.defaultProps = {
     centerLocation: null,
     enableDrawing: false,
     enableTooltip: false,
+    enableFeaturesListbox: true,
     rerenderLayers: 0,
     storedFeatures: [],
     selectedFilters: []
