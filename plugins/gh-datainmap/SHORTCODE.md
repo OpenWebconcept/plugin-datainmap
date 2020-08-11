@@ -24,6 +24,8 @@ Locaties filteren is mogelijk door eigenschappen (tags) toe te kennen aan een lo
 
 `[datainmap layers=1 types=1,2 enable_filter=1 filter_properties="Woonservicezone 1, woonservicezone-2, 134"]`
 
+Een lijstweergave van de gevonden locaties is standaard zichtbaar en met het oog op toegankelijkheid wordt ook aangeraden om deze geactiveerd te houden. Mocht er toch een reden zijn om deze te verbergen dan kan dit met `enable_features_listbox=0`.
+
 Ook is het mogelijk om de standaard instellingen te wijzigen, zoals `zoom`, `min_zoom`, `max_zoom`, `center_x`, `center_y` en `projection`.
 
 `[datainmap layers=1 types=1 zoom=12 min_zoom=8 max_zoom=14]`

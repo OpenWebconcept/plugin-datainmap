@@ -32,6 +32,7 @@ function gh_dim_shortcode($atts, $content = null) {
             'enable_feature_dialog' => 1,
             'enable_tooltip' => 0,
             'enable_filter' => 0,
+            'enable_features_listbox' => 1,
             'dynamic_loading' => 0,
             'css_class' => null,
             'filter_properties' => null,
@@ -49,6 +50,7 @@ function gh_dim_shortcode($atts, $content = null) {
     $settings['enable_feature_dialog'] = $args['enable_feature_dialog'] == 1 ? true : false;
     $settings['enable_tooltip'] = $args['enable_tooltip'] == 1 ? true : false;
     $settings['enable_filter'] = $args['enable_filter'] == 1 ? true : false;
+    $settings['enable_features_listbox'] = $args['enable_features_listbox'] == 1 ? true : false;
     $settings['dynamic_loading'] = $args['dynamic_loading'] == 1 ? true : false;
     $settings['filter_description'] = $args['filter_description'];
 
