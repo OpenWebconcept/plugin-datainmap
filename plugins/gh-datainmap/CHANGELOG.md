@@ -1,3 +1,6 @@
+
+**1.7.0 (2020-08-11)**
+
 - Deze release zet zich in op toegankelijkheid volgens WCAG 2. DataInMap is nu volledig met toetsenbord te bedienen en biedt een alternatief voor de weergave van locaties middels een lijstweergave.
 - Filters <aside> voorzien van een label.
 - Toetsenbord navigatie voor zoekresultaten, filters, kaart en feature modal.
