@@ -1,7 +1,21 @@
+
+**1.7.0 (2020-08-11)**
+
+- Deze release zet zich in op toegankelijkheid volgens WCAG 2. DataInMap is nu volledig met toetsenbord te bedienen en biedt een alternatief voor de weergave van locaties middels een lijstweergave.
+- Filters <aside> voorzien van een label.
+- Toetsenbord navigatie voor zoekresultaten, filters, kaart en feature modal.
+- Volgorde van componenten aangepast zodat zoom knoppen gefocussed worden na de filters i.p.v. voor het zoeken.
+- De zichtbare locaties worden nu ook in een lijstweergave getoond. Dit is een nieuw onderdeel welke apart gestyled dient te worden (voorzien in meegeleverde CSS).
+- Zoekfunctie weer zichtbaar in beheeromgeving.
+- De kaart omgezet naar een landmark zodat deze eenvoudiger gevonden kan worden.
+- Ref gebruik in kaart omgezet van named refs naar React.createRef().
+
 **1.6.5 (2020-07-21)**
+
 - Filters gegroepeerd (role=group) voor toegankelijkheid.
 
 **1.6.4 (2020-07-15)**
+
 - Aria labels voor zoekformulier ingevuld.
 
 **1.6.3 (2020-06-03)**
