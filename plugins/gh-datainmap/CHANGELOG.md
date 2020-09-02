@@ -1,6 +1,6 @@
 **1.7.1 (2020-09-02)**
 
-- User input sanitation voordat voordat post- en term meta worden opgeslagen.
+- User input sanitation voordat post- en term meta worden opgeslagen.
 - save_post hook beperkt tot betreffende post types.
 - Rechten aangepast zodat gebruikers met de rol Scrhijver of hoger toegang hebben tot de diverse onderdelen.
 - Menu positie DataInMap aangepast, staat nu na Reacties.
