@@ -1,3 +1,4 @@
+- User input sanitation voordat voordat post- en term meta worden opgeslagen.
 
 **1.7.0 (2020-08-11)**
 
