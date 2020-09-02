@@ -21,7 +21,8 @@ function gh_dim_menu() {
         'edit_posts',
         'gh-dim',
         'gh_dim_settings_page',
-        'dashicons-location-alt'
+        'dashicons-location-alt',
+        25
     );
     add_submenu_page(
         'gh-dim',
