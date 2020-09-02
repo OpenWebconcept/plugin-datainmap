@@ -15,7 +15,6 @@
 
 add_action('init', 'gh_dim_register_post_type', 10);
 function gh_dim_register_post_type() {
-    $capabilities = [];
     $labels = array(
         'name'                => __( 'Locations', 'gh-datainmap' ),
         'singular_name'       => __( 'Location', 'gh-datainmap' ),
@@ -46,7 +45,6 @@ function gh_dim_register_post_type() {
         'supports' => array('title', 'editor', 'custom-fields'),
         'exclude_from_search' => true,
         'publicly_queryable' => false,
-        'capabilities' => $capabilities,
     ]);
     $labels = array(
         'name'                => __( 'Layers', 'gh-datainmap' ),
