@@ -39,7 +39,7 @@ function gh_dim_metabox_location($post) {
     include GH_DIM_DIR . '/views/metabox-location.php';
 }
 
-add_action( 'save_post', 'gh_dim_metabox_location_save_postdata' );
+add_action( 'save_post_gh-dim-locations', 'gh_dim_metabox_location_save_postdata' );
 function gh_dim_metabox_location_save_postdata($post_id) {
     $keys = array(
         '_gh_dim_location',
@@ -54,7 +54,15 @@ function gh_dim_metabox_location_save_postdata($post_id) {
     );
     foreach($keys as $key) {
         if(array_key_exists($key, $_POST)) {
-            update_post_meta($post_id, $key, $_POST[$key]);
+            switch($key) {
+                case '_gh_dim_location':
+                    $value = $_POST[$key];
+                    break;
+                default:
+                    $value = sanitize_text_field( $_POST[$key] );
+                    break;
+            }
+            update_post_meta($post_id, $key, $value);
         }
     }
 }
@@ -84,7 +92,7 @@ function gh_dim_metabox_layer($post) {
     include GH_DIM_DIR . '/views/metabox-layer.php';
 }
 
-add_action( 'save_post', 'gh_dim_metabox_layer_save_postdata' );
+add_action( 'save_post_gh-dim-layers', 'gh_dim_metabox_layer_save_postdata' );
 function gh_dim_metabox_layer_save_postdata($post_id) {
     $keys = array(
         '_gh_dim_layer_type',
@@ -97,7 +105,8 @@ function gh_dim_metabox_layer_save_postdata($post_id) {
     );
     foreach($keys as $key) {
         if(array_key_exists($key, $_POST)) {
-            update_post_meta($post_id, $key, $_POST[$key]);
+            $value = sanitize_text_field( $_POST[$key] );
+            update_post_meta($post_id, $key, $value);
         }
     }
     if(array_key_exists('_gh_dim_layer_opacity', $_POST)) {
