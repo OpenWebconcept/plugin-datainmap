@@ -1,4 +1,5 @@
 - User input sanitation voordat voordat post- en term meta worden opgeslagen.
+- save_post hook beperkt tot betreffende post types.
 
 **1.7.0 (2020-08-11)**
 

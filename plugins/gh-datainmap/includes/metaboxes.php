@@ -39,7 +39,7 @@ function gh_dim_metabox_location($post) {
     include GH_DIM_DIR . '/views/metabox-location.php';
 }
 
-add_action( 'save_post', 'gh_dim_metabox_location_save_postdata' );
+add_action( 'save_post_gh-dim-locations', 'gh_dim_metabox_location_save_postdata' );
 function gh_dim_metabox_location_save_postdata($post_id) {
     $keys = array(
         '_gh_dim_location',
@@ -92,7 +92,7 @@ function gh_dim_metabox_layer($post) {
     include GH_DIM_DIR . '/views/metabox-layer.php';
 }
 
-add_action( 'save_post', 'gh_dim_metabox_layer_save_postdata' );
+add_action( 'save_post_gh-dim-layers', 'gh_dim_metabox_layer_save_postdata' );
 function gh_dim_metabox_layer_save_postdata($post_id) {
     $keys = array(
         '_gh_dim_layer_type',
