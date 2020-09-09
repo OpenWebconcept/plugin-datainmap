@@ -92,7 +92,8 @@ function gh_dim_taxonomy_dim_location_types_save($term_id) {
     $keys = ['cluster', 'cluster_distance'];
     foreach($keys as $key) {
         if(isset($_POST[$key])) {
-            update_term_meta( $term_id, $key, $_POST[$key] );
+            $value = sanitize_text_field( $_POST[$key] );
+            update_term_meta( $term_id, $key, $value );
         }
     }
 }

@@ -18,16 +18,17 @@ function gh_dim_menu() {
     add_menu_page(
         __('DataInMap', 'gh-datainmap'),
         __('DataInMap', 'gh-datainmap'),
-        'manage_options',
+        'edit_posts',
         'gh-dim',
         'gh_dim_settings_page',
-        'dashicons-location-alt'
+        'dashicons-location-alt',
+        25
     );
     add_submenu_page(
         'gh-dim',
         __('Location Types', 'gh-datainmap'),
         __('Location Types', 'gh-datainmap'),
-        'manage_options',
+        'manage_categories',
         'edit-tags.php?taxonomy=gh-dim-location-types&post_type=gh-dim-locations',
         null
     );
@@ -35,7 +36,7 @@ function gh_dim_menu() {
         'gh-dim',
         __('Location Properties', 'gh-datainmap'),
         __('Location Properties', 'gh-datainmap'),
-        'manage_options',
+        'manage_categories',
         'edit-tags.php?taxonomy=gh-dim-location-properties&post_type=gh-dim-locations',
         null
     );
@@ -51,7 +52,7 @@ function gh_dim_menu() {
         'gh-dim',
         __('Manual', 'gh-datainmap'),
         __('Manual', 'gh-datainmap'),
-        'manage_options',
+        'publish_posts',
         'gh_dim_manual',
         'gh_dim_manual_page'
     );
@@ -72,7 +73,7 @@ add_filter( 'parent_file', 'gh_dim_set_current_menu' );
 
 
 function gh_dim_manual_page() {
-    if (!current_user_can('manage_options')) {
+    if (!current_user_can('publish_posts')) {
         wp_die('Unauthorized user.');
     }
     $parsedown = new Parsedown();
