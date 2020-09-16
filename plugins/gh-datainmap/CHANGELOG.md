@@ -1,3 +1,6 @@
+
+**1.8.0 (2020-09-16)**
+
 - De rechten voor de custom post types zijn aangepast. Om gebruikers anders dan een beheerder toegang te geven dienen de juiste capabilities toegevoegd te worden aan een gebruikersrol. Hiermee is het mogelijk om toegang tot de onderdelen van de plugin per gebruikersrol zelf te bepalen. Waarbij `*_gh-dim-location-properties` slaat op de categorie _Locatie Eigenschappen_, `*_gh-dim-location-types` op de categorie _Locatie Types_, `*_gh-dim-layers` op de _Lagen_ en `*_gh-dim-locations` op de _Locaties_. **Let op:** De _capabilities_ voor het beheren van de categorieën en `manage_options_gh-dim` worden alleen aangemaakt en toegekend bij activatie van de plugin. Bij gebruik van een bestaande DataInMap installatie kunnen deze _capabilities_ handmatig via een plugin aangemaakt worden, of door de plugin eenmalig te deactiveren en weer te activeren. De volledige lijst is als volgt:
   - `assign_gh-dim-location-properties`
   - `assign_gh-dim-location-types`
