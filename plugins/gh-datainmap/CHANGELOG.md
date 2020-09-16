@@ -1,3 +1,6 @@
+**1.8.1 (2020-09-16)**
+
+- Niet alle vereiste capabilities werden aangemaakt voor de beheerdersrol.
 
 **1.8.0 (2020-09-16)**
 
