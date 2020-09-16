@@ -42,7 +42,7 @@ function gh_dim_register_post_type() {
         'show_in_admin_bar' => true,
         'capability_type' => 'post',
         'can_export' => true,
-        'supports' => array('title', 'editor', 'custom-fields'),
+        'supports' => ['title', 'editor', 'custom-fields'],
         'exclude_from_search' => true,
         'publicly_queryable' => false,
     ]);
@@ -73,7 +73,7 @@ function gh_dim_register_post_type() {
         'show_in_admin_bar' => true,
         'capability_type' => 'post',
         'can_export' => true,
-        'supports' => array('title'),
+        'supports' => ['title'],
         'exclude_from_search' => true,
         'publicly_queryable' => false,
     ]);
