@@ -1,6 +1,40 @@
+
+**1.8.0 (2020-09-16)**
+
+- De rechten voor de custom post types zijn aangepast. Om gebruikers anders dan een beheerder toegang te geven dienen de juiste capabilities toegevoegd te worden aan een gebruikersrol. Hiermee is het mogelijk om toegang tot de onderdelen van de plugin per gebruikersrol zelf te bepalen. Waarbij `*_gh-dim-location-properties` slaat op de categorie _Locatie Eigenschappen_, `*_gh-dim-location-types` op de categorie _Locatie Types_, `*_gh-dim-layers` op de _Lagen_ en `*_gh-dim-locations` op de _Locaties_. **Let op:** De _capabilities_ voor het beheren van de categorieën en `manage_options_gh-dim` worden alleen aangemaakt en toegekend bij activatie van de plugin. Bij gebruik van een bestaande DataInMap installatie kunnen deze _capabilities_ handmatig via een plugin aangemaakt worden, of door de plugin eenmalig te deactiveren en weer te activeren. De volledige lijst is als volgt:
+  - `assign_gh-dim-location-properties`
+  - `assign_gh-dim-location-types`
+  - `delete_gh-dim-layers`
+  - `delete_gh-dim-location-properties`
+  - `delete_gh-dim-location-types`
+  - `delete_gh-dim-locations`
+  - `delete_others_gh-dim-layers`
+  - `delete_others_gh-dim-locations`
+  - `delete_private_gh-dim-layers`
+  - `delete_private_gh-dim-locations`
+  - `delete_published_gh-dim-layers`
+  - `delete_published_gh-dim-locations`
+  - `edit_gh-dim-layers`
+  - `edit_gh-dim-location-properties`
+  - `edit_gh-dim-location-types`
+  - `edit_gh-dim-locations`
+  - `edit_others_gh-dim-layers`
+  - `edit_others_gh-dim-locations`
+  - `edit_private_gh-dim-layers`
+  - `edit_private_gh-dim-locations`
+  - `edit_published_gh-dim-layers`
+  - `edit_published_gh-dim-locations`
+  - `manage_gh-dim-location-properties`
+  - `manage_gh-dim-location-types`
+  - `manage_options_gh-dim` _voor de algemene instellingen van DataInMap, doorgaans alleen voor een beheerder._
+  - `publish_gh-dim-layers`
+  - `publish_gh-dim-locations`
+  - `read_private_gh-dim-layers`
+  - `read_private_gh-dim-locations`
+
 **1.7.1 (2020-09-02)**
 
-- User input sanitation voordat voordat post- en term meta worden opgeslagen.
+- User input sanitation voordat post- en term meta worden opgeslagen.
 - save_post hook beperkt tot betreffende post types.
 - Rechten aangepast zodat gebruikers met de rol Scrhijver of hoger toegang hebben tot de diverse onderdelen.
 - Menu positie DataInMap aangepast, staat nu na Reacties.
