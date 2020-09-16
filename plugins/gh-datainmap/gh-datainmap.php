@@ -104,16 +104,37 @@ add_action('plugins_loaded', function() {
 register_activation_hook(__FILE__, function() {
     $role = get_role( 'administrator' );
     $caps = [
-        'manage_options_gh-dim',
-        'manage_gh-dim-location-types',
-        'edit_gh-dim-location-types',
-        'delete_gh-dim-location-types',
-        'assign_gh-dim-location-types',
-        'manage_gh-dim-location-properties',
-        'edit_gh-dim-location-properties',
-        'delete_gh-dim-location-properties',
         'assign_gh-dim-location-properties',
+        'assign_gh-dim-location-types',
+        'delete_gh-dim-layers',
+        'delete_gh-dim-location-properties',
+        'delete_gh-dim-location-types',
+        'delete_gh-dim-locations',
+        'delete_others_gh-dim-layers',
+        'delete_others_gh-dim-locations',
+        'delete_private_gh-dim-layers',
+        'delete_private_gh-dim-locations',
+        'delete_published_gh-dim-layers',
+        'delete_published_gh-dim-locations',
+        'edit_gh-dim-layers',
+        'edit_gh-dim-location-properties',
+        'edit_gh-dim-location-types',
+        'edit_gh-dim-locations',
+        'edit_others_gh-dim-layers',
+        'edit_others_gh-dim-locations',
+        'edit_private_gh-dim-layers',
+        'edit_private_gh-dim-locations',
+        'edit_published_gh-dim-layers',
+        'edit_published_gh-dim-locations',
+        'manage_gh-dim-location-properties',
+        'manage_gh-dim-location-types',
+        'manage_options_gh-dim',
+        'publish_gh-dim-layers',
+        'publish_gh-dim-locations',
+        'read_private_gh-dim-layers',
+        'read_private_gh-dim-locations',
     ];
+
     foreach($caps as $cap) {
         $role->add_cap( $cap );
     }
