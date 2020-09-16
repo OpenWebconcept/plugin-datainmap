@@ -35,6 +35,12 @@ function gh_dim_register_taxonomy() {
         'show_ui' 			=> true,
         'show_admin_column' => true,
         'public'            => false,
+        'capabilities' => array(
+            'manage_terms' => 'manage_gh-dim-location-types',
+            'edit_terms'   => 'edit_gh-dim-location-types',
+            'delete_terms' => 'delete_gh-dim-location-types',
+            'assign_terms' => 'assign_gh-dim-location-types',
+        ),
     ));
 
     $labels = array(
@@ -57,6 +63,12 @@ function gh_dim_register_taxonomy() {
         'show_ui' 			=> true,
         'show_admin_column' => true,
         'public'            => false,
+        'capabilities' => array(
+            'manage_terms' => 'manage_gh-dim-location-properties',
+            'edit_terms'   => 'edit_gh-dim-location-properties',
+            'delete_terms' => 'delete_gh-dim-location-properties',
+            'assign_terms' => 'assign_gh-dim-location-properties',
+        ),
     ));
 }
 

@@ -101,6 +101,24 @@ add_action('plugins_loaded', function() {
     load_plugin_textdomain( 'gh-datainmap', false, basename( dirname( __FILE__ ) ) . '/languages/' );
 } );
 
+register_activation_hook(__FILE__, function() {
+    $role = get_role( 'administrator' );
+    $caps = [
+        'manage_options_gh-dim',
+        'manage_gh-dim-location-types',
+        'edit_gh-dim-location-types',
+        'delete_gh-dim-location-types',
+        'assign_gh-dim-location-types',
+        'manage_gh-dim-location-properties',
+        'edit_gh-dim-location-properties',
+        'delete_gh-dim-location-properties',
+        'assign_gh-dim-location-properties',
+    ];
+    foreach($caps as $cap) {
+        $role->add_cap( $cap );
+    }
+});
+
 $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
     'https://bitbucket.org/gemeenteheerenveen/datainmap-plugin/downloads/update.json',
 	__FILE__,

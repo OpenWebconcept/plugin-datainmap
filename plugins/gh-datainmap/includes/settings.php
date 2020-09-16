@@ -49,7 +49,7 @@ function gh_dim_sanitize_settings($input) {
 }
 
 function gh_dim_settings_page() {
-    if (!current_user_can('manage_options')) {
+    if (!current_user_can('gh-dim-manage_options')) {
         wp_die('Unauthorized user.');
     }
     include GH_DIM_DIR . '/views/settings.php';
