@@ -44,7 +44,7 @@ function gh_dim_menu() {
         'gh-dim',
         __('Settings', 'gh-datainmap'),
         __('Settings', 'gh-datainmap'),
-        'gh-dim-manage_options',
+        'manage_options_gh-dim',
         'gh_dim_settings',
         'gh_dim_settings_page'
     );
