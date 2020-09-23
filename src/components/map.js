@@ -43,6 +43,12 @@ export class MapComponent extends Component {
             target: mapElement,
             layers: this.props.layers,
         });
+        mapElement.addEventListener('mouseenter', (e) => {
+            mapElement.focus();
+        });
+        mapElement.addEventListener('mouseleave', (e) => {
+            mapElement.blur();
+        });
         // Display pointer when over a feature
         this.olMap.on('pointermove', (e) => {
             if(e.dragging) {
