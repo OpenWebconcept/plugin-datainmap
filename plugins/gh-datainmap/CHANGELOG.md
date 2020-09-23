@@ -1,3 +1,5 @@
+- Kaart krijgt nu automatisch focus bij een mouseenter-event. Hierdoor hoeft bij gebruik van de muis niet eerst op de kaart geklikt te worden. Bij een mouseleave-event vervalt de focus weer.
+
 **1.8.1 (2020-09-16)**
 
 - Niet alle vereiste capabilities werden aangemaakt voor de beheerdersrol.
