@@ -3,7 +3,7 @@
 Plugin Name: Data In Map
 Plugin URI: https://bitbucket.org/gemeenteheerenveen/datainmap-plugin/src/master/
 Description: Data In Map is a plugin for displaying maps.
-Version: 1.7.1
+Version: 1.8.2
 Requires at least: 5.0
 Requires PHP: 7.2
 Author: Gemeente Heerenveen
@@ -26,7 +26,7 @@ See the Licence for the specific language governing permissions and limitations 
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
-if ( ! defined('GH_DIM_VERSION')) define('GH_DIM_VERSION', '1.7.1');
+if ( ! defined('GH_DIM_VERSION')) define('GH_DIM_VERSION', '1.8.2');
 if ( ! defined('GH_DIM_FILE')) define('GH_DIM_FILE', __FILE__);
 if ( ! defined('GH_DIM_DIR')) define('GH_DIM_DIR', dirname(__FILE__));
 if ( ! defined('GH_DIM_DEBUG')) define('GH_DIM_DEBUG', false);
@@ -100,6 +100,45 @@ add_action('admin_enqueue_scripts', function($hook) {
 add_action('plugins_loaded', function() {
     load_plugin_textdomain( 'gh-datainmap', false, basename( dirname( __FILE__ ) ) . '/languages/' );
 } );
+
+register_activation_hook(__FILE__, function() {
+    $role = get_role( 'administrator' );
+    $caps = [
+        'assign_gh-dim-location-properties',
+        'assign_gh-dim-location-types',
+        'delete_gh-dim-layers',
+        'delete_gh-dim-location-properties',
+        'delete_gh-dim-location-types',
+        'delete_gh-dim-locations',
+        'delete_others_gh-dim-layers',
+        'delete_others_gh-dim-locations',
+        'delete_private_gh-dim-layers',
+        'delete_private_gh-dim-locations',
+        'delete_published_gh-dim-layers',
+        'delete_published_gh-dim-locations',
+        'edit_gh-dim-layers',
+        'edit_gh-dim-location-properties',
+        'edit_gh-dim-location-types',
+        'edit_gh-dim-locations',
+        'edit_others_gh-dim-layers',
+        'edit_others_gh-dim-locations',
+        'edit_private_gh-dim-layers',
+        'edit_private_gh-dim-locations',
+        'edit_published_gh-dim-layers',
+        'edit_published_gh-dim-locations',
+        'manage_gh-dim-location-properties',
+        'manage_gh-dim-location-types',
+        'manage_options_gh-dim',
+        'publish_gh-dim-layers',
+        'publish_gh-dim-locations',
+        'read_private_gh-dim-layers',
+        'read_private_gh-dim-locations',
+    ];
+
+    foreach($caps as $cap) {
+        $role->add_cap( $cap );
+    }
+});
 
 $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
     'https://bitbucket.org/gemeenteheerenveen/datainmap-plugin/downloads/update.json',
