@@ -24,7 +24,7 @@ function blur(e) {
 
 class FilterItemComponent extends Component {
     render() {
-        const id = _.uniqueId('filter-');
+        const id = _.uniqueId('gh-dim-filter-');
         return (
             <div className="gh-dim-filters-filter">
                 <input id={id} type="checkbox" onKeyDown={blur} onClick={(e) => this.props.handleChange(this.props.term, e.currentTarget.checked)} /> <label htmlFor={id}>{this.props.term.name}</label>
@@ -54,11 +54,11 @@ export class FilterComponent extends Component {
         const id = _.uniqueId('filter-title-');
         return (
             <div className="gh-dim-filter" tabIndex="0" onKeyDown={blur}>
-                <aside aria-labelledby={id}>
+                <section aria-labelledby={id}>
                     <header>
                         <h1 id={id}>Filters</h1>
                     </header>
-                    <section className="gh-dim-filters">
+                    <div className="gh-dim-filters">
                         {this.props.description &&
                             <p className="gh-dim-filters-description">{this.props.description}</p>
                         }
@@ -73,8 +73,8 @@ export class FilterComponent extends Component {
                                 })}
                             </div>
                         </form>
-                    </section>
-                </aside>
+                    </div>
+                </section>
             </div>
         )
     }

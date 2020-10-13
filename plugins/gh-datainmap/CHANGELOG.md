@@ -1,3 +1,7 @@
+**1.8.3 (2020-10-13)**
+
+- Filters omgezet van een `aside`-element naar een `section`-element.
+
 **1.8.2 (2020-09-23)**
 
 - Kaart krijgt nu automatisch focus bij een mouseenter-event. Hierdoor hoeft bij gebruik van de muis niet eerst op de kaart geklikt te worden. Bij een mouseleave-event vervalt de focus weer.
@@ -43,7 +47,7 @@
 
 - User input sanitation voordat post- en term meta worden opgeslagen.
 - save_post hook beperkt tot betreffende post types.
-- Rechten aangepast zodat gebruikers met de rol Scrhijver of hoger toegang hebben tot de diverse onderdelen.
+- Rechten aangepast zodat gebruikers met de rol Schrijver of hoger toegang hebben tot de diverse onderdelen.
 - Menu positie DataInMap aangepast, staat nu na Reacties.
 
 **1.7.0 (2020-08-11)**
