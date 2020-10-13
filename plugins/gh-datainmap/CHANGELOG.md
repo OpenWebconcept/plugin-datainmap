@@ -1,3 +1,5 @@
+**1.8.3 (2020-10-13)**
+
 - Filters omgezet van een `aside`-element naar een `section`-element.
 
 **1.8.2 (2020-09-23)**
