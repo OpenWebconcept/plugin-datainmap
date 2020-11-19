@@ -85,7 +85,7 @@ function gh_dim_register_post_type() {
 add_filter( 'manage_gh-dim-locations_posts_columns', function($columns) {
     $date = $columns['date'];
     unset( $columns['date'] );
-    $columns['shape'] = __( 'Shape', 'gh-datainmap' );
+    $columns['shape'] = __( 'Location Display', 'gh-datainmap' );
     $columns['content_type'] = __( 'Content Type', 'gh-datainmap' );
     $columns['date'] = $date;
     return $columns;
