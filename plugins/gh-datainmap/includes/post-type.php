@@ -138,7 +138,6 @@ add_action( 'pre_get_posts', function($query) {
 
 // Voeg extra filter toe aan gh-dim-locations overzicht
 add_action('restrict_manage_posts', function($post_type) {
-    global $wpdb;
     if($post_type !== 'gh-dim-locations') {
         return;
     }
@@ -148,17 +147,16 @@ add_action('restrict_manage_posts', function($post_type) {
         $selected = $_REQUEST['gh-dim-location-types'];
     }
 
-    $terms = get_terms(array(
-        'taxonomy' => 'gh-dim-location-types',
-        'hide_empty' => true,
-        'orderby' => 'name',
+    $taxonomy = 'gh-dim-location-types';
+    $info_taxonomy = get_taxonomy($taxonomy);
+    wp_dropdown_categories(array(
+        'show_option_all' => __( 'All location types', 'gh-datainmap' ),
+        'taxonomy'        => $taxonomy,
+        'name'            => $taxonomy,
+        'orderby'         => 'name',
+        'selected'        => $selected,
+        'show_count'      => true,
+        'hide_empty'      => true,
+        'value_field'     => 'slug',
     ));
-
-    echo '<select id="gh-dim-location-types" name="gh-dim-location-types">';
-    echo '<option value="">' . __( 'All location types', 'gh-datainmap' ) . ' </option>';
-    foreach($terms as $term) {
-        $select = $selected == $term->slug ? ' selected="selected"' : '';
-        printf('<option value="%s"%s>%s</option>', esc_attr($term->slug), $select, esc_html($term->name));
-    }
-    echo '</select>';
 }, 10, 1);
