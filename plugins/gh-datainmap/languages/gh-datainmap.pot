@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Data In Map plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Data In Map 1.5.0\n"
+"Project-Id-Version: Data In Map 1.8.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/gh-datainmap\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-04-29T08:19:03+00:00\n"
+"POT-Creation-Date: 2020-11-19T09:34:13+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.3.0\n"
 "X-Domain: gh-datainmap\n"
@@ -39,27 +39,27 @@ msgstr ""
 msgid "DataInMap"
 msgstr ""
 
-#: includes/menus.php:28
 #: includes/menus.php:29
+#: includes/menus.php:30
 #: includes/taxonomy.php:19
 #: includes/taxonomy.php:29
 msgid "Location Types"
 msgstr ""
 
-#: includes/menus.php:36
 #: includes/menus.php:37
-#: includes/taxonomy.php:41
+#: includes/menus.php:38
+#: includes/taxonomy.php:47
 msgid "Location Properties"
 msgstr ""
 
-#: includes/menus.php:44
 #: includes/menus.php:45
+#: includes/menus.php:46
 #: views/settings.php:2
 msgid "Settings"
 msgstr ""
 
-#: includes/menus.php:52
 #: includes/menus.php:53
+#: includes/menus.php:54
 #: views/manual.php:2
 msgid "Manual"
 msgstr ""
@@ -68,104 +68,117 @@ msgstr ""
 msgid "Location info"
 msgstr ""
 
-#: includes/metaboxes.php:67
+#: includes/metaboxes.php:75
 msgid "Layer info"
 msgstr ""
 
-#: includes/post-type.php:20
-#: includes/post-type.php:22
-#: includes/post-type.php:35
+#: includes/post-type.php:19
+#: includes/post-type.php:21
+#: includes/post-type.php:34
 msgid "Locations"
 msgstr ""
 
-#: includes/post-type.php:21
-#: includes/post-type.php:36
+#: includes/post-type.php:20
+#: includes/post-type.php:35
 msgid "Location"
 msgstr ""
 
-#: includes/post-type.php:23
+#: includes/post-type.php:22
 msgid "Parent Locations"
 msgstr ""
 
-#: includes/post-type.php:24
+#: includes/post-type.php:23
 msgid "All Locations"
 msgstr ""
 
-#: includes/post-type.php:25
+#: includes/post-type.php:24
 msgid "View Location"
 msgstr ""
 
-#: includes/post-type.php:26
+#: includes/post-type.php:25
 msgid "Add New Location"
 msgstr ""
 
-#: includes/post-type.php:27
-#: includes/post-type.php:59
+#: includes/post-type.php:26
+#: includes/post-type.php:58
 msgid "Add New"
 msgstr ""
 
-#: includes/post-type.php:28
+#: includes/post-type.php:27
 msgid "Edit Location"
 msgstr ""
 
-#: includes/post-type.php:29
+#: includes/post-type.php:28
 msgid "Update Location"
 msgstr ""
 
-#: includes/post-type.php:30
+#: includes/post-type.php:29
 msgid "Search Locations"
+msgstr ""
+
+#: includes/post-type.php:30
+#: includes/post-type.php:62
+msgid "Not Found"
 msgstr ""
 
 #: includes/post-type.php:31
 #: includes/post-type.php:63
-msgid "Not Found"
-msgstr ""
-
-#: includes/post-type.php:32
-#: includes/post-type.php:64
 msgid "Not found in Trash"
 msgstr ""
 
-#: includes/post-type.php:52
-#: includes/post-type.php:54
-#: includes/post-type.php:67
+#: includes/post-type.php:51
+#: includes/post-type.php:53
+#: includes/post-type.php:66
 msgid "Layers"
 msgstr ""
 
-#: includes/post-type.php:53
-#: includes/post-type.php:68
+#: includes/post-type.php:52
+#: includes/post-type.php:67
 msgid "Layer"
 msgstr ""
 
-#: includes/post-type.php:55
+#: includes/post-type.php:54
 msgid "Parent Layers"
 msgstr ""
 
-#: includes/post-type.php:56
+#: includes/post-type.php:55
 msgid "All Layers"
 msgstr ""
 
-#: includes/post-type.php:57
+#: includes/post-type.php:56
 msgid "View Layer"
 msgstr ""
 
-#: includes/post-type.php:58
+#: includes/post-type.php:57
 msgid "Add New Layer"
 msgstr ""
 
-#: includes/post-type.php:60
+#: includes/post-type.php:59
 msgid "Edit Layer"
 msgstr ""
 
-#: includes/post-type.php:61
+#: includes/post-type.php:60
 msgid "Update Layer"
 msgstr ""
 
-#: includes/post-type.php:62
+#: includes/post-type.php:61
 msgid "Search Layers"
 msgstr ""
 
-#: includes/shortcode.php:166
+#: includes/post-type.php:88
+msgid "Location Display"
+msgstr ""
+
+#: includes/post-type.php:89
+#: views/metabox-location.php:5
+msgid "Content Type"
+msgstr ""
+
+#: includes/post-type.php:157
+msgid "All location types"
+msgstr ""
+
+#: includes/shortcode.php:168
 #: views/metabox-location.php:59
 #: views/settings.php:131
 msgid "Loading..."
@@ -222,56 +235,56 @@ msgstr ""
 msgid "New Location Type Name"
 msgstr ""
 
-#: includes/taxonomy.php:42
-#: includes/taxonomy.php:51
+#: includes/taxonomy.php:48
+#: includes/taxonomy.php:57
 msgid "Location Property"
 msgstr ""
 
-#: includes/taxonomy.php:43
+#: includes/taxonomy.php:49
 msgid "Search Location Properties"
 msgstr ""
 
-#: includes/taxonomy.php:44
+#: includes/taxonomy.php:50
 msgid "All Location Properties"
 msgstr ""
 
-#: includes/taxonomy.php:45
+#: includes/taxonomy.php:51
 msgid "Parent Location Property"
 msgstr ""
 
-#: includes/taxonomy.php:46
+#: includes/taxonomy.php:52
 msgid "Parent Location Property:"
 msgstr ""
 
-#: includes/taxonomy.php:47
+#: includes/taxonomy.php:53
 msgid "Edit Location Property"
 msgstr ""
 
-#: includes/taxonomy.php:48
+#: includes/taxonomy.php:54
 msgid "Update Location Property"
 msgstr ""
 
-#: includes/taxonomy.php:49
+#: includes/taxonomy.php:55
 msgid "Add New Location Property"
 msgstr ""
 
-#: includes/taxonomy.php:50
+#: includes/taxonomy.php:56
 msgid "New Location Property Name"
 msgstr ""
 
-#: includes/taxonomy.php:69
+#: includes/taxonomy.php:81
 msgid "Cluster"
 msgstr ""
 
-#: includes/taxonomy.php:74
+#: includes/taxonomy.php:86
 msgid "Display locations as a cluster"
 msgstr ""
 
-#: includes/taxonomy.php:79
+#: includes/taxonomy.php:91
 msgid "Cluster distance"
 msgstr ""
 
-#: includes/taxonomy.php:83
+#: includes/taxonomy.php:95
 msgid "Minimum distance in pixels between clusters."
 msgstr ""
 
@@ -369,10 +382,6 @@ msgstr ""
 
 #: views/metabox-layer.php:79
 msgid "This disables KML styling."
-msgstr ""
-
-#: views/metabox-location.php:5
-msgid "Content Type"
 msgstr ""
 
 #: views/metabox-location.php:9

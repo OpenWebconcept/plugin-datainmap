@@ -80,3 +80,85 @@ function gh_dim_register_post_type() {
         'publicly_queryable' => false,
     ]);
 }
+
+// Pas de kolommen aan voor het gh-dim-locations overzicht
+add_filter( 'manage_gh-dim-locations_posts_columns', function($columns) {
+    $date = $columns['date'];
+    unset( $columns['date'] );
+    $columns['shape'] = __( 'Location Display', 'gh-datainmap' );
+    $columns['content_type'] = __( 'Content Type', 'gh-datainmap' );
+    $columns['date'] = $date;
+    return $columns;
+}, 1, 10 );
+
+// Weergave van de extra gh-dim-locations kolommen
+add_action( 'manage_gh-dim-locations_posts_custom_column' , function($column, $post_id) {
+    switch ( $column ) {
+        case 'shape':
+            // Transformeer voor vertaling
+            $type = ucfirst(get_post_meta($post_id, '_gh_dim_location_type', true));
+            if($type == 'Linestring') {
+                $type = 'LineString';
+            }
+            echo _e($type, 'gh-datainmap' );
+            break;
+        case 'content_type':
+            // Transformeer voor vertaling
+            $type = ucfirst(get_post_meta($post_id, '_gh_dim_location_content_type', true));
+            echo _e($type, 'gh-datainmap' );
+            break;
+    }
+}, 10, 2 );
+
+// Extra gh-dim-locations kolommen klikbaar maken voor sorteren
+add_filter( 'manage_edit-gh-dim-locations_sortable_columns', function($columns) {
+    $columns['shape'] = 'shape';
+    $columns['content_type'] = 'content_type';
+	return $columns;
+}, 10, 1 );
+
+// Pas extra sorteer opties toe op gh-dim-locations
+add_action( 'pre_get_posts', function($query) {
+    global $current_screen, $wp_query;
+    if(!is_admin() || $current_screen->post_type !== 'gh-dim-locations') {
+        return;
+    }
+
+    switch($query->get( 'orderby')) {
+        case 'shape':
+            $query->set('meta_key', '_gh_dim_location_type');
+            $query->set('orderby', 'meta_value');
+            break;
+        case 'content_type':
+            $query->set('meta_key', '_gh_dim_location_content_type');
+            $query->set('orderby', 'meta_value');
+            break;
+    }
+}, 10, 1);
+
+// Voeg extra filter toe aan gh-dim-locations overzicht
+add_action('restrict_manage_posts', function($post_type) {
+    global $wpdb;
+    if($post_type !== 'gh-dim-locations') {
+        return;
+    }
+
+    $selected = '';
+    if(isset($_REQUEST['gh-dim-location-types'])) {
+        $selected = $_REQUEST['gh-dim-location-types'];
+    }
+
+    $terms = get_terms(array(
+        'taxonomy' => 'gh-dim-location-types',
+        'hide_empty' => true,
+        'orderby' => 'name',
+    ));
+
+    echo '<select id="gh-dim-location-types" name="gh-dim-location-types">';
+    echo '<option value="">' . __( 'All location types', 'gh-datainmap' ) . ' </option>';
+    foreach($terms as $term) {
+        $select = $selected == $term->slug ? ' selected="selected"' : '';
+        printf('<option value="%s"%s>%s</option>', esc_attr($term->slug), $select, esc_html($term->name));
+    }
+    echo '</select>';
+}, 10, 1);
