@@ -1,3 +1,5 @@
+- Fix: pre_get_posts alleen op main query uitvoeren.
+
 **1.8.4 (2020-11-19)**
 
 - Locatieoverzicht in beheer uitgebreid met extra kolommen (weergavetype locatie en content type).

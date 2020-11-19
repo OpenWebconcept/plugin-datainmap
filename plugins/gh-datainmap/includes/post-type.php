@@ -119,8 +119,8 @@ add_filter( 'manage_edit-gh-dim-locations_sortable_columns', function($columns) 
 
 // Pas extra sorteer opties toe op gh-dim-locations
 add_action( 'pre_get_posts', function($query) {
-    global $current_screen, $wp_query;
-    if(!is_admin() || $current_screen->post_type !== 'gh-dim-locations') {
+    global $current_screen;
+    if(!(is_admin() && $query->is_main_query() && $current_screen->post_type === 'gh-dim-locations')) {
         return;
     }
 
