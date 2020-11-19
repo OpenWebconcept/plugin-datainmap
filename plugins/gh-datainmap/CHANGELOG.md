@@ -1,4 +1,6 @@
 - Locatieoverzicht in beheer uitgebreid met extra kolommen (weergavetype locatie en content type).
+- Locatieoverzicht kan nu gefilterd worden op locatie type.
+
 **1.8.3 (2020-10-13)**
 
 - Filters omgezet van een `aside`-element naar een `section`-element.
