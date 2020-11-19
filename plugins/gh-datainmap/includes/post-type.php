@@ -148,7 +148,7 @@ add_action('restrict_manage_posts', function($post_type) {
     ));
 
     echo '<select id="gh-dim-location-types" name="gh-dim-location-types">';
-    echo '<option value="">' . __( 'Show all location types', 'gh-datainmap' ) . ' </option>';
+    echo '<option value="">' . __( 'All location types', 'gh-datainmap' ) . ' </option>';
     foreach($terms as $term) {
         $select = $selected == $term->slug ? ' selected="selected"' : '';
         printf('<option value="%s"%s>%s</option>', esc_attr($term->slug), $select, esc_html($term->name));
