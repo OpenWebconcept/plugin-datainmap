@@ -1,3 +1,5 @@
+**1.8.5 (2020-11-19)**
+
 - Fix: pre_get_posts alleen op main query uitvoeren.
 
 **1.8.4 (2020-11-19)**
