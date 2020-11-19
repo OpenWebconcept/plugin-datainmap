@@ -1,5 +1,7 @@
+**1.8.4 (2020-11-19)**
+
 - Locatieoverzicht in beheer uitgebreid met extra kolommen (weergavetype locatie en content type).
-- Locatieoverzicht kan nu gefilterd worden op locatie type.
+- Locatieoverzicht in beheer kan nu gefilterd worden op locatie type.
 
 **1.8.3 (2020-10-13)**
 
