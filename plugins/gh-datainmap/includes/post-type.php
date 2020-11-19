@@ -95,10 +95,17 @@ add_filter( 'manage_gh-dim-locations_posts_columns', function($columns) {
 add_action( 'manage_gh-dim-locations_posts_custom_column' , function($column, $post_id) {
     switch ( $column ) {
         case 'shape':
-            echo get_post_meta($post_id, '_gh_dim_location_type', true);
+            // Transformeer voor vertaling
+            $type = ucfirst(get_post_meta($post_id, '_gh_dim_location_type', true));
+            if($type == 'Linestring') {
+                $type = 'LineString';
+            }
+            echo _e($type, 'gh-datainmap' );
             break;
         case 'content_type':
-            echo get_post_meta($post_id, '_gh_dim_location_content_type', true);
+            // Transformeer voor vertaling
+            $type = ucfirst(get_post_meta($post_id, '_gh_dim_location_content_type', true));
+            echo _e($type, 'gh-datainmap' );
             break;
     }
 }, 10, 2 );
