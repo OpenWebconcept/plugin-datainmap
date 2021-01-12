@@ -18,6 +18,11 @@ function gh_dim_register_settings() {
     register_setting('gh-datainmap-settings-group', 'gh-datainmap-settings', 'gh_dim_sanitize_settings');
 }
 
+add_filter('option_page_capability_gh-datainmap-settings-group', function($cap) {
+    return 'manage_options_gh-dim';
+}, 10, 1);
+
+
 function gh_dim_sanitize_settings($input) {
     $text_fields = [
         'include_default_style',

@@ -1,3 +1,5 @@
+- Fix: wijzigen van instellingen nu mogelijk bij `manage_options_gh-dim` capability.
+
 **1.8.5 (2020-11-19)**
 
 - Fix: pre_get_posts alleen op main query uitvoeren.
