@@ -1,3 +1,8 @@
+**1.8.6 (2021-01-12)**
+
+- Fix: wijzigen van instellingen nu mogelijk bij `manage_options_gh-dim` capability.
+- Fix: volgorde argumenten bij filter.
+
 **1.8.5 (2020-11-19)**
 
 - Fix: pre_get_posts alleen op main query uitvoeren.

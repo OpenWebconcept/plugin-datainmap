@@ -89,7 +89,7 @@ add_filter( 'manage_gh-dim-locations_posts_columns', function($columns) {
     $columns['content_type'] = __( 'Content Type', 'gh-datainmap' );
     $columns['date'] = $date;
     return $columns;
-}, 1, 10 );
+}, 10, 1 );
 
 // Weergave van de extra gh-dim-locations kolommen
 add_action( 'manage_gh-dim-locations_posts_custom_column' , function($column, $post_id) {
