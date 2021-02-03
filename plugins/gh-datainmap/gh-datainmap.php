@@ -3,7 +3,7 @@
 Plugin Name: Data In Map
 Plugin URI: https://bitbucket.org/gemeenteheerenveen/datainmap-plugin/src/master/
 Description: Data In Map is a plugin for displaying maps.
-Version: 1.8.6
+Version: 1.8.7
 Requires at least: 5.0
 Requires PHP: 7.2
 Author: Gemeente Heerenveen
@@ -26,7 +26,7 @@ See the Licence for the specific language governing permissions and limitations 
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
-if ( ! defined('GH_DIM_VERSION')) define('GH_DIM_VERSION', '1.8.6');
+if ( ! defined('GH_DIM_VERSION')) define('GH_DIM_VERSION', '1.8.7');
 if ( ! defined('GH_DIM_FILE')) define('GH_DIM_FILE', __FILE__);
 if ( ! defined('GH_DIM_DIR')) define('GH_DIM_DIR', dirname(__FILE__));
 if ( ! defined('GH_DIM_DEBUG')) define('GH_DIM_DEBUG', false);
@@ -56,7 +56,7 @@ add_filter('upload_mimes', function($mime_types) {
     return $mime_types;
 }, 1, 1);
 
-add_action('wp_enqueue_scripts', 'gh_dim_register_scripts');
+add_action('init', 'gh_dim_register_scripts');
 add_action('admin_enqueue_scripts', 'gh_dim_register_scripts');
 function gh_dim_register_scripts() {
     wp_register_script( 'gh-dim-vendors', plugin_dir_url(GH_DIM_FILE) . 'dist/vendors.js', array(), GH_DIM_VERSION, true );

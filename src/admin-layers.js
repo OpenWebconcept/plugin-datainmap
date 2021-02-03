@@ -25,7 +25,8 @@ $(document).ready(function() {
         '#gh_dim_layer_name',
         '#gh_dim_layer_maxtrixset',
         '#gh_dim_layer_server_type',
-        '#gh_dim_layer_cross_origin'
+        '#gh_dim_layer_cross_origin',
+        '#gh_dim_layer_ignore_features'
     ];
 
     const visibleFields = {
@@ -43,6 +44,7 @@ $(document).ready(function() {
             '#gh_dim_layer_name',
             '#gh_dim_layer_server_type',
             '#gh_dim_layer_cross_origin',
+            '#gh_dim_layer_ignore_features'
         ],
         'WMTS-auto': [
             '#gh_dim_layer_url',

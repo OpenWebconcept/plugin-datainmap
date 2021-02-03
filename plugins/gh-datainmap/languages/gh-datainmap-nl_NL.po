@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Data In Map 1.2.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/gh-datainmap\n"
-"POT-Creation-Date: 2020-11-19T09:34:13+00:00\n"
-"PO-Revision-Date: 2020-11-19 10:34+0100\n"
+"POT-Creation-Date: 2021-02-03T09:10:49+00:00\n"
+"PO-Revision-Date: 2021-02-03 10:11+0100\n"
 "Last-Translator: Christiaan Kras <christiaan@kras-it.nl>\n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -159,7 +159,7 @@ msgstr "Weergavetype"
 msgid "Content Type"
 msgstr "Content Type"
 
-#: includes/post-type.php:157
+#: includes/post-type.php:153
 msgid "All location types"
 msgstr "Alle locatie types"
 
@@ -353,14 +353,26 @@ msgid "E.g. anonymous"
 msgstr "Bijv. anonymous"
 
 #: views/metabox-layer.php:73
+msgid "Ignore features"
+msgstr "Negeer features"
+
+#: views/metabox-layer.php:78
+msgid "Yes, ignore features from this layer"
+msgstr "Ja, negeer features van deze laag"
+
+#: views/metabox-layer.php:79
+msgid "This disables feature modals for this layer."
+msgstr "Dit schakelt de feature pop-ups uit voor deze layer."
+
+#: views/metabox-layer.php:84
 msgid "KML Style"
 msgstr "KML Stijl"
 
-#: views/metabox-layer.php:78
+#: views/metabox-layer.php:89
 msgid "Yes, ignore provided KML styles"
 msgstr "Ja, negeer de meegeleverde KML stijlen"
 
-#: views/metabox-layer.php:79
+#: views/metabox-layer.php:90
 msgid "This disables KML styling."
 msgstr "Dit schakelt KML stijlen uit."
 
