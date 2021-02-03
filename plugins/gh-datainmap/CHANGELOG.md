@@ -1,3 +1,5 @@
+- Fix: inladen scripts nu in `init`-hook. Dit lost een probleem op bij sommige thema's waar de scripts tijdens het plaatsen van de shortcode niet werden geplaatst.
+
 **1.8.6 (2021-01-12)**
 
 - Fix: wijzigen van instellingen nu mogelijk bij `manage_options_gh-dim` capability.
