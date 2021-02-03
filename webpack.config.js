@@ -51,19 +51,6 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.coffee$/,
-                use: [
-                    {
-                        loader: 'coffee-loader',
-                        options: {
-                            transpile: {
-                                "presets": babel_presets
-                            }
-                        }
-                    }
-                ]
-            },
-            {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: [{
