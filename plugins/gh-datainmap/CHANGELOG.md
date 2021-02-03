@@ -1,4 +1,4 @@
-- Nieuwe versies van ondersteunende software bibliotheken in gebruik genomen.
+- Nieuwe versies van ondersteunende software bibliotheken in gebruik genomen (React 17, OpenLayers 6.5 etc.).
 
 **1.8.7 (2021-02-03)**
 
