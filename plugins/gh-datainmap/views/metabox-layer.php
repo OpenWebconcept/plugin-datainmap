@@ -70,6 +70,17 @@
         </tr>
         <tr>
             <th scope="row" valign="top">
+                <label for="gh_dim_layer_ignore_features"><?php _e('Ignore features', 'gh-datainmap') ?></label>
+            </th>
+            <td>
+                <input type="hidden" name="_gh_dim_layer_ignore_features" value="0" />
+                <input type="checkbox" name="_gh_dim_layer_ignore_features" id="gh_dim_layer_ignore_features" value="1" <?php checked(1, $gh_dim_layer_ignore_features, true) ?> />
+                <?php _e('Yes, ignore features from this layer', 'gh-datainmap') ?>
+                <p class="description"><?php _e( 'This disables feature modals for this layer.', 'gh-datainmap' ) ?></p>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row" valign="top">
                 <label for="gh_dim_kml_ignore_style"><?php _e('KML Style', 'gh-datainmap') ?></label>
             </th>
             <td>

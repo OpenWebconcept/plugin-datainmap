@@ -239,6 +239,10 @@ else {
                     serverType: layerData.server_type,
                     crossOrigin: layerData.cross_origin
                 });
+                // Override getFeatureInfoUrl() if features for this layer are to be ignored
+                if(layerData.ignore_features) {
+                    source.getFeatureInfoUrl = () => { return undefined };
+                }
                 const layer = new TileLayer({
                     zIndex: ++zIndex,
                     opacity: layerData.opacity,

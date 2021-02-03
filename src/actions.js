@@ -205,6 +205,10 @@ export function selectFeatureGeoserver(cb) {
     return (dispatch) => {
         dispatch(fetchingFeature(true));
         const url = cb({INFO_FORMAT: 'text/html'});
+        if(url === undefined) {
+            dispatch(fetchingFeature(false));
+            return;
+        }
         return fetch(url).
             then( response => {
                 dispatch(fetchingFeature(false));
