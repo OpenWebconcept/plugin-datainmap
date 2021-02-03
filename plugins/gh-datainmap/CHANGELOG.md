@@ -1,5 +1,5 @@
 - Fix: inladen scripts nu in `init`-hook. Dit lost een probleem op bij sommige thema's waar de scripts tijdens het plaatsen van de shortcode niet werden geplaatst (Edwin Siebel).
-- Mogelijkheid toegevoegd om bij een TileWMS layer per layer het weergeven van de features pop-up uit te schakelen.
+- Mogelijkheid toegevoegd om bij een TileWMS layer het weergeven van de features pop-up uit te schakelen.
 
 **1.8.6 (2021-01-12)**
 
