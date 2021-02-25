@@ -136,6 +136,7 @@ export default class FeatureComponent extends Component {
         if(this.props.feature !== null) {
             document.body.classList.add('gh-dim-modal-open');
             if(typeof this.props.cb === 'function') {
+                this.refModal.current.focus();
                 this.props.cb(this.props.feature);
             }
         }
