@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Data In Map plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Data In Map 1.8.6\n"
+"Project-Id-Version: Data In Map 1.8.7\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/gh-datainmap\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-02-03T09:10:49+00:00\n"
+"POT-Creation-Date: 2021-02-25T10:48:02+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.3.0\n"
 "X-Domain: gh-datainmap\n"
@@ -60,7 +60,7 @@ msgstr ""
 
 #: includes/menus.php:53
 #: includes/menus.php:54
-#: views/manual.php:2
+#: views/manual.php:7
 msgid "Manual"
 msgstr ""
 
@@ -100,7 +100,7 @@ msgid "Add New Location"
 msgstr ""
 
 #: includes/post-type.php:26
-#: includes/post-type.php:58
+#: includes/post-type.php:59
 msgid "Add New"
 msgstr ""
 
@@ -117,68 +117,82 @@ msgid "Search Locations"
 msgstr ""
 
 #: includes/post-type.php:30
-#: includes/post-type.php:62
+#: includes/post-type.php:63
 msgid "Not Found"
 msgstr ""
 
 #: includes/post-type.php:31
-#: includes/post-type.php:63
+#: includes/post-type.php:64
 msgid "Not found in Trash"
 msgstr ""
 
-#: includes/post-type.php:51
-#: includes/post-type.php:53
-#: includes/post-type.php:66
+#: includes/post-type.php:52
+#: includes/post-type.php:54
+#: includes/post-type.php:67
 msgid "Layers"
 msgstr ""
 
-#: includes/post-type.php:52
-#: includes/post-type.php:67
+#: includes/post-type.php:53
+#: includes/post-type.php:68
 msgid "Layer"
 msgstr ""
 
-#: includes/post-type.php:54
+#: includes/post-type.php:55
 msgid "Parent Layers"
 msgstr ""
 
-#: includes/post-type.php:55
+#: includes/post-type.php:56
 msgid "All Layers"
 msgstr ""
 
-#: includes/post-type.php:56
+#: includes/post-type.php:57
 msgid "View Layer"
 msgstr ""
 
-#: includes/post-type.php:57
+#: includes/post-type.php:58
 msgid "Add New Layer"
 msgstr ""
 
-#: includes/post-type.php:59
+#: includes/post-type.php:60
 msgid "Edit Layer"
 msgstr ""
 
-#: includes/post-type.php:60
+#: includes/post-type.php:61
 msgid "Update Layer"
 msgstr ""
 
-#: includes/post-type.php:61
+#: includes/post-type.php:62
 msgid "Search Layers"
 msgstr ""
 
-#: includes/post-type.php:88
+#: includes/post-type.php:89
 msgid "Location Display"
 msgstr ""
 
-#: includes/post-type.php:89
+#: includes/post-type.php:90
 #: views/metabox-location.php:5
 msgid "Content Type"
 msgstr ""
 
-#: includes/post-type.php:153
+#: includes/post-type.php:154
 msgid "All location types"
 msgstr ""
 
-#: includes/shortcode.php:168
+#: includes/post-type.php:169
+#: views/metabox-location.php:42
+msgid "Type"
+msgstr ""
+
+#: includes/post-type.php:170
+#: views/metabox-layer.php:37
+msgid "Layer opacity"
+msgstr ""
+
+#: includes/post-type.php:187
+msgid "Unknown type"
+msgstr ""
+
+#: includes/shortcode.php:169
 #: views/metabox-location.php:59
 #: views/settings.php:131
 msgid "Loading..."
@@ -288,19 +302,19 @@ msgstr ""
 msgid "Minimum distance in pixels between clusters."
 msgstr ""
 
-#: views/manual.php:5
+#: views/manual.php:10
 msgid "Description"
 msgstr ""
 
-#: views/manual.php:6
+#: views/manual.php:11
 msgid "Configuration"
 msgstr ""
 
-#: views/manual.php:7
+#: views/manual.php:12
 msgid "Shortcode"
 msgstr ""
 
-#: views/manual.php:8
+#: views/manual.php:13
 msgid "Changelog"
 msgstr ""
 
@@ -338,10 +352,6 @@ msgstr ""
 
 #: views/metabox-layer.php:32
 msgid "The name of the layer to display."
-msgstr ""
-
-#: views/metabox-layer.php:37
-msgid "Layer opacity"
 msgstr ""
 
 #: views/metabox-layer.php:41
@@ -422,10 +432,6 @@ msgstr ""
 
 #: views/metabox-location.php:37
 msgid "If the alternative title is enabled the modal title will default to the post title. If you want to change it you can override it here."
-msgstr ""
-
-#: views/metabox-location.php:42
-msgid "Type"
 msgstr ""
 
 #: views/metabox-location.php:46
