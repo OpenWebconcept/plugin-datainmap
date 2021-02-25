@@ -43,6 +43,14 @@ export class MapComponent extends Component {
             target: mapElement,
             layers: this.props.layers,
         });
+        // Get zoom elements so we can provide them with a proper aria-label
+        this.olMap.getControls().forEach((control) => {
+            if(control.element.className.indexOf('ol-zoom') != -1) {
+                control.element.children.forEach((el) => {
+                    el.setAttribute('aria-label', el.getAttribute('title'));
+                });
+            }
+        });
         mapElement.addEventListener('mouseenter', (e) => {
             mapElement.focus();
         });
