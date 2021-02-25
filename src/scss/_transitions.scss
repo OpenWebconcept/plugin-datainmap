@@ -9,7 +9,7 @@
     // Dit is de enter/appear-transitie
     &-enter-active, &-appear-active {
         opacity: 100%;
-        transition: all 400ms;
+        transition: all 400ms cubic-bezier(.2, .5, .7, .5);
     }
     // Wordt uitgevoerd zodra in (in=false)
     &-exit {
@@ -18,7 +18,7 @@
     // Wordt uitgevoerd zodra het element de DOM verlaat
     &-exit-active {
         opacity:0;
-        transition: all 400ms;
+        transition: all 400ms cubic-bezier(.2, .5, .7, .5);
     }
 }
 
