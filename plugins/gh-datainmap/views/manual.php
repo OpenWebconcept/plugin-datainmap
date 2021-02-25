@@ -1,3 +1,8 @@
+<style>
+    ul {
+        list-style:inside;
+    }
+</style>
 <div class="wrap">
     <h1><?php _e('Manual', 'gh-datainmap') ?></h1>
     <?php $current_section = $_GET['section'] ?? 'description'; ?>
