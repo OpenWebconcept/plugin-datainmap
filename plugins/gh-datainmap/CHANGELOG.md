@@ -1,3 +1,5 @@
+**1.9.0 (2021-02-25)**
+
 - Na kiezen van loocatie met toetsenbord wordt de focus nu direct op het feature modal gezet.
 - Focus blijft met tabben nu binnen feature modal totdat deze wordt gesloten.
 - Zoomknoppen zijn nu voorzien van een `aria-label`.
