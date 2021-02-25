@@ -42,7 +42,7 @@ class KMLFeatureComponent extends Component {
                     <h1>{feature.name}</h1>
                     <CloseModal onClick={() => this.props.closeModal()} />
                 </header>
-                <section className="gh-dim-feature-content" dangerouslySetInnerHTML={{__html: feature.description}} />
+                <section className="gh-dim-feature-content" dangerouslySetInnerHTML={{__html: feature.description}} tabIndex="0" />
             </>
         )
     }
@@ -61,7 +61,7 @@ class WMSFeatureComponent extends Component {
                     <h1>Informatie</h1>
                     <CloseModal onClick={() => this.props.closeModal()} />
                 </header>
-                <section className="gh-dim-feature-content" dangerouslySetInnerHTML={{__html: feature}} />
+                <section className="gh-dim-feature-content" dangerouslySetInnerHTML={{__html: feature}} tabIndex="0" />
             </>
         )
     }
@@ -86,7 +86,7 @@ class DIMFeatureComponent extends Component {
                     <h1 dangerouslySetInnerHTML={{__html: title}}></h1>
                     <CloseModal onClick={() => this.props.closeModal()} />
                 </header>
-                <section className="gh-dim-feature-content" dangerouslySetInnerHTML={{__html: feature.content}} />
+                <section className="gh-dim-feature-content" dangerouslySetInnerHTML={{__html: feature.content}} tabIndex="0" />
             </>
         );
     }
@@ -95,9 +95,35 @@ class DIMFeatureComponent extends Component {
 export default class FeatureComponent extends Component {
     constructor(props) {
         super(props);
+        this.refModal = React.createRef();
         this.closeModalWithEscape = (e) => {
             if(e.key === 'Escape') {
                 this.closeModal();
+            }
+        };
+        this.trapFocusInsideModal = (e) => {
+            // Based on https://gist.github.com/myogeshchavan97/d50d42aa9205573b811587d57c2e58a6#file-trap_focus-js
+            const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+            const modal = this.refModal.current;
+            const firstFocusableElement = modal.querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
+            const focusableContent = modal.querySelectorAll(focusableElements);
+            const lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
+            const isTabPressed = e.key === 'Tab' || e.keyCode === 9;
+            if(!isTabPressed) {
+                return;
+            }
+
+            if(e.shiftKey) { // if shift key pressed for shift + tab combination
+                if(document.activeElement === firstFocusableElement) {
+                    lastFocusableElement.focus(); // add focus for the last focusable element
+                    e.preventDefault();
+                }
+            }
+            else { // if tab key is pressed
+                if(document.activeElement === lastFocusableElement) { // if focused has reached to last focusable element then focus first focusable element after pressing tab
+                    firstFocusableElement.focus(); // add focus for the first focusable element
+                    e.preventDefault();
+                }
             }
         };
     }
@@ -120,9 +146,11 @@ export default class FeatureComponent extends Component {
         // Close modal when Escape is pressed
         if(this.props.feature !== null) {
             document.addEventListener('keydown', this.closeModalWithEscape);
+            document.addEventListener('keydown', this.trapFocusInsideModal);
         }
         else {
             document.removeEventListener('keydown', this.closeModalWithEscape);
+            document.removeEventListener('keydown', this.trapFocusInsideModal);
         }
     }
 
@@ -152,7 +180,7 @@ export default class FeatureComponent extends Component {
                 timeout={400}
                 unmountOnExit
                 classNames="transition">
-                <div className="gh-dim-feature-modal" onClick={(e) => this.closeModal()}>
+                <div className="gh-dim-feature-modal" onClick={(e) => this.closeModal()} ref={this.refModal} tabIndex="0">
                     { /* Prevent a click event on the article element to close the modal */ }
                     <article className="gh-dim-feature" onClick={e => e.stopPropagation() }>
                         {content}

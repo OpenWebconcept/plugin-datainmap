@@ -1,3 +1,4 @@
+- Focus blijft met tabben nu binnen feature modal totdat deze wordt gesloten.
 - Zoomknoppen zijn nu voorzien van een `aria-label`.
 - Het overzicht met layers geeft nu ook het type en de transparantie aan.
 - Opmaak standaard stylesheet aangepast, deze voldeed niet en liet niet alle elementen goed zien. Door nu een goede basis te bieden moet het eenvoudiger zijn om in een eigen stylesheet enkel aanpassingen door te voeren. Al wordt het nog steeds aangeraden om een eigen stylesheet te gebruiken. Zie de broncode voor een voorbeeld.
