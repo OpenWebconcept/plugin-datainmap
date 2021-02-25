@@ -1,3 +1,7 @@
+**1.9.1 (2021-02-25)**
+
+- De locatietypes en -eigenschappen waren niet beschikbaar in Gutenberg. Dit is nu opgelost.
+
 **1.9.0 (2021-02-25)**
 
 - Na kiezen van loocatie met toetsenbord wordt de focus nu direct op het feature modal gezet.

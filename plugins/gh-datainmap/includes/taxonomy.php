@@ -41,6 +41,7 @@ function gh_dim_register_taxonomy() {
             'delete_terms' => 'delete_gh-dim-location-types',
             'assign_terms' => 'assign_gh-dim-location-types',
         ),
+        'show_in_rest' => true,
     ));
 
     $labels = array(
@@ -69,6 +70,7 @@ function gh_dim_register_taxonomy() {
             'delete_terms' => 'delete_gh-dim-location-properties',
             'assign_terms' => 'assign_gh-dim-location-properties',
         ),
+        'show_in_rest' => true,
     ));
 }
 
