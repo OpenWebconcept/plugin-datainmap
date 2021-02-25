@@ -1,6 +1,6 @@
 <?php
 /*
-* Copyright 2020 Gemeente Heerenveen
+* Copyright 2020-2021 Gemeente Heerenveen
 *
 * Licensed under the EUPL, Version 1.2 or – as soon they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence");
 * You may not use this work except in compliance with the Licence.
@@ -46,6 +46,7 @@ function gh_dim_register_post_type() {
         'supports' => ['title', 'editor', 'custom-fields'],
         'exclude_from_search' => true,
         'publicly_queryable' => false,
+        'show_in_rest' => true,
     ]);
     $labels = array(
         'name'                => __( 'Layers', 'gh-datainmap' ),
@@ -160,3 +161,30 @@ add_action('restrict_manage_posts', function($post_type) {
         'value_field'     => 'slug',
     ));
 }, 10, 1);
+
+// Extra kolommen voor gh-dim-layers
+add_filter( 'manage_gh-dim-layers_posts_columns', function($columns) {
+    $date = $columns['date'];
+    unset( $columns['date'] );
+    $columns['type'] = __( 'Type', 'gh-datainmap' );
+    $columns['opacity'] = __( 'Layer opacity', 'gh-datainmap');
+    $columns['date'] = $date;
+    return $columns;
+}, 10, 1);
+
+// Weergave van de extra gh-dim-layers kolommen
+add_action( 'manage_gh-dim-layers_posts_custom_column', function($column, $post_id) {
+    switch( $column ) {
+        case 'type':
+            $type = get_post_meta($post_id, '_gh_dim_layer_type', true);
+            echo _e($type, 'gh-datainmap');
+            break;
+        case 'opacity':
+            $opacity = get_post_meta($post_id, '_gh_dim_layer_opacity', true);
+            echo _e($opacity, 'gh-datainmap');
+            break;
+        default:
+            echo _e('Unknown type', 'gh-datainmap');
+            break;
+    }
+}, 10, 2);

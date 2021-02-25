@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Data In Map 1.2.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/gh-datainmap\n"
-"POT-Creation-Date: 2021-02-03T09:10:49+00:00\n"
-"PO-Revision-Date: 2021-02-03 10:11+0100\n"
+"POT-Creation-Date: 2021-02-25T10:48:02+00:00\n"
+"PO-Revision-Date: 2021-02-25 11:49+0100\n"
 "Last-Translator: Christiaan Kras <christiaan@kras-it.nl>\n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -53,7 +53,7 @@ msgstr "Locatie Eigenschappen"
 msgid "Settings"
 msgstr "Instellingen"
 
-#: includes/menus.php:53 includes/menus.php:54 views/manual.php:2
+#: includes/menus.php:53 includes/menus.php:54 views/manual.php:7
 msgid "Manual"
 msgstr "Uitleg"
 
@@ -90,7 +90,7 @@ msgstr "Bekijk Locatie"
 msgid "Add New Location"
 msgstr "Nieuwe Locatie Toevoegen"
 
-#: includes/post-type.php:26 includes/post-type.php:58
+#: includes/post-type.php:26 includes/post-type.php:59
 msgid "Add New"
 msgstr "Nieuwe Toevoegen"
 
@@ -106,64 +106,76 @@ msgstr "Update Locatie"
 msgid "Search Locations"
 msgstr "Zoek Locaties"
 
-#: includes/post-type.php:30 includes/post-type.php:62
+#: includes/post-type.php:30 includes/post-type.php:63
 msgid "Not Found"
 msgstr "Niet Gevonden"
 
-#: includes/post-type.php:31 includes/post-type.php:63
+#: includes/post-type.php:31 includes/post-type.php:64
 msgid "Not found in Trash"
 msgstr "Niet gevonden in Prullenbak"
 
-#: includes/post-type.php:51 includes/post-type.php:53
-#: includes/post-type.php:66
+#: includes/post-type.php:52 includes/post-type.php:54
+#: includes/post-type.php:67
 msgid "Layers"
 msgstr "Lagen"
 
-#: includes/post-type.php:52 includes/post-type.php:67
+#: includes/post-type.php:53 includes/post-type.php:68
 msgid "Layer"
 msgstr "Laag"
 
-#: includes/post-type.php:54
+#: includes/post-type.php:55
 msgid "Parent Layers"
 msgstr "Bovenliggende Laag"
 
-#: includes/post-type.php:55
+#: includes/post-type.php:56
 msgid "All Layers"
 msgstr "Alle Lagen"
 
-#: includes/post-type.php:56
+#: includes/post-type.php:57
 msgid "View Layer"
 msgstr "Bekijk Laag"
 
-#: includes/post-type.php:57
+#: includes/post-type.php:58
 msgid "Add New Layer"
 msgstr "Nieuwe Laag Toevoegen"
 
-#: includes/post-type.php:59
+#: includes/post-type.php:60
 msgid "Edit Layer"
 msgstr "Wijzig Laag"
 
-#: includes/post-type.php:60
+#: includes/post-type.php:61
 msgid "Update Layer"
 msgstr "Update Laag"
 
-#: includes/post-type.php:61
+#: includes/post-type.php:62
 msgid "Search Layers"
 msgstr "Zoek Lagen"
 
-#: includes/post-type.php:88
+#: includes/post-type.php:89
 msgid "Location Display"
 msgstr "Weergavetype"
 
-#: includes/post-type.php:89 views/metabox-location.php:5
+#: includes/post-type.php:90 views/metabox-location.php:5
 msgid "Content Type"
 msgstr "Content Type"
 
-#: includes/post-type.php:153
+#: includes/post-type.php:154
 msgid "All location types"
 msgstr "Alle locatie types"
 
-#: includes/shortcode.php:168 views/metabox-location.php:59
+#: includes/post-type.php:169 views/metabox-location.php:42
+msgid "Type"
+msgstr "Type"
+
+#: includes/post-type.php:170 views/metabox-layer.php:37
+msgid "Layer opacity"
+msgstr "Laag transparantie"
+
+#: includes/post-type.php:187
+msgid "Unknown type"
+msgstr "Onbekend type"
+
+#: includes/shortcode.php:169 views/metabox-location.php:59
 #: views/settings.php:131
 msgid "Loading..."
 msgstr "Laden..."
@@ -268,19 +280,19 @@ msgstr "Cluster afstand"
 msgid "Minimum distance in pixels between clusters."
 msgstr "Minimale afstand in pixels tussen clusters."
 
-#: views/manual.php:5
+#: views/manual.php:10
 msgid "Description"
 msgstr "Omschrijving"
 
-#: views/manual.php:6
+#: views/manual.php:11
 msgid "Configuration"
 msgstr "Configuratie"
 
-#: views/manual.php:7
+#: views/manual.php:12
 msgid "Shortcode"
 msgstr "Shortcode"
 
-#: views/manual.php:8
+#: views/manual.php:13
 msgid "Changelog"
 msgstr "Updates"
 
@@ -319,10 +331,6 @@ msgstr "Laag naam"
 #: views/metabox-layer.php:32
 msgid "The name of the layer to display."
 msgstr "De naam van de weer te geven laag."
-
-#: views/metabox-layer.php:37
-msgid "Layer opacity"
-msgstr "Laag transparantie"
 
 #: views/metabox-layer.php:41
 msgid "Layer opacity, between 0 and 1."
@@ -410,10 +418,6 @@ msgstr ""
 "Als alternatieve titel is ingeschakeld dan wordt de titel van het bericht "
 "gebruikt in de pop-up. Wil je deze aanpassen zonder de berichttitel te "
 "wijzigen, dan kan dat hier."
-
-#: views/metabox-location.php:42
-msgid "Type"
-msgstr "Type"
 
 #: views/metabox-location.php:46
 msgid "Point"

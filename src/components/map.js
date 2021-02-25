@@ -1,5 +1,5 @@
 /*
-* Copyright 2020 Gemeente Heerenveen
+* Copyright 2020-2021 Gemeente Heerenveen
 *
 * Licensed under the EUPL, Version 1.2 or – as soon they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence");
 * You may not use this work except in compliance with the Licence.
@@ -42,6 +42,14 @@ export class MapComponent extends Component {
             view: olView,
             target: mapElement,
             layers: this.props.layers,
+        });
+        // Get zoom elements so we can provide them with a proper aria-label
+        this.olMap.getControls().forEach((control) => {
+            if(control.element.className.indexOf('ol-zoom') != -1) {
+                control.element.children.forEach((el) => {
+                    el.setAttribute('aria-label', el.getAttribute('title'));
+                });
+            }
         });
         mapElement.addEventListener('mouseenter', (e) => {
             mapElement.focus();
