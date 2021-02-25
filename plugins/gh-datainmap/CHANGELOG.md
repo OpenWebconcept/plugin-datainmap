@@ -1,3 +1,4 @@
+- Gutenberg kan nu ook gebruikt worden voor de inhoud van de pop-ups.
 - Nieuwe versies van ondersteunende software bibliotheken in gebruik genomen (React 17, OpenLayers 6.5 etc.).
 
 **1.8.7 (2021-02-03)**

@@ -46,6 +46,7 @@ function gh_dim_register_post_type() {
         'supports' => ['title', 'editor', 'custom-fields'],
         'exclude_from_search' => true,
         'publicly_queryable' => false,
+        'show_in_rest' => true,
     ]);
     $labels = array(
         'name'                => __( 'Layers', 'gh-datainmap' ),
