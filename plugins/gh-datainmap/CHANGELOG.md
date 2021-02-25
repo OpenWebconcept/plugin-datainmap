@@ -1,3 +1,5 @@
+- Nieuwe versies van ondersteunende software bibliotheken in gebruik genomen (React 17, OpenLayers 6.5 etc.).
+
 **1.8.7 (2021-02-03)**
 
 - Fix: inladen scripts nu in `init`-hook. Dit lost een probleem op bij sommige thema's waar de scripts tijdens het plaatsen van de shortcode niet werden geplaatst (Edwin Siebel).
