@@ -161,3 +161,30 @@ add_action('restrict_manage_posts', function($post_type) {
         'value_field'     => 'slug',
     ));
 }, 10, 1);
+
+// Extra kolommen voor gh-dim-layers
+add_filter( 'manage_gh-dim-layers_posts_columns', function($columns) {
+    $date = $columns['date'];
+    unset( $columns['date'] );
+    $columns['type'] = __( 'Type', 'gh-datainmap' );
+    $columns['opacity'] = __( 'Layer opacity', 'gh-datainmap');
+    $columns['date'] = $date;
+    return $columns;
+}, 10, 1);
+
+// Weergave van de extra gh-dim-layers kolommen
+add_action( 'manage_gh-dim-layers_posts_custom_column', function($column, $post_id) {
+    switch( $column ) {
+        case 'type':
+            $type = get_post_meta($post_id, '_gh_dim_layer_type', true);
+            echo _e($type, 'gh-datainmap');
+            break;
+        case 'opacity':
+            $opacity = get_post_meta($post_id, '_gh_dim_layer_opacity', true);
+            echo _e($opacity, 'gh-datainmap');
+            break;
+        default:
+            echo _e('Unknown type', 'gh-datainmap');
+            break;
+    }
+}, 10, 2);
