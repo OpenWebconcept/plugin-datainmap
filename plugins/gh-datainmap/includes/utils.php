@@ -72,7 +72,6 @@ function gh_dim_get_location_layer($term) {
         $location = get_post_meta( $post->ID, '_gh_dim_location', true);
         $location_type = get_post_meta( $post->ID, '_gh_dim_location_type', true);
         $content_type = get_post_meta( $post->ID, '_gh_dim_location_content_type', true);
-        $title = get_the_title( $post );
         $useAlternativeTitle = get_post_meta( $post->ID, '_gh_dim_location_alternative_title', true ) == 1;
         $alternativeTitle = get_post_meta( $post->ID, '_gh_dim_location_alternative_title_text', true);
         if($useAlternativeTitle && strlen($alternativeTitle) > 0) {
@@ -84,7 +83,7 @@ function gh_dim_get_location_layer($term) {
             'location' => json_decode($location),
             'location_properties' => $location_properties,
             'feature_id' => $post->ID,
-            'title' => $title,
+            'title' => $post->post_title,
             'term' => $term->slug,
             'content_type' => $content_type_enum,
         ];
