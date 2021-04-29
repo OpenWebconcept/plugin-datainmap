@@ -1,3 +1,7 @@
+**1.9.2 (2021-04-29)**
+
+- Coderingsfix voor locatienaam. HTML entities werden bijvoorbeeld getoond in het overzicht met gevonden locaties. Dit is nu opgelost.
+
 **1.9.1 (2021-02-25)**
 
 - De locatietypes en -eigenschappen waren niet beschikbaar in Gutenberg. Dit is nu opgelost.
