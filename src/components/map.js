@@ -245,6 +245,11 @@ export class MapComponent extends Component {
                 }
             });
         }
+        const mapElement = this.refMap.current;
+        mapElement.getElementsByTagName('canvas').forEach((el) => {
+            el.setAttribute('aria-label', 'Kaart');
+            el.setAttribute('role', 'img');
+        });
     }
 
     render() {
