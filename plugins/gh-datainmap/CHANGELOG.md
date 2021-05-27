@@ -1,3 +1,5 @@
+**1.9.3 (2021-05-27)**
+
 - Het `canvas`-element waar de kaart op wordt getekend voorzien van een `aria-label` en een `role=img` voor verbeterde toegankelijkheid.
 
 **1.9.2 (2021-04-29)**
