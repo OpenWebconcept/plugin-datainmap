@@ -1,3 +1,5 @@
+- Nieuwe versies van ondersteunende software bibliotheken in gebruik genomen (o.a. Redux 4.1.0).
+
 **1.9.3 (2021-05-27)**
 
 - Het `canvas`-element waar de kaart op wordt getekend voorzien van een `aria-label` en een `role=img` voor verbeterde toegankelijkheid.
