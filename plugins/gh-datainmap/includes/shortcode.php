@@ -33,6 +33,9 @@ function gh_dim_shortcode($atts, $content = null) {
             'enable_tooltip' => 0,
             'enable_filter' => 0,
             'enable_features_listbox' => 1,
+            'enable_toggler' => 0,
+            'toggle_layers' => 'ALL',
+            'toggle_types' => 'ALL',
             'dynamic_loading' => 0,
             'css_class' => null,
             'filter_properties' => null,
@@ -51,8 +54,11 @@ function gh_dim_shortcode($atts, $content = null) {
     $settings['enable_tooltip'] = $args['enable_tooltip'] == 1 ? true : false;
     $settings['enable_filter'] = $args['enable_filter'] == 1 ? true : false;
     $settings['enable_features_listbox'] = $args['enable_features_listbox'] == 1 ? true : false;
+    $settings['enable_toggler'] = $args['enable_toggler'] == 1 ? true : false;
     $settings['dynamic_loading'] = $args['dynamic_loading'] == 1 ? true : false;
     $settings['filter_description'] = $args['filter_description'];
+    $settings['toggle_layers'] = $args['toggle_layers'];
+    $settings['toggle_types'] = array_map('intval', explode(',', $args['toggle_types']));
 
     // Compose map layers
     $layers = get_posts([
