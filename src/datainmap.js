@@ -21,7 +21,8 @@ import MapComponentLink from './containers/maplink';
 import SearchComponentLink from './containers/searchlink';
 import FeatureComponentLink from './containers/featurelink';
 import FilterComponentLink from './containers/filterlink';
-import {configureMapView, fetchWMTSLayer, addMapLayer, setSearchProjection, setSearchTownship, setAvailableFilters, storeFeatures, setFilterDescription} from './actions';
+import TogglerComponentLink from './containers/togglerlink';
+import {configureMapView, fetchWMTSLayer, addMapLayer, setSearchProjection, setSearchTownship, setAvailableFilters, storeFeatures, setFilterDescription, setToggler} from './actions';
 import {mapReducer} from './reducers/map';
 import {searchReducer} from './reducers/search';
 import {filterReducer} from './reducers/filter';
@@ -38,12 +39,15 @@ import {register} from 'ol/proj/proj4';
 import { getUid } from 'ol/util';
 import 'whatwg-fetch';
 import _ from 'lodash';
+import { LAYER_TYPE_LOCATION, LAYER_TYPE_MAP } from './constants';
+import { togglerReducer } from './reducers/toggler';
 
 const rootReducer = combineReducers({
     map: mapReducer,
     search: searchReducer,
     feature: featureReducer,
-    filter: filterReducer
+    filter: filterReducer,
+    toggler: togglerReducer
 });
 
 const middleware = applyMiddleware(createDebounce(), thunk);
@@ -188,6 +192,23 @@ store.dispatch(setSearchTownship(settings.search_filter_township));
 store.dispatch(setFilterDescription(settings.filter_description));
 store.dispatch(setAvailableFilters(GHDataInMap.location_properties));
 
+if(settings.toggle_layers.length > 0 || settings.toggle_types.length > 0) {
+    let toggler = [];
+    settings.toggle_layers.forEach(id => {
+        toggler.push({
+            type: LAYER_TYPE_MAP,
+            id
+        });
+    });
+    settings.toggle_types.forEach(id => {
+        toggler.push({
+            type: LAYER_TYPE_LOCATION,
+            id
+        });
+    });
+    store.dispatch(setToggler(toggler));
+}
+
 let zIndex = 0;
 
 const addOpenStreetMapsLayer = (opacity = 1) => {
@@ -224,7 +245,10 @@ else {
                         format: new KML({
                             extractStyles: !layerData.kml_ignore_style
                         }),
-                    })
+                    }),
+                    dimLayerType: LAYER_TYPE_MAP,
+                    dimLayerID: layerData.id,
+                    dimLayerName: layerData.title
                 });
                 store.dispatch(addMapLayer(layer));
                 break;
@@ -246,7 +270,10 @@ else {
                 const layer = new TileLayer({
                     zIndex: ++zIndex,
                     opacity: layerData.opacity,
-                    source: source
+                    source: source,
+                    dimLayerType: LAYER_TYPE_MAP,
+                    dimLayerID: layerData.id,
+                    dimLayerName: layerData.title
                 });
                 store.dispatch(addMapLayer(layer));
                 break;
@@ -261,6 +288,9 @@ else {
                     {
                         opacity: layerData.opacity,
                         zIndex: ++zIndex,
+                        dimLayerType: LAYER_TYPE_MAP,
+                        dimLayerID: layerData.id,
+                        dimLayerName: layerData.title
                     }
                 ));
                 break;
@@ -275,7 +305,10 @@ else {
                     }),
                     style: (feature) => {
                         return style;
-                    }
+                    },
+                    dimLayerType: LAYER_TYPE_MAP,
+                    dimLayerID: layerData.id,
+                    dimLayerName: layerData.title
                 });
                 store.dispatch(addMapLayer(layer));
                 break;
@@ -377,7 +410,10 @@ if(GHDataInMap.settings.single_cluster) {
     const layer = new VectorLayer({
         zIndex: ++zIndex,
         source: clusterSource,
-        style: styles.cluster
+        style: styles.cluster,
+        dimLayerType: LAYER_TYPE_MAP,
+        dimLayerID: 'singleCluster',
+        dimLayerName: null
     });
     store.dispatch( addMapLayer(layer) );
 }
@@ -395,7 +431,10 @@ else {
             layer = new VectorLayer({
                 zIndex: ++zIndex,
                 source: clusterSource,
-                style: styles.cluster
+                style: styles.cluster,
+                dimLayerType: LAYER_TYPE_LOCATION,
+                dimLayerID: layerData.term_id,
+                dimLayerName: layerData.name
             });
         }
         else {
@@ -415,7 +454,10 @@ else {
             layer = new VectorLayer({
                 zIndex: ++zIndex,
                 source: source,
-                style: layerStyle
+                style: layerStyle,
+                dimLayerType: LAYER_TYPE_LOCATION,
+                dimLayerID: layerData.term_id,
+                dimLayerName: layerData.name
             });
         }
         store.dispatch( addMapLayer(layer) );
@@ -428,6 +470,7 @@ const App = () => {
             <MapComponentLink enableTooltip={settings.enable_tooltip} enableFeaturesListbox={settings.enable_features_listbox}>
                 { settings.enable_search && <SearchComponentLink /> }
                 { settings.enable_filter && <FilterComponentLink /> }
+                { settings.enable_toggler && <TogglerComponentLink /> }
             </MapComponentLink>
             { settings.enable_feature_dialog && <FeatureComponentLink cb={GHDataInMap.featureCallback} /> }
         </Provider>

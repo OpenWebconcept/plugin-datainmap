@@ -260,3 +260,13 @@ export const STORE_FEATURES = 'STORE_FEATURES';
 export function storeFeatures(features, sourceId) {
     return { type: STORE_FEATURES, features: features, sourceId: sourceId};
 }
+
+export const SET_TOGGLER = 'SET_TOGGLER';
+export function setToggler(togglers) {
+    return { type: SET_TOGGLER, togglers };
+}
+
+export const TOGGLE_LAYER = 'TOGGLE_LAYER';
+export function toggleLayer(layerType, layerId, checked) {
+    return { type: TOGGLE_LAYER, layer: { layerType, layerId, checked } };
+}

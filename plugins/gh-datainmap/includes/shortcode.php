@@ -34,7 +34,7 @@ function gh_dim_shortcode($atts, $content = null) {
             'enable_filter' => 0,
             'enable_features_listbox' => 1,
             'enable_toggler' => 0,
-            'toggle_layers' => 'ALL',
+            'toggle_layers' => null,
             'toggle_types' => 'ALL',
             'dynamic_loading' => 0,
             'css_class' => null,
@@ -57,8 +57,8 @@ function gh_dim_shortcode($atts, $content = null) {
     $settings['enable_toggler'] = $args['enable_toggler'] == 1 ? true : false;
     $settings['dynamic_loading'] = $args['dynamic_loading'] == 1 ? true : false;
     $settings['filter_description'] = $args['filter_description'];
-    $settings['toggle_layers'] = $args['toggle_layers'];
-    $settings['toggle_types'] = array_map('intval', explode(',', $args['toggle_types']));
+    $settings['toggle_layers'] = array_map('trim', explode(',', $args['toggle_layers']));
+    $settings['toggle_types'] = array_map('trim', explode(',', $args['toggle_types']));
 
     // Compose map layers
     $layers = get_posts([
@@ -68,6 +68,7 @@ function gh_dim_shortcode($atts, $content = null) {
     ]);
     $map_layers = array_map(function($post) {
         return [
+            'id' => $post->ID,
             'title' => get_the_title( $post->ID ),
             'type' => get_post_meta($post->ID, '_gh_dim_layer_type', true),
             'url' => get_post_meta($post->ID, '_gh_dim_layer_url', true),

@@ -12,3 +12,7 @@ export const FEATURE_TYPE_DIMFEATURE = 'DIMFeature';
 export const FEATURE_TYPE_KMLFEATURE = 'KMLFeature';
 export const FEATURE_TYPE_WMSFEATURE = 'WMSFeature';
 export const FEATURE_TYPE_UNKNOWN = 'UnknownFeature';
+
+// The different types of layers
+export const LAYER_TYPE_MAP = 'MapLayer';
+export const LAYER_TYPE_LOCATION = 'LocationLayer';
