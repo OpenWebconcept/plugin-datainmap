@@ -26,7 +26,7 @@ const mapStateToProps  = (state) => {
         rerenderLayers: state.map.rerenderLayers,
         storedFeatures: state.map.storedFeatures,
         selectedFilters: state.filter.selected,
-        layerTogglers: state.toggler.layers,
+        toggledLayersState: state.toggler.toggledLayersState,
         toggleLayers: state.map.toggleLayers,
     }
 };

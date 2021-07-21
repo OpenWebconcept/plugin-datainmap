@@ -18,7 +18,8 @@ import { toggleLayer } from '../actions';
 const mapStateToProps  = (state) => {
     return {
         layers: state.map.layers,
-        togglers: state.toggler.togglers
+        togglers: state.toggler.togglers,
+        toggledLayersState: state.toggler.toggledLayersState,
     }
 }
 

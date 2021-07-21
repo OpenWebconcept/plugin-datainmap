@@ -2,7 +2,8 @@ import { SET_TOGGLER, TOGGLE_LAYER } from '../actions';
 import _ from 'lodash';
 
 const initialState = {
-    layers: []
+    toggledLayersState: [],
+    togglers: [],
 };
 
 export const togglerReducer = (state = initialState, action) => {
@@ -10,14 +11,14 @@ export const togglerReducer = (state = initialState, action) => {
         case SET_TOGGLER:
             return { ...state, togglers: action.togglers };
         case TOGGLE_LAYER:
-            let layers = state.layers;
+            let toggledLayersState = state.toggledLayersState;
             // Delete previous entry of layer
-            layers = _.reject(layers, {
+            toggledLayersState = _.reject(toggledLayersState, {
                 layerId: action.layer.layerId,
                 layerType: action.layer.layerType
             });
-            layers.push(action.layer);
-            return { ...state, layers };
+            toggledLayersState.push(action.layer);
+            return { ...state, toggledLayersState };
     }
     return state;
 };

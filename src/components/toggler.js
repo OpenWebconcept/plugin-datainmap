@@ -23,14 +23,22 @@ function blur(e) {
 };
 
 class TogglerItemComponent extends Component {
+    isChecked(layerType, layerId) {
+        const found = this.props.toggledLayersState.find( o => {
+            return o.layerId === layerId && o.layerType === layerType;
+        });
+        return found !== undefined ? found.checked : true;
+    }
+
     render() {
         const layerId = this.props.layer.get('dimLayerID');
         const layerType = this.props.layer.get('dimLayerType');
         const layerName = this.props.layer.get('dimLayerName');
         const id = _.uniqueId('gh-dim-toggler-');
+        const checked = this.isChecked(layerType, layerId);
         return (
             <div className="gh-dim-toggler-toggle">
-                <input id={id} type="checkbox" defaultChecked={true} onKeyDown={blur} onClick={(e) => this.props.handleChange(layerType, layerId, e.currentTarget.checked)} /> <label htmlFor={id}>{layerName}</label>
+                <input id={id} type="checkbox" defaultChecked={checked} onKeyDown={blur} onClick={(e) => this.props.handleChange(layerType, layerId, e.currentTarget.checked)} /> <label htmlFor={id}>{layerName}</label>
             </div>
         );
     }
@@ -76,7 +84,7 @@ export class TogglerComponent extends Component {
                                     if(!this.shouldShowLayerToggler(type, id)) {
                                         return null;
                                     }
-                                    return <TogglerItemComponent key={type + '-' + id} layer={layer} handleChange={(type, id, checked) => this.doToggleLayer(type, id, checked)} />;
+                                    return <TogglerItemComponent key={type + '-' + id} toggledLayersState={this.props.toggledLayersState} layer={layer} handleChange={(type, id, checked) => this.doToggleLayer(type, id, checked)} />;
                                 })}
                             </div>
                         </form>
@@ -90,8 +98,8 @@ export class TogglerComponent extends Component {
 TogglerComponent.defaultProps = {
     doToggleLayer: _.noop,
     layers: [],
-    togglers: [],
-    selected: []
+    toggledLayersState: [],
+    togglers: []
 };
 
 export default TogglerComponent;

@@ -268,5 +268,6 @@ export function setToggler(togglers) {
 
 export const TOGGLE_LAYER = 'TOGGLE_LAYER';
 export function toggleLayer(layerType, layerId, checked) {
+    layerId = parseInt(layerId, 10);
     return { type: TOGGLE_LAYER, layer: { layerType, layerId, checked } };
 }

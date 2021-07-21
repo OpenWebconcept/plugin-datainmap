@@ -22,7 +22,7 @@ import SearchComponentLink from './containers/searchlink';
 import FeatureComponentLink from './containers/featurelink';
 import FilterComponentLink from './containers/filterlink';
 import TogglerComponentLink from './containers/togglerlink';
-import {configureMapView, fetchWMTSLayer, addMapLayer, setSearchProjection, setSearchTownship, setAvailableFilters, storeFeatures, setFilterDescription, setToggler} from './actions';
+import {configureMapView, fetchWMTSLayer, addMapLayer, setSearchProjection, setSearchTownship, setAvailableFilters, storeFeatures, setFilterDescription, setToggler, toggleLayer} from './actions';
 import {mapReducer} from './reducers/map';
 import {searchReducer} from './reducers/search';
 import {filterReducer} from './reducers/filter';
@@ -208,6 +208,14 @@ if(settings.toggle_layers.length > 0 || settings.toggle_types.length > 0) {
     });
     store.dispatch(setToggler(toggler));
 }
+if(settings.untoggled_layers.length > 0 || settings.untoggled_types.length > 0) {
+    settings.untoggled_layers.forEach(id => {
+        store.dispatch(toggleLayer(LAYER_TYPE_MAP, id, false));
+    });
+    settings.untoggled_types.forEach(id => {
+        store.dispatch(toggleLayer(LAYER_TYPE_LOCATION, id, false));
+    });
+}
 
 let zIndex = 0;
 
@@ -227,7 +235,6 @@ if(GHDataInMap.map_layers.length == 0) {
 }
 else {
     GHDataInMap.map_layers.forEach( (layerData) => {
-        // console.log(layerData);
         switch(layerData.type) {
             case 'OSM':
                 addOpenStreetMapsLayer(layerData.opacity);

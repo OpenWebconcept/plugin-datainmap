@@ -38,4 +38,8 @@ De layer toggler (voor het in- en uitschakelen van kaartlagen en locatielagen) i
 
 `[datainmap layers=1,2 types=1,2 enable_toggler=1 toggle_layers=2 toggle_types=ALL]`
 
+Om schakelen tussen lagen mogelijk te maken zonder dat alle lagen standaard staan ingeschakeld kan er gebruik gemaakt worden van `untoggled_layers` en `untoggled_types`. Kaart- en locatielagen die hierin zijn opgenomen worden bij het inladen van de kaart uitgeschakeld waardoor ze niet zichtbaar zijn, totdat de gebruiker ze inschakeld.
+
+`[datainmap layers=1,2 types=1,2,3,4 enable_toggler=1 toggle_layers=2 toggle_types=ALL untoggled_layers=2 untoggled_types=1,4]`
+
 Om de container waar DataInMap wordt geplaatst te voorzien van een of meerdere CSS classes kan gebruik gemaakt worden van `css_class`, bijv. `[datainmap css_class="kaart-groot"]`. Deze CSS classes dienen in de stylesheet van het gebruikte thema te staan.

@@ -249,7 +249,7 @@ export class MapComponent extends Component {
         // Set visbility of layers based on layer toggler
         if(this.props.toggleLayers) {
             const layers = this.olMap.getLayers().getArray();
-            this.props.layerTogglers.forEach((toggler) => {
+            this.props.toggledLayersState.forEach((toggler) => {
                 const found = layers.find(layer => {
                     return layer.get('dimLayerType') === toggler.layerType && layer.get('dimLayerID') === toggler.layerId;
                 });
