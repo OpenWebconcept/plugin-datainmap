@@ -47,6 +47,92 @@ $shadow-color: rgba(0, 0, 0, 0.5);
     }
 }
 
+@mixin checkbox-list($checkboxWrapperClass, $controlsClass, $descriptionClass, $checkboxClass) {
+    $in-anim-speed: 0.25s;
+    $out-anim-speed: 0.15s;
+    $anim-delay: 0.5s;
+    position: absolute;
+
+    width:74px;
+    max-width:50%;
+    @content;
+
+    background-color:#FFF;
+    padding:0 20px;
+    box-shadow: 5px 5px 10px 1px $shadow-color;
+    transition: width $out-anim-speed ease-out, max-width $out-anim-speed ease-out;
+    transition-delay: $anim-delay;
+
+    &:hover, &:focus, &:focus-within {
+        width:100%;
+        max-width:100%;
+        @media all and (min-width: $screen-md) {
+            max-width:33%;
+        }
+        transition: width $in-anim-speed ease-in, max-width $in-anim-speed ease-in;
+        .#{$checkboxWrapperClass} {
+            transition: max-height $in-anim-speed ease-in;
+            overflow-y:auto;
+            @include gh-dim-map-size-klein {
+                max-height:170px;
+            }
+            @include gh-dim-map-size-middel {
+                max-height:300px;
+            }
+            @include gh-dim-map-size-groot {
+                max-height:440px;
+            }
+        }
+
+        header h1 {
+            background-color:$bgcolor-button-hover!important;
+            text-align:left;
+        }
+    }
+
+    header {
+        margin:0 -20px;
+        background-color:$bgcolor-button-neutral!important;
+        h1 {
+            font-size:14px;
+            margin:0;
+            padding:10px;
+            font-weight:bold;
+            color:$textcolor-button-neutral!important;
+        }
+    }
+
+    .#{$checkboxWrapperClass} {
+        overflow:hidden;
+        transition: max-height $out-anim-speed ease-out;
+        transition-delay: $anim-delay;
+        max-height:0;
+        margin-right:-20px;
+        padding-right:20px;
+        .#{controlsClass} {
+            margin:10px 0;
+            button {
+                @extend .btn !optional;
+                font-size:12px;
+            }
+        }
+        .#{$descriptionClass} {
+            margin:10px 0;
+            font-size:12px;
+            font-style:italic;
+        }
+        .#{checkboxClass} {
+            &:first-child {
+                margin-top:10px;
+            }
+            label {
+                font-size: 12px;
+                font-weight:normal;
+            }
+        }
+    }
+}
+
 .gh-dim-map-container {
     position: relative;
     .gh-dim-map {
@@ -70,7 +156,7 @@ $shadow-color: rgba(0, 0, 0, 0.5);
         }
     }
     .gh-dim-search {
-        z-index:10;
+        z-index:9;
         top:0;
         left:0;
         width:100%;
@@ -79,6 +165,9 @@ $shadow-color: rgba(0, 0, 0, 0.5);
             min-width:320px;
             top:.5em;
             left:.5em;
+        }
+        @include gh-dim-map-size-klein {
+            z-index:15;
         }
         position: absolute;
         background-color:#FFF;
@@ -126,110 +215,70 @@ $shadow-color: rgba(0, 0, 0, 0.5);
             }
         }
     }
+
     .gh-dim-filter {
-        $in-anim-speed: 0.25s;
-        $out-anim-speed: 0.15s;
-        $anim-delay: 0.5s;
-        position: absolute;
-        z-index:9;
-
-        top:40px;
-        right:0;
-        width:74px;
-        max-width:50%;
-
-        @media all and (min-width: $screen-md) {
-            width:71px;
-            max-width:71px;
-            @include gh-dim-map-size-klein {
-                left: .5em;
-                top: 3.5em;
-            }
-            @include gh-dim-map-size-middel {
-                top:.5em;
-                right:16em;
-            }
-            @include gh-dim-map-size-groot {
-                top:.5em;
-                right:.5em;
-            }
-        }
-
-        background-color:#FFF;
-        padding:0 20px;
-        box-shadow: 5px 5px 10px 1px $shadow-color;
-        transition: width $out-anim-speed ease-out, max-width $out-anim-speed ease-out;
-        transition-delay: $anim-delay;
-
-        &:hover, &:focus, &:focus-within {
-            width:100%;
-            max-width:100%;
+        @include checkbox-list(
+        'gh-dim-filters',
+        'gh-dim-filters-controls',
+        'gh-dim-filters-description',
+        'gh-dim-filters-filter') {
+            top:7em;
+            right:0;
+            z-index:11;
             @media all and (min-width: $screen-md) {
-                max-width:33%;
-            }
-            transition: width $in-anim-speed ease-in, max-width $in-anim-speed ease-in;
-            .gh-dim-filters {
-                transition: max-height $in-anim-speed ease-in;
-                overflow-y:auto;
+                width:71px;
+                max-width:71px;
                 @include gh-dim-map-size-klein {
-                    max-height:170px;
+                    left: 6.5em;
+                    top: 3.5em;
+                    z-index:8;
                 }
                 @include gh-dim-map-size-middel {
-                    max-height:300px;
+                    top:.5em;
+                    right:16.5em;
+                    z-index:10;
                 }
                 @include gh-dim-map-size-groot {
-                    max-height:440px;
-                }
-            }
-
-            header h1 {
-                background-color:$bgcolor-button-hover!important;
-                text-align:left;
-            }
-        }
-
-        header {
-            margin:0 -20px;
-            background-color:$bgcolor-button-neutral!important;
-            h1 {
-                font-size:14px;
-                margin:0;
-                padding:10px;
-                font-weight:bold;
-                color:$textcolor-button-neutral!important;
-            }
-        }
-
-        .gh-dim-filters {
-            overflow:hidden;
-            transition: max-height $out-anim-speed ease-out;
-            transition-delay: $anim-delay;
-            max-height:0;
-            margin-right:-20px;
-            padding-right:20px;
-            .gh-dim-filters-controls {
-                margin:10px 0;
-                button {
-                    @extend .btn !optional;
-                    font-size:12px;
-                }
-            }
-            .gh-dim-filters-description {
-                margin:10px 0;
-                font-size:12px;
-                font-style:italic;
-            }
-            .gh-dim-filters-filter {
-                &:first-child {
-                    margin-top:10px;
-                }
-                label {
-                    font-size: 12px;
-                    font-weight:normal;
+                    top:.5em;
+                    right:16em;
+                    z-index:10;
                 }
             }
         }
     }
+
+    .gh-dim-toggler {
+        @include checkbox-list(
+        'gh-dim-togglers',
+        'gh-dim-togglers-controls',
+        'gh-dim-togglers-description',
+        'gh-dim-togglers-toggler') {
+            z-index:12;
+            top:4em;
+            right:0;
+            @media all and (min-width: $screen-md) {
+                width:71px;
+                max-width:71px;
+                @include gh-dim-map-size-klein {
+                    left: .5em;
+                    top: 3.5em;
+                    z-index:9;
+                }
+                @include gh-dim-map-size-middel {
+                    top:.5em;
+                    right:22.5em;
+                    z-index:9;
+                }
+                @include gh-dim-map-size-groot {
+                    top:.5em;
+                    right:22em;
+                    z-index:9;
+                }
+            }
+        }
+    }
+
+
     .gh-dim-tooltip {
         background-color:rgba(255,255,255,0.9);
         border:1px solid #EBEBEB;
@@ -246,18 +295,37 @@ $shadow-color: rgba(0, 0, 0, 0.5);
         $out-anim-speed: 0.15s;
         $anim-delay: 0.5s;
         position: absolute;
-        z-index:1;
+        z-index:10;
 
         right:0;
-        top:6em;
+        top:10em;
         width:204px;
         max-width:50%;
 
         @media all and (min-width: $screen-md) {
             width:204px;
             max-width:204px;
-            left:.5em;
-            top:5em;
+            top:.5em;
+            right:.5em;
+        }
+        @media all and (min-width: $screen-md) {
+            width:204px;
+            max-width:204px;
+            @include gh-dim-map-size-klein {
+                left: 12.5em;
+                top: 3.5em;
+                z-index:7;
+            }
+            @include gh-dim-map-size-middel {
+                top:4em;
+                right:16.5em;
+                z-index: 8;
+            }
+            @include gh-dim-map-size-groot {
+                top:.5em;
+                right:.5em;
+                z-index:11;
+            }
         }
 
         background-color:#FFF;

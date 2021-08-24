@@ -476,8 +476,8 @@ const App = () => {
         <Provider store={store}>
             <MapComponentLink enableTooltip={settings.enable_tooltip} enableFeaturesListbox={settings.enable_features_listbox}>
                 { settings.enable_search && <SearchComponentLink /> }
-                { settings.enable_filter && <FilterComponentLink /> }
                 { settings.enable_toggler && <TogglerComponentLink /> }
+                { settings.enable_filter && <FilterComponentLink /> }
             </MapComponentLink>
             { settings.enable_feature_dialog && <FeatureComponentLink cb={GHDataInMap.featureCallback} /> }
         </Provider>

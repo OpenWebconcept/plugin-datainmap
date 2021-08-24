@@ -70,7 +70,7 @@ export class TogglerComponent extends Component {
         }
         const id = _.uniqueId('toggler-title-');
         return (
-            <div className="gh-dim-toggler" tabIndex="0" onKeyDown={blur} style={{position: "relative", zIndex: 1000000}}>
+            <div className="gh-dim-toggler" tabIndex="0" onKeyDown={blur}>
                 <section aria-labelledby={id}>
                     <header>
                         <h1 id={id}>Lagen</h1>
