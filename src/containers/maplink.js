@@ -25,7 +25,9 @@ const mapStateToProps  = (state) => {
         centerLocation: state.map.centerLocation,
         rerenderLayers: state.map.rerenderLayers,
         storedFeatures: state.map.storedFeatures,
-        selectedFilters: state.filter.selected
+        selectedFilters: state.filter.selected,
+        toggledLayersState: state.toggler.toggledLayersState,
+        toggleLayers: state.map.toggleLayers,
     }
 };
 

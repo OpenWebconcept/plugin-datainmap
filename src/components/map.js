@@ -134,7 +134,7 @@ export class MapComponent extends Component {
                 let features = [];
                 this.olMap.getLayers().forEach((layer) => {
                     const source = layer.getSource();
-                    if(source.forEachFeatureInExtent) {
+                    if(source.forEachFeatureInExtent && layer.getVisible()) {
                         source.forEachFeatureInExtent(extent, (feature) => {
                             features.push(feature);
                         });
@@ -245,6 +245,21 @@ export class MapComponent extends Component {
                 }
             });
         }
+
+        // Set visbility of layers based on layer toggler
+        if(this.props.toggleLayers) {
+            const layers = this.olMap.getLayers().getArray();
+            this.props.toggledLayersState.forEach((toggler) => {
+                const found = layers.find(layer => {
+                    return layer.get('dimLayerType') === toggler.layerType && layer.get('dimLayerID') === toggler.layerId;
+                });
+                if(found === undefined) {
+                    return;
+                }
+                found.setVisible( toggler.checked );
+            });
+        }
+
         const mapElement = this.refMap.current;
         mapElement.getElementsByTagName('canvas').forEach((el) => {
             el.setAttribute('aria-label', 'Kaart');
@@ -277,8 +292,10 @@ MapComponent.defaultProps = {
     enableTooltip: false,
     enableFeaturesListbox: true,
     rerenderLayers: 0,
+    toggleLayers: 0,
     storedFeatures: [],
-    selectedFilters: []
+    selectedFilters: [],
+    layerTogglers: []
 };
 
 export default MapComponent;
