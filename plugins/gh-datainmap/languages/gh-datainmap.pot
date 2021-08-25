@@ -1,17 +1,17 @@
 # Copyright (C) 2021 Gemeente Heerenveen
-# This file is distributed under the same license as the Data In Map plugin.
+# This file is distributed under the EUPL v1.2.
 msgid ""
 msgstr ""
-"Project-Id-Version: Data In Map 1.8.7\n"
+"Project-Id-Version: Data In Map 1.9.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/gh-datainmap\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-02-25T10:48:02+00:00\n"
+"POT-Creation-Date: 2021-08-25T08:58:57+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.3.0\n"
+"X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: gh-datainmap\n"
 
 #. Plugin Name of the plugin
@@ -48,7 +48,7 @@ msgstr ""
 
 #: includes/menus.php:37
 #: includes/menus.php:38
-#: includes/taxonomy.php:47
+#: includes/taxonomy.php:48
 msgid "Location Properties"
 msgstr ""
 
@@ -192,7 +192,7 @@ msgstr ""
 msgid "Unknown type"
 msgstr ""
 
-#: includes/shortcode.php:169
+#: includes/shortcode.php:186
 #: views/metabox-location.php:59
 #: views/settings.php:131
 msgid "Loading..."
@@ -249,56 +249,56 @@ msgstr ""
 msgid "New Location Type Name"
 msgstr ""
 
-#: includes/taxonomy.php:48
-#: includes/taxonomy.php:57
+#: includes/taxonomy.php:49
+#: includes/taxonomy.php:58
 msgid "Location Property"
 msgstr ""
 
-#: includes/taxonomy.php:49
+#: includes/taxonomy.php:50
 msgid "Search Location Properties"
 msgstr ""
 
-#: includes/taxonomy.php:50
+#: includes/taxonomy.php:51
 msgid "All Location Properties"
 msgstr ""
 
-#: includes/taxonomy.php:51
+#: includes/taxonomy.php:52
 msgid "Parent Location Property"
 msgstr ""
 
-#: includes/taxonomy.php:52
+#: includes/taxonomy.php:53
 msgid "Parent Location Property:"
 msgstr ""
 
-#: includes/taxonomy.php:53
+#: includes/taxonomy.php:54
 msgid "Edit Location Property"
 msgstr ""
 
-#: includes/taxonomy.php:54
+#: includes/taxonomy.php:55
 msgid "Update Location Property"
 msgstr ""
 
-#: includes/taxonomy.php:55
+#: includes/taxonomy.php:56
 msgid "Add New Location Property"
 msgstr ""
 
-#: includes/taxonomy.php:56
+#: includes/taxonomy.php:57
 msgid "New Location Property Name"
 msgstr ""
 
-#: includes/taxonomy.php:81
+#: includes/taxonomy.php:83
 msgid "Cluster"
 msgstr ""
 
-#: includes/taxonomy.php:86
+#: includes/taxonomy.php:88
 msgid "Display locations as a cluster"
 msgstr ""
 
-#: includes/taxonomy.php:91
+#: includes/taxonomy.php:93
 msgid "Cluster distance"
 msgstr ""
 
-#: includes/taxonomy.php:95
+#: includes/taxonomy.php:97
 msgid "Minimum distance in pixels between clusters."
 msgstr ""
 
@@ -579,13 +579,21 @@ msgid "Optinally provide a default description to be shown when a user opens the
 msgstr ""
 
 #: views/settings.php:203
+msgid "Toggler description"
+msgstr ""
+
+#: views/settings.php:207
+msgid "Optinally provide a default description to be shown when a user opens the toggler menu."
+msgstr ""
+
+#: views/settings.php:212
 msgid "Additional projections (proj4)"
 msgstr ""
 
-#: views/settings.php:207
+#: views/settings.php:216
 msgid "Add extra projections for proj4. Format using CSV (column 1 is projection identifier, column 2 is the projection for proj4)."
 msgstr ""
 
-#: views/settings.php:207
+#: views/settings.php:216
 msgid "Lookup projections (proj4)"
 msgstr ""

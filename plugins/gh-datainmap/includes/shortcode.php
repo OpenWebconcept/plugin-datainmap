@@ -33,6 +33,12 @@ function gh_dim_shortcode($atts, $content = null) {
             'enable_tooltip' => 0,
             'enable_filter' => 0,
             'enable_features_listbox' => 1,
+            'enable_toggler' => 0,
+            'toggle_layers' => null,
+            'untoggled_layers' => null,
+            'toggle_types' => 'ALL',
+            'untoggled_types' => null,
+            'toggler_description' => $settings['toggler_description'],
             'dynamic_loading' => 0,
             'css_class' => null,
             'filter_properties' => null,
@@ -51,8 +57,18 @@ function gh_dim_shortcode($atts, $content = null) {
     $settings['enable_tooltip'] = $args['enable_tooltip'] == 1 ? true : false;
     $settings['enable_filter'] = $args['enable_filter'] == 1 ? true : false;
     $settings['enable_features_listbox'] = $args['enable_features_listbox'] == 1 ? true : false;
+    $settings['enable_toggler'] = $args['enable_toggler'] == 1 ? true : false;
+    $settings['toggler_description'] = $args['toggler_description'];
     $settings['dynamic_loading'] = $args['dynamic_loading'] == 1 ? true : false;
     $settings['filter_description'] = $args['filter_description'];
+    foreach(['toggle_layers', 'toggle_types', 'untoggled_layers', 'untoggled_types'] as $k) {
+        $settings[$k] = array_filter(
+            array_map('trim', explode(',', $args[$k])),
+            function($a) {
+                return strlen($a) > 0;
+            }
+        );
+    }
 
     // Compose map layers
     $layers = get_posts([
@@ -62,6 +78,7 @@ function gh_dim_shortcode($atts, $content = null) {
     ]);
     $map_layers = array_map(function($post) {
         return [
+            'id' => $post->ID,
             'title' => get_the_title( $post->ID ),
             'type' => get_post_meta($post->ID, '_gh_dim_layer_type', true),
             'url' => get_post_meta($post->ID, '_gh_dim_layer_url', true),
