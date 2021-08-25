@@ -134,7 +134,7 @@ export class MapComponent extends Component {
                 let features = [];
                 this.olMap.getLayers().forEach((layer) => {
                     const source = layer.getSource();
-                    if(source.forEachFeatureInExtent) {
+                    if(source.forEachFeatureInExtent && layer.getVisible()) {
                         source.forEachFeatureInExtent(extent, (feature) => {
                             features.push(feature);
                         });
