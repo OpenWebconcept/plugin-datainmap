@@ -22,7 +22,7 @@ import SearchComponentLink from './containers/searchlink';
 import FeatureComponentLink from './containers/featurelink';
 import FilterComponentLink from './containers/filterlink';
 import TogglerComponentLink from './containers/togglerlink';
-import {configureMapView, fetchWMTSLayer, addMapLayer, setSearchProjection, setSearchTownship, setAvailableFilters, storeFeatures, setFilterDescription, setToggler, toggleLayer} from './actions';
+import {configureMapView, fetchWMTSLayer, addMapLayer, setSearchProjection, setSearchTownship, setAvailableFilters, storeFeatures, setFilterDescription, setToggler, toggleLayer, setTogglerDescription} from './actions';
 import {mapReducer} from './reducers/map';
 import {searchReducer} from './reducers/search';
 import {filterReducer} from './reducers/filter';
@@ -207,6 +207,7 @@ if(settings.toggle_layers.length > 0 || settings.toggle_types.length > 0) {
         });
     });
     store.dispatch(setToggler(toggler));
+    store.dispatch(setTogglerDescription(settings.toggler_description));
 }
 if(settings.untoggled_layers.length > 0 || settings.untoggled_types.length > 0) {
     settings.untoggled_layers.forEach(id => {

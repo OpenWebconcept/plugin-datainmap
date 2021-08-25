@@ -38,6 +38,7 @@ function gh_dim_shortcode($atts, $content = null) {
             'untoggled_layers' => null,
             'toggle_types' => 'ALL',
             'untoggled_types' => null,
+            'toggler_description' => $settings['toggler_description'],
             'dynamic_loading' => 0,
             'css_class' => null,
             'filter_properties' => null,
@@ -57,6 +58,7 @@ function gh_dim_shortcode($atts, $content = null) {
     $settings['enable_filter'] = $args['enable_filter'] == 1 ? true : false;
     $settings['enable_features_listbox'] = $args['enable_features_listbox'] == 1 ? true : false;
     $settings['enable_toggler'] = $args['enable_toggler'] == 1 ? true : false;
+    $settings['toggler_description'] = $args['toggler_description'];
     $settings['dynamic_loading'] = $args['dynamic_loading'] == 1 ? true : false;
     $settings['filter_description'] = $args['filter_description'];
     foreach(['toggle_layers', 'toggle_types', 'untoggled_layers', 'untoggled_types'] as $k) {

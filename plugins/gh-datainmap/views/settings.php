@@ -200,6 +200,15 @@
             </tr>
             <tr>
                 <th scope="row" valign="top">
+                    <label for="gh-datainmap-settings[toggler_description]"><?php _e('Toggler description', 'gh-datainmap') ?></label>
+                </th>
+                <td>
+                    <input type="text" name="gh-datainmap-settings[toggler_description]" id="gh-datainmap-settings[toggler_description]" value="<?php echo esc_attr( $settings['toggler_description'] ) ?>" class="regular-text" />
+                    <p class="description"><?php _e('Optinally provide a default description to be shown when a user opens the toggler menu.', 'gh-datainmap'); ?></p>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row" valign="top">
                     <label for="gh-datainmap-settings[projections]"><?php _e('Additional projections (proj4)', 'gh-datainmap') ?></label>
                 </th>
                 <td>

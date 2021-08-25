@@ -261,6 +261,11 @@ export function storeFeatures(features, sourceId) {
     return { type: STORE_FEATURES, features: features, sourceId: sourceId};
 }
 
+export const SET_TOGGLER_DESCRIPTION = 'SET_TOGGLER_DESCRIPTION';
+export function setTogglerDescription(description) {
+    return { type: SET_TOGGLER_DESCRIPTION, description: description };
+}
+
 export const SET_TOGGLER = 'SET_TOGGLER';
 export function setToggler(togglers) {
     return { type: SET_TOGGLER, togglers };

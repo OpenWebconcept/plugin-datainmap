@@ -1,4 +1,4 @@
-import { SET_TOGGLER, TOGGLE_LAYER } from '../actions';
+import { SET_TOGGLER, SET_TOGGLER_DESCRIPTION, TOGGLE_LAYER } from '../actions';
 import _ from 'lodash';
 
 const initialState = {
@@ -19,6 +19,8 @@ export const togglerReducer = (state = initialState, action) => {
             });
             toggledLayersState.push(action.layer);
             return { ...state, toggledLayersState };
+        case SET_TOGGLER_DESCRIPTION:
+            return { ...state, description: action.description };
     }
     return state;
 };

@@ -20,6 +20,7 @@ const mapStateToProps  = (state) => {
         layers: state.map.layers,
         togglers: state.toggler.togglers,
         toggledLayersState: state.toggler.toggledLayersState,
+        description: state.toggler.description
     }
 }
 

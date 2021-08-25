@@ -76,6 +76,9 @@ export class TogglerComponent extends Component {
                         <h1 id={id}>Lagen</h1>
                     </header>
                     <div className="gh-dim-togglers">
+                        {this.props.description &&
+                            <p className="gh-dim-togglers-description">{this.props.description}</p>
+                        }
                         <form>
                             <div role="group" aria-label="Togglers">
                                 {this.props.layers.map((layer) => {
