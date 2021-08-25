@@ -1,4 +1,4 @@
-- Nieuwe versies van ondersteunende software bibliotheken in gebruik genomen (o.a. Redux 4.1.0).
+- Nieuwe versies van ondersteunende software bibliotheken in gebruik genomen.
 - Mogelijkheid toegevoegd om lagen in/uit te schakelen door gebruik van shortcode instellingen `enable_toggler`, `toggle_layers`, `toggle_types`, `untoggled_layers` en `untoggled_types`. Met `filter_description="Uw eigen tekst"` is het mogelijk om per kaart de begeleidende tekst te wijzigen of onderdrukken. **Let op!** Bij gebruik eigen stylesheet moet de toggler van opmaak voorzien worden. Standaard staat de toggler uit. Meer informatie is te vinden in de shortcode documentatie.
 
 **1.9.3 (2021-05-27)**
