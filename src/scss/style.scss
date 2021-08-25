@@ -13,19 +13,19 @@ $textcolor-button-hover: $textcolor-button-neutral;
 $shadow-color: rgba(0, 0, 0, 0.5);
 
 .ol-zoom {
-    left:auto!important;
-    top:auto!important;
+    left:auto;
+    top:auto;
     right:.5em;
     bottom:.5em;
 }
 .ol-control button {
-    font-size:20px!important;
-    background-color:$bgcolor-button-neutral!important;
-    color:$textcolor-button-neutral!important;
+    font-size:20px;
+    background-color:$bgcolor-button-neutral;
+    color:$textcolor-button-neutral;
 
     &:hover, &:focus {
-        background-color:$bgcolor-button-hover!important;
-        color:$textcolor-button-hover!important;
+        background-color:$bgcolor-button-hover;
+        color:$textcolor-button-hover;
     }
 }
 
@@ -85,20 +85,20 @@ $shadow-color: rgba(0, 0, 0, 0.5);
         }
 
         header h1 {
-            background-color:$bgcolor-button-hover!important;
+            background-color:$bgcolor-button-hover;
             text-align:left;
         }
     }
 
     header {
         margin:0 -20px;
-        background-color:$bgcolor-button-neutral!important;
+        background-color:$bgcolor-button-neutral;
         h1 {
             font-size:14px;
             margin:0;
             padding:10px;
             font-weight:bold;
-            color:$textcolor-button-neutral!important;
+            color:$textcolor-button-neutral;
         }
     }
 
@@ -356,21 +356,21 @@ $shadow-color: rgba(0, 0, 0, 0.5);
             }
 
             header h1 {
-                background-color:$bgcolor-button-hover!important;
+                background-color:$bgcolor-button-hover;
             }
         }
 
         header {
             margin:0 -20px;
-            background-color:$bgcolor-button-neutral!important;
+            background-color:$bgcolor-button-neutral;
             h1 {
                 font-size:14px;
                 margin:0;
                 padding:10px;
                 font-weight:bold;
-                color:$textcolor-button-neutral!important;
+                color:$textcolor-button-neutral;
                 span {
-                    color:$textcolor-button-neutral!important;
+                    color:$textcolor-button-neutral;
                     font-size:65%;
                     font-weight:normal;
                 }
@@ -481,7 +481,7 @@ body.gh-dim-modal-open {
                     display:inline-block;
                     font-size:48px;
                     font-weight:normal;
-                    color:$textcolor-button-hover!important;
+                    color:$textcolor-button-hover;
                     margin-top:12px;
                     &::before {
                         content: '×';
