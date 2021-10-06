@@ -13,7 +13,7 @@
 */
 import jQuery from 'jquery';
 const $ = jQuery;
-$(document).ready(function() {
+$(function() {
     const layerType = $('#gh_dim_layer_type');
     if(!layerType) {
         return;

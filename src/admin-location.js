@@ -79,7 +79,7 @@ $(document).ready(function() {
 });
 
 // Location Content Type (Post, Redirect etc.)
-$(document).ready(function() {
+$(function() {
     const allFields = [
         '#gh_dim_location_redirect_url'
     ];
