@@ -1,3 +1,5 @@
+**1.10.1 (2021-10-06)**
+
 - Fix voor kaartweergave in de backend. Deze was namelijk niet zichtbaar.
 - Fix voor jQuery deprecation van `ready()` in de backend.
 - Oudere versies van ondersteunende software bibliotheken weer in gebruik genomen i.v.m. problemen in de backend.
