@@ -13,8 +13,8 @@ $textcolor-button-hover: $textcolor-button-neutral;
 $shadow-color: rgba(0, 0, 0, 0.5);
 
 .ol-zoom {
-    left:auto;
-    top:auto;
+    left:auto!important;
+    top:auto!important;
     right:.5em;
     bottom:.5em;
 }
