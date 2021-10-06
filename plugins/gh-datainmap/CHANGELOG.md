@@ -1,3 +1,5 @@
+- Fix voor jQuery deprecation van `ready()` in de backend.
+
 **1.10.0 (2021-08-25)**
 
 - Nieuwe versies van ondersteunende software bibliotheken in gebruik genomen.
