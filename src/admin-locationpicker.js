@@ -23,6 +23,7 @@ import {configureMapView, fetchWMTSLayer, setSearchProjection, setSearchTownship
 import {mapReducer} from './reducers/map';
 import {searchReducer} from './reducers/search';
 import { filterReducer } from './reducers/filter';
+import { togglerReducer } from './reducers/toggler';
 import {Vector as VectorLayer} from 'ol/layer';
 import {Vector as VectorSource } from 'ol/source';
 import {Fill, Stroke, Style} from 'ol/style';
@@ -38,7 +39,8 @@ const _ = ld.noConflict();
 const rootReducer = combineReducers({
     map: mapReducer,
     search: searchReducer,
-    filter: filterReducer
+    filter: filterReducer,
+    toggler: togglerReducer
 });
 
 const middleware = applyMiddleware(createDebounce(), thunk);
