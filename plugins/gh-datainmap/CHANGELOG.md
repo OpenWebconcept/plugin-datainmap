@@ -1,3 +1,5 @@
+- Documentatie wijziging, nieuwe URL voor standaard kaart.
+
 **1.10.1 (2021-10-06)**
 
 - Fix voor kaartweergave in de backend. Deze was namelijk niet zichtbaar.
