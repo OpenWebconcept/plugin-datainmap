@@ -47,7 +47,7 @@ export class MapComponent extends Component {
         this.olMap.getControls().forEach((control) => {
             if(control.element.className.indexOf('ol-zoom') != -1) {
                 control.element.children.forEach((el) => {
-                    el.setAttribute('aria-label', el.getAttribute('title'));
+                    el.setAttribute('aria-label', el.getAttribute('title') + ' ' + el.textContent);
                 });
             }
         });
