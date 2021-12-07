@@ -34,8 +34,8 @@ Een mooie kaart om te gebruiken is een afkomstig van PDOK. Vul bij de laag de vo
 
 ```
 Type: WMTS (+GetCapabilities)
-URL: https://geodata.nationaalgeoregister.nl/tiles/service/wmts?request=GetCapabilities&service=WMTS
-Laag naam: brtachtergrondkaart
+URL: https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0?request=getcapabilities&service=wmts
+Laag naam: standaard
 Laag transparantie: 1.00
 Matrixset: EPSG:3857
 ```

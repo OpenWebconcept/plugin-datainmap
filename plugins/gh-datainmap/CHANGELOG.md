@@ -1,3 +1,8 @@
+**1.10.2 (2021-12-07)**
+
+- Documentatie wijziging, nieuwe URL voor standaard kaart.
+- De zoom in/uit-knoppen hebben nu een `aria-label` waar de zichtbare tekst in voor komt.
+
 **1.10.1 (2021-10-06)**
 
 - Fix voor kaartweergave in de backend. Deze was namelijk niet zichtbaar.
