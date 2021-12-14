@@ -183,9 +183,9 @@ store.dispatch(setSearchProjection(settings.search_coord_system));
 store.dispatch(setSearchTownship(settings.search_filter_township));
 
 store.dispatch(fetchWMTSLayer(
-    'https://geodata.nationaalgeoregister.nl/tiles/service/wmts?request=GetCapabilities&service=WMTS',
+    'https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0?request=getcapabilities&service=wmts',
     {
-        layer: 'brtachtergrondkaart',
+        layer: 'standaard',
         matrixSet: 'EPSG:3857'
     }, { opacity: 1, zIndex: 1}
 ));

@@ -1,3 +1,7 @@
+**1.10.3 (2021-12-14)**
+
+- Fix voor kaartweergave in de backend bij beheren locatie. Deze weas door een verouderde URL niet zichtbaar.
+
 **1.10.2 (2021-12-07)**
 
 - Documentatie wijziging, nieuwe URL voor standaard kaart.
