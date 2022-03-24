@@ -1,3 +1,5 @@
+- Lettergrootte in standaard stylesheet aangepast van absolute lengte-eenheid naar relatieve lengte-eenheid i.v.m. toegankelijkheid.
+
 **1.10.3 (2021-12-14)**
 
 - Fix voor kaartweergave in de backend bij beheren locatie. Deze weas door een verouderde URL niet zichtbaar.

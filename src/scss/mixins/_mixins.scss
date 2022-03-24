@@ -23,10 +23,43 @@ border-radius: $radius;
     box-shadow: $shadow;
 }
 
+// Bron: https://css-tricks.com/snippets/sass/strip-unit-function/
+/// Remove the unit of a length
+/// @param {Number} $number - Number to remove unit from
+/// @return {Number} - Unitless number
+@function strip-unit($number) {
+    @if type-of($number) == 'number' and not unitless($number) {
+        @return $number / ($number * 0 + 1);
+    }
+    @return $number;
+}
+
 // Rem output with px fallback
-@mixin font-size($sizeValue: 1) {
-    font-size: ($sizeValue * 16) * 1px;
-    font-size: $sizeValue * 1rem;
+@mixin font-size($sizeValue: 1, $important: null) {
+    @if type-of($important) == 'bool' {
+        @if $important == true {
+            $important: !important;
+        }
+        @else {
+            $important: null;
+        }
+    }
+    // px input
+    @if unit($sizeValue) == 'px' {
+        font-size: $sizeValue $important;
+        font-size: strip-unit(percentage($sizeValue / $font-size-base) / 100) * 1rem $important;
+    }
+    // rem input
+    @else if unitless($sizeValue) {
+        font-size: ceil($sizeValue * strip-unit($font-size-base)) * 1px $important;
+        font-size: $sizeValue * 1rem $important;
+    }
+    // Fallthrough
+    @else {
+        $unit: unit($sizeValue);
+        @warn 'Mixin font-size() ondersteund geen `#{$unit}`, opgegeven unit: #{$sizeValue}';
+        font-size: $sizeValue $important;
+    }
 }
 
 // Center block
