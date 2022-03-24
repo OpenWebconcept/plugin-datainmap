@@ -1,3 +1,6 @@
+**1.10.5 (2022-03-24)**
+
+- Noodzakelijke versiebump vergeten (i.v.m. cachen assets).
 
 **1.10.4 (2022-03-24)**
 
