@@ -10,8 +10,7 @@
     "webpack-prod": "npx webpack --mode=production",
     "webpack-dev": "npx webpack --mode=development -w",
     "create-archive": "node create_archive.js",
-    "composer": "cd plugins/gh-datainmap/ && composer install",
-    "create-release": "npm run css-prod && npm run webpack-prod && npm run composer && npm run create-archive"
+    "composer": "cd plugins/gh-datainmap/ && composer install"
   },
   "author": "Gemeente Heerenveen",
   "license": "EUPL v1.2",
