@@ -25,6 +25,6 @@ jobs:
         env:
           # Fix for ERR_OSSL_EVP_UNSUPPORTED error caused by Webpack
           NODE_OPTIONS: --openssl-legacy-provider
-        run: npm run webpack-dev
+        run: npm run webpack-prod
       - name: Build CSS
-        run: npm run css-dev
+        run: npm run css-prod
