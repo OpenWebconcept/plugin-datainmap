@@ -26,7 +26,6 @@ jobs:
       - name: Cache Composer packages
         id: composer-cache
         uses: actions/cache@v3
-        working-directory: ./plugins/gh-datainmap
         with:
           path: vendor
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
