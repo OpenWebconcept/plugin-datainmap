@@ -18,7 +18,7 @@ jobs:
           node-version: 18.x
           cache: 'npm'
       - name: Install Node.js dependencies
-        runs: npm install
+        run: npm install
       - name: Build Javascript & CSS
         run: |
           npm run css-prod
