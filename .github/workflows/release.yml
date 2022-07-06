@@ -1,0 +1,48 @@
+
+name: Release
+
+on:
+  push:
+    tags: [ "*" ]
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+      - name: Build Javascript & CSS
+        run: |
+          npm run css-prod
+          npm run webpack-prod
+      - name: Validate composer.json and composer.lock
+        working-directory: ./plugins/gh-datainmap
+        run: composer validate --strict
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v3
+        working-directory: ./plugins/gh-datainmap
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+      - name: Install dependencies
+        working-directory: ./plugins/gh-datainmap
+        run: composer install --prefer-dist --no-progress
+      - name: Archive Release
+        run: |
+          mkdir -p dist/gh-datainmap
+          rsync -av ./plugins/gh-datainmap ./dist/gh-datainmap --exclude 'composer.*'
+          cd dist
+          zip -r ../gh-datainamp.zip ./gh-datainmap
+      - name: Release
+        uses: fnkr/github-action-ghr@v1
+        env:
+          GHR_PATH: gh-datainmap.zip
+          GHR_REPLACE: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
