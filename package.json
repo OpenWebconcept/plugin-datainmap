@@ -9,7 +9,6 @@
     "css-dev": "npx sass --watch src/scss/style.scss plugins/gh-datainmap/dist/style.css",
     "webpack-prod": "npx webpack --mode=production",
     "webpack-dev": "npx webpack --mode=development -w",
-    "create-archive": "node create_archive.js",
     "composer": "cd plugins/gh-datainmap/ && composer install"
   },
   "author": "Gemeente Heerenveen",
