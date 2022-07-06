@@ -1,4 +1,7 @@
 # Data In Map
+
+[![Build](https://github.com/OpenWebconcept/plugin-datainmap/actions/workflows/build.yml/badge.svg?branch=develop)](https://github.com/OpenWebconcept/plugin-datainmap/actions/workflows/build.yml)
+
 Data In Map is a WordPress plugin for displaying maps.
 
 ## Changelog
