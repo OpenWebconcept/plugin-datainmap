@@ -1,1 +1,0 @@
-Please see our GitHub for the latest [CHANGELOG](https://github.com/OpenWebconcept/plugin-datainmap/blob/master/plugins/gh-datainmap/CHANGELOG.md)

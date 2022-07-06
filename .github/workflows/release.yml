@@ -40,6 +40,7 @@ jobs:
         run: |
           mkdir -p dist/gh-datainmap
           rsync -av ./plugins/gh-datainmap ./dist --exclude 'composer.*'
+          cp CHANGELOG.md ./dist/gh-datainmap
           cd dist
           zip -r ../gh-datainmap.zip ./gh-datainmap
       - name: Release
