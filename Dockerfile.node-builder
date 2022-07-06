@@ -1,0 +1,16 @@
+FROM node:16-alpine
+
+WORKDIR /app
+VOLUME /app/src
+VOLUME /app/plugins/gh-datainmap/dist
+
+RUN apk add --no-cache --virtual .gyp git python3 make g++ libc6-compat
+# To handle 'not get uid/gid'
+RUN npm config set unsafe-perm true
+ADD package*.json ./
+RUN npm install
+ADD create_archive.js .
+ADD webpack.config.js .
+COPY src ./src
+# --legacy-peer-deps
+CMD npm run css-prod && npm run webpack-prod
