@@ -6,15 +6,13 @@ Data In Map is a WordPress plugin for displaying maps.
 
 #### Building
 
-`$ npm install`
-
-`$ npm run css-prod`
-
-`$ npm run webpack-prod`
-
-`$ cd plugins\gh-datainmap`
-
-`$ composer install`
+````
+$ npm install
+$ npm run css-prod
+$ npm run webpack-prod
+$ cd plugins\gh-datainmap
+$ composer install
+````
 
 Then, install in a WordPress environment or for local development use the provided `docker-compose.yml` file and run `$ docker-compose up` from the main directory.
 
