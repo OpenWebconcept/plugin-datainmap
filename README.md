@@ -3,7 +3,7 @@ Data In Map is a WordPress plugin for displaying maps.
 
 ## Changelog
 
-A (Dutch) changelog is being kept at `./plugins/gh-datainmap/CHANGELOG.MD`
+A (Dutch) changelog is being kept at `CHANGELOG.MD`
 
 ## Install
 ### For developers
