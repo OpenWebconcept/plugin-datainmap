@@ -42,7 +42,7 @@ jobs:
           mkdir -p dist/gh-datainmap
           rsync -av ./plugins/gh-datainmap ./dist/gh-datainmap --exclude 'composer.*'
           cd dist
-          zip -r ../gh-datainamp.zip ./gh-datainmap
+          zip -r ../gh-datainmap.zip ./gh-datainmap
       - name: Release
         uses: fnkr/github-action-ghr@v1
         env:
