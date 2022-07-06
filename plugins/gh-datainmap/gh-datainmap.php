@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Data In Map
-Plugin URI: https://bitbucket.org/gemeenteheerenveen/datainmap-plugin/src/master/
+Plugin URI: https://github.com/OpenWebconcept/plugin-datainmap
 Description: Data In Map is a plugin for displaying maps.
 Version: 1.10.5
 Requires at least: 5.0
