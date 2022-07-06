@@ -141,7 +141,8 @@ register_activation_hook(__FILE__, function() {
 });
 
 $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
-    'https://bitbucket.org/gemeenteheerenveen/datainmap-plugin/downloads/update.json',
+    'https://github.com/OpenWebconcept/plugin-datainmap',
 	__FILE__,
 	'gh-datainmap'
 );
+$myUpdateChecker->getVcsApi()->enableReleaseAssets();

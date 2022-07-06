@@ -1,3 +1,5 @@
+- Repository verhuisd naar GitHub. Releases worden nu op GitHub gepubliceerd. Plugin aangepast om hier gebruik van te maken.
+
 **1.10.5 (2022-03-24)**
 
 - Noodzakelijke versiebump vergeten (i.v.m. cachen assets).
