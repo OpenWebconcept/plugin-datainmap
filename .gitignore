@@ -2,7 +2,6 @@ node_modules
 plugins/*
 plugins/gh-datainmap/dist/*
 !plugins/gh-datainmap/
-package-lock.json
 dist/*
 plugins/gh-datainmap/vendor/*
 !plugins/gh-datainmap/vendor/wp-color-picker-alpha/
