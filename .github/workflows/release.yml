@@ -16,6 +16,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
+          cache: 'npm'
+      - name: Install Node.js dependencies
+        runs: npm install
       - name: Build Javascript & CSS
         run: |
           npm run css-prod
