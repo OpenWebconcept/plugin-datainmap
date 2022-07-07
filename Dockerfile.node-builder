@@ -9,7 +9,6 @@ RUN apk add --no-cache --virtual .gyp git python3 make g++ libc6-compat
 RUN npm config set unsafe-perm true
 ADD package*.json ./
 RUN npm install
-ADD create_archive.js .
 ADD webpack.config.js .
 COPY src ./src
 # --legacy-peer-deps
