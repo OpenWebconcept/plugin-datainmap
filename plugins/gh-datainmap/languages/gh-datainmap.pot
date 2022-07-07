@@ -1,17 +1,17 @@
-# Copyright (C) 2021 Gemeente Heerenveen
+# Copyright (C) 2022 Gemeente Heerenveen
 # This file is distributed under the EUPL v1.2.
 msgid ""
 msgstr ""
-"Project-Id-Version: Data In Map 1.9.3\n"
+"Project-Id-Version: Data In Map 1.10.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/gh-datainmap\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-08-25T08:58:57+00:00\n"
+"POT-Creation-Date: 2022-07-06T12:34:41+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.5.0\n"
+"X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: gh-datainmap\n"
 
 #. Plugin Name of the plugin
@@ -19,7 +19,7 @@ msgid "Data In Map"
 msgstr ""
 
 #. Plugin URI of the plugin
-msgid "https://bitbucket.org/gemeenteheerenveen/datainmap-plugin/src/master/"
+msgid "https://github.com/OpenWebconcept/plugin-datainmap"
 msgstr ""
 
 #. Description of the plugin

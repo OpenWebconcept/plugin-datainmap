@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: Data In Map
-Plugin URI: https://bitbucket.org/gemeenteheerenveen/datainmap-plugin/src/master/
+Plugin URI: https://github.com/OpenWebconcept/plugin-datainmap
 Description: Data In Map is a plugin for displaying maps.
-Version: 1.10.5
+Version: 1.10.6
 Requires at least: 5.0
 Requires PHP: 7.2
 Author: Gemeente Heerenveen
@@ -12,7 +12,7 @@ Text Domain: gh-datainmap
 License URI: https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12
 License: EUPL v1.2
 
-Copyright 2020-2021 Gemeente Heerenveen
+Copyright 2020-2022 Gemeente Heerenveen
 
 Licensed under the EUPL, Version 1.2 or – as soon they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence");
 You may not use this work except in compliance with the Licence.
@@ -26,7 +26,7 @@ See the Licence for the specific language governing permissions and limitations 
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
-if ( ! defined('GH_DIM_VERSION')) define('GH_DIM_VERSION', '1.10.5');
+if ( ! defined('GH_DIM_VERSION')) define('GH_DIM_VERSION', '1.10.6');
 if ( ! defined('GH_DIM_FILE')) define('GH_DIM_FILE', __FILE__);
 if ( ! defined('GH_DIM_DIR')) define('GH_DIM_DIR', dirname(__FILE__));
 if ( ! defined('GH_DIM_DEBUG')) define('GH_DIM_DEBUG', false);
@@ -141,7 +141,8 @@ register_activation_hook(__FILE__, function() {
 });
 
 $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
-    'https://bitbucket.org/gemeenteheerenveen/datainmap-plugin/downloads/update.json',
+    'https://github.com/OpenWebconcept/plugin-datainmap',
 	__FILE__,
 	'gh-datainmap'
 );
+$myUpdateChecker->getVcsApi()->enableReleaseAssets();
