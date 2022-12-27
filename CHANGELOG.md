@@ -1,3 +1,7 @@
+**1.10.7 (2022-12-27)**
+
+- Wanneer filters op een kaart staan ingeschakeld met `enable_filter=1` maar geen van de locaties bevatten locatie eigenschappen dan werden alle bestaande eigenschappen in de filterlijst geplaatst. Het was de intentie om alleen de locatie eigenschappen die waren toegekend in deze lijst te plaatsen. Dit is nu opgelost.
+
 **1.10.6 (2022-07-07)**
 
 - Repository verhuisd naar GitHub. Releases worden nu op GitHub gepubliceerd. Plugin aangepast om hier gebruik van te maken.

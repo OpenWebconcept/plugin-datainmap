@@ -1,0 +1,29 @@
+name: "plugin-datainmap"
+
+applicationSuite:
+  name: "OpenWebconcept"
+
+publiccodeYmlVersion: 1.0
+url: "https://github.com/OpenWebconcept/plugin-datainmap"
+
+platforms:
+  - "web"
+
+categories:
+  - "application-development"
+
+softwareType: "softwareAddon"
+
+description:
+  localisedName: "Data In Map"
+  shortDescription: "Data In Map is a WordPress plugin for displaying maps."
+  longDescription: "Data In Map is a WordPress plugin for displaying maps."
+
+nl:
+  commonground:
+    layerType: "service"
+
+dependsOn:
+  open:
+    - name: "WordPress"
+    - versionMin: 6.0.3
