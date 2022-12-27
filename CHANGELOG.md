@@ -1,4 +1,5 @@
 - De meegeleverde stylesheet geeft de instructietekst (filters, gevonden locaties) niet meer cursief weer voor verbetering toegankelijkheid.
+- Update naar PluginUpdateChecker v5.
 
 **1.10.7 (2022-12-27)**
 

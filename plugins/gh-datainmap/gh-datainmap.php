@@ -140,7 +140,7 @@ register_activation_hook(__FILE__, function() {
     }
 });
 
-$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+$myUpdateChecker = YahnisElsts\PluginUpdateChecker\v5\PucFactory::buildUpdateChecker(
     'https://github.com/OpenWebconcept/plugin-datainmap',
 	__FILE__,
 	'gh-datainmap'
