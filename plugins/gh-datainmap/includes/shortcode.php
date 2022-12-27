@@ -115,14 +115,17 @@ function gh_dim_shortcode($atts, $content = null) {
     if(count($location_property_ids) > 0) {
         $location_property_ids = array_unique(array_merge(...$location_property_ids));
     }
-    $location_property_terms_unfiltered = get_terms([
-        'taxonomy' => 'gh-dim-location-properties',
-        'term_taxonomy_id' => $location_property_ids,
-        'hide_empty' => true,
-        'fields' => 'all',
-        'orderby' => 'name',
-        'order' => 'ASC',
-    ]);
+    $location_property_terms_unfiltered = [];
+    if(count($location_property_ids) > 0) {
+        $location_property_terms_unfiltered = get_terms([
+            'taxonomy' => 'gh-dim-location-properties',
+            'term_taxonomy_id' => $location_property_ids,
+            'hide_empty' => true,
+            'fields' => 'all',
+            'orderby' => 'name',
+            'order' => 'ASC',
+        ]);
+    }
 
     if(!empty($args['filter_properties'])) {
         $include_filters = array_map('trim', explode(',', $args['filter_properties']));
