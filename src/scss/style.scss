@@ -120,7 +120,6 @@ $shadow-color: rgba(0, 0, 0, 0.5);
         .#{$descriptionClass} {
             margin:10px 0;
             @include font-size(12px);
-            font-style:italic;
         }
         .#{checkboxClass} {
             &:first-child {
@@ -389,7 +388,6 @@ $shadow-color: rgba(0, 0, 0, 0.5);
             .gh-dim-features-listbox-description {
                 margin:10px;
                 @include font-size(12px);
-                font-style:italic;
             }
 
             ul {
