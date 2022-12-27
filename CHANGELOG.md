@@ -1,3 +1,5 @@
+- De meegeleverde stylesheet geeft de instructietekst (filters, gevonden locaties) niet meer cursief weer voor verbetering toegankelijkheid.
+
 **1.10.7 (2022-12-27)**
 
 - Wanneer filters op een kaart staan ingeschakeld met `enable_filter=1` maar geen van de locaties bevatten locatie eigenschappen dan werden alle bestaande eigenschappen in de filterlijst geplaatst. Het was de intentie om alleen de locatie eigenschappen die waren toegekend in deze lijst te plaatsen. Dit is nu opgelost.
