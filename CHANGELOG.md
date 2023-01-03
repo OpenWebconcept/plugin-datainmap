@@ -1,3 +1,7 @@
+**1.10.9 (2023-01-03)**
+
+- Als Gutenberg gebruikt werd als editor voor locaties dan werd de kaart om een locatie te selecteren niet weergegeven. Dit is nu opgelost.
+
 **1.10.8 (2022-12-27)**
 
 - De meegeleverde stylesheet geeft de instructietekst (filters, gevonden locaties) niet meer cursief weer voor verbetering toegankelijkheid.
