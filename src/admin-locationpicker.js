@@ -253,4 +253,7 @@ const App = () => {
     )
 };
 
-ReactDOM.render( App(), document.getElementById( settings.element ) );
+// Delay rendering to prevent a hidden map with Gutenberg
+setTimeout(() => {
+    ReactDOM.render( App(), document.getElementById( settings.element ) );
+}, 50);
