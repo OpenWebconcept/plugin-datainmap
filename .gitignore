@@ -5,3 +5,4 @@ plugins/gh-datainmap/dist/*
 dist/*
 plugins/gh-datainmap/vendor/*
 !plugins/gh-datainmap/vendor/wp-color-picker-alpha/
+.DS_Store
