@@ -1,3 +1,7 @@
+**1.10.10 (2023-09-05)**
+
+- PDOK Locatieserver is verhuisd naar een nieuw adres. Nieuwe URL's overgenomen voor de zoekdienst.
+
 **1.10.9 (2023-01-03)**
 
 - Als Gutenberg gebruikt werd als editor voor locaties dan werd de kaart om een locatie te selecteren niet weergegeven. Dit is nu opgelost.
