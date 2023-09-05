@@ -90,7 +90,7 @@ export const SEARCH_SUGGEST = 'SEARCH_SUGGEST';
 export function searchSuggest(q) {
     let thunk = (dispatch, getState) => {
         const state = getState();
-        let url = 'https://geodata.nationaalgeoregister.nl/locatieserver/v3/suggest?wt=json';
+        let url = 'https://api.pdok.nl/bzk/locatieserver/search/v3_1/suggest?wt=json';
         const township = getState().search.township;
         if(township.length > 0) {
             q += ' AND gemeentecode:' + township;
@@ -124,7 +124,7 @@ export function setSearchResults(results) {
 export const FETCH_LOCATION = 'FETCH_LOCATION';
 export function fetchLocation(id) {
     let thunk = (dispatch, getState) => {
-        let url = 'https://geodata.nationaalgeoregister.nl/locatieserver/v3/lookup?wt=json';
+        let url = 'https://api.pdok.nl/bzk/locatieserver/search/v3_1/lookup?wt=json';
         url += '&id=' + id;
         return fetch(url).
             then( response => {
