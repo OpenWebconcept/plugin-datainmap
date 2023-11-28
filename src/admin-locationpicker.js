@@ -1,5 +1,5 @@
 /*
-* Copyright 2020-2022 Gemeente Heerenveen
+* Copyright 2020-2023 Gemeente Heerenveen
 *
 * Licensed under the EUPL, Version 1.2 or – as soon they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence");
 * You may not use this work except in compliance with the Licence.
@@ -252,8 +252,5 @@ const App = () => {
         </Provider>
     )
 };
-
 // Delay rendering to prevent a hidden map with Gutenberg
-setTimeout(() => {
-    ReactDOM.render( App(), document.getElementById( settings.element ) );
-}, 50);
+wp.domReady(() => ReactDOM.render( App(), document.getElementById( settings.element ) ));

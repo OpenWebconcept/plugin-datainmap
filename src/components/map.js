@@ -1,5 +1,5 @@
 /*
-* Copyright 2020-2022 Gemeente Heerenveen
+* Copyright 2020-2023 Gemeente Heerenveen
 *
 * Licensed under the EUPL, Version 1.2 or – as soon they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence");
 * You may not use this work except in compliance with the Licence.
@@ -46,7 +46,7 @@ export class MapComponent extends Component {
         // Get zoom elements so we can provide them with a proper aria-label
         this.olMap.getControls().forEach((control) => {
             if(control.element.className.indexOf('ol-zoom') != -1) {
-                control.element.children.forEach((el) => {
+                Array.from(control.element.children).forEach((el) => {
                     el.setAttribute('aria-label', el.getAttribute('title') + ' ' + el.textContent);
                 });
             }
@@ -261,7 +261,7 @@ export class MapComponent extends Component {
         }
 
         const mapElement = this.refMap.current;
-        mapElement.getElementsByTagName('canvas').forEach((el) => {
+        Array.from(mapElement.getElementsByTagName('canvas')).forEach((el) => {
             el.setAttribute('aria-label', 'Kaart');
             el.setAttribute('role', 'img');
         });
