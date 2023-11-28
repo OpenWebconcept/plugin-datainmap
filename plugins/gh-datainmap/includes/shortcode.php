@@ -178,6 +178,7 @@ function gh_dim_shortcode($atts, $content = null) {
         'proj4' => $proj4,
     ];
 
+    do_action('gh_dim_shortcode');
     $script_open = '<script type="text/javascript">';
     $script_contents = 'var GHDataInMap = '.wp_json_encode($GHDataInMap) . ';';
     $script_close = '</script>';
