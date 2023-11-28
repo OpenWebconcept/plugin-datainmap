@@ -1,5 +1,6 @@
 - Nieuwe versies van ondersteunende software bibliotheken in gebruik genomen.
 - Fix voor jQuery deprecation van `ready()` in de backend.
+- Als Gutenberg gebruikt werd als editor voor locaties dan werd de kaart om een locatie te selecteren niet weergegeven. Dit is nu opgelost door pas te renderen wanneer Gutenberg klaar is.
 
 **1.10.10 (2023-09-05)**
 

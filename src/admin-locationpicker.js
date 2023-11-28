@@ -253,7 +253,9 @@ const App = () => {
     )
 };
 
-// Delay rendering to prevent a hidden map with Gutenberg
-setTimeout(() => {
+const renderLocationPicker = () => {
     ReactDOM.render( App(), document.getElementById( settings.element ) );
-}, 50);
+};
+
+// Delay rendering to prevent a hidden map with Gutenberg
+wp.domReady(renderLocationPicker);
