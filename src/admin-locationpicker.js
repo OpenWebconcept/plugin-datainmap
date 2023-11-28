@@ -252,10 +252,5 @@ const App = () => {
         </Provider>
     )
 };
-
-const renderLocationPicker = () => {
-    ReactDOM.render( App(), document.getElementById( settings.element ) );
-};
-
 // Delay rendering to prevent a hidden map with Gutenberg
-wp.domReady(renderLocationPicker);
+wp.domReady(() => ReactDOM.render( App(), document.getElementById( settings.element ) ));
