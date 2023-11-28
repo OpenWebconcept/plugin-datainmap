@@ -1,3 +1,5 @@
+- Nieuwe versies van ondersteunende software bibliotheken in gebruik genomen.
+
 **1.10.9 (2023-01-03)**
 
 - Als Gutenberg gebruikt werd als editor voor locaties dan werd de kaart om een locatie te selecteren niet weergegeven. Dit is nu opgelost.
