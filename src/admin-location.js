@@ -39,7 +39,7 @@ const fieldsToggler = (selectFieldId, allFields = [], visibleFields = []) => {
 };
 
 // Location type (point, polygon etc.)
-$(document).ready(function() {
+$(function() {
     const allFields = [
         '#gh_dim_location_type',
         '#gh_dim_location',

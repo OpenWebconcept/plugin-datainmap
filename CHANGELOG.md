@@ -1,4 +1,5 @@
 - Nieuwe versies van ondersteunende software bibliotheken in gebruik genomen.
+- Fix voor jQuery deprecation van `ready()` in de backend.
 
 **1.10.10 (2023-09-05)**
 
