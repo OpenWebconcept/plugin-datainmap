@@ -1,3 +1,7 @@
+**1.11.1 (2024-05-01)**
+
+- Versiebump van 1.10.11 -> 1.11.0 in `GH_DIM_VERSION` alsnog toegepast. Lees de updates van versie 1.11.0 goed door alvorens deze versie te installeren!
+
 **1.11.0 (2024-05-01)**
 
 - **Let op!** Er zijn diverse aanpassingen doorgevoerd die invloed kunnen hebben op hoe DataInMap wordt weergegeven. Bij een eigen stylesheet moeten mogelijk ook wijzigingen worden doorgevoerd. Lees onderstaande notities goed door!
