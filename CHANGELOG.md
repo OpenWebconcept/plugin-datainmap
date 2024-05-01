@@ -1,3 +1,5 @@
+**1.11.0 (2024-05-01)**
+
 - **Let op!** Er zijn diverse aanpassingen doorgevoerd die invloed kunnen hebben op hoe DataInMap wordt weergegeven. Bij een eigen stylesheet moeten mogelijk ook wijzigingen worden doorgevoerd. Lees onderstaande notities goed door!
 - De diverse componenten maakten gebruik van `h1`-koppen. Dit is aangepast naar `h2`, zodat een pagina beperkt kan blijven tot één `h1`-kop.
 - In de vorige versies werd bij het openen van het feature modal een standaard `padding-right` van `17px` op de `body` toegepast (`body.gh-dim-modal-open`) om de ruimte te compenseren voor het verwijderen van de browser scrollbar. Deze waarde kan echter verschillen per scherm en device en wordt daarom nu dynamisch bepaald en wordt direct toegepast op `body.style.paddingRight`.
