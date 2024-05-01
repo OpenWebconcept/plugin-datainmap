@@ -1,3 +1,5 @@
+- In de vorige versies werd bij het openen van het feature modal een standaard `padding-right` van `17px` op de `body` class toegepast (`body.gh-dim-modal-open`) om de ruimte te compenseren voor het verwijderen van de browser scrollbar. Deze waarde kan echter verschillen per scherm en device en wordt daarom nu dynamisch bepaald en wordt direct toegepast op `body.style.paddingRight`. Mogelijk heeft dit invloed op eigen styling.
+
 **1.10.11 (2023-11-28)**
 
 - Nieuwe versies van ondersteunende software bibliotheken in gebruik genomen.

@@ -14,6 +14,7 @@
 import React, {Component} from 'react';
 import {CSSTransition} from 'react-transition-group';
 import _ from 'lodash';
+import { getScrollbarWidth } from '../util/browser';
 import { FEATURE_TYPE_WMSFEATURE, FEATURE_TYPE_KMLFEATURE, FEATURE_TYPE_DIMFEATURE, FEATURE_TYPE_UNKNOWN } from '../constants';
 
 function CloseModal({ onClick }) {
@@ -135,6 +136,7 @@ export default class FeatureComponent extends Component {
     componentDidUpdate(prevProps) {
         if(this.props.feature !== null) {
             document.body.classList.add('gh-dim-modal-open');
+            document.body.style.paddingRight = getScrollbarWidth() + 'px';
             if(typeof this.props.cb === 'function') {
                 this.refModal.current.focus();
                 this.props.cb(this.props.feature);
@@ -142,6 +144,7 @@ export default class FeatureComponent extends Component {
         }
         else {
             document.body.classList.remove('gh-dim-modal-open');
+            document.body.style.paddingRight = null;
         }
 
         // Close modal when Escape is pressed
