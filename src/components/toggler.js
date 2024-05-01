@@ -1,5 +1,5 @@
 /*
-* Copyright 2020-2023 Gemeente Heerenveen
+* Copyright 2020-2024 Gemeente Heerenveen
 *
 * Licensed under the EUPL, Version 1.2 or – as soon they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence");
 * You may not use this work except in compliance with the Licence.
@@ -73,7 +73,7 @@ export class TogglerComponent extends Component {
             <div className="gh-dim-toggler" tabIndex="0" onKeyDown={blur}>
                 <section aria-labelledby={id}>
                     <header>
-                        <h1 id={id}>Lagen</h1>
+                        <h2 id={id}>Lagen</h2>
                     </header>
                     <div className="gh-dim-togglers">
                         {this.props.description &&

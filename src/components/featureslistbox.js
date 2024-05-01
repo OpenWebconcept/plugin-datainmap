@@ -1,5 +1,5 @@
 /*
-* Copyright 2020-2023 Gemeente Heerenveen
+* Copyright 2020-2024 Gemeente Heerenveen
 *
 * Licensed under the EUPL, Version 1.2 or – as soon they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence");
 * You may not use this work except in compliance with the Licence.
@@ -136,7 +136,7 @@ class FeaturesListboxComponent extends Component {
             <div className="gh-dim-features-listbox" tabIndex="0" onKeyDown={(e) => this.keyboardNavigation(e)} onBlur={(e) => this.setState({currentResult: null})}>
                 <section aria-labelledby={this.headerId}>
                     <header>
-                        <h1 id={this.headerId}>Gevonden locaties <span>({totalResults > 100 ? '100+' : totalResults})</span></h1>
+                        <h2 id={this.headerId}>Gevonden locaties <span>({totalResults > 100 ? '100+' : totalResults})</span></h2>
                     </header>
                     <div className="gh-dim-features-listbox-content" ref={this.listboxContainer}>
                         <ul aria-live="polite" role="listbox" aria-label="Locaties zichtbaar op de kaart" aria-activedescendant={activeDescendant} aria-expanded={expanded}>

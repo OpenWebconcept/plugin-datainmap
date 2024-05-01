@@ -1,5 +1,5 @@
 /*
-* Copyright 2020-2023 Gemeente Heerenveen
+* Copyright 2020-2024 Gemeente Heerenveen
 *
 * Licensed under the EUPL, Version 1.2 or – as soon they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence");
 * You may not use this work except in compliance with the Licence.
@@ -14,6 +14,7 @@
 import React, {Component} from 'react';
 import {CSSTransition} from 'react-transition-group';
 import _ from 'lodash';
+import { getScrollbarWidth } from '../util/browser';
 import { FEATURE_TYPE_WMSFEATURE, FEATURE_TYPE_KMLFEATURE, FEATURE_TYPE_DIMFEATURE, FEATURE_TYPE_UNKNOWN } from '../constants';
 
 function CloseModal({ onClick }) {
@@ -39,7 +40,7 @@ class KMLFeatureComponent extends Component {
         return (
             <>
                 <header>
-                    <h1>{feature.name}</h1>
+                    <h2>{feature.name}</h2>
                     <CloseModal onClick={() => this.props.closeModal()} />
                 </header>
                 <section className="gh-dim-feature-content" dangerouslySetInnerHTML={{__html: feature.description}} tabIndex="0" />
@@ -58,7 +59,7 @@ class WMSFeatureComponent extends Component {
         return (
             <>
                 <header>
-                    <h1>Informatie</h1>
+                    <h2>Informatie</h2>
                     <CloseModal onClick={() => this.props.closeModal()} />
                 </header>
                 <section className="gh-dim-feature-content" dangerouslySetInnerHTML={{__html: feature}} tabIndex="0" />
@@ -83,7 +84,7 @@ class DIMFeatureComponent extends Component {
         return (
             <>
                 <header>
-                    <h1 dangerouslySetInnerHTML={{__html: title}}></h1>
+                    <h2 dangerouslySetInnerHTML={{__html: title}}></h2>
                     <CloseModal onClick={() => this.props.closeModal()} />
                 </header>
                 <section className="gh-dim-feature-content" dangerouslySetInnerHTML={{__html: feature.content}} tabIndex="0" />
@@ -135,6 +136,7 @@ export default class FeatureComponent extends Component {
     componentDidUpdate(prevProps) {
         if(this.props.feature !== null) {
             document.body.classList.add('gh-dim-modal-open');
+            document.body.style.paddingRight = getScrollbarWidth() + 'px';
             if(typeof this.props.cb === 'function') {
                 this.refModal.current.focus();
                 this.props.cb(this.props.feature);
@@ -142,6 +144,7 @@ export default class FeatureComponent extends Component {
         }
         else {
             document.body.classList.remove('gh-dim-modal-open');
+            document.body.style.paddingRight = null;
         }
 
         // Close modal when Escape is pressed
