@@ -40,7 +40,7 @@ class KMLFeatureComponent extends Component {
         return (
             <>
                 <header>
-                    <h1>{feature.name}</h1>
+                    <h2>{feature.name}</h2>
                     <CloseModal onClick={() => this.props.closeModal()} />
                 </header>
                 <section className="gh-dim-feature-content" dangerouslySetInnerHTML={{__html: feature.description}} tabIndex="0" />
@@ -59,7 +59,7 @@ class WMSFeatureComponent extends Component {
         return (
             <>
                 <header>
-                    <h1>Informatie</h1>
+                    <h2>Informatie</h2>
                     <CloseModal onClick={() => this.props.closeModal()} />
                 </header>
                 <section className="gh-dim-feature-content" dangerouslySetInnerHTML={{__html: feature}} tabIndex="0" />
@@ -84,7 +84,7 @@ class DIMFeatureComponent extends Component {
         return (
             <>
                 <header>
-                    <h1 dangerouslySetInnerHTML={{__html: title}}></h1>
+                    <h2 dangerouslySetInnerHTML={{__html: title}}></h2>
                     <CloseModal onClick={() => this.props.closeModal()} />
                 </header>
                 <section className="gh-dim-feature-content" dangerouslySetInnerHTML={{__html: feature.content}} tabIndex="0" />

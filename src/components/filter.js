@@ -56,7 +56,7 @@ export class FilterComponent extends Component {
             <div className="gh-dim-filter" tabIndex="0" onKeyDown={blur}>
                 <section aria-labelledby={id}>
                     <header>
-                        <h1 id={id}>Filters</h1>
+                        <h2 id={id}>Filters</h2>
                     </header>
                     <div className="gh-dim-filters">
                         {this.props.description &&

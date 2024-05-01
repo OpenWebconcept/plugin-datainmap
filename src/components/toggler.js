@@ -73,7 +73,7 @@ export class TogglerComponent extends Component {
             <div className="gh-dim-toggler" tabIndex="0" onKeyDown={blur}>
                 <section aria-labelledby={id}>
                     <header>
-                        <h1 id={id}>Lagen</h1>
+                        <h2 id={id}>Lagen</h2>
                     </header>
                     <div className="gh-dim-togglers">
                         {this.props.description &&

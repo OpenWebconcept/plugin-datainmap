@@ -85,7 +85,7 @@ $shadow-color: rgba(0, 0, 0, 0.5);
             }
         }
 
-        header h1 {
+        header h2 {
             background-color:$bgcolor-button-hover;
             text-align:left;
         }
@@ -94,7 +94,7 @@ $shadow-color: rgba(0, 0, 0, 0.5);
     header {
         margin:0 -20px;
         background-color:$bgcolor-button-neutral;
-        h1 {
+        h2 {
             @include font-size(14px);
             margin:0;
             padding:10px;
@@ -355,7 +355,7 @@ $shadow-color: rgba(0, 0, 0, 0.5);
                 }
             }
 
-            header h1 {
+            header h2 {
                 background-color:$bgcolor-button-hover;
             }
         }
@@ -363,7 +363,7 @@ $shadow-color: rgba(0, 0, 0, 0.5);
         header {
             margin:0 -20px;
             background-color:$bgcolor-button-neutral;
-            h1 {
+            h2 {
                 @include font-size(14px);
                 margin:0;
                 padding:10px;
@@ -461,7 +461,7 @@ body.gh-dim-modal-open {
             padding:10px 0px 15px 15px;
             background-color:$bgcolor-feature-header;
             border-radius:6px 6px 0 0;
-            h1 {
+            h2 {
                 @include font-size(24px);
                 margin:0;
                 color:#FFF;

@@ -136,7 +136,7 @@ class FeaturesListboxComponent extends Component {
             <div className="gh-dim-features-listbox" tabIndex="0" onKeyDown={(e) => this.keyboardNavigation(e)} onBlur={(e) => this.setState({currentResult: null})}>
                 <section aria-labelledby={this.headerId}>
                     <header>
-                        <h1 id={this.headerId}>Gevonden locaties <span>({totalResults > 100 ? '100+' : totalResults})</span></h1>
+                        <h2 id={this.headerId}>Gevonden locaties <span>({totalResults > 100 ? '100+' : totalResults})</span></h2>
                     </header>
                     <div className="gh-dim-features-listbox-content" ref={this.listboxContainer}>
                         <ul aria-live="polite" role="listbox" aria-label="Locaties zichtbaar op de kaart" aria-activedescendant={activeDescendant} aria-expanded={expanded}>
