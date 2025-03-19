@@ -181,6 +181,7 @@ export default class FeatureComponent extends Component {
         return (
             <CSSTransition
                 in={this.props.feature !== null}
+                nodeRef={this.refModal}
                 timeout={400}
                 unmountOnExit
                 classNames="transition">

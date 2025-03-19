@@ -12,11 +12,11 @@
 * See the Licence for the specific language governing permissions and limitations under the Licence.
 */
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import createDebounce from 'redux-debounced';
-import thunk from 'redux-thunk';
+import { thunk } from 'redux-thunk';
 import MapComponentLink from './containers/maplink';
 import SearchComponentLink from './containers/searchlink';
 import FeatureComponentLink from './containers/featurelink';
@@ -485,4 +485,5 @@ const App = () => {
     )
 };
 
-ReactDOM.render( App(), document.getElementById( settings.element ) );
+const root = ReactDOM.createRoot( document.getElementById( settings.element ) );
+root.render(App());

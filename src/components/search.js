@@ -20,6 +20,7 @@ class SearchResultsComponent extends Component {
 
     constructor(props) {
         super(props);
+        this.refResults = React.createRef();
     }
 
     hasResults() {
@@ -49,6 +50,7 @@ class SearchResultsComponent extends Component {
         return (
             <CSSTransition
                 in={this.hasResults()}
+                nodeRef={this.refResults}
                 timeout={400}
                 unmountOnExit
                 classNames="transition">

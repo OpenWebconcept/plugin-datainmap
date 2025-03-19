@@ -12,11 +12,11 @@
 * See the Licence for the specific language governing permissions and limitations under the Licence.
 */
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import createDebounce from 'redux-debounced';
-import thunk from 'redux-thunk';
+import { thunk } from 'redux-thunk';
 import MapComponentLink from './containers/maplink';
 import SearchComponentLink from './containers/searchlink';
 import {configureMapView, fetchWMTSLayer, setSearchProjection, setSearchTownship, addMapLayer, addMapInteraction, removeMapInteraction} from './actions';
@@ -253,4 +253,7 @@ const App = () => {
     )
 };
 // Delay rendering to prevent a hidden map with Gutenberg
-wp.domReady(() => ReactDOM.render( App(), document.getElementById( settings.element ) ));
+wp.domReady(() => {
+    const root = ReactDOM.createRoot( document.getElementById( settings.element ) );
+    root.render(App());
+});
