@@ -1,4 +1,5 @@
 - Tooling geüpdatet naar Node v22.
+- Composer voorzien van name om unieke autoload.php te garanderen.
 
 **1.11.1 (2024-05-01)**
 
