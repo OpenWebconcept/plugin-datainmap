@@ -51,12 +51,6 @@ export class MapComponent extends Component {
                 });
             }
         });
-        mapElement.addEventListener('mouseenter', (e) => {
-            mapElement.focus();
-        });
-        mapElement.addEventListener('mouseleave', (e) => {
-            mapElement.blur();
-        });
         // Display pointer when over a feature
         this.olMap.on('pointermove', (e) => {
             if(e.dragging) {

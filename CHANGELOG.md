@@ -1,3 +1,4 @@
+- De kaart krijgt nu niet meer automatisch focus wanneer de muis er overheen gaat. Op schermen waar de kaart niet volledig paste gaf dit een hinderlijke gebruikerservaring.
 - Tooling geüpdatet naar Node v22.
 - Composer voorzien van name om unieke autoload.php te garanderen.
 
