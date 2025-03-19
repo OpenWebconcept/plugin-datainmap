@@ -1,3 +1,5 @@
+- Tooling geüpdatet naar Node v22.
+
 **1.11.1 (2024-05-01)**
 
 - Versiebump van 1.10.11 -> 1.11.0 in `GH_DIM_VERSION` alsnog toegepast. Lees de updates van versie 1.11.0 goed door alvorens deze versie te installeren!

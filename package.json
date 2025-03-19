@@ -14,7 +14,7 @@
   "author": "Gemeente Heerenveen",
   "license": "EUPL v1.2",
   "engines": {
-    "node": ">=16"
+    "node": ">=22"
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
@@ -41,7 +41,7 @@
     "babel-preset-react": "^6.24.1",
     "css-loader": "^6.8.1",
     "html-loader": "^4.2.0",
-    "node-sass": "^7.0.3",
+    "quick-lru": "^7.0.0",
     "remote-redux-devtools": "^0.5.16",
     "sass": "^1.35.1",
     "sass-loader": "^13.3.2",
