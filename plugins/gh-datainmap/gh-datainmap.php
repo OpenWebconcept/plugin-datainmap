@@ -5,7 +5,7 @@ Plugin URI: https://github.com/OpenWebconcept/plugin-datainmap
 Description: Data In Map is a plugin for displaying maps.
 Version: 1.12.0
 Requires at least: 5.0
-Requires PHP: 7.2
+Requires PHP: 8.1
 Author: Gemeente Heerenveen
 Author URI: https://www.heerenveen.nl/
 Text Domain: gh-datainmap

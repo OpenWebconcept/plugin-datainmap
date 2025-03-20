@@ -7,6 +7,7 @@
 - Tooling geüpdatet naar Node v22.
 - Composer voorzien van name om unieke `autoload.php` te garanderen.
 - Nieuwe versies van ondersteunende software bibliotheken in gebruik genomen.
+- Minimum PHP versie aangepast van 7.2 -> 8.1.
 
 **1.11.1 (2024-05-01)**
 
