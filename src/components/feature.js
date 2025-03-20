@@ -1,5 +1,5 @@
 /*
-* Copyright 2020-2024 Gemeente Heerenveen
+* Copyright 2020-2025 Gemeente Heerenveen
 *
 * Licensed under the EUPL, Version 1.2 or – as soon they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence");
 * You may not use this work except in compliance with the Licence.
@@ -181,6 +181,7 @@ export default class FeatureComponent extends Component {
         return (
             <CSSTransition
                 in={this.props.feature !== null}
+                nodeRef={this.refModal}
                 timeout={400}
                 unmountOnExit
                 classNames="transition">

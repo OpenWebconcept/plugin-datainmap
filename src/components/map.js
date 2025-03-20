@@ -1,5 +1,5 @@
 /*
-* Copyright 2020-2024 Gemeente Heerenveen
+* Copyright 2020-2025 Gemeente Heerenveen
 *
 * Licensed under the EUPL, Version 1.2 or – as soon they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence");
 * You may not use this work except in compliance with the Licence.
@@ -14,6 +14,9 @@
 import 'ol/ol.css';
 import Map from 'ol/Map';
 import View from 'ol/View';
+import { defaults as defaultInteractions } from 'ol/interaction';
+import { defaults as defaultControls } from 'ol/control';
+import Collection from 'ol/Collection';
 import React, {Component} from 'react';
 import _ from 'lodash';
 import { zoomTo, zoomToMax } from '../util/map-animations';
@@ -38,10 +41,16 @@ export class MapComponent extends Component {
         const olView = new View(this.props.viewSettings);
         const mapElement = this.refMap.current;
         const tooltipElement = this.refTooltip.current;
+        // Remove all controls if desired
+        const controls = this.props.enableControls ? defaultControls() : new Collection();
+        // Remove all interactions if desired
+        const interactions = this.props.enableInteractions ? defaultInteractions() : new Collection();
         this.olMap = new Map({
             view: olView,
             target: mapElement,
             layers: this.props.layers,
+            controls,
+            interactions,
         });
         // Get zoom elements so we can provide them with a proper aria-label
         this.olMap.getControls().forEach((control) => {
@@ -50,12 +59,6 @@ export class MapComponent extends Component {
                     el.setAttribute('aria-label', el.getAttribute('title') + ' ' + el.textContent);
                 });
             }
-        });
-        mapElement.addEventListener('mouseenter', (e) => {
-            mapElement.focus();
-        });
-        mapElement.addEventListener('mouseleave', (e) => {
-            mapElement.blur();
         });
         // Display pointer when over a feature
         this.olMap.on('pointermove', (e) => {

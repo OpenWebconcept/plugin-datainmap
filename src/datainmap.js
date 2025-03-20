@@ -1,5 +1,5 @@
 /*
-* Copyright 2020-2024 Gemeente Heerenveen
+* Copyright 2020-2025 Gemeente Heerenveen
 *
 * Licensed under the EUPL, Version 1.2 or – as soon they will be approved by the European Commission - subsequent versions of the EUPL (the "Licence");
 * You may not use this work except in compliance with the Licence.
@@ -12,11 +12,11 @@
 * See the Licence for the specific language governing permissions and limitations under the Licence.
 */
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import createDebounce from 'redux-debounced';
-import thunk from 'redux-thunk';
+import { thunk } from 'redux-thunk';
 import MapComponentLink from './containers/maplink';
 import SearchComponentLink from './containers/searchlink';
 import FeatureComponentLink from './containers/featurelink';
@@ -475,7 +475,7 @@ else {
 const App = () => {
     return (
         <Provider store={store}>
-            <MapComponentLink enableTooltip={settings.enable_tooltip} enableFeaturesListbox={settings.enable_features_listbox}>
+            <MapComponentLink enableTooltip={settings.enable_tooltip} enableFeaturesListbox={settings.enable_features_listbox} enableControls={settings.enable_controls} enableInteractions={settings.enable_interactions}>
                 { settings.enable_search && <SearchComponentLink /> }
                 { settings.enable_toggler && <TogglerComponentLink /> }
                 { settings.enable_filter && <FilterComponentLink /> }
@@ -485,4 +485,5 @@ const App = () => {
     )
 };
 
-ReactDOM.render( App(), document.getElementById( settings.element ) );
+const root = ReactDOM.createRoot( document.getElementById( settings.element ) );
+root.render(App());

@@ -47,3 +47,7 @@ Met `toggler_description` is het mogelijk om de standaard tekst (DataInMap -> In
 `[datainmap layers=1,2 types=1,2,3,4 enable_toggler=1 toggler_description="U kunt hier kaartlagen in- of uitschakelen."]`
 
 Om de container waar DataInMap wordt geplaatst te voorzien van een of meerdere CSS classes kan gebruik gemaakt worden van `css_class`, bijv. `[datainmap css_class="kaart-groot"]`. Deze CSS classes dienen in de stylesheet van het gebruikte thema te staan.
+
+Het is mogelijk om de kaart te fixeren door de zogenaamde controls (knoppen voor zoomen) en interactions (zoomen met muis, touch en toetsenbordpijltjes etc.) uit te schakelen. Dit geeft dan een kaart waarop de gebruiker niet kan inzoomen of kan verplaatsen. Let op, als de zoekfunctie ingeschakeld blijft zal deze inzoomen op de locatie en kan de gebruiker niet uitzoomen. De standaard waardes voor `enable_controls` en `enable_interactions` is `1`.
+
+`[datainmap layers=1 types=1 enable_controls=0 enable_interactions=0 enable_search=0]`

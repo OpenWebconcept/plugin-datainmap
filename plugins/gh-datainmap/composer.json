@@ -1,4 +1,5 @@
 {
+    "name": "openwebconcept/plugin-datainmap",
     "require": {
         "erusev/parsedown": "1.7.*",
         "yahnis-elsts/plugin-update-checker": "^5.0"    }
