@@ -34,6 +34,8 @@ function gh_dim_shortcode($atts, $content = null) {
             'enable_filter' => 0,
             'enable_features_listbox' => 1,
             'enable_toggler' => 0,
+            'enable_controls' => 1,
+            'enable_interactions' => 1,
             'toggle_layers' => null,
             'untoggled_layers' => null,
             'toggle_types' => 'ALL',
@@ -57,6 +59,8 @@ function gh_dim_shortcode($atts, $content = null) {
     $settings['enable_tooltip'] = $args['enable_tooltip'] == 1 ? true : false;
     $settings['enable_filter'] = $args['enable_filter'] == 1 ? true : false;
     $settings['enable_features_listbox'] = $args['enable_features_listbox'] == 1 ? true : false;
+    $settings['enable_controls'] = $args['enable_controls'] == 1 ? true : false;
+    $settings['enable_interactions'] = $args['enable_interactions'] == 1 ? true : false;
     $settings['enable_toggler'] = $args['enable_toggler'] == 1 ? true : false;
     $settings['toggler_description'] = $args['toggler_description'];
     $settings['dynamic_loading'] = $args['dynamic_loading'] == 1 ? true : false;

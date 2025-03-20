@@ -1,3 +1,4 @@
+- De shortcode ondersteund nu de instellingen `enable_controls=0` en `enable_interactions=0` om een kaart te fixeren. Door `enable_controls` op `0` te zetten verdwijnen de buttons voor zoomen. Met `enable_interactions=0` verdwijnt de mogelijkheid om met touch, muis of toetsenbord te navigeren door de kaart. Standaard staan deze instellingen op `1` (dit komt overeen met de vorige versies). Hiermee kan een kaart gefixeerd worden.
 - Update naar OpenLayers 10.
 - Update naar React 18.
 - De kaart krijgt nu niet meer automatisch focus wanneer de muis er overheen gaat. Op schermen waar de kaart niet volledig paste gaf dit een hinderlijke gebruikerservaring.

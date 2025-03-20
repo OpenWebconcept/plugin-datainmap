@@ -475,7 +475,7 @@ else {
 const App = () => {
     return (
         <Provider store={store}>
-            <MapComponentLink enableTooltip={settings.enable_tooltip} enableFeaturesListbox={settings.enable_features_listbox}>
+            <MapComponentLink enableTooltip={settings.enable_tooltip} enableFeaturesListbox={settings.enable_features_listbox} enableControls={settings.enable_controls} enableInteractions={settings.enable_interactions}>
                 { settings.enable_search && <SearchComponentLink /> }
                 { settings.enable_toggler && <TogglerComponentLink /> }
                 { settings.enable_filter && <FilterComponentLink /> }
