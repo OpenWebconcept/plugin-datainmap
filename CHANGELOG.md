@@ -1,3 +1,5 @@
+- Bugfix: het was sinds de vorige update niet meer mogelijk om de location picker in het beheer correct te bedienen. Verplaatsen op de kaart was niet mogelijk net als zoomen.
+
 **1.12.0 (2025-03-20)**
 
 - De shortcode ondersteunt nu de instellingen `enable_controls=0` en `enable_interactions=0` om een kaart te fixeren. Door `enable_controls` op `0` te zetten verdwijnen de buttons voor zoomen. Met `enable_interactions=0` verdwijnt de mogelijkheid om met touch, muis of toetsenbord te navigeren door de kaart. Standaard staan deze instellingen op `1` (dit komt overeen met de vorige versies). Hiermee kan een kaart gefixeerd worden.

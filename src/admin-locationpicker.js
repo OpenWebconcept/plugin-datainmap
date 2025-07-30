@@ -246,7 +246,7 @@ if(current_location_type !== null) {
 const App = () => {
     return (
         <Provider store={store}>
-            <MapComponentLink enableDrawing={true} enableFeaturesListbox={false}>
+            <MapComponentLink enableDrawing={true} enableFeaturesListbox={false} enableControls={true} enableInteractions={true}>
                 <SearchComponentLink />
             </MapComponentLink>
         </Provider>
