@@ -1,4 +1,5 @@
 - Bugfix: het was sinds de vorige update niet meer mogelijk om de location picker in het beheer correct te bedienen. Verplaatsen op de kaart was niet mogelijk net als zoomen.
+- Javascript/NodeJS dependencies bijgewerkt naar nieuwere versies.
 
 **1.12.0 (2025-03-20)**
 
