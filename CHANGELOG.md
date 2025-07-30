@@ -1,3 +1,9 @@
+**1.12.1 (2025-07-30)**
+
+- Bugfix: Sindes OpenLayers 10 kon het navigeren naar een adres, gevonden met de zoekfunctie, de kaart doen vastlopen en liep het geheugenverbruik van de browser vol waardoor de pagina niet reageerde en uiteindelijk crashte. Dit probleem is opgelost.
+- Bugfix: het was sinds de vorige update niet meer mogelijk om de location picker in het beheer correct te bedienen. Verplaatsen op de kaart was niet mogelijk net als zoomen.
+- Javascript/NodeJS dependencies bijgewerkt naar nieuwere versies.
+
 **1.12.0 (2025-03-20)**
 
 - De shortcode ondersteunt nu de instellingen `enable_controls=0` en `enable_interactions=0` om een kaart te fixeren. Door `enable_controls` op `0` te zetten verdwijnen de buttons voor zoomen. Met `enable_interactions=0` verdwijnt de mogelijkheid om met touch, muis of toetsenbord te navigeren door de kaart. Standaard staan deze instellingen op `1` (dit komt overeen met de vorige versies). Hiermee kan een kaart gefixeerd worden.

@@ -147,6 +147,7 @@ export function fetchLocation(id) {
                             coords = [x, y];
                             break;
                     }
+                    coords = coords.map(parseFloat);
                     dispatch(centerMapView(coords));
                 }
             })
