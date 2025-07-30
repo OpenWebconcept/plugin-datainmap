@@ -1,6 +1,6 @@
 **1.12.1 (2025-07-30)**
 
-- Bugfix: Sindes OpenLayers 10 kon het navigeren naar een adres, gevonden met de zoekfunctie, de kaart doen vastlopen en liep het geheugenverbruik van de browser vol waardoor de pagina niet reageerde en uiteindelijk crashte. Dit probleem is opgelost.
+- Bugfix: Sinds OpenLayers 10 kon het navigeren naar een adres, gevonden met de zoekfunctie, de kaart doen vastlopen en liep het geheugenverbruik van de browser vol waardoor de pagina niet reageerde en uiteindelijk crashte. Dit probleem is opgelost.
 - Bugfix: het was sinds de vorige update niet meer mogelijk om de location picker in het beheer correct te bedienen. Verplaatsen op de kaart was niet mogelijk net als zoomen.
 - Javascript/NodeJS dependencies bijgewerkt naar nieuwere versies.
 
