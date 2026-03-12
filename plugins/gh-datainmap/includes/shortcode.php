@@ -161,6 +161,9 @@ function gh_dim_shortcode($atts, $content = null) {
     if($settings['include_default_style']) {
         wp_enqueue_style( 'gh-dim-style' );
     }
+    else {
+        wp_enqueue_style( 'gh-dim-ol-style' );
+    }
 
     wp_enqueue_script( 'gh-dim-datainmap' );
     $security = wp_create_nonce('gh-dim-datainmap');

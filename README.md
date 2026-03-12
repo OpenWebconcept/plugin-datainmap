@@ -15,6 +15,7 @@ A (Dutch) changelog is being kept at `CHANGELOG.MD`
 
 ````
 $ npm install
+$ npm run css-ol
 $ npm run css-prod
 $ npm run webpack-prod
 $ npm run composer

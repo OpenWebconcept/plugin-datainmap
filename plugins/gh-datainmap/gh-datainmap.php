@@ -3,7 +3,7 @@
 Plugin Name: Data In Map
 Plugin URI: https://github.com/OpenWebconcept/plugin-datainmap
 Description: Data In Map is a plugin for displaying maps.
-Version: 1.12.1
+Version: 1.12.2
 Requires at least: 5.0
 Requires PHP: 8.1
 Author: Gemeente Heerenveen
@@ -26,7 +26,7 @@ See the Licence for the specific language governing permissions and limitations 
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
-if ( ! defined('GH_DIM_VERSION')) define('GH_DIM_VERSION', '1.12.1');
+if ( ! defined('GH_DIM_VERSION')) define('GH_DIM_VERSION', '1.12.2');
 if ( ! defined('GH_DIM_FILE')) define('GH_DIM_FILE', __FILE__);
 if ( ! defined('GH_DIM_DIR')) define('GH_DIM_DIR', dirname(__FILE__));
 if ( ! defined('GH_DIM_DEBUG')) define('GH_DIM_DEBUG', false);
@@ -64,6 +64,7 @@ function gh_dim_register_scripts() {
     wp_register_script( 'gh-dim-locationpicker', plugin_dir_url(GH_DIM_FILE) . 'dist/admin-locationpicker.js' , array('gh-dim-vendors'), GH_DIM_VERSION, true );
     wp_register_script( 'gh-dim-location', plugin_dir_url(GH_DIM_FILE) . 'dist/admin-location.js' , array('gh-dim-vendors', 'gh-dim-colorpicker-vendor'), GH_DIM_VERSION, true );
     wp_register_style( 'gh-dim-style', plugin_dir_url(GH_DIM_FILE) . 'dist/style.css', array(), GH_DIM_VERSION);
+    wp_register_style( 'gh-dim-ol-style', plugin_dir_url(GH_DIM_FILE) . 'dist/ol.css', array(), GH_DIM_VERSION);
     // Vendor
     wp_register_script( 'gh-dim-colorpicker-vendor', plugin_dir_url(GH_DIM_FILE) . 'vendor/wp-color-picker-alpha/dist/wp-color-picker-alpha.min.js', array( 'wp-color-picker' ), GH_DIM_VERSION, true );
 }
