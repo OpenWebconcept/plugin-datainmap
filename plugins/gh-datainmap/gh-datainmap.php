@@ -64,6 +64,7 @@ function gh_dim_register_scripts() {
     wp_register_script( 'gh-dim-locationpicker', plugin_dir_url(GH_DIM_FILE) . 'dist/admin-locationpicker.js' , array('gh-dim-vendors'), GH_DIM_VERSION, true );
     wp_register_script( 'gh-dim-location', plugin_dir_url(GH_DIM_FILE) . 'dist/admin-location.js' , array('gh-dim-vendors', 'gh-dim-colorpicker-vendor'), GH_DIM_VERSION, true );
     wp_register_style( 'gh-dim-style', plugin_dir_url(GH_DIM_FILE) . 'dist/style.css', array(), GH_DIM_VERSION);
+    wp_register_style( 'gh-dim-ol-style', plugin_dir_url(GH_DIM_FILE) . 'dist/ol.css', array(), GH_DIM_VERSION);
     // Vendor
     wp_register_script( 'gh-dim-colorpicker-vendor', plugin_dir_url(GH_DIM_FILE) . 'vendor/wp-color-picker-alpha/dist/wp-color-picker-alpha.min.js', array( 'wp-color-picker' ), GH_DIM_VERSION, true );
 }

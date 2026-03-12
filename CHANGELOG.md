@@ -1,3 +1,5 @@
+- Bugfix: Compatibel met WordPress 6.9. Sinds WordPress 6.9 worden stylesheets die tijdens contentgeneratie worden ingeladen alsnog in `<head>` geplaatst. Hierdoor worden stylesheets die door WordPress worden geladen altijd vóór het algemene OpenLayers stylesheet ingeladen, waardoor er een specificity probleem ontstaat. Dit is opgelost door niet langer meer `ol.css` via React in te laden, maar door deze als aparte stylesheet beschikbaar te stellen (`gh-dim-ol-style`). Zie ook `wp_should_output_buffer_template_for_enhancement` om het oude gedrag van WordPress weer in te schakelen (maar is voor deze versie dus niet meer nodig).
+
 **1.12.1 (2025-07-30)**
 
 - Bugfix: Sinds OpenLayers 10 kon het navigeren naar een adres, gevonden met de zoekfunctie, de kaart doen vastlopen en liep het geheugenverbruik van de browser vol waardoor de pagina niet reageerde en uiteindelijk crashte. Dit probleem is opgelost.

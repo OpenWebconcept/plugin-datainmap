@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "css-ol": "npx sass --style=compressed node_modules/ol/ol.css plugins/gh-datainmap/dist/ol.css",
     "css-prod": "npx sass --style=compressed src/scss/style.scss plugins/gh-datainmap/dist/style.css",
     "css-dev": "npx sass --watch src/scss/style.scss plugins/gh-datainmap/dist/style.css",
     "webpack-prod": "npx webpack --mode=production",

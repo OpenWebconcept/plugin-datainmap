@@ -27,4 +27,6 @@ jobs:
           NODE_OPTIONS: --openssl-legacy-provider
         run: npm run webpack-prod
       - name: Build CSS
-        run: npm run css-prod
+        run: |
+          npm run css-prod
+          npm run css-ol

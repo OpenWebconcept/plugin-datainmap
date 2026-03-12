@@ -23,6 +23,7 @@ jobs:
           # Fix for ERR_OSSL_EVP_UNSUPPORTED error caused by Webpack
           NODE_OPTIONS: --openssl-legacy-provider
         run: |
+          npm run css-ol
           npm run css-prod
           npm run webpack-prod
       - name: Cache Composer packages
