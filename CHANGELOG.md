@@ -1,3 +1,4 @@
+- Composer dependencies bijgewerkt naar nieuwere versies.
 - Javascript/NodeJS dependencies bijgewerkt naar nieuwere versies.
 
 **1.12.2 (2026-03-12)**
