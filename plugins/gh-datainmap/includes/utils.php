@@ -103,6 +103,10 @@ function gh_dim_get_location_layer($term) {
         }
         return $feature;
     }, $locations);
+    // Ditch features that have no location set
+    $features = array_values(array_filter($features, function($feature) {
+        return !empty($feature['location']);
+    }));
     $icon = null;
     $icon_media_id = get_term_meta( $term->term_id, 'category-image-id', true );
     if($icon_media_id) {
