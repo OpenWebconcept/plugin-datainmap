@@ -1,3 +1,7 @@
+**1.12.4 (2026-06-17)**
+
+- Fix voor laden van kaart met een locatie zonder coördinaten.
+
 **1.12.3 (2026-04-15)**
 
 - Composer dependencies bijgewerkt naar nieuwere versies.
