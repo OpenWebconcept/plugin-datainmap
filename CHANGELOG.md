@@ -1,3 +1,4 @@
+**1.12.6 (2026-09-23)**
 - Javascript/NodeJS dependencies bijgewerkt naar nieuwere versies.
 
 **1.12.5 (2026-08-06)**
